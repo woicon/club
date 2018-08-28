@@ -1,0 +1,99 @@
+.list-scroll {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 90rpx;
+    bottom: 0;
+}
+
+.l-item {
+    display: flex;
+    padding:50rpx 30rpx;
+    background: #fff;
+}
+
+.list-touch {
+    background: #f4f4f4;
+}
+
+.l-img {
+    width:220rpx;
+    
+    position: relative;
+}
+
+.l-img image {
+    width:220rpx;
+    height:164rpx;
+    vertical-align: bottom;
+}
+
+.l-status {
+    background: #3cca80;
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    font-size: 22rpx;
+    padding: 5rpx 10rpx;
+    border-radius: 3rpx;
+    position:absolute;right:0;
+    top:0;
+}
+.l-status.disable{
+    background:#ccc;
+}
+
+.l-date {
+    font-size: 24rpx;
+    color: #999;
+    margin-top: 5rpx;
+    display: flex;
+    align-items: center;
+}
+
+.l-date .ico {
+    margin-right: 10rpx;
+}
+
+.l-title {
+    font-size: 30rpx;
+    color: #444;
+    line-height: 1.6;
+}
+
+.l-tag {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    font-size: 24rpx;
+}
+
+.l-tag .ico {
+    font-size: 26rpx;
+    margin-right: 12rpx;
+}
+
+.l-tag>view {
+    display: flex;
+    align-items: center;
+    color: #999;
+    padding-right: 8rpx;
+    width:80rpx;
+}
+
+.l-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 170rpx;
+    flex-grow: 2;
+    margin-right:30rpx;
+}
+
+.l-bottom {
+    padding: 50rpx 0;
+    text-align: center;
+    font-size: 28rpx;
+    color: #999;
+    opacity: 0.8;
+}

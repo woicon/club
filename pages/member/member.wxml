@@ -1,0 +1,49 @@
+<!-- <view class='login'>
+    <view class='login-text'>微信授权登录，需要您授权登录此app获取昵称，头像等信息！</view>
+    <button class='button' hover-class='button-touch' wx:if="{{logins}}" bindtap='toBack'>返回</button>
+    <button wx:else class='button' hover-class='button-touch' bindgetuserinfo='getUserInfo' open-type="getUserInfo">授权登录</button>
+</view> -->
+
+<view class='m'>
+    <!-- {"id":80,"nickname":"35430.36867486444","avatarurl":"http://www.51club.com/admin/images/bg/4.jpg","gender":1,"city":"北京","province":"北京","country":"中国","language":"zh","merchantid":10114189,"superiormerchantid":10113413,"openid":"62847","unionid":"31835","userintro":null} -->
+    <view>
+        <view class='m-info'>
+            <image src='{{member.avatarurl}}'></image>
+            <view class="m-name">{{member.nickname}}</view>
+        </view>
+        <view class='em'>{{member.merchantName}}</view>
+    </view>
+    <view bindtap='toDateSet' class='ico ico-cogs'></view>
+</view>
+
+<view class='member-grid'>
+    <!-- <navigator class='bline rline' url='/pages/activityList/activityList'>
+        <view class='ico ico-folder'></view>
+        <text>活动管理</text>
+    </navigator> -->
+    <navigator class='bline rline' bindtap='scanCode'>
+        <view class='ico ico-price-tag'></view>
+        <text>票券审核</text>
+    </navigator>
+    <navigator class='bline rline'>
+        <view class='ico ico-coin-yen'></view>
+        <text>我的收入</text>
+    </navigator>
+    <navigator class='bline rline' url='/pages/dataSet/dataSet'>
+        <view class='ico ico-cogs'></view>
+        <text>资料设置</text>
+    </navigator>
+    <navigator class='bline rline' url='/pages/messageList/messageList'>
+        <view class='ico ico-bubbles2'></view>
+        <text>留言管理</text>
+    </navigator>
+    <view class='bline rline' bindtap='authorizeInfo'>
+        <view class='ico ico-power-cord'></view>
+        <text>认证管理</text>
+    </view>
+    <navigator class='bline rline'>
+        <view class='ico ico-users'></view>
+        <text>会员管理</text>
+    </navigator>
+</view>
+<!-- <view class='button' bindtap='exitSys' hover-class='button-touch'>退出登录</view> -->

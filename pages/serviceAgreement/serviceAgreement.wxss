@@ -1,0 +1,13 @@
+view {
+    font-size: 27rpx;
+    line-height: 1.8;
+    color: #444;
+}
+
+page {
+    background: #fff;
+}
+
+.container {
+    padding: 40px 30rpx;
+}

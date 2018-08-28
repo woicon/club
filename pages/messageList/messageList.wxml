@@ -1,0 +1,58 @@
+<view class="tab">
+    <view wx:for="{{status}}" id="{{index}}" bindtap='toggleTab' data-index="{{index}}" class='{{currentTab == index ? "active" :""}}' wx:key="messageStatus">
+        {{item}}
+    </view>
+</view>
+
+<scroll-view scroll-y class='page-scroll'>
+    <block wx:if="{{pageLoading}}">
+        <view class='f-c-c empty'>
+            <load></load>
+        </view>
+    </block>
+    <view class='f-c-c empty' wx:elif="{{message == null}}">
+        <view class='icos'>
+            <view class='ico ico-bubbles f-c-c-co'></view>
+            <text>没有留言</text>
+        </view>
+    </view>
+    <view wx:else class='message-list'>
+        <view wx:for="{{message}}" wx:key="messageList" class='msg-item'>
+            <view class='bline msg-name'>{{item.acticityname}}</view>
+            <view class='msg-info bline'>
+                <image src='{{item.memberHeadImg}}'></image>
+                <view class='msg-cont'>
+                    <view class='mag-title'>
+                        <view>{{item.name}}</view>
+                        <view>{{item.time}}</view>
+                    </view>
+                    <view class='msg-post'>{{item.message}}</view>
+                </view>
+            </view>
+            <view wx:if="{{currentTab == 1}}" class="msg-btn" bindtap='messageReply' data-index="{{index}}" data-index="{{index}}" data-id="{{item.id}}">回复</view>
+        </view>
+    </view>
+</scroll-view>
+<view class='mask' wx:if="{{activeMsg}}"></view>
+<view class='reply' wx:if="{{activeMsg}}">
+    <view class='msg-item'>
+        <view class='bline msg-name'>{{activeMsg.acticityname}}</view>
+        <view class='msg-info'>
+            <image src='{{activeMsg.memberHeadImg}}'></image>
+            <view class='msg-cont'>
+                <view class='mag-title'>
+                    <view>{{activeMsg.name}}</view>
+                    <view>{{activeMsg.time}}</view>
+                </view>
+                <view class='msg-post'>{{activeMsg.message}}</view>
+            </view>
+        </view>
+        <view class='reply-txt bline'>
+            <textarea bindinput='inputContent' placeholder='输入回复内容'></textarea>
+        </view>
+        <view class='btn-bar'>
+            <view class='rline' bindtap='clearReply'>取消</view>
+            <view wx:if="{{currentTab == 1}}" class="msg-btn" bindtap='replyMsg' data-index="{{index}}" data-id="{{activeMsg.id}}">回复</view>
+        </view>
+    </view>
+</view>

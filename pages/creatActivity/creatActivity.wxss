@@ -1,0 +1,221 @@
+.act {
+    background: #fff;
+    margin-bottom: 30rpx;
+}
+
+page {
+    background: #f4f4f4;
+}
+
+.act label {
+    font-size: 28rpx;
+    color: #666;
+    padding: 20rpx 0;
+    width: 140rpx;
+}
+
+.img-tab {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.act-img {
+    background: #eee;
+    display: flex;
+    margin: 0;
+    height: 400rpx;
+    position: relative;
+}
+
+.act-img .ico {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 24rpx;
+    color: #999;
+}
+
+.act-img .edits {
+    position: absolute;
+    left: 40rpx;
+    bottom: 40rpx;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 90px;
+    font-size: 32rpx;
+}
+
+.act-img .ico::before {
+    font-size: 44rpx;
+}
+
+.act>view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin: 0 40rpx;
+}
+
+.act>view input, .act>view .value {
+    padding: 36rpx 0;
+    text-align: left;
+    font-size: 28rpx;
+    color: #444;
+    flex-grow: 2;
+}
+
+.act>view input {
+    padding: 28rpx 0;
+    color: #444;
+    font-weight: 800;
+    text-align: right;
+}
+
+.act>view::before {
+    content: '';
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    bottom: 0;
+    border-bottom: 1px solid #eee;
+    transform: scale(0.5);
+}
+
+.act>view:last-child::before {
+    border: none;
+}
+
+.post-scroll {
+    height: 90rpx;
+    background: #fff;
+}
+
+.act-bar {
+    margin: 0 40rpx;
+    font-size: 24rpx;
+    color: #999;
+    padding: 20rpx 0;
+}
+
+.act-bar button {
+    margin: 50rpx 0;
+}
+
+.post {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.img-tab {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.img-tab>view {
+    padding: 0 30rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 28rpx;
+    display: inline-block;
+    color: #999;
+}
+
+.img-tab>view.active {
+    color: #323dad;
+}
+
+.postimg {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 30rpx;
+}
+
+.post-title {
+    font-size: 30rpx;
+    font-weight: 800;
+}
+
+.postimg .img {
+    display: block;
+    width: 46%;
+    height: 90px;
+    margin: 30rpx 0;
+}
+
+.postimg .img image {
+    width: 100%;
+    height: 90px;
+}
+
+.imgs {
+    width: 100%;
+}
+
+.imgs image {
+    width: 100%;
+    height: 400rpx;
+    display: block;
+}
+
+.act .list-arr .value {
+    text-align: right;
+    color: #444;
+}
+
+.act-ser {
+    display: flex;
+    align-items: center;
+}
+
+.act-ser.active .ico {
+    color: #505ce0;
+}
+
+.act-ser navigator {
+    color: #505ce0;
+}
+
+.act-ser .ico {
+    margin-right: 8rpx;
+}
+
+.dates {
+    display: flex;
+    align-items: center;
+    font-size: 26rpx;
+    flex-grow: 2;
+    justify-content: space-between;
+}
+
+.dates picker {
+    display: flex;
+}
+
+.dates picker .value {
+    text-align: right;
+    flex-grow: 2;
+}
+
+.pimg {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 100;
+}

@@ -1,0 +1,48 @@
+.inputs {
+    background: #fff;
+    padding: 0 40rpx;
+}
+
+.input-block {
+    background: #fff;
+    padding: 20rpx 40rpx;
+}
+
+input {
+    font-size: 28rpx;
+    color: #444;
+    padding: 26rpx 0;
+}
+
+.input-list>view {
+    display: flex;
+    height: 120rpx;
+    align-items: center;
+    font-size: 28rpx;
+}
+
+.input-info {
+    font-size: 25rpx;
+    color: #999;
+    line-height: 2;
+    padding: 16rpx 0 32rpx;
+    display: flex;
+    align-items:center;
+}
+.input-info .ico{
+    margin-right:12rpx;
+}
+.input-list>view input {
+    flex-grow: 2;
+}
+
+.input-list>view .ico {
+    flex-basis: 60rpx;
+    display: flex;
+    padding:30rpx 0;
+    color:#999;
+}
+
+.input-list>view:last-child::after {
+    border: none;
+}

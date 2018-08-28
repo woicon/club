@@ -1,0 +1,96 @@
+<view wx:if="{{showPost}}" class='pimg'>
+
+    <scroll-view scroll-x class='post-scroll'>
+        <view bindtap='choosePost' class='img-tab'>
+            <view wx:for="{{post}}" id='{{index}}' wx:key="postsss" class='{{index == selIndex ? "active" : ""}}'>
+                {{postType[index]}}
+            </view>
+        </view>
+    </scroll-view>
+
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" current-item-id="{{selIndex}}" interval="{{interval}}" duration="{{duration}}" bindchange='postChange'>
+        <block wx:for="{{post}}" wx:key="imgposts">
+            <swiper-item item-id="{{index}}">
+                <view class='postimg'>
+                    <view wx:for="{{item}}" wx:for-item="sitem" wx:key="postimg" wx:for-index="sindex" data-url="{{sitem}}" bindtap='getUrl' class='img'>
+                        <image src='{{sitem}}'></image>
+                    </view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+
+<form bindsubmit="creatActivity">
+    <input style='display:none' name="userid" value='{{member.id}}'></input>
+    <view class='act-img' name="imgs">
+        <view class='imgs' bindtap='chooseImg' wx:if="{{postImg}}">
+            <image src='{{postImg}}' mode="aspectFill"></image>
+            <view class='edits ico'bindtap='editItem' id="{{index}}">
+                <view class='ico-image'></view>
+            </view>
+        </view>
+        <view class='ico ico-image' bindtap='chooseImg' wx:else>选择海报</view>
+        <input style='display:none' value='{{postImg}}' name="imgs"></input>
+    </view>
+    <view class='act'>
+        <view>
+            <label>活动主题</label>
+            <input placeholder='输入活动主题' name='activityname'></input>
+        </view>
+        <view class='list-arr' bindtap='chooseLocaltion'>
+            <label>活动地点</label>
+            <view class='value' wx:if="{{loacaltionTtype==0}}">线上活动</view>
+            <view class='value' wx:elif="{{loacaltionTtype==1}}">{{localtion.address}}</view>
+            <view class='value' wx:else>请选择</view>
+            <input wx:if="{{localtion.address}}" name="activityaddress" style='display:none' value='{{localtion.address}}'></input>
+            <input name="lon" value='{{localtion.longitude}}' style='display:none'></input>
+            <input name="lat" value='{{localtion.latitude}}' style='display:none'></input>
+        </view>
+        <view>
+            <label>活动时间</label>
+            <view class='dates'>
+                <picker mode="multiSelector" id='startDate' value="{{dateTime}}" bindchange="changeSatartDate" bindcolumnchange="changeDateColumn" range="{{dateTimeArray}}">
+                    <view class="blines value">{{dateTimeArray[0][startDate[0]]}}-{{dateTimeArray[1][startDate[1]]}}-{{dateTimeArray[2][startDate[2]]}} {{dateTimeArray[3][startDate[3]]}}:{{dateTimeArray[4][startDate[4]]}}</view>
+                </picker>
+                <view>至</view>
+                <picker mode="multiSelector" id='endDate' value="{{dateTime}}" bindchange="changeEndDate" bindcolumnchange="changeDateColumn" range="{{dateTimeArray}}">
+                    <view class="value">{{dateTimeArray[0][endDate[0]]}}-{{dateTimeArray[1][endDate[1]]}}-{{dateTimeArray[2][endDate[2]]}} {{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}</view>
+                </picker>
+            </view>
+            <input name="startdate" class='hidden' value='{{dateTimeArray[0][startDate[0]]}}-{{dateTimeArray[1][startDate[1]]}}-{{dateTimeArray[2][startDate[2]]}}'></input>
+            <input name="starttime" class='hidden' value='{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}'></input>
+            <input name="enddate" class='hidden' value='{{dateTimeArray[0][endDate[0]]}}-{{dateTimeArray[1][endDate[1]]}}-{{dateTimeArray[2][endDate[2]]}}'></input>
+            <input name="endtime" class='hidden' value='{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}'></input>
+        </view>
+        <view class='list-arr' bindtap='toDetail'>
+            <label>详情描述</label>
+            <view class='value'>编辑</view>
+
+        </view>
+        <view wx:if="{{activitydetails}}">
+            <view>{{activitydetails[0].text}}</view>
+            <view>
+                <image src='{{activitydetails[0].img}}'></image>
+            </view>
+        </view>
+    </view>
+
+    <view class='act'>
+        <view class='list-arr' bindtap='toFee'>
+            <label>活动费用</label>
+            <view class='value'>默认为免费</view>
+        </view>
+        <view class='list-arr' bindtap='toInfo'>
+            <label>报名设置</label>
+            <view class='value'>手机、电话</view>
+        </view>
+    </view>
+    <view class='act-bar'>
+        <view bindtap="checkOk" class='act-ser {{checkOk ? "active":""}}'>
+            <view class='ico ico-checkbox-checked'></view> 我同意
+            <navigator url='/pages/serviceAgreement/serviceAgreement'>《活动吧服务协议》</navigator>
+        </view>
+        <button class='button' formType="submit" hover-class='button-touch'>发布活动</button>
+    </view>
+</form>

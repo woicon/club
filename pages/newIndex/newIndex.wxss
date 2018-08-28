@@ -1,0 +1,96 @@
+page {
+    background: #fff;
+}
+
+.i-sub {
+    color: #888;
+}
+
+.i-head {
+    display: flex;
+    margin: 90rpx 40rpx;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.i-head::after {
+    content: '';
+    width: 12rpx;
+    height: 12rpx;
+    border: 2px solid #ccc;
+    border-left: none;
+    border-bottom: none;
+    transform: rotate(45deg);
+}
+
+.info-title {
+    font-size: 34rpx;
+    color: #323dad;
+    line-height: 2;
+}
+
+.i-head image {
+    width: 200rpx;
+    height: 158rpx;
+    margin-right: 30rpx;
+}
+
+.i-info {
+    font-size: 28rpx;
+    flex-grow:2;
+}
+
+.i-info text {
+    display: block;
+}
+
+.i-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 30rpx;
+}
+
+.lines {
+    text-align: center;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 27rpx;
+    margin: 120rpx 50rpx 30rpx;
+}
+
+.lines::after, .lines::before {
+    content: '';
+    display: block;
+    width: 150rpx;
+    height: 1px;
+    background: #eee;
+}
+
+.i-grid>view {
+    font-size: 26rpx;
+    width: 25%;
+    text-align: center;
+    margin: 20rpx 0;
+    color: #555;
+}
+
+.i-grid image {
+    width: 90rpx;
+    height: 90rpx;
+    margin: 15rpx 0 8rpx;
+}
+
+.login-text{
+    font-size:28rpx;
+    line-height:1.8;
+    text-align:center;
+}
+.login .button{
+    margin-top:40rpx;
+}
+.login{
+    margin:40% 20% auto 20%;
+}

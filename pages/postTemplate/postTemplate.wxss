@@ -1,0 +1,43 @@
+.post{
+    margin:30rpx;
+}
+swiper{
+    width:100%;
+    height:520rpx;
+}
+.img-tab{
+    text-align:center;
+    display: flex;
+}
+.img-tab>view{
+    padding:10rpx 24rpx;
+    font-size:30rpx;
+}
+.img-tab>view.active{
+    color:#323dad;
+}
+.postimg{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    margin:0 30rpx;
+}
+.post-title{
+    font-size:30rpx;
+    font-weight:800;
+
+}
+.postimg .img{
+    display:block;
+    width:30%;
+    height:90px;
+    margin:20rpx 0;
+}
+.postimg .img image{
+    width:100%;
+    height:90px;
+}
+.img-tab{
+    display:flex;
+    text-align:center;
+}

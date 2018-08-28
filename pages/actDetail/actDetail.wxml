@@ -1,0 +1,25 @@
+<view class='t'>
+    <view wx:for="{{list}}" wx:key="forlist" wx:if="{{list.length != 0}}" class='d-item'>
+        <view class='t-warp'>
+            <textarea auto-height maxlength="-1" placeholder='输入文本' data-index="{{index}}" value='{{item.txt}}' bindinput='editTxt'></textarea>
+        </view>
+        <view class='list-img' bindtap='editItem' id="{{index}}">
+            <view wx:if="{{currentItem == index}}" class='editbar'>
+                <view class='ico-image' bindtap='changItem' data-index="{{index}}"></view>
+                <view class='ico-bin2' bindtap='deleteItem' data-index="{{index}}"></view>
+            </view>
+            <image src='{{item.img}}' mode='aspectFill'></image>
+        </view>
+    </view>
+    <view class='d-item ds-item'>
+        <view class='t-warp'>
+            <textarea auto-height maxlength="-1" placeholder='输入文本' value='{{tempTxt}}' data-index="{{index}}" bindinput='inputValue'></textarea>
+        </view>
+        <view class='add' bindtap='toggleItem' bindtap='addImg'>
+            <view class='ico ico-plus'></view> 新增图片</view>
+    </view>
+</view>
+
+<view class='form-bar'>
+    <button class='button' bindtap='saveDetail' hover-class='button-touch'>保存</button>
+</view>

@@ -1,0 +1,26 @@
+.ico {
+    font-size: 120rpx;
+    text-align:center;
+    padding:40rpx 0;
+    color:#F56E50;
+}
+.ico-text{
+    font-size:32rpx;
+    margin-top:20rpx;
+    color:#333;
+}
+.c-block{
+    margin:0 60rpx;
+}
+.c-list{
+    font-size:30rpx;
+}
+.c-list>view{
+    padding:20rpx 0;
+}
+.c-list text{
+    color:#666;
+}
+.button{
+    margin-top:20px;
+}

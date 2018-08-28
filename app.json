@@ -1,0 +1,64 @@
+{
+    "pages": [
+        "pages/newIndex/newIndex",
+        "pages/creatActivity/creatActivity",
+        "pages/new/new",
+        "pages/index/index",
+        "pages/login/login",
+        "pages/sing/sing",
+        "pages/detail/detail",
+        "pages/apply/apply",
+        "pages/checkDetail/checkDetail",
+        "pages/member/member",
+        "pages/postTemplate/postTemplate",
+        "pages/actMap/actMap",
+        "pages/actFee/actFee",
+        "pages/actDetail/actDetail",
+        "pages/addFee/addFee",
+        "pages/actInfo/actInfo",
+        "pages/addInfo/addInfo",
+        "pages/serviceAgreement/serviceAgreement",
+        "pages/activityList/activityList",
+        "pages/activityManagement/activityManagement",
+        "pages/activityShare/activityShare",
+        "pages/activityOrderEnrollList/activityOrderEnrollList",
+        "pages/activityOrderList/activityOrderList",
+        "pages/dataSet/dataSet",
+        "pages/messageList/messageList",
+        "pages/scanCode/scanCode",
+        "pages/authorizeInfo/authorizeInfo"
+    ],
+    "window": {
+        "backgroundTextStyle": "white",
+        "navigationBarBackgroundColor": "#323dad",
+        "navigationBarTitleText": "活动吧",
+        "navigationBarTextStyle": "white",
+        "enablePullDownRefresh": false
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/newIndex/newIndex",
+                "text": "首页",
+                "iconPath": "images/home.png",
+                "selectedIconPath": "images/home-sel.png"
+            },
+            {
+                "pagePath": "pages/activityList/activityList",
+                "text": "活动管理",
+                "iconPath": "images/tab01.png",
+                "selectedIconPath": "images/tab01-sel.png"
+            },
+            {
+                "pagePath": "pages/member/member",
+                "text": "个人中心",
+                "iconPath": "images/tab02.png",
+                "selectedIconPath": "images/tab02-sel.png"
+            }
+        ],
+        "color":"#CDCED3",
+        "backgroundColor":"#F9F9FA",
+        "borderStyle":"white",
+        "selectedColor":"#323dad"
+    }
+}

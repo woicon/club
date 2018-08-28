@@ -1,0 +1,47 @@
+.list {
+    background: #fff;
+    margin: 40rpx;
+    border-radius:8rpx;
+}
+
+.list>view {
+    border-radius: 4rpx;
+    display: flex;
+    justify-content:space-between;
+    font-size: 28rpx;
+    padding: 30rpx;
+    align-items:center;
+    color:#555;
+}
+
+.list .value {
+    font-size:30rpx;
+    color:#999;
+    margin-top:14rpx;
+    font-weight:800;
+}
+.list .value.price{
+    color:tomato;
+    display: flex;
+    align-items:center;
+}
+.list .value.price text{
+    font-size:24rpx;
+
+}
+.list-cont{
+    flex-grow: 2;
+}
+.list .ico{
+    flex-basis:60rpx;
+    width:80rpx;
+    height:120rpx;
+    display:flex;
+    align-items:center;
+    color:#999;
+    transition:.3s;
+}
+.list .ico-touch{
+    opacity:.4;
+}
+

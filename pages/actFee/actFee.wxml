@@ -1,0 +1,18 @@
+<view class='list'>
+    <block wx:if="{{feeList.length > 0}}">
+        <view class='list-arr blines' bindtap='editFee' hover-class='list-arr-touch' wx:for="{{feeList}}" data-index="{{index}}" wx:key="feelist">
+            <view wx:if="{{index!=0}}" class='ico ico-blocked' catchtap='deleteFee' hover-class='ico-touch' data-index="{{index}}">
+            </view>
+            <view class='list-cont'>
+                <view>{{item.ticketname}}</view>
+                <view class='value {{item.price != 0 ? "price":""}}'>
+                    <text>{{item.price != 0 ?"¥":""}}</text>{{item.price == 0 ?"免费":item.price}}</view>
+            </view>
+        </view>
+    </block>
+</view>
+<view class='add' hover-class='touch' bindtap='addForm'>
+    <view class='ico ico-plus'></view>添加票种</view>
+<view class='' style='margin:0 40rpx;'>
+    <button class='button' hover-class='button-touch'>完成</button>
+</view>

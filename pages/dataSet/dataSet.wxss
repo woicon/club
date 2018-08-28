@@ -1,0 +1,53 @@
+.forms {
+    background: #fff;
+    padding: 0 40rpx;
+}
+.head{
+    display: flex;
+    padding:60rpx 0;
+    background:#fff;
+}
+.head-img{
+    text-align:center;
+}
+.head-img .ico,.head-img image{
+    width:130rpx;
+    height:130rpx;
+    font-size:26rpx;
+    background:#eee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:100px;
+}
+.head-img text{
+    font-size:28rpx;
+    color:#ccc;
+}
+.forms .f-line {
+    display: flex;
+    align-items: center;
+}
+.ars{
+    padding:30rpx 0;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.forms input, .forms textarea, .forms label {
+    font-size: 28rpx;
+    padding: 32rpx 0;
+}
+.forms input{
+    flex-grow:2;
+    color:#444;
+}
+.lines {
+    margin-top:20rpx;
+}
+
+.forms label {
+    width: 180rpx;
+    font-size: 28rpx;
+    color: #666;
+}

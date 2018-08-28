@@ -1,0 +1,103 @@
+.form {
+    background: #fff;
+}
+
+.form>view {
+    font-size: 28rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 40rpx;
+    color: #888;
+}
+
+.form>view .value {
+    flex-grow: 2;
+}
+
+.form .key {
+    padding: 32rpx 0;
+    width: 140rpx;
+    color: #666;
+}
+
+.form input {
+    color: #444;
+    padding: 22rpx 0;
+    line-height: normal;
+}
+
+.switch {
+    width: 80rpx;
+    height: 46rpx;
+    border-radius: 90px;
+    background: #ccc;
+    position: relative;
+    transition: 0.4s;
+}
+
+.switch>view {
+    content: '';
+    height: 46rpx;
+    width: 46rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fff; /* //#323dad; */
+    border-radius: 90px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.4s;
+}
+
+.switch::before {
+    content: '';
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 100px;
+    position: absolute;
+    background: #eee;
+    transition: 0.2s;
+}
+
+.switch.checked {
+    background: #323dad;
+}
+
+.switch.checked::before {
+    transform: scale(0);
+}
+
+.switch.checked>view {
+    /* left:0;
+    right:inherit; */
+    transform: translateX(100%);
+}
+
+.f-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.f-value input {
+    flex-grow: 2;
+}
+
+.form-bar {
+    padding: 40rpx 0;
+}
+
+.form-bar .button-grey {
+    background: #999;
+}
+
+.addform {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #f4f4f4;
+}

@@ -1,0 +1,54 @@
+<view wx:if="{{pageLoading}}">
+    <load />
+</view>
+
+<block wx:else>
+    <block wx:if="{{!shareGroup}}">
+        <view class='share-cont'>
+            <view class='s-head'>
+                <image src='{{member.avatarurl}}'></image>
+                <view>
+                    <view class='head-name'>{{member.nickname}}</view>
+                    <view class='head-info'>我分享了一个活动，快来看看吧</view>
+                </view>
+            </view>
+            <view class='s'>
+                <view class='s-img'>
+                    <image src='{{detail.activityImg}}'></image>
+                </view>
+                <view class='s-info'>
+                    <view class='s-name'>{{detail.activityName}}</view>
+                    <!-- <view class='s-status'>{{actStatus[detail.status]}}</view> -->
+                    <view class='s-line'>
+                        <view class='ico ico-location'> </view>{{detail.activityAddress}}
+                    </view>
+
+                    <view class='s-line'>
+                        <view class='ico ico-clock'></view>{{detail.startDate}}至{{detail.endDate}}
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class='share-title'>
+        分享活动卡片给好友
+        </view>
+        <view class='share-bar'>
+            <button open-type="share">
+             <image src='../../images/weixin.png' /> 微信好友</button>
+            <button bindtap='shareGroup' >
+             <image src='../../images/pengyouquan.png' /> 到朋友圈</button>
+        </view>
+    </block>
+    <view wx:if="{{mask}}" class='share-group'>
+            <view class='img'>
+                <image src='{{shareImg}}' mode='aspectFit'></image>
+            </view>
+            <button class='share-btn button' bindtap='saveShare' hover-class='button-touch'>
+            <view class='ico ico-share2'></view>
+            保存图片,分享到朋友圈</button>
+            <view class='close' bindtap='closeGroup'></view>
+    </view>
+</block>
+
+<view class='mask' wx:if="{{mask}}" bindtap='closeGroup'></view>

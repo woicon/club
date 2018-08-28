@@ -1,0 +1,6 @@
+<view class='f-c-c empty'>
+    <view class='icos'>
+        <view class='ico icon-empty f-c-c-co'></view>
+        <text>{{errorMsg}}</text>
+    </view>
+</view>

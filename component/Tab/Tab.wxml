@@ -1,0 +1,5 @@
+<view class="tab">
+    <view wx:for="{{status}}" bindtap='toggleTab' data-index="{{index}}" class='{{currentTab == index ? "active" :""}}' wx:key="messageStatus">
+        {{item}}
+    </view>
+</view>

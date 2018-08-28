@@ -1,0 +1,5 @@
+<view class='login'>
+    <view class='login-text'>微信授权登录，需要您授权登录此app获取昵称，头像等信息！</view>
+    <!-- <button class='button' hover-class='button-touch' wx:if="{{logins}}" bindtap='toBack'>返回</button> -->
+    <button class='button' hover-class='button-touch' bindgetuserinfo='getUserInfo' open-type="getUserInfo">授权登录</button>
+</view>

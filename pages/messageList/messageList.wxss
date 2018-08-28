@@ -1,0 +1,93 @@
+.tab>view {
+    width: 50%;
+}
+
+.msg-name {
+    padding: 20rpx 40rpx;
+    line-height: 1.6;
+    font-weight: 800;
+}
+
+.msg-item {
+    background: #fff;
+    font-size: 28rpx;
+    margin: 30rpx;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4rpx;
+}
+
+.msg-btn {
+    text-align: center;
+    font-size: 26rpx;
+    color: #444;
+    padding: 25rpx 0;
+}
+
+.msg-info {
+    display: flex;
+    padding: 30rpx;
+}
+
+.msg-cont {
+    flex-grow: 2;
+}
+
+.msg-info image {
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 90px;
+    background: #eee;
+    margin-right: 30rpx;
+}
+
+.mag-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24rpx;
+    width: 100%;
+    color: #888;
+}
+
+.msg-post {
+    margin-top: 16rpx;
+}
+
+.reply {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 10%;
+    z-index: 100;
+}
+
+.reply .msg-item {
+    box-shadow: none;
+}
+
+.reply-txt {
+    padding: 20rpx 40rpx;
+}
+
+.reply textarea {
+    padding: 20rpx;
+    background: #f4f4f4;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 240rpx;
+    line-height: 1.5;
+}
+
+.btn-bar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btn-bar>view {
+    padding: 25rpx 0;
+    width: 50%;
+    text-align: center;
+    font-size: 30rpx;
+}

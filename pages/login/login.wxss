@@ -1,0 +1,16 @@
+page{
+    background:#fff;
+    display: flex;
+    height: 100%;
+}
+.login-text{
+    font-size:28rpx;
+    line-height:1.8;
+    text-align:center;
+}
+.login .button{
+    margin-top:40rpx;
+}
+.login{
+    margin:40% 20% auto 20%;
+}

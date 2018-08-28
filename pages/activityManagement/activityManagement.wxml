@@ -1,0 +1,39 @@
+<view class='m-head'>
+    <view class='imgs' style='background-image:url({{detail.activityImg}})'></view>
+    <view class='m-title'>
+        <view>{{detail.activityName}}</view>
+        <view class='m-time'>
+            <view class='ico ico-location'></view>
+            {{detail.activityAddress}}
+        </view>
+        <view class='m-time'>
+            <view class='ico ico-clock'></view>
+            {{detail.startDate}}~ {{detail.endDate}}
+        </view>
+    </view>
+</view>
+<view class='m'>
+    <view class='rline'> 报名量
+        <text>{{detail.applyCount}}</text>
+    </view>
+    <view class='rline'> 浏览量
+        <text>{{detail.visitCount}}</text>
+    </view>
+    <view> 分享量
+        <text>{{detail.shareCount}}</text>
+    </view>
+</view>
+<view class='grids'>
+    <view class="rline bline">
+        <view class='ico ico-pen'></view> 活动编辑</view>
+    <view class="rline bline" bindtap='toShare' data-id="{{detail.id}}" data-mid="{{detail.merchantId}}">
+        <view class='ico ico-share2'></view>活动分享</view>
+    <view class="bline" data-id="{{detail.id}}" data-mid="{{detail.merchantId}}" bindtap='toDetail'>
+        <view class='ico ico-book'></view>查看活动</view>
+    <view class="rline" bindtap='orderList' data-id="{{detail.id}}" data-mid="{{detail.merchantId}}">
+        <view class='ico ico-file-text2'></view>订单管理</view>
+    <view class="rline" bindtap='enrollList'  data-id="{{detail.id}}" data-mid="{{detail.merchantId}}">
+        <view class='ico ico-quill'></view> 活动报名</view>
+    <view class="rline">
+        <view class='ico ico-ticket'></view>报名验证</view>
+</view>
