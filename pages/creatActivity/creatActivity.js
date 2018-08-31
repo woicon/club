@@ -13,12 +13,27 @@ Page({
             travel: "旅游户外",
         },
         showPost: false,
-        date: '2018/08/01 10:30',
-        time: '12:00',
         dateTimeArray: null,
         dateTime: null,
-        startYear: 2018,
         checkOk: true,
+        activityticket: [{
+            ticketname: '免费票',
+            price: 0,
+            totalcount: 1000,
+            verifytype: 0,
+        }],
+        applyinfo: [{
+                name: "姓名",
+                type: 1,
+                status: 0
+            },
+            {
+                name: "手机号",
+                type: 2,
+                status: 0
+            }
+        ],
+        loacaltionTtype: null
     },
     onLoad: function(options) {
         this.postImg()
@@ -26,17 +41,16 @@ Page({
         this.setData({
             member: member
         })
-        wx.setNavigationBarTitle({
-            title: '发布活动',
-        })
-        var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear)
+        app.pageTitle('发布活动')
+        let nowDate = new Date()
+        var obj = dateTimePicker.dateTimePicker(nowDate.getFullYear(), this.data.endYear)
         this.setData({
             startDate: obj.dateTime,
             endDate: obj.dateTime,
             dateTimeArray: obj.dateTimeArray,
-            postImg:options.img || null,
-            activitydetails: wx.getStorageSync("activitydetails") || null
-        });
+            dateTime: obj.dateTime,
+            postImg: options.img || null
+        })
     },
     checkOk: function(e) {
         console.log(e)
@@ -87,13 +101,13 @@ Page({
                             console.log(res)
                             this.setData({
                                 localtion: res,
-                                loacaltionTtype: 1
+                                loacaltionTtype: 2
                             })
                         }
                     })
                 } else {
                     this.setData({
-                        loacaltionTtype: 0
+                        loacaltionTtype: 1
                     })
                 }
             }
@@ -119,39 +133,52 @@ Page({
 
     creatActivity: function(e) {
         console.log(e)
-        // { "id": 80, "nickname": "35430.36867486444", "avatarurl": "http://www.51club.com/admin/images/bg/4.jpg", "gender": 1, "city": "北京", "province": "北京", "country": "中国", "language": "zh", "merchantid": 10114189, "superiormerchantid": 10113413, "openid": "62847", "unionid": "31835", "userintro": null }
         let value = e.detail.value
-        if (value.imgs == '') {
+        let member = wx.getStorageSync("login")
+        if (value.imgs == "") {
             app.tip("请选择或者上传海报")
-        } else if (value.activityname == '') {
+        } else if (value.activityname == "") {
             app.tip("请输入活动主题")
-        } else if (!this.data.loacaltionTtype || this.data.loacaltionTtype.loacaltionTtype == 0) {
+        } else if (!this.data.loacaltionTtype) {
             app.tip("请选择活动地点")
-        } else if (value.imgs == '') {
-            app.tip("请选择或者上传海报")
-        } else if (value.startdate = '' || value.enddate == "") {
+        } else if (value.startdate == "" || value.enddate == "") {
             app.tip("请选择活动时间")
+        } else if (value.activitydetails == "") {
+            app.tip("请活动详情不能为空")
+        } else {
+            if (!!!member.phone) {
+                console.log("member")
+                this.setData({
+                    nonePhone: true,
+                    values: value
+                })
+            } else {
+                console.log("checks")
+                this.creatAct(e.detail.value)
+            }
         }
-        let parmas = {
-            activityaddress: value.activityaddress,
-            activityname: value.activityname,
-            enddate: "2018-09-22",
-            endtime: "18:00",
-            lat: "39.85995",
-            lon: "116.28733",
-            startdate: "2018-09-22",
-            starttime: "09:00",
-            userid: 80,
-            imgs: "http://tclub.lx123.com/admin/images/applet/3.jpg",
-            activityticket: "[{'ticketname': '免费票','price': '0','totalcount': '10','verifytype':'0' },{'ticketname':'收费票','price': '1','totalcount': '10','verifytype':'1'}]",
-            applyinfo: "[{'name': '姓名', 'type': '1', 'status': '1' },{ 'name': '手机号', 'type': '2', 'status': '1' }]",
-            activitydetails: "232"
-        }
-        // let parmas = e.detail.value
-        // api.publishActivity(parmas, "POST")
-        //     .then(res => {
-        //         console.log(res)
-        //     })
+    },
+    creatAct: function(value) {
+
+        wx.showLoading({
+            title: '发布中',
+        })
+        app.api.publishActivity(value)
+            .then(res => {
+                wx.hideLoading()
+                if (res.data) {
+                    wx.removeStorageSync("activitydetails")
+                    wx.removeStorageSync("applyinfo")
+                    wx.removeStorageSync("activityticket")
+                    app.tip(res.msg)
+                    wx.navigateTo({
+                        url: `/pages/activityShare/activityShare?public=${res.data}`,
+                    })
+                } else {
+                    app.tip(res.msg)
+                }
+            })
+
     },
     postChange(e) {
         console.log(e)
@@ -165,7 +192,6 @@ Page({
         })
     },
     getUrl: function(e) {
-
         this.setData({
             postImg: e.currentTarget.dataset.url,
             showPost: false
@@ -178,27 +204,21 @@ Page({
         });
     },
     changeEndDate(e) {
-        console.log(e);
         this.setData({
             endDate: e.detail.value
         });
     },
     changeDateColumn(e) {
-        console.log(e)
-        let arr
-        let name = e.target.id
-        if (name == 'startDate') {
-            arr = this.data.startDate
-        } else if (name == 'endDate') {
-            arr = this.data.EndDate
-        }
-        let dateArr = this.data.dateTimeArray
+        var arr = this.data.dateTime,
+            dateArr = this.data.dateTimeArray
         arr[e.detail.column] = e.detail.value
-        console.log(dateArr)
+        dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]])
         console.log(arr)
         this.setData({
-            dateTimeArray: dateArr
-        })
+            dateTimeArray: dateArr,
+            dateTime: arr
+        });
+
     },
     toFee() {
         wx.navigateTo({
@@ -210,7 +230,7 @@ Page({
             url: '/pages/actInfo/actInfo',
         })
     },
-    toDetail(){
+    toDetail() {
         wx.navigateTo({
             url: '/pages/actDetail/actDetail',
         })
@@ -219,7 +239,131 @@ Page({
 
     },
     onShow: function() {
-
+        //fee setting
+        let applyinfo
+        if (wx.getStorageSync("applyinfo")) {
+            applyinfo = wx.getStorageSync("applyinfo")
+            for (let i in applyinfo) {
+                let item = applyinfo[i]
+                for (let s in item) {
+                    if (s == 'selected' || s == 'selfId') {
+                        delete item[s]
+                    }
+                }
+            }
+        }
+        let activitydetails
+        let activitydetailsStr = ''
+        if (wx.getStorageSync("activitydetails")) {
+            activitydetails = wx.getStorageSync("activitydetails")
+            let str = ''
+            for (let i in activitydetails) {
+                let items = activitydetails[i]
+                if (items.img) {
+                    activitydetailsStr += `<p class='x-img'><img src='${items.img}' /></p>`
+                }
+                if (items.txt) {
+                    activitydetailsStr += `<p class='x-txt'>${items.txt}</p>`
+                }
+            }
+            console.log(activitydetailsStr)
+        }
+        let activityticketStr = wx.getStorageSync("activityticket") ? JSON.stringify(wx.getStorageSync("activityticket")) : JSON.stringify(this.data.activityticket)
+        // console.log(JSON.stringify(applyinfo))
+        let a = JSON.stringify(wx.getStorageSync("activityticket"))
+        let strs = JSON.stringify(this.data.activityticket)
+        this.setData({
+            activitydetails: wx.getStorageSync("activitydetails") || null,
+            activityticket: wx.getStorageSync("activityticket") || this.data.activityticket,
+            applyinfo: applyinfo || this.data.applyinfo,
+            activitydetailsStr: activitydetailsStr,
+            activityticketStr: activityticketStr,
+            applyinfoStr: JSON.stringify(applyinfo) || JSON.stringify(this.data.applyinfo)
+        })
+    },
+    phoneBlur(e) {
+        if (!this.checkPhone(e.detail.value)) {
+            app.tip("请输入正确的手机号")
+        }
+    },
+    checkPhone(num) {
+        let phone = /^[1][3,4,5,7,8][0-9]{9}$/
+        console.log(phone.test(num))
+        return phone.test(num)
+    },
+    phoneValue(e) {
+        let isPass = !this.checkPhone(e.detail.value) ? false : true
+        this.setData({
+            isPass: isPass,
+            phoneValue: e.detail.value
+        })
+    },
+    getCodes(e) {
+        wx.showLoading()
+        app.api.sendVerifyCode({
+                merchantId: app.common("merchantid"),
+                superMerchantId: app.common("superiormerchantid"),
+                mobilePhone: this.data.phoneValue
+            })
+            .then(res => {
+                console.log(res)
+                wx.hideLoading()
+                if (res.status = '200') {
+                    app.tip(`验证短信${res.data.resultDesc}`)
+                    wx.setStorageSync("login", res.data)
+                    for (let i = 0; i <= 120; i++) {
+                        setTimeout(() => {
+                            this.setData({
+                                isPass: false,
+                                phoneDone: true,
+                                endtime: 120 - i
+                            });
+                            if (this.data.endtime == 0) {
+                                this.setData({
+                                    isPass: true,
+                                    phoneDone: false,
+                                    endtime: 120
+                                });
+                            }
+                        }, i * 1000)
+                    }
+                    this.setData({
+                        waitGetCode: true,
+                        applyProgressKey: res.data.applyProgressKey
+                    })
+                } else {
+                    app.tip(res.msg)
+                }
+            })
+    },
+    codeInput(e) {
+        this.setData({
+            phoneCode: e.detail.value
+        })
+    },
+    bindPhone(value) {
+        wx.showLoading({
+            title: '绑定手机中',
+        })
+        app.api.bindingMobilePhone({
+                merchantId: app.common("merchantid"),
+                applyProgressKey: this.data.applyProgressKey,
+                verificationCode: this.data.phoneCode,
+                mobilePhone: this.data.phoneValue
+            })
+            .then(res => {
+                console.log(res)
+                wx.hideLoading()
+                let status = res.status
+                if (status == '1004' || status == '1005') {
+                    app.tip(res.msg)
+                } else if (status == '200') {
+                    this.creatAct(this.data.values)
+                    this.setData({
+                        nonePhone: false
+                    })
+                }
+            })
     },
     onHide: function() {
 

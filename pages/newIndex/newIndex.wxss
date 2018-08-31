@@ -4,11 +4,12 @@ page {
 
 .i-sub {
     color: #888;
+    margin-top:10rpx;
 }
 
 .i-head {
     display: flex;
-    margin: 90rpx 40rpx;
+    margin:110rpx 40rpx;
     align-items: center;
     justify-content:space-between;
 }
@@ -25,7 +26,8 @@ page {
 
 .info-title {
     font-size: 34rpx;
-    color: #323dad;
+    color: #333;
+    font-weight:800;
     line-height: 2;
 }
 
@@ -50,6 +52,17 @@ page {
     justify-content: space-between;
     margin: 0 30rpx;
 }
+.i-grid .ico{
+    width:94rpx;
+    height:94rpx;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:48rpx;
+    border-radius:90rpx;
+    margin-bottom:12rpx;
+}
 
 .lines {
     text-align: center;
@@ -57,7 +70,7 @@ page {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 27rpx;
+    font-size: 32rpx;
     margin: 120rpx 50rpx 30rpx;
 }
 
@@ -73,13 +86,17 @@ page {
     font-size: 26rpx;
     width: 25%;
     text-align: center;
-    margin: 20rpx 0;
+    margin:40rpx 0 20rpx;
     color: #555;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 
 .i-grid image {
-    width: 90rpx;
-    height: 90rpx;
+    width: 92rpx;
+    height: 92rpx;
     margin: 15rpx 0 8rpx;
 }
 

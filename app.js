@@ -1,10 +1,13 @@
 var api = require('newApi/newApi.js')
 App({
-    onLaunch: function() {
-        console.log(api)
+    onLaunch: function(options) {
+        let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}
+        this.ext = extConfig
+        this.api = api(extConfig.host)
+        wx.setStorageSync("ext", extConfig)
         wx.login({
             success: (res) => {
-                wx.setStorageSync("code",res.code)
+                wx.setStorageSync("code", res.code)
             }
         })
     },
@@ -19,23 +22,26 @@ App({
         let currPage = this.currPage()
         let _currPage = currPage
         wx.setStorageSync("backUrl", '/' + _currPage.route)
-        
         if (!wx.getStorageSync("login")) {
             wx.reLaunch({
                 url: '/pages/login/login',
             })
         }
     },
-    api: api,
+    navTo(url) {
+        wx.navigateTo({
+            url: url,
+        })
+    },
     tip(msg) {
         wx.showToast({
             title: msg,
             icon: "none"
         })
     },
-    pageTitle(name){
+    pageTitle(name) {
         wx.setNavigationBarTitle({
-            title:name,
+            title: name,
         })
     },
     common(key) {

@@ -1,28 +1,31 @@
 <form bindsubmit='submitData'>
 
     <view class='forms'>
-        <view class='blines list-arr ars'  bindtap='upPic'>
+        <view class='f-line bline hpic' bindtap='upPic'>
+            <label>头像</label>
             <view class='head-img'>
                 <!-- {"id":80,"nickname":"35430.36867486444","avatarurl":"http://www.51club.com/admin/images/bg/4.jpg","gender":1,"city":"北京","province":"北京","country":"中国","language":"zh","merchantid":10114189,"superiormerchantid":10113413,"openid":"62847","unionid":"31835","userintro":null} -->
                 <image src='{{data.logourl}}' wx:if="{{data.logourl}}"></image>
                 <view class='ico ico-plus' wx:else></view>
             </view>
         </view>
+
         <input class='hidden' name='logourl' value="{{data.logourl}}"></input>
         <input class='hidden' value="{{member.id}}" name="userid"></input>
         <view class='f-line bline'>
-            <label>主办方名字：</label>
+
+            <label>主办方名字</label>
             <input name="name" id='name' placeholder='输入主办方名字' bindinput='newValue' value='{{data.name}}'></input>
         </view>
         <view class='f-line bline'>
-            <label>联系方式：</label>
-            <input name="phone" id='phone' placeholder='输入联系方式' bindinput='newValue' type='phone' value='{{data.phone}}' type='phone'></input>
+            <label>联系方式</label>
+            <input name="phone" id='phone' placeholder='输入联系方式' bindinput='newValue' type='number' value='{{data.phone}}' type='phone'></input>
         </view>
-        <view class='bline'>
-            <view class='lines'>
-                <label>主办方简介：</label>
+        <view class='f-line'>
+            <label>主办方简介</label>
+            <view class='text-warp'>
+                <textarea auto-height name="intro" id='intro' value='{{data.intro}}' bindinput='newValue' placeholder='输入主办方简介'></textarea>
             </view>
-            <textarea name="intro" id='intro' value='{{data.intro}}' bindinput='newValue' placeholder='输入主办方简介'></textarea>
         </view>
     </view>
     <view class='form-bar'>

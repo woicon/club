@@ -14,7 +14,7 @@ Page({
         }
     },
     onLoad: function(options) {
-        this.getList()
+       app.pageTitle("活动管理")
     },
     toggleTab: function(e) {
         let id = e.target.id
@@ -91,7 +91,7 @@ Page({
 
     },
     onShow: function() {
-
+        this.getList()
     },
     onHide: function() {
 

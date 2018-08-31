@@ -26,20 +26,22 @@
         "pages/dataSet/dataSet",
         "pages/messageList/messageList",
         "pages/scanCode/scanCode",
-        "pages/authorizeInfo/authorizeInfo"
+        "pages/authorizeInfo/authorizeInfo",
+        "pages/memberList/memberList",
+        "pages/activityDetail/activityDetail"
     ],
     "window": {
-        "backgroundTextStyle": "white",
-        "navigationBarBackgroundColor": "#323dad",
+        "backgroundTextStyle": "black",
+        "navigationBarBackgroundColor": "#ffffff",
         "navigationBarTitleText": "活动吧",
-        "navigationBarTextStyle": "white",
+        "navigationBarTextStyle": "black",
         "enablePullDownRefresh": false
     },
     "tabBar": {
         "list": [
             {
                 "pagePath": "pages/newIndex/newIndex",
-                "text": "首页",
+                "text": "发布活动",
                 "iconPath": "images/home.png",
                 "selectedIconPath": "images/home-sel.png"
             },
@@ -56,9 +58,9 @@
                 "selectedIconPath": "images/tab02-sel.png"
             }
         ],
-        "color":"#CDCED3",
+        "color":"#B4B7B9",
         "backgroundColor":"#F9F9FA",
         "borderStyle":"white",
-        "selectedColor":"#323dad"
+        "selectedColor":"#FF6363"
     }
 }

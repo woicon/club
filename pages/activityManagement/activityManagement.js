@@ -1,14 +1,32 @@
+let app = getApp()
 Page({
     data: {
-
+        actStatus: {
+            0: "进行中",
+            1: "已关闭",
+            2: "已删除",
+            3: "已结束",
+        }
     },
     onLoad: function(options) {
+        let detail = wx.getStorageSync("actManagement")
         this.setData({
-            detail: wx.getStorageSync("actManagement")
+            detail: detail
         })
         wx.setNavigationBarTitle({
             title: this.data.detail.activityName,
         })
+        app.api.activityDetail({
+            id: detail.id
+        }).then((res)=>{
+            console.log(res)
+            this.setData({
+                detail:res.data
+            })
+        })
+    },
+    actDetail(){
+        
     },
     toUrl(e, url) {
         wx.navigateTo({
@@ -26,7 +44,10 @@ Page({
         this.toUrl(e, "/pages/activityOrderList/activityOrderList")
     },
     toDetail(e){
-        this.toUrl(e, "/pages/detail/detail")
+        this.toUrl(e, "/pages/activityDetail/activityDetail")
+    },
+    toEdit(e){
+        this.toUrl(e, "/pages/creatActivity/creatActivity")
     },
     onReady: function() {
 

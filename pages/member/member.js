@@ -5,6 +5,11 @@ Page({
     },
     onLoad: function(options) {
         app.checkLogin()
+        wx.setNavigationBarColor({
+            frontColor: '#ffffff',
+            backgroundColor: '#FF6363',
+        })
+        app.pageTitle("个人中心")
         if (wx.getStorageSync("login")) {
             this.setData({
                 member: wx.getStorageSync("login")
@@ -17,7 +22,7 @@ Page({
                     data: res.data
                 })
             })
-        } 
+        }
     },
     exitSys: function() {
         wx.showModal({
@@ -35,23 +40,18 @@ Page({
             }
         })
     },
-    toDateSet() {
-        wx.navigateTo({
-            url: '/pages/dataSet/dataSet',
-        })
-    },
     scanCode(e) {
-        wx.showLoading()
+       // wx.showLoading()
         wx.scanCode({
             success: (res) => {
-                wx.hideLoading()
+               // wx.hideLoading()
                 console.log(res.result)
             }
         })
     },
-    authorizeInfo() {
+    toPage(e) {
         wx.navigateTo({
-            url: '/pages/authorizeInfo/authorizeInfo',
+            url: e.currentTarget.dataset.url,
         })
-    }
+    },
 })

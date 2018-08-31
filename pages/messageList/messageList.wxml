@@ -3,7 +3,6 @@
         {{item}}
     </view>
 </view>
-
 <scroll-view scroll-y class='page-scroll'>
     <block wx:if="{{pageLoading}}">
         <view class='f-c-c empty'>

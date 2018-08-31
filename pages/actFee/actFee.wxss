@@ -1,7 +1,7 @@
 .list {
     background: #fff;
-    margin: 40rpx;
-    border-radius:8rpx;
+    margin: 40rpx 40rpx 0;
+    border-radius:8rpx 8rpx 0 0;
 }
 
 .list>view {
@@ -17,7 +17,7 @@
 .list .value {
     font-size:30rpx;
     color:#999;
-    margin-top:14rpx;
+    margin-top:10rpx;
     font-weight:800;
 }
 .list .value.price{
@@ -34,8 +34,7 @@
 }
 .list .ico{
     flex-basis:60rpx;
-    width:80rpx;
-    height:120rpx;
+    height:70rpx;
     display:flex;
     align-items:center;
     color:#999;
@@ -44,4 +43,11 @@
 .list .ico-touch{
     opacity:.4;
 }
-
+.checks{
+    color:#888;
+}
+.add{
+    border:none;
+    background:#fff;
+    border-radius:0 0 8rpx 8rpx;
+}

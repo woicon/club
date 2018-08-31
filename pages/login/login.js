@@ -9,30 +9,51 @@ Page({
         })
     },
     getUserInfo(e) {
+        console.log(e)
+        if(e.detail){
+            this.login(e.detail)
+        }else{
+            app.tip('请您允许授权登录，否则无法使用该App')
+        }
+    },
+    login(detail){
         wx.showLoading({
             title: '授权中',
         })
-        console.log(e)
-        let detail = e.detail
-        let parmas = {
-            code:wx.getStorageSync("code"),
-            encryptedData: detail.encryptedData,
-            iv: detail.iv,
-            superiormerchantid: "10114186",
-        }
-        app.api.wechatRegister(parmas)
-            .then(res => {
+        wx.login({
+            success: (res) => {
                 console.log(res)
-                wx.hideLoading()
-                if (res.data) {
-                    wx.setStorageSync("login", res.data)
-                    wx.reLaunch({
-                        url: wx.getStorageSync("backUrl"),
-                    })
-                } else {
-                    app.tip(res.msg)
-                }
-            })
+                wx.request({
+                    url: 'https://tclub.lx123.com/api/wechatAppSession.htm',
+                    data: {
+                        appId: app.ext.appId,
+                        jsCode: res.code
+                    },
+                    success: (data) => {
+                        console.log(data)
+                        let parmas = {
+                            encryptedData: detail.encryptedData,
+                            iv: detail.iv,
+                            session_key: data.data.result.session_key,
+                            superiormerchantid: app.ext.superiormerchantid,
+                        }
+                        app.api.wechatRegister(parmas)
+                            .then(res => {
+                                console.log(res)
+                                wx.hideLoading()
+                                if (res.data) {
+                                    wx.setStorageSync("login", res.data)
+                                    wx.reLaunch({
+                                        url: wx.getStorageSync("backUrl"),
+                                    })
+                                } else {
+                                    app.tip(res.msg)
+                                }
+                            })
+                    }
+                })
+            }
+        })
     },
     toBack: function() {
         let url = wx.getStorageSync("backUrl")

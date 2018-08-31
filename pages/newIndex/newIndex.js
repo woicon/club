@@ -4,42 +4,50 @@ Page({
         types: [{
                 img: '../../images/yundong@3x.png',
                 name: "运动健身",
-                id: "exercise"
+                id: "exercise",
+                ico: "planet"
             },
             {
                 img: '../../images/wutai@3x.png',
                 name: "聚会娱乐",
-                id: "recreation"
+                id: "recreation",
+                ico: "gamepad1"
             },
             {
-                img: '../../images/yundong@3x.png',
+                img: '../../images/shanwu@3x.png',
                 name: "商务会议",
-                id: "meeting"
+                id: "meeting",
+                ico: "suitcase"
             },
             {
                 img: '../../images/qinzi@3x.png',
                 name: "亲子幼教",
-                id: "offspring"
+                id: "offspring",
+                ico: "lollipop"
             },
             {
                 img: '../../images/yanchu@3x.png',
                 name: "赛事演出",
-                id: "show"
+                id: "show",
+                ico: "movie"
             },
             {
                 img: '../../images/yishu@3x.png',
                 name: "文化艺术",
-                id: "art"
+                id: "art",
+                ico: "mine"
             },
             {
                 img: '../../images/huwai@3x.png',
                 name: "户外旅游",
-                id: "travel"
+                id: "travel",
+                ico: "pictures"
             },
             {
                 img: '../../images/peixun@3x.png',
                 name: "职业培训",
-                id: "train"
+                id: "train",
+                ico: "badge"
             },
         ],
         postType: {
@@ -79,34 +87,10 @@ Page({
             url: `/pages/creatActivity/creatActivity?img=${img}`,
         })
     },
-    getUserInfo(e) {
-        console.log(e)
-        let detail = e.detail
-        let parmas = {
-            code: "31835", // wx.getStorageSync("code"),
-            encryptedData: detail.encryptedData,
-            iv: detail.iv,
-            superiormerchantid: " 10114186",
-        }
-        app.api.wechatRegister(parmas)
-            .then(res => {
-                console.log(res)
-                wx.setStorageSync("login", res.data)
-                let url = wx.getStorageSync("backUrl")
-                this.setData({
-                    isLogin: true
-                })
-                wx.reLaunch({
-                    url: '/pages/newIndex/newIndex',
-                })
-            })
-    },
     onReady: function() {
 
     },
-
-
     onShareAppMessage: function() {
 
-    }
+    },
 })

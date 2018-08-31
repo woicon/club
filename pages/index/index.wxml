@@ -50,4 +50,6 @@
         <view class='ico icon-grid' id='grid' wx:if="{{gridLayout}}"></view>
         <view class='ico icon-list' id='list' wx:else></view>
     </view>
+
+    
 </block>

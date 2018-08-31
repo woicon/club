@@ -1,0 +1,10 @@
+{
+    "extEnable": true,
+    "directCommit": true,
+    "extAppid": "wx3a2c78ac53d02dec",
+    "ext": {
+        "superiormerchantid": "10101384",
+        "host": "https://tclub.lx123.com/",
+        "appId": "wx3a2c78ac53d02dec"
+    }
+}

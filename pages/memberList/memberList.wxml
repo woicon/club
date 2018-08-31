@@ -1,0 +1,13 @@
+<view class='f-c-c empty' wx:if="{{pageLoading}}">
+    <load></load>
+</view>
+<view class='f-c-c empty' wx:elif="{{list == null}}">
+    <view class='icos'>
+        <view class='ico ico-users f-c-c-co'></view>
+        <text>没有会员</text>
+    </view>
+</view>
+
+<block wx:elif="{{list.length>1}}">
+
+</block>

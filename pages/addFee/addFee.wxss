@@ -101,3 +101,11 @@
     right: 0;
     background: #f4f4f4;
 }
+
+.fees {
+    margin-left: 28rpx;
+}
+
+.fees label {
+    margin-right: 8rpx;
+}

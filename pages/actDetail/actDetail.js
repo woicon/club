@@ -4,7 +4,7 @@ Page({
         list: [],
         publicIndex: 1,
         tempTxt: '',
-        currentItem:0
+        currentItem: 0
     },
     inputValue: function(e) {
         this.setData({
@@ -33,11 +33,24 @@ Page({
     },
     saveDetail() {
         let currpage = app.currPage()
-        if (this.data.list.length > 0) {
+        var list = this.data.list
+        var tempTxt = this.data.tempTxt
+        if (list.length > 0) {
+            if (tempTxt != '') {
+                list.push({ txt: tempTxt})
+            }
             currpage.setData({
-                activitydetails: this.data.list
+                activitydetails: list
             })
-            wx.setStorageSync("activitydetails", this.data.list)
+            wx.setStorageSync("activitydetails", list)
+            wx.navigateBack()
+        } else if (list.length == 0 && this.data.tempTxt != '') {
+            console.log("sdf")
+            list.push({ txt: tempTxt})
+            currpage.setData({
+                activitydetails: list
+            })
+            wx.setStorageSync("activitydetails", list)
             wx.navigateBack()
         } else {
             app.tip("请添加活动详情")
@@ -58,25 +71,28 @@ Page({
             },
         })
     },
-    changItem:function(e) {
-
+    changItem: function(e) {
         this.upImg((img) => {
             let list = this.data.list
             list[e.target.dataset.index].img = img
             this.setData({
-                list:list
+                list: list
             })
         })
     },
     deleteItem(e) {
         let list = this.data.list
-        list.splice(e.target.dataset.index,1)
+        list.splice(e.target.dataset.index, 1)
         this.setData({
             list: list
         })
     },
     onLoad: function(options) {
-
+        if (wx.getStorageSync("activitydetails")) {
+            this.setData({
+                list: wx.getStorageSync("activitydetails")
+            })
+        }
     },
 
     onShareAppMessage: function() {

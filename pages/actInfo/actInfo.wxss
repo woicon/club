@@ -9,10 +9,14 @@
 
 .types-normal {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     padding: 0 40rpx;
+}
+
+.types-normal .disable {
+    opacity: 0.3;
 }
 
 .types-normal>view {
@@ -53,11 +57,9 @@
 
 .types-clear {
     text-align: center;
-    margin:0 40rpx;
+    margin: 0 40rpx;
 }
-.listbox .list-item:last-child::after{
-    border:none;
-}
+
 .list-item {
     height: 110rpx;
     display: flex;
@@ -65,24 +67,41 @@
     font-size: 28rpx;
     align-items: center;
     color: #666;
-    margin: 0 40rpx;
+    padding: 0 30rpx;
 }
-.list-item label{
-    color:#888;
+
+.list-item label {
+    color: #888;
 }
-.list-item .ico{
-    flex-basis:50rpx;
-    height:110rpx;
+
+.list-item .ico {
+    flex-basis: 50rpx;
+    height: 110rpx;
     display: flex;
-    align-items:center;
+    align-items: center;
 }
-.list-item switch{
-    margin-left:14rpx;
+
+.list-item switch {
+    margin-left: 14rpx;
 }
-.list-item-name{
+
+.list-item-name {
     flex-grow: 2;
 }
 
 .listbox {
+    background: #fff;
+}
+
+.box {
+    border-radius: 8rpx;
+    background: #fff;
+    margin: 40rpx;
+    overflow: hidden;
+}
+
+.add {
+    border: none;
+    margin: 0 40rpx;
     background: #fff;
 }

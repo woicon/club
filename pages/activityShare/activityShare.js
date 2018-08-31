@@ -1,4 +1,3 @@
-var api = require('../../newApi/newApi.js')
 let app = getApp()
 Page({
     data: {
@@ -12,11 +11,22 @@ Page({
         }
     },
     onLoad: function(options) {
-        wx.setNavigationBarTitle({
-            title: '活动分享',
+        console.log(options)
+        app.pageTitle(options.public ? '发布成功' : "分享活动")
+        this.setData({
+            isPublic: options.public || null
         })
-        Promise.all([api.activityShare(options, 'POST'), api.activityDetail({
-                id: options.activityId
+        let shareParmas = {}
+        if (options.public ){
+            shareParmas = {
+                activityId: options.public,
+                merchantId: app.common("merchantid")
+            }
+        }else{
+            shareParmas = options
+        }
+        Promise.all([app.api.activityShare(shareParmas, 'POST'), app.api.activityDetail({
+            id: options.public || options.activityId
             }, 'POST')])
             .then(res => {
                 console.log(res)
@@ -33,6 +43,12 @@ Page({
             mask:true,
         })
     },
+    toDetail(){
+        wx.setStorageSync("detailPageUrl", this.data.detail.activityDetailUrl)
+        wx.navigateTo({
+            url: `/pages/activityDetail/activityDetail`,
+        })
+    },
     shareWe:function(){
         wx.showShareMenu({
             showShareMenu:true,
@@ -44,13 +60,16 @@ Page({
             }
         })
     },
-    onShareAppMessage(){
+    onShareAppMessage(res){
         if (res.from === 'button') {
+            this.setData({
+                isPublic:null
+            })
             console.log(res.target)
         }
         return {
-            title: '自定义转发标题',
-            path: '/page/user?id=123'
+            title: this.data.detail.activityName,
+            path:`/pages/activityDetail/activityDetail?mid=${this.data.detail.merchantId}&id=${this.data.detail.id}`
         }
     },
     saveShare:function(e) {
@@ -81,48 +100,6 @@ Page({
         })
     },
     onReady: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
 
     }
 })

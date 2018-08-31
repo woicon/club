@@ -18,7 +18,11 @@ Page({
             })
         }
     },
-
+    feePrice(e){
+        this.setData({
+            feeStatus:e.detail.value
+        })
+    },
     editFee: function(e) {
         console.log(e)
         let fee = this.data.feeList

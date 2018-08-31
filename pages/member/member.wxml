@@ -4,7 +4,7 @@
     <button wx:else class='button' hover-class='button-touch' bindgetuserinfo='getUserInfo' open-type="getUserInfo">授权登录</button>
 </view> -->
 
-<view class='m'>
+<view class='m' bindtap='toDateSet' >
     <!-- {"id":80,"nickname":"35430.36867486444","avatarurl":"http://www.51club.com/admin/images/bg/4.jpg","gender":1,"city":"北京","province":"北京","country":"中国","language":"zh","merchantid":10114189,"superiormerchantid":10113413,"openid":"62847","unionid":"31835","userintro":null} -->
     <view>
         <view class='m-info'>
@@ -13,7 +13,7 @@
         </view>
         <view class='em'>{{member.merchantName}}</view>
     </view>
-    <view bindtap='toDateSet' class='ico ico-cogs'></view>
+
 </view>
 
 <view class='member-grid'>
@@ -21,29 +21,29 @@
         <view class='ico ico-folder'></view>
         <text>活动管理</text>
     </navigator> -->
-    <navigator class='bline rline' bindtap='scanCode'>
-        <view class='ico ico-price-tag'></view>
+    <view bindtap='scanCode' hover-class='touch'>
+        <view class='ico ico-price-tag b1'></view>
         <text>票券审核</text>
-    </navigator>
-    <navigator class='bline rline'>
-        <view class='ico ico-coin-yen'></view>
+    </view>
+    <view  bindtap='toPage'  data-url="/pages/accounting/accounting" hover-class='touch'>
+        <view class='ico ico-briefcase b6'></view>
         <text>我的收入</text>
-    </navigator>
-    <navigator class='bline rline' url='/pages/dataSet/dataSet'>
-        <view class='ico ico-cogs'></view>
+    </view>
+    <view bindtap='toPage' data-url='/pages/dataSet/dataSet' hover-class='touch'>
+        <view class='ico ico-cog b2'></view>
         <text>资料设置</text>
-    </navigator>
-    <navigator class='bline rline' url='/pages/messageList/messageList'>
-        <view class='ico ico-bubbles2'></view>
+    </view>
+    <view bindtap='toPage'  data-url='/pages/messageList/messageList' hover-class='touch'>
+        <view class='ico ico-bubbles2 b10'></view>
         <text>留言管理</text>
-    </navigator>
-    <view class='bline rline' bindtap='authorizeInfo'>
-        <view class='ico ico-power-cord'></view>
+    </view>
+    <view bindtap='toPage' data-url="/pages/dataSet/dataSet" hover-class='touch'>
+        <view class='ico ico-power-cord b4'></view>
         <text>认证管理</text>
     </view>
-    <navigator class='bline rline'>
-        <view class='ico ico-users'></view>
+    <view  bindtap='toPage'  data-url='/pages/memberList/memberList' hover-class='touch'>
+        <view class='ico ico-users b5'></view>
         <text>会员管理</text>
-    </navigator>
+    </view>
 </view>
 <!-- <view class='button' bindtap='exitSys' hover-class='button-touch'>退出登录</view> -->

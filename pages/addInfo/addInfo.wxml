@@ -12,17 +12,20 @@
     </view>
     <block wx:elif="{{type== 2 || type== 3}}">
         <view class='input-block'>
-            <input placeholder='{{type== 2 ? "输入单选问题" :"输入多选问题" }}' name="name" class='bline'></input>
-            <view class='input-info'>
-                <view class='ico ico-info'></view>至少填写两项</view>
+            <view class='input-warp'>
+                <textarea auto-height placeholder='{{type== 2 ? "输入单选问题" :"输入多选问题" }}' name="name"></textarea>
+            </view>
+            <view class='input-info bline'>
+                <view class='ico ico-info'></view>至少填写两项选项</view>
             <view class='input-list'>
                 <view class='bline' wx:for="{{types}}" wx:key="undlines">
-                    <view class='ico ico-blocked' wx:if="{{index!=0 && index!= 1}}" bindtap='deleteCol' hover-class='touch' data-index="{{index}}"></view>
+                    <view class='ico ico-blocked' wx:if="{{types.length > 2}}" bindtap='deleteCol' hover-class='touch' data-index="{{index}}"></view>
                     <input placeholder='选项{{index+1}}' data-index="{{index}}" bindinput='bindValue'></input>
                 </view>
             </view>
             <view class='add' bindtap='addCol'>
                 <view class='ico ico-plus'></view>
+                新增选项
             </view>
         </view>
     </block>

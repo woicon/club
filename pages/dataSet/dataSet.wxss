@@ -9,10 +9,11 @@
 }
 .head-img{
     text-align:center;
+    padding:30rpx 0;
 }
 .head-img .ico,.head-img image{
-    width:130rpx;
-    height:130rpx;
+    width:100rpx;
+    height:100rpx;
     font-size:26rpx;
     background:#eee;
     display:flex;
@@ -28,26 +29,34 @@
     display: flex;
     align-items: center;
 }
+.hpic{
+    justify-content:space-between;
+}
 .ars{
     padding:30rpx 0;
     display: flex;
     justify-content:space-between;
     align-items:center;
 }
-.forms input, .forms textarea, .forms label {
+.forms input{
+    text-align:left;
+}
+.forms input, .forms textarea{
     font-size: 28rpx;
     padding: 32rpx 0;
 }
-.forms input{
+.forms input,.forms textarea,.forms .text-warp{
     flex-grow:2;
-    color:#444;
+    color:#333;
 }
 .lines {
     margin-top:20rpx;
 }
-
+.text-warp textarea{
+ width:100%;
+}
 .forms label {
     width: 180rpx;
-    font-size: 28rpx;
-    color: #666;
+    font-size: 26rpx;
+    color: #555;
 }

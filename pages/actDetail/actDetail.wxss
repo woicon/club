@@ -2,27 +2,29 @@ textarea {
     width: 100%;
     height: auto;
     text-align: justify;
+    padding: 15rpx 0;
+    line-height: 1.6;
 }
 
 .t-warp {
-    margin: 0 40rpx;
+    margin: 0 30rpx;
     padding: 30rpx 0;
 }
 
 .t {
-    padding-bottom: 40rpx;
     font-size: 28rpx;
 }
 
 .editbar {
     position: absolute;
-    left: 0;
+    left: 40rpx;
     bottom: 0;
-    right: 0;
+    right: 20rpx;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20rpx 0;
+    padding: 25rpx 0;
+    z-index: 90;
+    justify-content: flex-end;
 }
 
 .editbar>view {
@@ -34,14 +36,16 @@ textarea {
     justify-content: center;
     background: rgba(0, 0, 0, 0.7);
     border-radius: 920px;
-    margin: 0 20rpx;
+    margin: 0 10rpx;
 }
 
 .d-item {
     margin-bottom: 30rpx;
     background: #fff;
     margin: 40rpx;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8rpx;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .list-img {
@@ -56,4 +60,9 @@ textarea {
 
 .add {
     border: none;
+    margin: 0;
+}
+
+.form-bar {
+    margin-top: 0;
 }

@@ -17,7 +17,6 @@
     </view>
     <block wx:else>
         <view wx:for="{{list}}" wx:key="actlist" class='l-item bline' hover-class='list-touch' bindtap='toManagement' data-index="{{index}}">
-           
             <view class='l-info'>
                 <view>
                     <view class='l-title'>{{item.activityName}}</view>

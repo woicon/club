@@ -1,10 +1,15 @@
+page{
+    background:#fff;
+}
 .img {
     display: flex;
-    width:550rpx;
-    height:800rpx;
+    width:600rpx;
+    height:825rpx;
     overflow:hidden;
     margin-top:50rpx;
     border-radius:4px;
+    background:#fff;
+    padding-bottom:20rpx;
 }
 .share-btn{
     margin:38rpx 0 0;
@@ -14,13 +19,13 @@
     color:#fff;
     display: flex;
     align-items:center;justify-content:center;
-    width: 550rpx;
+    width:600rpx;
 }
 .close{
     width:90rpx;
     height:90rpx;
     position:absolute;
-    bottom:40rpx;
+    bottom:80rpx;
     border:2rpx solid #fff;
     display:flex;
     align-items:center;
@@ -50,13 +55,12 @@
 }
 
 .img image {
-    width: 550rpx;
-    height: 978rpx;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  width:600rpx;
+    height:825rpx;
 }
 
 .s-head {
-    padding: 30rpx;
+    padding: 40rpx;
 }
 
 .head-name {
@@ -85,6 +89,7 @@
 .head-info {
     color: #323dad;
     font-size: 24rpx;
+    margin-top:8rpx;
 }
 
 .s {
@@ -98,10 +103,11 @@
     line-height: 1.8;
     color: #888;
     font-size:23rpx;
+    margin:9rpx 0;
 }
 
 .s-info {
-    padding: 30rpx;
+    padding: 40rpx;
 }
 
 .s-line .ico {
@@ -109,13 +115,15 @@
 }
 
 .s-name {
-    font-size: 34rpx;
-    color: #444;
-    margin-bottom: 15rpx;
+    font-size: 30rpx;
+    line-height:1.5;
+    font-weight:800;
+    color: #333;
+    margin-bottom: 32rpx;
 }
 
 .s-img {
-    margin: 0 30rpx;
+    margin: 0 40rpx;
 }
 
 .s-img image {
@@ -156,18 +164,31 @@
     font-size:60rpx;
     margin-bottom:8rpx;
 }
-
+.s-heads{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:28rpx;
+    padding:60rpx 0 30rpx;
+}
+.s-heads .ico{
+    font-size:90rpx;
+    color:#34BD65;
+    margin-bottom:20rpx;
+}
 .share-cont {
-    margin: 50rpx;
-    border-radius: 4rpx;
+    margin: 40rpx 40rpx 0;
     background:#fff;
-    box-shadow: 0 3px 5px 0 rgba(0,0,0,0.10);
+    box-shadow: 0 3px 80px 0 rgba(0,0,0,0.10);
 }
 
 .s-head {
     display: flex;
     align-items: center;
+    font-size:30rpx;
 }
+
+
 
 .s-head image {
     width: 80rpx;

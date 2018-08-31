@@ -1,8 +1,4 @@
-page{
-    background:#fff;
-    display: flex;
-    height: 100%;
-}
+
 .login-text{
     font-size:28rpx;
     line-height:1.8;

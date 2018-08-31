@@ -4,13 +4,23 @@
             <view class='bline'>
                 <view class='key'>费用名称</view>
                 <view class='value'>
+
+
                     <input name="ticketname" data-error="请输入费用名称" placeholder='输入费用名称' value='{{fee.ticketname||""}}'></input>
                 </view>
             </view>
             <view class='bline'>
                 <view class='key'>费用金额</view>
                 <view class='value f-value'>
-                    <input name="price" value='{{fee.price || ""}}' type='number' data-error="请输入费用额，免费请填写0" placeholder='输入费用额，有人报名后不能修改'></input>
+                    <block wx:if="{{feeStatus}}">
+                        <view>0</view>
+                        <input name="price" class='hidden' value='0'></input>
+                    </block>
+                    <input name="price" disabled='{{feeStatus}}' wx:else value='{{fee.price || ""}}' type='digit' placeholder='输入报名费用，有人报名后不能修改'></input>
+                </view>
+                <view class='fees'>
+                    <label for="feeToggle">{{feeStatus ? "免费":""}}</label>
+                    <switch id='feeToggle' bindchange='feePrice' />
                 </view>
             </view>
             <view class='bline'>

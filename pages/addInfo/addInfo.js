@@ -10,9 +10,7 @@ Page({
         }]
     },
     onLoad: function(options) {
-        console.log(getCurrentPages())
-        let currPage = getCurrentPages()
-        
+        console.log(options)
         this.setData({
             type: options.id,
             title: options.name
@@ -47,73 +45,53 @@ Page({
     checkForm(value, cb) {
         let type = this.data.type
         if (value.name == '') {
-            wx.showToast({
-                title: `请输入${this.data.title}`,
-                icon: 'none'
-            })
-        }
-        if (type == 0 || type == 1) {
-            cb()
-        }
-        if (type == 2 || type == 3) {
-            let option = this.data.types
-            let flag = true
-            let feilArray = []
-            for (let i in option) {
-                if (option[i].value == '') {
-                    wx.showToast({
-                        title: `选项不能为空`,
-                        icon: 'none'
-                    })
-                    flag = false
-                } else {
-                    feilArray.push(option[i].value)
-                }
-            }
-            if (flag) {
-                //console.log(feilArray.join("$"))
-                this.setData({
-                    fieldOption: feilArray.join("$")
-                })
+            app.tip(`请输入${this.data.title}`)
+        } else {
+            if (type == 0 || type == 1) {
                 cb()
+            } else if (type == 2 || type == 3) {
+                let option = this.data.types
+                let flag = true
+                let feilArray = []
+                for (let i in option) {
+                    if (option[i].value == '') {
+                        app.tip("选项不能为空")
+                        flag = false
+                    } else {
+                        feilArray.push(option[i].value)
+                    }
+                }
+                if (flag) {
+                    //console.log(feilArray.join("$"))
+                    this.setData({
+                        fieldOption: feilArray.join("$")
+                    })
+                    cb()
+                }
             }
         }
     },
     saveForm(e) {
-        this.checkForm(e.detail.value, () => {
+        let value = e.detail.value
+        this.checkForm(value, () => {
             if (this.data.fieldOption) {
                 e.detail.value.fieldOption = this.data.fieldOption
             }
-            wx.setStorageSync("customField", e.detail.value)
-            let currPage = app.currPage()
-            console.log(currPage)
-            let infoList = currPage.data.infoList
-           // infoList.push(e.detail.value)
-            currPage.setData({
-                infoList: infoList
-            })
+            wx.setStorageSync("customField", value)
             wx.navigateBack()
         })
     },
-    onReady: function() {
-
+    onUnload() {
+        let currPages = getCurrentPages()
+        let currPage = currPages[currPages.length - 2]
+        let applyinfo = currPage.data.applyinfo
+        applyinfo.push(wx.getStorageSync("customField"))
+        wx.setStorageSync("applyinfo", applyinfo)
+        currPage.setData({
+            applyinfo: applyinfo
+        })
     },
     onShow() {
-        
-    },
-    onHide: function() {
-
-    },
-    onUnload: function() {
-
-    },
-    onPullDownRefresh: function() {
-
-    },
-    onReachBottom: function() {
-
-    },
-    onShareAppMessage: function() {
 
     }
 })

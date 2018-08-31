@@ -60,29 +60,7 @@ Page({
             })
         }
     },
-    onReady: function() {
-
-    },
-    onHide: function(e) {
-        console.log("2321312")
-
-    },
-
-    onUnload: function() {
-        console.log("unload")
-        wx.setStorageSync("fee", JSON.stringify(this.data.feeList))
-    },
-
-    onPullDownRefresh: function() {
-
-    },
-
-
-    onReachBottom: function() {
-
-    },
-
-    onShareAppMessage: function() {
-
+    saveFee(){
+        wx.navigateBack()
     }
 })

@@ -7,11 +7,31 @@ page {
     background: #f4f4f4;
 }
 
+.post-titles {
+    font-weight: 800;
+    font-size: 28rpx;
+    color: #444;
+    padding: 20rpx 40rpx;
+}
+
+.list-detail::before {
+    border: none;
+}
+
+.postscroll {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
 .act label {
     font-size: 28rpx;
     color: #666;
-    padding: 20rpx 0;
-    width: 140rpx;
+    padding: 0rpx 0;
+    width: 150rpx;
+    flex-basis: 150rpx;
 }
 
 .img-tab {
@@ -63,7 +83,7 @@ page {
 }
 
 .act>view input, .act>view .value {
-    padding: 36rpx 0;
+    padding: 44rpx 0;
     text-align: left;
     font-size: 28rpx;
     color: #444;
@@ -71,10 +91,10 @@ page {
 }
 
 .act>view input {
-    padding: 28rpx 0;
-    color: #444;
     font-weight: 800;
     text-align: right;
+    color: #ff6363;
+    font-size:34rpx;
 }
 
 .act>view::before {
@@ -87,7 +107,7 @@ page {
     transform: scale(0.5);
 }
 
-.act>view:last-child::before {
+.act>view:last-child::before, .act>view.list-detail::before {
     border: none;
 }
 
@@ -100,7 +120,7 @@ page {
     margin: 0 40rpx;
     font-size: 24rpx;
     color: #999;
-    padding: 20rpx 0;
+    padding: 20rpx 0 190rpx;
 }
 
 .act-bar button {
@@ -134,7 +154,7 @@ swiper {
 }
 
 .img-tab>view.active {
-    color: #323dad;
+    color: #ff6363;
 }
 
 .postimg {
@@ -151,14 +171,14 @@ swiper {
 
 .postimg .img {
     display: block;
-    width: 46%;
-    height: 90px;
-    margin: 30rpx 0;
+    width: 30%;
+    margin: 16rpx 0;
+    height: 110rpx;
 }
 
 .postimg .img image {
     width: 100%;
-    height: 90px;
+    height: 110rpx;
 }
 
 .imgs {
@@ -176,17 +196,26 @@ swiper {
     color: #444;
 }
 
+.act .list-arr .value-hidden {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #888;
+    margin-left: 10rpx;
+    width: 200rpx;
+}
+
 .act-ser {
     display: flex;
     align-items: center;
 }
 
 .act-ser.active .ico {
-    color: #505ce0;
+    color: #ff6363;
 }
 
 .act-ser navigator {
-    color: #505ce0;
+    color: #ff6363;
 }
 
 .act-ser .ico {
@@ -199,10 +228,6 @@ swiper {
     font-size: 26rpx;
     flex-grow: 2;
     justify-content: space-between;
-}
-
-.dates picker {
-    display: flex;
 }
 
 .dates picker .value {
@@ -218,4 +243,96 @@ swiper {
     bottom: 0;
     background: #fff;
     z-index: 100;
+}
+
+.act>view.details {
+    font-size: 26rpx;
+    line-height: 1.6;
+    padding-bottom: 44rpx;
+    display: block;
+}
+
+.act>view.details view {
+    line-height: 1.6;
+    text-align: justify;
+    color: #555;
+}
+
+.details image {
+    width: 100%;
+    height: 400rpx;
+    display: block;
+    margin: 10rpx 0 20rpx;
+}
+
+.detail-txt {
+    text-align: justify;
+}
+
+.p {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.p-line {
+    font-size: 30rpx;
+}
+
+.p-line input {
+    padding: 30rpx 0;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    flex-grow: 2;
+    font-size:32rpx;
+}
+
+.p-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20rpx 0;
+}
+
+.p-cont {
+    background: #fff;
+    padding: 40rpx;
+    margin: 16% 8%;
+    border-radius:4rpx;
+}
+
+.p-btn {
+    font-size: 26rpx;
+    flex-basis: 390rpx;
+    flex-grow: 0;
+    text-align: center;
+    padding: 15rpx 0;
+    color: #444;
+    background: #eee;
+}
+
+.p-btn.disable {
+    opacity: 0.4;
+}
+
+.ps-line input {
+    border: none;
+}
+
+.p .button {
+    margin-top: 40rpx;
+}
+
+.p .button.disable {
+    opacity: 0.6;
+    margin-top: 40rpx;
+}
+
+.p-title {
+    font-weight: 800;
+    padding: 20rpx 0 40rpx;
 }

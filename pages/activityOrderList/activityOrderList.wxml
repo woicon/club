@@ -1,5 +1,5 @@
 <view class='tab'>
-<view wx:for="{{orderStatus}}" class='{{currentTab == index ? "active":""}}'>{{item}}</view>
+<view wx:for="{{orderStatus}}" bindtap='toggleTab' data-id="{{index}}" class='{{currentTab == index ? "active":""}}'>{{item}}</view>
 </view>
 <!-- <view class='search {{gridLayout?"":"bline"}}'>
     <view class='ico icon-search'></view>
