@@ -66,8 +66,8 @@ Page({
         console.log(e)
         let parmas = {
             content: this.data.replyTxt,
-            merchantid: app.common('merchantid'),
-            messageid: e.target.dataset.id,
+            merchantId: app.common('merchantid'),
+            messageId: e.target.dataset.id,
         }
         if (this.data.replyTxt != '') {
             app.api.messageReply(parmas)
@@ -75,24 +75,6 @@ Page({
                     console.log(res)
                 })
         }
-    },
-    onReady: function() {
-
-    },
-    onShow: function() {
-
-    },
-    onHide: function() {
-
-    },
-    onUnload: function() {
-
-    },
-    onPullDownRefresh: function() {
-
-    },
-    onReachBottom: function() {
-        console.log("s")
     },
     onShareAppMessage: function() {
 

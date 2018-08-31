@@ -41,13 +41,29 @@ Page({
         })
     },
     scanCode(e) {
-       // wx.showLoading()
-        wx.scanCode({
-            success: (res) => {
-               // wx.hideLoading()
-                console.log(res.result)
-            }
-        })
+        // wx.showLoading()
+        // wx.scanCode({
+        //     success: (res) => {
+        //        // wx.hideLoading()
+        //         console.log(res.result)
+        //     }
+        // })
+        // 91145236
+        // 28618223
+        // 23200417
+        // 18360184
+        app.api.findSignInfoBySignCode({
+            signCode: 91145236,
+            })
+            .then(res => {
+                console.log(res)
+                // app.api.verificationTicketByOrderId({
+                //         orderId: employeeId: employeeName:
+
+                //     })
+                //     .then()
+            })
+
     },
     toPage(e) {
         wx.navigateTo({
