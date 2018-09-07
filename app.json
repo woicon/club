@@ -2,16 +2,9 @@
     "pages": [
         "pages/newIndex/newIndex",
         "pages/creatActivity/creatActivity",
-        "pages/new/new",
-        "pages/index/index",
         "pages/login/login",
-        "pages/sing/sing",
-        "pages/detail/detail",
-        "pages/apply/apply",
-        "pages/checkDetail/checkDetail",
         "pages/member/member",
         "pages/postTemplate/postTemplate",
-        "pages/actMap/actMap",
         "pages/actFee/actFee",
         "pages/actDetail/actDetail",
         "pages/addFee/addFee",
@@ -28,7 +21,9 @@
         "pages/scanCode/scanCode",
         "pages/authorizeInfo/authorizeInfo",
         "pages/memberList/memberList",
-        "pages/activityDetail/activityDetail"
+        "pages/activityDetail/activityDetail",
+        "pages/checkTicket/checkTicket",
+        "pages/activityOrderDetail/activityOrderDetail"
     ],
     "window": {
         "backgroundTextStyle": "black",

@@ -1,0 +1,37 @@
+<block wx:if="{{pageLoading}}">
+    <view class='f-c-c empty'>
+        <load></load>
+    </view>
+</block>
+<block wx:else>
+    <view class='o bline'>
+        <view> 订单状态：{{orderStatus[detail.status]}} </view>
+        <view> 订单编号：{{detail.orderNo}} </view>
+        <view> 创建时间：{{detail.createDate}} </view>
+        
+    </view>
+    <view class='info'>
+        <image class='info-img' src='{{detail.activityImg}}' mode=''></image>
+        <view>
+            <view>{{detail.activityName}}</view>
+            <view class='m-time'>
+                <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress : "线上活动"}}
+            </view>
+            <view class='m-time'>
+                <view class='ico ico-clock2'></view>{{detail.activityStartTime}}
+            </view>
+        </view>
+    </view>
+    <view class="ticket bline">
+        <view>{{item.ticketName}}</view>
+        <view>{{detail.contactsName}}</view>
+        <view class='ticket-phone'>{{detail.contactsPhone}}</view>
+    </view>
+    <view wx:if="{{detail.orderEnrollRep.length>0}}" class="rol">
+        <view class='rol-title'>报名人列表</view>
+        <view class='rol-item bline' wx:for="{{detail.orderEnrollRep[0].orderEnrollVoList}}">
+            <view class='rol-name'>{{item.name}}</view>
+            <view>{{item.value}}</view>
+        </view>
+    </view>
+</block>

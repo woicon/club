@@ -1,26 +1,27 @@
 <form bindsubmit='saveForm'>
-    <input class='hidden' name="type" value='0'></input>
-    <input class='hidden' name="status" value='1'></input>
-    <input class='hidden' name="fieldType" value="{{type}}"></input>
+    <input class='hidden' name="type" value='{{info.type || 0}}'></input>
+    <input class='hidden' name="status" value='{{info.status == 0 ? 0 : 1}}'></input>
+    <input class='hidden' name="fieldType" value="{{info.fieldType || type}}"></input>
+    <!-- fieldType：0单行1多行2单选3多选 -->
     <view class='inputs ' wx:if="{{type== 0}}">
-        <input placeholder='单行文本报名填写项' name="name"></input>
+        <input placeholder='单行文本报名填写项' value="{{info.name || ''}}" class='bline'  name="name"></input>
+        <view class='input-info'><view class='ico ico-info'></view>设置单行文本</view>
     </view>
     <view class='inputs' wx:elif="{{type== 1}}">
-        <input placeholder='单行文本报名填写项' class='bline' name="name"></input>
-        <view class='input-info'>
-            <view class='ico ico-info'></view>需要报名者填写文字较多的信息，如个人简介、项目介绍、团队介绍，请使用本功能</view>
+        <input placeholder='多行文本报名填写项' value="{{info.name || ''}}" class='bline' name="name"></input>
+        <view class='input-info'><view class='ico ico-info'></view>需要报名者填写文字较多的信息，如个人简介、项目介绍、团队介绍，请使用本功能</view>
     </view>
     <block wx:elif="{{type== 2 || type== 3}}">
         <view class='input-block'>
             <view class='input-warp'>
-                <textarea auto-height placeholder='{{type== 2 ? "输入单选问题" :"输入多选问题" }}' name="name"></textarea>
+                <textarea auto-height placeholder='{{type== 2 ? "输入单选问题" :"输入多选问题" }}' value="{{info.name || ''}}" name="name"></textarea>
             </view>
             <view class='input-info bline'>
                 <view class='ico ico-info'></view>至少填写两项选项</view>
             <view class='input-list'>
                 <view class='bline' wx:for="{{types}}" wx:key="undlines">
                     <view class='ico ico-blocked' wx:if="{{types.length > 2}}" bindtap='deleteCol' hover-class='touch' data-index="{{index}}"></view>
-                    <input placeholder='选项{{index+1}}' data-index="{{index}}" bindinput='bindValue'></input>
+                    <input placeholder='{{item.value || "选项"+index+1 }}' data-index="{{index}}" bindinput='bindValue'></input>
                 </view>
             </view>
             <view class='add' bindtap='addCol'>

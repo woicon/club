@@ -1,5 +1,5 @@
 {
     "usingComponents": {
-        "pickers": "/component/dateTimePicker/dateTimePicker"
+        "load": "/component/loading/loading"
     }
 }

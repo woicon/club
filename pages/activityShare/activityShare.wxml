@@ -1,29 +1,32 @@
-<view wx:if="{{pageLoading}}">
+<view class='f-c-c empty' wx:if="{{pageLoading}}">
     <load />
 </view>
 <block wx:else>
     <block wx:if="{{!shareGroup}}">
-        <view wx:if="{{isPublic}}" class='s-heads'>
+        <!-- <view wx:if="{{isPublic}}" class='s-heads'>
             <view class='ico icon-oks'></view>
             <view>您的活动已发布成功</view>
-        </view>
+        </view> -->
         <view class='share-cont' bindtap='toDetail'>
             <view class='s-head'>
-                <image src='{{member.avatarurl}}'></image>
+                <image src='{{member.avatarUrl}}'></image>
                 <view>
-                    <view class='head-name'>{{member.nickname}}</view>
+                    <view class='head-name'>{{member.nickName}}</view>
                     <view class='head-info'>我分享了一个活动，快来看看吧</view>
                 </view>
             </view>
-            <view class='s'>
+            <view class='s' hover-class='touch'>
                 <view class='s-img'>
                     <image src='{{detail.activityImg}}' mode='aspectFill'></image>
                 </view>
                 <view class='s-info'>
-                    <view class='s-name'>{{detail.activityName}}</view>
-                    <!-- <view class='s-status'>{{actStatus[detail.status]}}</view> -->
+                    <view class='s-name'>
+                        <text>{{detail.activityName}}</text>
+                        <view class='s-status' wx:if="{{detail.status == 3}}">{{actStatus[detail.status]}}</view>
+                    </view>
+
                     <view class='s-line'>
-                        <view class='ico ico-earth'> </view>{{detail.activityAddress}}
+                        <view class='ico ico-earth'> </view> {{detail.activityAddress?detail.activityAddress : "线上活动"}}
                     </view>
 
                     <view class='s-line'>
@@ -47,11 +50,24 @@
         <view class='img'>
             <image src='{{shareImg}}' mode='aspectFit'></image>
         </view>
+        <!-- <button class='share-btn button' bindtap='saveShare' hover-class='button-touch' open-type="openSetting"
+bindopensetting='handleSetting' wx:if='{{toAuth}}'>重新授权</button> -->
         <button class='share-btn button' bindtap='saveShare' hover-class='button-touch'>
             <view class='ico ico-share2'></view>
             保存图片,分享到朋友圈</button>
+
         <view class='close' bindtap='closeGroup'></view>
     </view>
 </block>
 
 <view class='mask' wx:if="{{mask}}" bindtap='closeGroup'></view>
+
+<view wx:if="{{toAuth}}" class='auth'>
+    <view class='auth-container'>
+        <view class='auth-cont bline'>
+            <view class='title'>授权失败</view>
+            <view>必须要授权微信保存到相册</view>
+        </view>
+        <button open-type="openSetting" bindopensetting='handleSetting'>去设置授权</button>
+    </view>
+</view>

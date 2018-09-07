@@ -4,11 +4,12 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.2.4",
@@ -33,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -66,10 +67,10 @@
 					"query": "id=2380&title=klwjeqwkejqlkwejqwlkeqwe"
 				},
 				{
-					"id": -1,
+					"id": 5,
 					"name": "creatActivity",
 					"pathName": "pages/creatActivity/creatActivity",
-					"query": ""
+					"query": "edit=true"
 				},
 				{
 					"id": 6,
@@ -166,6 +167,30 @@
 					"name": "memberList",
 					"pathName": "pages/memberList/memberList",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "checkTicket",
+					"pathName": "pages/checkTicket/checkTicket",
+					"query": ""
+				},
+				{
+					"id": 23,
+					"name": "activityOrderDetail",
+					"pathName": "pages/activityOrderDetail/activityOrderDetail",
+					"query": "orderId=747&activityId=429"
+				},
+				{
+					"id": 24,
+					"name": "activityOrderList",
+					"pathName": "pages/activityOrderList/activityOrderList",
+					"query": "merchantId=10114743&activityId=429"
+				},
+				{
+					"id": 25,
+					"name": "activityOrderEnrollList",
+					"pathName": "pages/activityOrderEnrollList/activityOrderEnrollList",
+					"query": "activityId=429"
 				}
 			]
 		}

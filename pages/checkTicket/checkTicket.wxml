@@ -1,0 +1,17 @@
+<view wx:if="{{res}}" class='res'>
+        <view class='ico error icon-del' wx:if="{{error}}"></view>
+         <view class='ico icon-oks' wx:else></view>
+        <view class='res-info'>{{info}}</view>
+        <view class='button' hover-class='button-touch' bindtap='scanCode'>继续验票</view>
+</view>
+<view class='ck' wx:else>
+    <view class='i'>
+        <view class='i-info'>
+            <view class='i-name'>{{ticket.contactsName}}</view>
+            <view class='i-phone'>{{ticket.contactsPhone}}</view>
+        </view>
+        <view class='i-type'> {{ticket.ticketName}} * {{ticket.ticketCount}}张</view>
+    </view>
+    <view class='button' hover-class='button-touch' bindtap='checkTicket'>确认验证</view>
+</view>
+

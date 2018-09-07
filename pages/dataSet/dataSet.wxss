@@ -11,6 +11,10 @@
     text-align:center;
     padding:30rpx 0;
 }
+.m-infos{
+    text-align:left;
+
+}
 .head-img .ico,.head-img image{
     width:100rpx;
     height:100rpx;
@@ -44,6 +48,7 @@
 .forms input, .forms textarea{
     font-size: 28rpx;
     padding: 32rpx 0;
+    text-align:right;
 }
 .forms input,.forms textarea,.forms .text-warp{
     flex-grow:2;
@@ -56,7 +61,7 @@
  width:100%;
 }
 .forms label {
-    width: 180rpx;
+    width: 160rpx;
     font-size: 26rpx;
     color: #555;
 }

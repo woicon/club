@@ -1,19 +1,43 @@
-<view class='search {{gridLayout?"":"bline"}}'>
-    <view class='ico icon-search'></view>
-    <input placeholder='输入手机号查询' bindconfirm='searchList' value="{{searchText}}" bindinput='searchInput' bindfocus='searchFocus' confirm-type="search"></input>
-    <!-- <view wx:if="{{searchClear}}" class='ico icon-del'></view> -->
-    <view wx:if="{{SearchDel}}" class="search-del icon-del" bindtap='searchDel' hover-class='search-del-touch'></view>
-</view>
+<block wx:if="{{pageLoading}}">
+    <view class='f-c-c empty'>
+        <load></load>
+    </view>
+</block>
+<block wx:else>
+    <view class='search {{gridLayout?"":"bline"}}'>
+        <view class='ico icon-search'></view>
+        <input placeholder='输入手机号查询' bindconfirm='searchList' value="{{searchText}}" bindinput='searchInput' bindfocus='searchFocus' confirm-type="search"></input>
+        <!-- <view wx:if="{{searchClear}}" class='ico icon-del'></view> -->
+        <view wx:if="{{SearchDel}}" class="search-del icon-del" bindtap='searchDel' hover-class='search-del-touch'></view>
+    </view>
 
-<scroll-view scroll-y class='page-scroll'>
-    <!-- <view class='empty'>
-        <view class='ico ico-folder-open'></view>
-        <text>暂时还没有人报名</text>
-    </view> -->
-  
-        <view class='empty'>
-            <view class='ico f-c-c-co ico-folder-open'></view>
-            <text>暂时还没有人报名</text>
+    <scroll-view scroll-y class='page-scroll' bindscrolltolower="listMore">
+        <block wx:if="{{pageLoading}}">
+            <view class='f-c-c empty'>
+                <load></load>
+            </view>
+        </block>
+        <view wx:elif="{{list.items.length>0}}">
+            <view wx:for="{{list.items}}" wx:key="lists" class='bline item' hover-class='list-touch'>
+                <view>
+                    <view class='item-name'>
+                        {{item.contactsName}}</view>
+                    <view class="item-phone">{{item.contactsPhone}}</view>
+                    <!-- <view>报名时间：{{item.createDateStr}}</view> -->
+
+                </view>
+                <view class='item-tag'>{{item.signStatusStr}}</view>
+            </view>
+            <view wx:if="{{isBottom}}" class='l-bottom'>
+                <view wx:if="{{hasMore}}">
+                    <load />
+                </view>
+                <view wx:else>没有更多</view>
+            </view>
         </view>
-   
-</scroll-view>
+        <view class='empty' wx:else>
+            <view class='ico f-c-c-co ico-folder-open'></view>
+            <text>{{error ? error :'还没有人报名'}}</text>
+        </view>
+    </scroll-view>
+</block>

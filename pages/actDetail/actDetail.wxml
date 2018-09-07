@@ -12,7 +12,7 @@
         </view>
     </view>
     <view class='d-item ds-item'>
-        <view class='t-warp'>
+        <view class='t-warp bline'>
             <textarea auto-height maxlength="-1" placeholder='输入文本' value='{{tempTxt}}' data-index="{{index}}" bindinput='inputValue'></textarea>
         </view>
         <view class='add' bindtap='toggleItem' bindtap='addImg'>

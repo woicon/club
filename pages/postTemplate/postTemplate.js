@@ -1,22 +1,23 @@
-var api = require('../../newApi/newApi.js')
+let app = getApp()
 Page({
     data: {
         postType: {
-            "exercise": "运动健身",
-            "meeting": "商务会议",
-            "recreation": "聚会娱乐"
-        },
-        indicatorDots: false,
-        autoplay: false,
-        interval: 5000,
-        duration: 1000,
-        currentPost:0
-
+            art: "文化艺术",
+            exercise: "运动健身",
+            meeting: "商务会议",
+            offspring: "亲子幼教",
+            recreation: "聚会娱乐",
+            show: "赛事演出",
+            train: "职业培训",
+            travel: "旅游户外",
+        }
     },
     onLoad: function(options) {
-        api.posterTemplate({})
+        app.pageTitle("选择模板")
+        wx.showLoading()
+        app.api.posterTemplate({})
             .then(res => {
-                console.log(res)
+           
                 let post = res.data
                 let postIndex = []
                 for (let i in post) {
@@ -28,9 +29,10 @@ Page({
                     postIndex: postIndex,
                     selIndex: selIndex
                 })
+                wx.hideLoading()
             })
     },
-    postChange(e){
+    postChange(e) {
         console.log(e)
         this.setData({
             selIndex: e.detail.currentItemId
@@ -42,28 +44,18 @@ Page({
             selIndex: e.target.id
         })
     },
-    getUrl: function(e) {
+    getUrl(e) {
         console.log(e)
-    },
-    onReady: function() {
-
-    },
-    onShow: function() {
-
-    },
-    onHide: function() {
-
-    },
-    onUnload: function() {
-
-    },
-    onPullDownRefresh: function() {
-
-    },
-    onReachBottom: function() {
-
-    },
-    onShareAppMessage: function() {
-
+        let img = e.currentTarget.dataset.url
+        this.setData({
+            postImg: img
+        })
+        let currPage = getCurrentPages()
+        let _currPage = currPage[currPage.length - 2]
+        console.log(_currPage)
+        _currPage.setData({
+            postImg: img
+        })
+        wx.navigateBack()
     }
 })

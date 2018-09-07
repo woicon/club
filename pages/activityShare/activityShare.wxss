@@ -76,7 +76,7 @@ page{
     position:relative;
     font-size:24rpx;
     opacity:.9;
-    margin:50rpx 70rpx;
+    margin:50rpx 40rpx;
 }
 .share-title::after,.share-title::before{
     content:'';
@@ -87,7 +87,7 @@ page{
 }
 
 .head-info {
-    color: #323dad;
+    color: #FF6363;
     font-size: 24rpx;
     margin-top:8rpx;
 }
@@ -120,8 +120,11 @@ page{
     font-weight:800;
     color: #333;
     margin-bottom: 32rpx;
+    display: flex;
 }
-
+.s-name text{
+    flex-grow:2;
+}
 .s-img {
     margin: 0 40rpx;
 }
@@ -146,6 +149,8 @@ page{
     color:#555;
     padding:4rpx 20rpx;
     border-radius:3px;
+    font-weight:normal;
+    font-size:24rpx;
 }
 .share-bar>view,.share-bar button{
     display:flex;
@@ -179,7 +184,7 @@ page{
 .share-cont {
     margin: 40rpx 40rpx 0;
     background:#fff;
-    box-shadow: 0 3px 80px 0 rgba(0,0,0,0.10);
+    box-shadow: 0 18px 60px 0 rgba(0,0,0,0.10);
 }
 
 .s-head {

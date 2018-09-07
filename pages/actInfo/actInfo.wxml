@@ -1,24 +1,23 @@
 <view class='box'>
     <view class='listbox'>
-        <view wx:for="{{applyinfo}}" wx:key="infoList" class='bline list-item' data-index="{{index}}">
+        <view wx:for="{{applyInfo}}" wx:key="infoList" class='bline list-item' data-index="{{index}}">
             <view class='ico ico-blocked' wx:if="{{index != 0 && index != 1}}" bindtap='deleteType' data-index="{{index}}" data-type="{{item}}" data-self="{{item.selfId}}"></view>
-            <view class='list-item-name'>{{item.name}}</view>
+            <view class='list-item-name' data-fieldType="{{item.fieldType}}"  data-index="{{index}}"  bindtap='editCol'>{{item.name}}</view>
             <view wx:if="{{index != 0 && index != 1}}" class='switch'>
-                <label for="{{index}}"> {{item.status ? "非必填" : "必填"}}</label>
-                <switch id='{{index}}' checked='{{!item.status}}' data-index="{{index}}" bindchange='changeSwitch' />
+                <label for="{{index}}"> {{item.status == 0 ? "必填" : "非必填"}}</label>
+                <switch id='{{index}}' checked='{{item.status == 0 ?true : false}}' data-index="{{index}}" bindchange='changeSwitch' />
             </view>
         </view>
     </view>
-    <view class='add' bindtap='toggleItem'>
-        <view class='ico ico-plus'></view>
-        新增
-    </view>
+    <view class='add' bindtap='toggleItem' >
+        <view class='ico ico-plus'></view>新增</view>
 </view>
 <view class='form-bar'>
     <button bindtap='saveForm' class='button' hover-class='button-touch'>保存</button>
 </view>
 
 <view class='types' wx:if="{{addTtypes}}">
+    <view class='types-warp'>
     <view class='types-title'> 常用报名项</view>
     <view class='types-normal'>
         <view wx:for="{{infoType}}" wx:if="{{item!=undefined}}" bindtap='selectType' wx:key="infoTYPE" data-index="{{index}}" class='type-item {{item.selected ? "disable":""}}' data-type="{{item}}">
@@ -32,4 +31,5 @@
         </view>
     </view>
     <view class='button button-gray types-clear' hover-class='touch' bindtap='toggleItem'>取消</view>
+    </view>
 </view>

@@ -1,27 +1,25 @@
 let app = getApp()
 Page({
     data: {
-
+        pageLoading: true
     },
     onLoad: function(options) {
-        app.checkLogin()
+        console.log("onload")
         wx.setNavigationBarColor({
             frontColor: '#ffffff',
             backgroundColor: '#FF6363',
         })
         app.pageTitle("个人中心")
-        if (wx.getStorageSync("login")) {
-            this.setData({
-                member: wx.getStorageSync("login")
-            })
-            app.api.selectData({
-                userid: app.common('id')
-            }).then(res => {
-                console.log(res)
-                this.setData({
-                    data: res.data
-                })
-            })
+    },
+    getUserInfo(e) {
+        console.log(e)
+        this.setData({
+            btnLoading:true
+        })
+        if (e.detail) {
+            app.login(e.detail, this.initMember)
+        } else {
+            app.tip('请您允许授权登录，否则无法使用该App')
         }
     },
     exitSys: function() {
@@ -42,28 +40,51 @@ Page({
     },
     scanCode(e) {
         // wx.showLoading()
-        // wx.scanCode({
-        //     success: (res) => {
-        //        // wx.hideLoading()
-        //         console.log(res.result)
-        //     }
-        // })
-        // 91145236
-        // 28618223
-        // 23200417
-        // 18360184
-        app.api.findSignInfoBySignCode({
-            signCode: 91145236,
+        wx.scanCode({
+            success: (res) => {
+                // wx.hideLoading()
+                wx.showLoading({
+                    title: '验证码识别中',
+                })
+                app.api.findSignInfoBySignCode({
+                        signCode: res.result,
+                    })
+                    .then(res => {
+                        wx.hideLoading()
+                        if (res.status == '200') {
+                            wx.setStorageSync("ticketInfo", res.data)
+                            wx.navigateTo({
+                                url: '/pages/checkTicket/checkTicket',
+                            })
+                        } else {
+                            app.tip(res.msg)
+                        }
+                    })
+            }
+        })
+    },
+    onShow() {
+        this.initMember()
+    },
+    initMember() {
+        if (wx.getStorageSync("login")) {
+            this.setData({
+                members: wx.getStorageSync("login")
             })
-            .then(res => {
+            app.api.selectData({
+                userId: app.common('id')
+            }).then(res => {
                 console.log(res)
-                // app.api.verificationTicketByOrderId({
-                //         orderId: employeeId: employeeName:
-
-                //     })
-                //     .then()
+                this.setData({
+                    member: res.data,
+                    pageLoading: false
+                })
             })
-
+        }else{
+            this.setData({
+                pageLoading: false
+            })
+        }
     },
     toPage(e) {
         wx.navigateTo({

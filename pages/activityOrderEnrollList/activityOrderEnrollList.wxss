@@ -1,0 +1,25 @@
+.item{
+    background:#fff;
+    font-size:28rpx;
+    padding:40rpx;
+    display: flex;
+    justify-content:space-between;
+}
+.item-tag{
+    background:#eee;
+    padding:6rpx 24rpx;
+    border-radius:4rpx;
+    height:42rpx;
+    line-height: 42rpx;
+}
+.item-name{
+    font-size:30rpx;
+    font-weight:800;
+    margin-bottom:8rpx;
+}
+.item-phone{
+    color:#999;
+}
+.list-touch{
+    background:#f4f4f4;
+}

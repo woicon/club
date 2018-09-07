@@ -8,8 +8,11 @@ Page({
         this.setData({
             member: wx.getStorageSync("login")
         })
+
+    },
+    onShow() {
         app.api.selectData({
-            userid: app.common('id')
+            userId: app.common('id')
         }).then(res => {
             console.log(res)
             this.setData({
@@ -30,7 +33,7 @@ Page({
                 console.log(res)
                 app.api.uploadPic(res.tempFilePaths[0], (img) => {
                     this.setData({
-                        'data.logourl': img
+                        'data.logoUrl': img
                     })
                 })
             },
@@ -45,27 +48,7 @@ Page({
                     title: res.data,
                     icon: "none"
                 })
+                wx.navigateBack()
             })
-    },
-    onReady: function() {
-
-    },
-    onShow: function() {
-
-    },
-    onHide: function() {
-
-    },
-    onUnload: function() {
-
-    },
-    onPullDownRefresh: function() {
-
-    },
-    onReachBottom: function() {
-
-    },
-    onShareAppMessage: function() {
-
     }
 })

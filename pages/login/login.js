@@ -3,59 +3,60 @@ Page({
     data: {
 
     },
-    onLoad: function(options) {
+    onLoad: function (options) {
         this.setData({
             backUrl: '/' + wx.getStorageSync("backUrl")
         })
     },
     getUserInfo(e) {
         console.log(e)
-        if(e.detail){
+        if (e.detail) {
             this.login(e.detail)
-        }else{
+        } else {
             app.tip('请您允许授权登录，否则无法使用该App')
         }
     },
-    login(detail){
+    login(detail) {
         wx.showLoading({
             title: '授权中',
         })
-        wx.login({
-            success: (res) => {
-                console.log(res)
-                wx.request({
-                    url: 'https://tclub.lx123.com/api/wechatAppSession.htm',
-                    data: {
-                        appId: app.ext.appId,
-                        jsCode: res.code
-                    },
-                    success: (data) => {
-                        console.log(data)
-                        let parmas = {
-                            encryptedData: detail.encryptedData,
-                            iv: detail.iv,
-                            session_key: data.data.result.session_key,
-                            superiormerchantid: app.ext.superiormerchantid,
-                        }
-                        app.api.wechatRegister(parmas)
-                            .then(res => {
-                                console.log(res)
-                                wx.hideLoading()
-                                if (res.data) {
-                                    wx.setStorageSync("login", res.data)
-                                    wx.reLaunch({
-                                        url: wx.getStorageSync("backUrl"),
-                                    })
-                                } else {
-                                    app.tip(res.msg)
-                                }
-                            })
-                    }
-                })
-            }
-        })
+        app.login(detail)
+        // wx.login({
+        //     success: (res) => {
+        //         console.log(res)
+        //         wx.request({
+        //             url: `${app.ext.host}/api/wechatAppSession.htm`,
+        //             data: {
+        //                 appId: app.ext.appId,
+        //                 jsCode: res.code
+        //             },
+        //             success: (data) => {
+        //                 console.log(data)
+        //                 let parmas = {
+        //                     encryptedData: detail.encryptedData,
+        //                     iv: detail.iv,
+        //                     sessionKey: data.data.result.session_key,
+        //                     superiorMerchantId: app.ext.merchantId,
+        //                 }
+        //                 app.api.wechatRegister(parmas)
+        //                     .then(res => {
+        //                         console.log(res)
+        //                         wx.hideLoading()
+        //                         if (res.data) {
+        //                             wx.setStorageSync("login", res.data)
+        //                             wx.reLaunch({
+        //                                 url: wx.getStorageSync("backUrl"),
+        //                             })
+        //                         } else {
+        //                             app.tip(res.msg)
+        //                         }
+        //                     })
+        //             }
+        //         })
+        //     }
+        // })
     },
-    toBack: function() {
+    toBack: function () {
         let url = wx.getStorageSync("backUrl")
         wx.redirectTo({
             url: this.data.backUrl,

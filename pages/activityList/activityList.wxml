@@ -1,49 +1,67 @@
-<view class='tab'>
-    <view wx:for="{{status}}" bindtap='toggleTab' id="{{index}}" wx:key="STATUSLIST" class='{{currentTab == index ? "active":""}}' wx:if="{{index!=3}}">
-        {{item}}
+<block wx:if="{{pageLoading}}">
+    <view class='f-c-c empty'>
+        <load></load>
+    </view>
+</block>
+
+<view wx:elif="{{!member}}">
+    <view class='login'>
+        <view class='login-text'>微信授权登录，需要您授权登录此app获取昵称，头像等信息！</view>
+        <!-- <button class='button' hover-class='button-touch' wx:if="{{logins}}" bindtap='toBack'>返回</button> -->
+        <button class='button' hover-class='button-touch' lang="zh_CN" bindgetuserinfo='{{btnLoading?"":"getUserInfo"}}' open-type="getUserInfo">
+            <load wx:if="{{btnLoading}}" color="#ffffff" />
+            <block wx:else>授权登录</block>
+        </button>
     </view>
 </view>
-<scroll-view class='list-scroll' scroll-y bindscrolltolower="listMore">
-    <block wx:if="{{pageLoading}}">
-        <view class='f-c-c empty'>
-            <load></load>
-        </view>
-    </block>
-    <view class='f-c-c empty' wx:elif="{{list.length == 0}}">
-        <view class='icos'>
-            <view class='ico ico-magic-wand f-c-c-co'></view>
-            <text>该分类为空</text>
+
+<block wx:else>
+    <view class='tab'>
+        <view wx:for="{{status}}" bindtap='toggleTab' id="{{index}}" wx:key="STATUSLIST" class='{{currentTab == index ? "active":""}}' wx:if="{{index!=3}}">
+            {{item}}
         </view>
     </view>
-    <block wx:else>
-        <view wx:for="{{list}}" wx:key="actlist" class='l-item bline' hover-class='list-touch' bindtap='toManagement' data-index="{{index}}">
-            <view class='l-info'>
-                <view>
-                    <view class='l-title'>{{item.activityName}}</view>
-                    
-                    <view class='l-date'>
-                        <view class='ico ico-clock'></view>{{item.startDate}}开始
+    <scroll-view class='list-scroll' scroll-y bindscrolltolower="listMore">
+        <block wx:if="{{scrollLoading}}">
+            <view class='f-c-c empty'>
+                <load></load>
+            </view>
+        </block>
+        <block wx:elif="{{list.length > 0}}">
+            <view wx:for="{{list}}" wx:key="actlist" class='l-item bline' hover-class='list-touch' bindtap='toManagement' data-index="{{index}}">
+                <view class='l-info'>
+                    <view>
+                        <view class='l-title'>{{item.activityName}}</view>
+                        <view class='l-date'>
+                            <view class='ico ico-clock'></view>{{item.startDate}}开始
+                        </view>
+                    </view>
+                    <view class='l-tag'>
+                        <view>
+                            <view class='ico ico-bookmark'></view>{{item.visitCount}}</view>
+                        <view>
+                            <view class='ico ico-bubble'></view>{{item.applyCount}}</view>
+                        <view>
+                            <view class='ico ico-share2'></view>{{item.shareCount}}</view>
                     </view>
                 </view>
-                <view class='l-tag'>
-                    <view>
-                        <view class='ico ico-bubble'></view>{{item.visitCount}}</view>
-                    <view>
-                        <view class='ico ico-bookmark'></view>{{item.applyCount}}</view>
-                    <view>
-                        <view class='ico ico-share2'></view>{{item.shareCount}}</view>
+                <view class='l-img'>
+                    <image src='{{item.activityImg}}' mode='aspectFill'></image>
+                    <view class='l-status {{item.status == 3 || item.status == 2 ? "disable":""}}'>{{actStatus[item.status]}}</view>
                 </view>
             </view>
-             <view class='l-img'>
-                <image src='{{item.activityImg}}' mode='aspectFill'></image>
-                <view class='l-status {{item.status == 3 || item.status == 2 ? "disable":""}}'>{{actStatus[item.status]}}</view>
+            <view wx:if="{{isBottom}}" class='l-bottom'>
+                <view wx:if="{{hasMore}}">
+                    <load />
+                </view>
+                <view wx:else>没有更多</view>
+            </view>
+        </block>
+        <view class='f-c-c empty' wx:else>
+            <view class='icos'>
+                <view class='ico ico-magic-wand f-c-c-co'></view>
+                <text>该分类为空</text>
             </view>
         </view>
-        <view wx:if="{{isBottom}}" class='l-bottom'>
-            <view wx:if="{{hasMore}}">
-                <load />
-            </view>
-            <view wx:else>没有更多</view>
-        </view>
-    </block>
-</scroll-view>
+    </scroll-view>
+</block>

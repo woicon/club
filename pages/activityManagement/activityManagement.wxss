@@ -20,11 +20,12 @@ page {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background-image: linear-gradient(-180deg, rgba(45, 45, 45, 0.00) 0%, rgba(2, 2, 2, 0.9) 100%);
     color: #fff;
-    padding: 20rpx 40rpx;
+    padding: 90rpx 40rpx 20rpx;
     font-size: 34rpx;
     line-height: 1.6;
+    font-weight: 800;
 }
 
 .m-head {
@@ -60,7 +61,7 @@ page {
     padding: 50rpx 0;
     font-size: 26rpx;
     color: #888;
-    transition:.1s;
+    transition: 0.1s;
 }
 
 .m-right {
@@ -81,8 +82,8 @@ page {
 }
 
 .m-right .ico {
-    font-size:28rpx;
-    margin-right:12rpx;
+    font-size: 28rpx;
+    margin-right: 12rpx;
 }
 
 .m-status {
@@ -93,7 +94,7 @@ page {
 
 .m-status>view {
     padding: 6rpx 12rpx;
-    background: #FF6363;
+    background: #ff6363;
     color: #fff;
     margin-right: 15rpx;
     border: 2px;
@@ -124,10 +125,12 @@ page {
     text-align: center;
     padding: 20rpx 40rpx 40rpx;
 }
-.grid-hover{
-    background:#f4f4f4;
-    color:#444;
+
+.grid-hover {
+    background: #f4f4f4;
+    color: #444;
 }
+
 .m>view {
     color: #999;
     width: 33.333333333333%;

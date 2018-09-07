@@ -3,7 +3,8 @@ textarea {
     height: auto;
     text-align: justify;
     padding: 15rpx 0;
-    line-height: 1.6;
+    line-height: 1.5;
+    font-size:28rpx;
 }
 
 .t-warp {
@@ -17,7 +18,6 @@ textarea {
 
 .editbar {
     position: absolute;
-    left: 40rpx;
     bottom: 0;
     right: 20rpx;
     display: flex;

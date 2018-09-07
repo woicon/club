@@ -11,9 +11,14 @@
 .msg-item {
     background: #fff;
     font-size: 28rpx;
-    margin: 30rpx;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 4rpx;
+    margin:40rpx;
+    border-radius:4rpx;
+}
+
+.mag-name{
+    font-weight:800;
+    font-size:30rpx;
+    color:#333;
 }
 
 .msg-btn {
@@ -29,21 +34,20 @@
 }
 
 .msg-cont {
-    flex-grow: 2;
+    flex: 1;
+
 }
 
 .msg-info image {
-    width: 90rpx;
-    height: 90rpx;
+    height: 70rpx;
+    flex-basis: 70rpx;
     border-radius: 90px;
     background: #eee;
     margin-right: 30rpx;
+
 }
 
 .mag-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     font-size: 24rpx;
     width: 100%;
     color: #888;

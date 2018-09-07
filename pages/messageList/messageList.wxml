@@ -3,7 +3,7 @@
         {{item}}
     </view>
 </view>
-<scroll-view scroll-y class='page-scroll'>
+<scroll-view scroll-y class='page-scroll' bindscrolltolower="listMore">
     <block wx:if="{{pageLoading}}">
         <view class='f-c-c empty'>
             <load></load>
@@ -16,26 +16,32 @@
         </view>
     </view>
     <view wx:else class='message-list'>
-        <view wx:for="{{message}}" wx:key="messageList" class='msg-item'>
-            <view class='bline msg-name'>{{item.acticityname}}</view>
+        <view wx:for="{{message}}" wx:key="messageList" class='msg-item bline' bindtap='{{currentTab == 1 ?"messageReply":""}}' data-index="{{index}}" data-id="{{item.id}}">
+            <view class='bline msg-name'>{{item.acticityName}}</view>
             <view class='msg-info bline'>
                 <image src='{{item.memberHeadImg}}'></image>
                 <view class='msg-cont'>
                     <view class='mag-title'>
-                        <view>{{item.name}}</view>
+                        <view class='mag-name'>{{item.name}}</view>
                         <view>{{item.time}}</view>
                     </view>
                     <view class='msg-post'>{{item.message}}</view>
                 </view>
             </view>
-            <view wx:if="{{currentTab == 1}}" class="msg-btn" bindtap='messageReply' data-index="{{index}}" data-index="{{index}}" data-id="{{item.id}}">回复</view>
+            <!-- <view wx:if="{{currentTab == 1}}" class="msg-btn" bindtap='messageReply' data-index="{{index}}" data-index="{{index}}" data-id="{{item.id}}">回复</view> -->
+        </view>
+        <view wx:if="{{isBottom}}" class='l-bottom'>
+            <view wx:if="{{hasMore}}">
+                <load />
+            </view>
+            <view wx:else>没有更多</view>
         </view>
     </view>
 </scroll-view>
 <view class='mask' wx:if="{{activeMsg}}"></view>
 <view class='reply' wx:if="{{activeMsg}}">
     <view class='msg-item'>
-        <view class='bline msg-name'>{{activeMsg.acticityname}}</view>
+        <view class='bline msg-name'>{{activeMsg.acticityName}}</view>
         <view class='msg-info'>
             <image src='{{activeMsg.memberHeadImg}}'></image>
             <view class='msg-cont'>
@@ -51,7 +57,7 @@
         </view>
         <view class='btn-bar'>
             <view class='rline' bindtap='clearReply'>取消</view>
-            <view wx:if="{{currentTab == 1}}" class="msg-btn" bindtap='replyMsg' data-index="{{index}}" data-id="{{activeMsg.id}}">回复</view>
+            <view wx:if="{{currentTab == 1}}" class="msg-btn" hover-class='touch' bindtap='replyMsg' data-index="{{index}}" data-id="{{activeMsg.id}}">回复</view>
         </view>
     </view>
 </view>

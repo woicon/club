@@ -1,18 +1,8 @@
-<view>
-    <view bindtap='choosePost' class='img-tab'>
-        <view wx:for="{{post}}" id='{{index}}' class='{{index == selIndex ? "active" : ""}}'>
-            {{postType[index]}}
+<view wx:for="{{post}}" id='{{index}}' wx:key="postsss">
+    <view class='post-titles'>{{postType[index]}}</view>
+    <view class='postimg'>
+        <view class='img' wx:for="{{item}}" wx:for-item="sitem" wx:key="postimg" wx:for-index="sindex" data-url="{{sitem}}" bindtap='getUrl' hover-class='touch'>
+            <image src='{{sitem}}' mode='aspectFit'></image>
         </view>
     </view>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" current-item-id="{{selIndex}}"  interval="{{interval}}" duration="{{duration}}" bindchange='postChange'>
-        <block wx:for="{{post}}" wx:key="imgpost">
-            <swiper-item item-id="{{index}}">
-                <view class='postimg'>
-                    <view wx:for="{{item}}" wx:for-item="sitem" wx:key="postimg" wx:for-index="sindex" data-url="{{sitem}}" bindtap='getUrl' class='img'>
-                        <image src='{{sitem}}'></image>
-                    </view>
-                </view>
-            </swiper-item>
-        </block>
-    </swiper>
 </view>

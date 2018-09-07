@@ -5,7 +5,9 @@
     top: 90rpx;
     bottom: 0;
 }
-
+page{
+    background:#fff;
+}
 .l-item {
     display: flex;
     padding:50rpx 30rpx;
@@ -94,10 +96,4 @@
     margin-right:30rpx;
 }
 
-.l-bottom {
-    padding: 50rpx 0;
-    text-align: center;
-    font-size: 28rpx;
-    color: #999;
-    opacity: 0.8;
-}
+

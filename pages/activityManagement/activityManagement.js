@@ -6,87 +6,56 @@ Page({
             1: "已关闭",
             2: "已删除",
             3: "已结束",
-        }
+        },
+        pageLoading: true
     },
     onLoad: function(options) {
         let detail = wx.getStorageSync("actManagement")
         this.setData({
             detail: detail
         })
-        wx.setNavigationBarTitle({
-            title: this.data.detail.activityName,
-        })
+    },
+    actDetail() {
         app.api.activityDetail({
-            id: detail.id
-        }).then((res)=>{
-            console.log(res)
+            id: this.data.detail.id
+        }).then((res) => {
             this.setData({
-                detail:res.data
+                detail: res.data,
+                pageLoading: false
             })
+            app.pageTitle(res.data.activityName)
         })
     },
-    actDetail(){
-        
+    onShow:function(){
+        this.actDetail()
     },
-    toUrl(e, url) {
+    toUrl(url) {
         wx.navigateTo({
-            url: `${url}?activityId=${e.currentTarget.dataset.id}&merchantId=${e.currentTarget.dataset.mid}`
+            url: `${url}?activityId=${this.data.detail.id}&merchantId=${this.data.detail.merchantId}&activityName=${this.data.detail.activityName}`
         })
     },
     toShare(e) {
         console.log(e)
-        this.toUrl(e, "/pages/activityShare/activityShare")
+        this.toUrl("/pages/activityShare/activityShare")
     },
     enrollList(e) {
-        this.toUrl(e, "/pages/activityOrderEnrollList/activityOrderEnrollList")
+        this.toUrl("/pages/activityOrderEnrollList/activityOrderEnrollList")
     },
-    orderList(e){
-        this.toUrl(e, "/pages/activityOrderList/activityOrderList")
+    orderList(e) {
+        this.toUrl("/pages/activityOrderList/activityOrderList")
     },
-    toDetail(e){
-        this.toUrl(e, "/pages/activityDetail/activityDetail")
+    toDetail(e) {
+        this.toUrl("/pages/activityDetail/activityDetail")
     },
-    toEdit(e){
-        this.toUrl(e, "/pages/creatActivity/creatActivity")
+    toEdit(e) {
+        let status = this.data.detail.status
+        if (status == 3) {
+            app.tip("活动已结束，不允许编辑")
+        } else if (status == 0) {
+            wx.setStorageSync("editActivity", this.data.detail)
+            this.toUrl("/pages/creatActivity/creatActivity?edit=true")
+        }
     },
-    onReady: function() {
-
-    },
-    onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
     onShareAppMessage: function() {
 
     }

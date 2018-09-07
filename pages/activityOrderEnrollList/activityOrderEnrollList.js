@@ -3,70 +3,97 @@ let app = getApp()
 console.log(app)
 Page({
     data: {
-
+        isBottom: false,
+        pageLoading: true,
+        hasMore: true
     },
     onLoad: function(options) {
+        this.setData({
+            activityId: options.activityId
+        })
         wx.setNavigationBarTitle({
             title: '报名列表',
         })
-        let parmas = {
-            page:1,
-            size:40,
-            activityId: options.activityId,
-          //  nameOrPhone:null
+    },
+    listParams(args) {
+        let arg = args || {}
+        let params = {
+            page: arg.page || 1,
+            size: 10,
+            activityId: this.data.activityId,
         }
-        app.api.getActivityOrderEnrollList(parmas,"POST")
-        .then(res=>{
-            console.log(res)
+        if (arg.nameOrPhone) {
+            params.nameOrPhone = arg.nameOrPhone
+        }
+        return params
+    },
+    getList(args) {
+        let arg = args || {}
+        if (arg.nameOrPhone) {
+            this.setData({
+                pageLoading: true
+            })
+        }
+        app.api.getActivityOrderEnrollList(this.listParams(arg))
+            .then(res => {
+                console.log(res)
+                let list
+                let page = arg.page || 1
+                let hasMore = (page == res.data.pageCount) ? false : true
+
+                if (arg.isMore) {
+                    list = this.data.list
+                    let items = list.items
+                    list.items = items.concat(res.data.items)
+                    list.nextPage = res.data.nextPage
+                } else {
+                    list = res.data
+                }
+                this.setData({
+                    list: list,
+                    pageLoading: false,
+                    hasMore: hasMore
+                })
+                if (res.data.items.length == 0 && arg.nameOrPhone){
+                    this.setData({
+                        error:'搜索不到报名人信息'
+                    })
+                }
+            })
+    },
+    listMore(e) {
+        this.setData({
+            isBottom: true,
+        })
+        if (this.data.hasMore) {
+            this.getList({
+                page: this.data.list.nextPage,
+                isMore: true
+            })
+        }
+    },
+    searchInput(e) {
+        this.setData({
+            SearchDel: true,
+            searchText:e.detail.value
         })
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
-
+    searchDel() {
+        this.setData({
+            SearchDel: false,
+            searchText:'',
+            error:null
+        })
+        this.getList()
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
+    searchList(e) {
+        if (e.detail.value != '') {
+            this.getList({
+                nameOrPhone: e.detail.value
+            })
+        }
+    },
     onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
+        this.getList()
     }
 })

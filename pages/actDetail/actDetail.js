@@ -40,17 +40,17 @@ Page({
                 list.push({ txt: tempTxt})
             }
             currpage.setData({
-                activitydetails: list
+                activityDetails: list
             })
-            wx.setStorageSync("activitydetails", list)
+            wx.setStorageSync("activityDetails", list)
             wx.navigateBack()
         } else if (list.length == 0 && this.data.tempTxt != '') {
             console.log("sdf")
             list.push({ txt: tempTxt})
             currpage.setData({
-                activitydetails: list
+                activityDetails: list
             })
-            wx.setStorageSync("activitydetails", list)
+            wx.setStorageSync("activityDetails", list)
             wx.navigateBack()
         } else {
             app.tip("请添加活动详情")
@@ -88,9 +88,9 @@ Page({
         })
     },
     onLoad: function(options) {
-        if (wx.getStorageSync("activitydetails")) {
+        if (wx.getStorageSync("activityDetails")) {
             this.setData({
-                list: wx.getStorageSync("activitydetails")
+                list: wx.getStorageSync("activityDetails")
             })
         }
     },

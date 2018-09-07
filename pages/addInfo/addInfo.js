@@ -9,15 +9,38 @@ Page({
             value: ''
         }]
     },
-    onLoad: function(options) {
+    onLoad(options) {
         console.log(options)
         this.setData({
             type: options.id,
-            title: options.name
         })
-        wx.setNavigationBarTitle({
-            title: options.name,
+       
+        if(options.edit){
+            this.initEdit(options)
+        }else{
+            app.pageTitle(options.name)
+        }
+    },
+    initEdit(options){
+        let editInfo = wx.getStorageSync("editCol")
+        if (editInfo.fieldType == 2 || editInfo.fieldType == 3){
+            let typesArr = editInfo.fieldOption.split('$')
+            let types = []
+            for (let i in typesArr){
+                types.push({ value: typesArr[i]})
+            }
+            this.setData({
+                types:types
+            })
+        }
+        console.log(0 || 'we')
+        this.setData({
+            info: editInfo,
+            edit:true,
+            index: options.index
         })
+        app.pageTitle("编辑报名项")
+
     },
     bindValue(e) {
         let types = this.data.types
@@ -72,24 +95,40 @@ Page({
         }
     },
     saveForm(e) {
+        console.log(e.detail.value)
         let value = e.detail.value
         this.checkForm(value, () => {
             if (this.data.fieldOption) {
                 e.detail.value.fieldOption = this.data.fieldOption
             }
-            wx.setStorageSync("customField", value)
+          //  wx.setStorageSync("customField", value)
+            let currPages = getCurrentPages()
+            let currPage = currPages[currPages.length - 2]
+            let applyInfo = currPage.data.applyInfo
+            if(this.data.edit){
+                applyInfo[this.data.index] = value
+            }else{
+                applyInfo.push(value)
+            }
+            wx.setStorageSync("applyInfo", applyInfo)
+            currPage.setData({
+                applyInfo: applyInfo
+            })
+
             wx.navigateBack()
         })
     },
     onUnload() {
-        let currPages = getCurrentPages()
-        let currPage = currPages[currPages.length - 2]
-        let applyinfo = currPage.data.applyinfo
-        applyinfo.push(wx.getStorageSync("customField"))
-        wx.setStorageSync("applyinfo", applyinfo)
-        currPage.setData({
-            applyinfo: applyinfo
-        })
+        // if (wx.getStorageSync("customField")) {
+        //     let currPages = getCurrentPages()
+        //     let currPage = currPages[currPages.length - 2]
+        //     let applyInfo = currPage.data.applyInfo
+        //     applyInfo.push(wx.getStorageSync("customField"))
+        //     wx.setStorageSync("applyInfo", applyInfo)
+        //     currPage.setData({
+        //         applyInfo: applyInfo
+        //     })
+        // }
     },
     onShow() {
 

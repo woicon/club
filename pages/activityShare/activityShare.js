@@ -17,86 +17,111 @@ Page({
             isPublic: options.public || null
         })
         let shareParmas = {}
-        if (options.public ){
+        if (options.public) {
             shareParmas = {
                 activityId: options.public,
-                merchantId: app.common("merchantid")
+                merchantId: app.common("merchantId")
             }
-        }else{
+        } else {
             shareParmas = options
         }
         Promise.all([app.api.activityShare(shareParmas, 'POST'), app.api.activityDetail({
-            id: options.public || options.activityId
+                id: options.public || options.activityId
             }, 'POST')])
             .then(res => {
                 console.log(res)
                 this.setData({
-                    shareImg:res[0].data,
-                    detail:res[1].data,
+                    shareImg: res[0].data,
+                    detail: res[1].data,
                     pageLoading: false,
-                    member:wx.getStorageSync("login")
+                    member: wx.getStorageSync("login")
                 })
             })
     },
-    shareGroup(){
+    shareGroup() {
         this.setData({
-            mask:true,
+            mask: true,
         })
     },
-    toDetail(){
+    toDetail() {
         wx.setStorageSync("detailPageUrl", this.data.detail.activityDetailUrl)
         wx.navigateTo({
             url: `/pages/activityDetail/activityDetail`,
         })
     },
-    shareWe:function(){
+    shareWe: function() {
         wx.showShareMenu({
-            showShareMenu:true,
-            success:function(){
+            showShareMenu: true,
+            success: function() {
                 wx.showToast({
                     title: '转发成功',
-                    icon:'none'
+                    icon: 'none'
                 })
             }
         })
     },
-    onShareAppMessage(res){
+    onShareAppMessage(res) {
         if (res.from === 'button') {
             this.setData({
-                isPublic:null
+                isPublic: null
             })
             console.log(res.target)
         }
         return {
             title: this.data.detail.activityName,
-            path:`/pages/activityDetail/activityDetail?mid=${this.data.detail.merchantId}&id=${this.data.detail.id}`
+            // path: `${app.ext.host}m/${this.data.detail.merchantId}_1/detail.htm?id=${this.data.detail.id}`
+            path: `/pages/activityDetail/activityDetail?merchantId=${this.data.detail.merchantId}&activityId=${this.data.detail.id}&activityName=${this.data.detail.activityName}`
         }
     },
-    saveShare:function(e) {
+    saveShare: function(e) {
         console.log(e)
         wx.getImageInfo({
-            src:this.data.shareImg,
-            success:(res)=>{
+            src: this.data.shareImg,
+            success: (res) => {
                 console.log(res)
                 wx.saveImageToPhotosAlbum({
                     filePath: res.path,
-                    success(res) {
+                    success: (res) => {
                         console.log(res)
+                        this.setData({
+                            toAuth: false
+                        })
                         wx.showModal({
                             title: '保存成功',
                             content: '图片已保存到相册，快去发布朋友圈吧！',
-                            showCancel:false,
-                            confirmText:"我知道了"
+                            showCancel: false,
+                            confirmText: "我知道了"
                         })
+                    },
+                    fail: (error) => {
+                        console.log(error)
+                        if (error.errMsg == "saveImageToPhotosAlbum:fail auth deny") {
+                            this.setData({
+                                toAuth: true
+                            })
+                        }
                     }
                 })
             }
         })
-        
+
     },
-    closeGroup:function() {
+    handleSetting(e) {
+        console.log(e)
+        if (!e.detail.authSetting['scope.writePhotosAlbum']) {
+            this.setData({
+                toAuth: true
+            })
+        } else {
+            this.saveShare()
+            this.setData({
+                toAuth: false
+            })
+        }
+    },
+    closeGroup: function() {
         this.setData({
-            mask:false
+            mask: false
         })
     },
     onReady: function() {

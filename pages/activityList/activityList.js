@@ -11,46 +11,66 @@ Page({
             1: "已关闭",
             2: "已删除",
             3: "已结束",
-        }
+        },
+        statusType: -1
     },
-    onLoad: function(options) {
-       app.pageTitle("活动管理")
+    onLoad(options) {
+        app.pageTitle("活动管理")
     },
-    toggleTab: function(e) {
-        let id = e.target.id
-        console.log("IDSSSS::",id)
+    getUserInfo(e) {
+        console.log(e)
         this.setData({
-            currentTab: e.target.id
+            btnLoading: true
         })
-        id == 0 ? this.getList() : this.getList({ status:id - 1})
-    },
-    listParmas: function(args) {
-        let arg = args || {}
-        let parmas = {
-            page: 1,
-            size: 10,
-            merchantId: app.common("merchantid"),
+        if (e.detail) {
+            app.login(e.detail, () => {
+                this.setData({
+                    member: wx.getStorageSync("login")
+                })
+                this.getList()
+            })
+        } else {
+            app.tip('请您允许授权登录，否则无法使用该App')
         }
-        if (arg.status || arg.status == 0) {
-            parmas.status = arg.status
+    },
+    toggleTab(e) {
+        let id = e.currentTarget.id
+        this.setData({
+            currentTab: e.target.id,
+            hasMore: true
+        })
+        this.setData({
+            statusType: id - 1
+        })
+        this.getList()
+    },
+    listParams(args) {
+        let arg = args || {}
+        let params = {
+            page: 1,
+            size: 8,
+            merchantId: app.common('merchantId'),
+        }
+        if (this.data.statusType != -1) {
+            params.status = this.data.statusType
         }
         if (arg.isMore) {
-            parmas.page = this.data.page + 1
+            params.page = this.data.page + 1
         } else {
             this.setData({
-                pageLoading: true
+                scrollLoading: true
             })
         }
-        return parmas
+        return params
     },
     getList(args) {
         let arg = args || {}
-        let parmas = this.listParmas(arg)
+        let parmas = this.listParams(arg)
         console.log(parmas)
-        app.api.activityList(parmas, "POST")
+        app.api.activityList(parmas)
             .then(res => {
                 if (arg.isMore) {
-                    if (res.data.length != 0) {
+                    if (res.data.length > 0) {
                         let list = this.data.list
                         list = list.concat(res.data)
                         this.setData({
@@ -63,15 +83,18 @@ Page({
                         })
                     }
                 } else {
+                    let hasMore = res.data.length < 8 ? false : true
                     this.setData({
                         list: res.data,
-                        pageLoading: false,
+                        scrollLoading: false,
+                        pageLoading:false,
                         page: 1,
+                        hasMore: hasMore
                     })
                 }
             })
     },
-    listMore: function() {
+    listMore() {
         this.setData({
             isBottom: true
         })
@@ -87,29 +110,10 @@ Page({
             url: '/pages/activityManagement/activityManagement',
         })
     },
-    onReady: function() {
-
-    },
-    onShow: function() {
-        this.getList()
-    },
-    onHide: function() {
-
-    },
-    onUnload: function() {
-
-    },
-    onPullDownRefresh: function() {
-
-    },
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
+    onShow() {
+        app.isLogin()
+        if (wx.getStorageSync("login")) {
+            this.getList()
+        }
     }
 })

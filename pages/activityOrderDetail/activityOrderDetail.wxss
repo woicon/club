@@ -1,0 +1,115 @@
+
+.m-titles {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(-180deg, rgba(45, 45, 45, 0.00) 0%, rgba(2, 2, 2, 0.9) 100%);
+    color: #fff;
+    padding: 90rpx 40rpx 20rpx;
+    font-size: 34rpx;
+    line-height: 1.6;
+    font-weight: 800;
+}
+
+.imgs {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 410rpx;
+    background-size: cover;
+}
+.rol-title{
+    color:#FF6363;
+    font-weight:800;
+    font-size:32rpx;
+}
+.rol-item{
+    padding:20rpx 0;
+    font-size:28rpx;
+    color:#888;
+}
+
+.rol-name{
+    font-size:30rpx;
+    color:#444;
+}
+.o{
+    padding:40rpx;
+    background:#fff;
+    font-size:28rpx;
+}
+.o view{
+    line-height:2;
+}
+.info{
+    display: flex;
+    align-items:center;
+    padding:40rpx;
+    background:#fff;
+}
+.info-img{
+    width:230rpx;
+    height:136rpx;
+    margin-right:30rpx;
+}
+.rol{
+    background:#fff;
+    padding:40rpx;
+}
+.m-titles {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(-180deg, rgba(45, 45, 45, 0.00) 0%, rgba(2, 2, 2, 0.9) 100%);
+    color: #fff;
+    padding: 90rpx 40rpx 20rpx;
+    font-size: 34rpx;
+    line-height: 1.6;
+    font-weight: 800;
+}
+
+.m-head {
+    position: relative;
+}
+
+.m-head image {
+    width: 100%;
+    height: 380rpx;
+}
+
+.m-time {
+    font-size: 23rpx;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    margin-top: 15rpx;
+}
+
+.m-time .ico {
+    margin-right: 10rpx;
+}
+
+.m-title {
+    font-size: 34rpx;
+    padding: 20rpx 40rpx;
+    background: #fff;
+}
+.m {
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 28rpx;
+    text-align: center;
+    padding: 20rpx 40rpx 40rpx;
+}
+
+.ticket{
+    background:#fff;
+    padding:40rpx;
+}
+.ticket-phone{
+    font-size:26rpx;
+    color:#888;
+}

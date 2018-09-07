@@ -1,1 +1,53 @@
+.tab>view{
+    width:50%;
+}
+.list-item{
+    background: #fff;
+    padding:40rpx;
+}
 
+.list-item{
+    display: flex;
+    justify-content:space-between;
+    font-size:26rpx;
+    align-items:center;
+
+}
+
+.item-order{
+    color:#888;
+    margin-top:8px;
+}
+.item-right{
+    text-align:right;
+    display: flex;
+    align-items:center;
+}
+.item-right view{
+    margin:0 8rpx;
+}
+.item-name{
+    font-weight:800;
+    font-size:32rpx;
+    line-height:2.5;
+}
+.item-tick{
+    color:#444;
+    display:inline-block;
+}
+.item-tag{
+    display: flex;
+    align-items:center
+}
+.item-tag>view{
+    padding:4rpx 8rpx;
+    border-radius:2px;
+    background:#eee;
+    color:#444;
+    margin-right:12rpx;
+}
+.price{
+    color:#FF6363;
+    margin-bottom:6rpx;
+
+}

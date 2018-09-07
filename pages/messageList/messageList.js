@@ -8,6 +8,7 @@ Page({
         currentTab: 1,
         message: null,
         pageLoading: true,
+        hasMore: true
     },
     onLoad: function(options) {
         this.messageList()
@@ -17,23 +18,25 @@ Page({
     },
     toggleTab: function(e) {
         this.setData({
-            currentTab: e.target.id
+            currentTab: e.target.id,
+            hasMore:true
         })
         this.messageList()
     },
-    parmas: function() {
-        let parmas = {
-            page: 1,
-            pcount: 30,
+    listParams(arg) {
+        arg = arg || {}
+        let params = {
+            page: arg.page || 1,
+            pcount: 8,
             status: this.data.currentTab,
-            userid: app.common("id"),
+            userId: app.common("id"),
         }
-        return parmas
+        return params
     },
     messageReply(e) {
         console.log(e)
         this.setData({
-            activeMsg: this.data.message[e.target.dataset.index]
+            activeMsg: this.data.message[e.currentTarget.dataset.index]
         })
     },
     clearReply() {
@@ -41,20 +44,34 @@ Page({
             activeMsg: null
         })
     },
-    messageList: function(args) {
-        let arg = args || {}
+    messageList: function(arg) {
+        arg = arg || {}
         if (!arg.isMore) {
             this.setData({
                 pageLoading: true
             })
         }
-        app.api.messageList(this.parmas())
+        app.api.messageList(this.listParams(arg))
             .then(res => {
                 console.log(res)
+                let hasMore = (res.data) ? true : false
+                let page
+                let message
+                if (arg.isMore) {
+                    let _list = this.data.message
+                    message = _list.concat(res.data)
+                    page = this.data.page + 1
+                } else {
+                    message = res.data
+                    page = 1
+                }
                 this.setData({
                     pageLoading: false,
-                    message: res.data
+                    message: message,
+                    page: page,
+                    hasMore: hasMore
                 })
+
             })
     },
     inputContent: function(e) {
@@ -64,16 +81,34 @@ Page({
     },
     replyMsg(e) {
         console.log(e)
-        let parmas = {
+        let params = {
             content: this.data.replyTxt,
-            merchantId: app.common('merchantid'),
+            merchantId: app.common('merchantId'),
             messageId: e.target.dataset.id,
         }
         if (this.data.replyTxt != '') {
-            app.api.messageReply(parmas)
+            app.api.messageReply(params)
                 .then(res => {
                     console.log(res)
+                    if (res.status == '200') {
+                        app.tip(res.data)
+                        this.messageList()
+                        this.setData({
+                            activeMsg: null
+                        })
+                    }
                 })
+        }
+    },
+    listMore(e) {
+        this.setData({
+            isBottom: true,
+        })
+        if (this.data.hasMore) {
+            this.messageList({
+                page: this.data.page + 1,
+                isMore: true
+            })
         }
     },
     onShareAppMessage: function() {

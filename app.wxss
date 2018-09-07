@@ -186,7 +186,7 @@ page {
 }
 
 .button {
-    background: #FF6363;
+    background: #ff6363;
     color: #fff;
     border-radius: 4rpx;
     display: block;
@@ -218,7 +218,7 @@ page {
 }
 
 .button-touch {
-    background: #DF4B4B;
+    background: #df4b4b;
 }
 
 .button-red {
@@ -254,6 +254,17 @@ page {
     font-size: 24rpx;
 }
 
+.l-bottom {
+    text-align: center;
+    font-size: 28rpx;
+    color: #999;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150rpx;
+}
+
 .list>view {
     padding: 0 40rpx;
 }
@@ -285,8 +296,8 @@ page {
 }
 
 .add {
-    border: 1px dashed #FF6363;
-    color: #FF6363;
+    border: 1px dashed #ff6363;
+    color: #ff6363;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -300,7 +311,7 @@ page {
 .add .ico {
     margin-right: 12rpx;
     font-size: 22rpx;
-    color: #FF6363;
+    color: #ff6363;
 }
 
 .form-bar {
@@ -329,7 +340,7 @@ page {
 /*绿色样式（true的样式）*/
 
 .wx-switch-input.wx-switch-input-checked {
-    background: #FF6363 !important;
+    background: #ff6363 !important;
 }
 
 .wx-switch-input::after {
@@ -410,11 +421,9 @@ page {
 }
 
 .tab>view.active {
-    border-bottom: 3px solid #FF6363;
-    color: #FF6363;
+    border-bottom: 3px solid #ff6363;
+    color: #ff6363;
 }
-
-
 
 .b1 {
     background-image: linear-gradient(-180deg, #72e2eb 0%, #3ec1d3 100%);
@@ -456,7 +465,6 @@ page {
     background-image: linear-gradient(-180deg, #f9c39e 0%, #f19065 100%);
 }
 
-
 .b1 {
     background: #3ec1d3;
 }
@@ -496,5 +504,65 @@ page {
 .b10 {
     background: #f19065;
 }
+
 /* ??tab end */
-@import "icon.wxss"
+
+.login-text {
+    font-size: 28rpx;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.login .button {
+    margin: 0;
+    margin-top: 40rpx;
+}
+
+.login {
+    margin: 40% 20% auto 20%;
+}
+@import "icon.wxss";
+
+.auth {
+    position: fixed;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+}
+
+.auth-container {
+    position: absolute;
+    left: 10%;
+    background: #fff;
+    top: 20%;
+    right: 10%;
+    border-radius:4px;
+    overflow:hidden;
+}
+
+.auth .title {
+    font-size: 40rpx;
+    color: #444;
+    margin-bottom: 25rpx;
+}
+
+.auth button {
+    border: none;
+    background: #fff;
+    border-radius: 0;
+    color:#ff6363;
+}
+
+.auth button::after {
+    border: none;
+}
+
+.auth-cont {
+    padding: 40rpx;
+    font-size: 30rpx;
+    color: #666;
+    text-align: center;
+}

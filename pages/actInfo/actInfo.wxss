@@ -1,12 +1,17 @@
 .types {
-    background: #fff;
+    background:rgba(0, 0, 0, .5);
     position: fixed;
     left: 0;
     bottom: 0;
     right: 0;
     top: 0;
 }
-
+.types-warp{
+    background:#fff;
+    border-radius:4px;
+    margin:50rpx;
+    padding-bottom:40rpx;
+}
 .types-normal {
     display: flex;
     justify-content: space-between;
@@ -61,7 +66,6 @@
 }
 
 .list-item {
-    height: 110rpx;
     display: flex;
     justify-content: space-between;
     font-size: 28rpx;
@@ -81,12 +85,21 @@
     align-items: center;
 }
 
-.list-item switch {
-    margin-left: 14rpx;
-}
 
+.switch{
+    display: flex;
+    align-items:center;
+    width:200rpx;
+    margin-left:10rpx;
+    justify-content:flex-end;
+}
+.switch label{
+    margin-right:10rpx;
+    font-size:22rpx;
+}
 .list-item-name {
-    flex-grow: 2;
+    flex:1;
+    padding:30rpx 0;
 }
 
 .listbox {

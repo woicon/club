@@ -7,21 +7,19 @@ function getLoopArray(start, end) {
     var end = end || 1;
     var array = [];
     for (var i = start; i <= end; i++) {
-
-            array.push(withData(i));
-        
-
+        array.push(withData(i));
     }
     return array;
 }
+
 function getMonthDay(years, month) {
     // year = year.substr(0, year.length - 1);
     // month = month.substr(0, month.length - 1);
     // console.log(year);
     // console.log(month);
     let year = Number(years)
-    var flag = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0), array = null;
-
+    var flag = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0),
+        array = null;
     switch (month) {
         case '01':
         case '03':
@@ -46,28 +44,38 @@ function getMonthDay(years, month) {
     }
     return array;
 }
+
 function getNewDateArry() {
     // 当前时间的处理
     var newDate = new Date()
     var year = withData(newDate.getFullYear()),
-        mont = withData(newDate.getMonth() + 1) ,
+        mont = withData(newDate.getMonth() + 1),
         date = withData(newDate.getDate()),
         hour = withData(newDate.getHours()),
         minu = withData(newDate.getMinutes()),
         seco = withData(newDate.getSeconds()) + '秒';
     return [year, mont, date, hour, minu] //seco];
 }
+
 function dateTimePicker(startYear, endYear, date) {
+    console.log(date)
     // 返回默认显示的数组和联动数组的声明
-    var dateTime = [], dateTimeArray = [[], [], [], [], []];
+    var dateTime = [],
+        dateTimeArray = [
+            [],
+            [],
+            [],
+            [],
+            []
+        ];
     var start = startYear || 1978;
-    var end = endYear || 2020;
+    var end = endYear || startYear+4;
     // 默认开始显示数据
     console.log(date)
     var defaultDate = date ? [...date.split(' ')[0].split('-'), ...date.split(' ')[1].split(':')] : getNewDateArry();
     console.log(defaultDate)
-    console.log(defaultDate[0])
-    console.log(defaultDate[1])
+    // console.log(defaultDate[0])
+    // console.log(defaultDate[1])
     // 处理联动列表数据
     /*年月日 时分*/
     dateTimeArray[0] = getLoopArray(start, end);

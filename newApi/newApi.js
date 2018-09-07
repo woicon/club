@@ -1,6 +1,6 @@
 function api(API) {
     function ajax(url, parmas, method, user) {
-        console.log(`%c${url}：PARMAS==>`, "color:green;font-size:11px;font-weight:800", parmas)
+        console.log(`${url}：PARMAS==>`, parmas)
         return new Promise((res, rej) => {
             wx.request({
                 url: API + url,
@@ -10,7 +10,7 @@ function api(API) {
                     ['content-type']: method == 'GET' ? 'application/json' : 'application/x-www-form-urlencoded'
                 },
                 success: function(data) {
-                    console.log(`%c${url} CALLBACK==>`, "color:green;font-size:11px;font-weight:800", data)
+                    console.log(`${url} CALLBACK==>`, data)
                     res(data.data)
                 },
                 fail: function(error) {
@@ -82,7 +82,7 @@ function api(API) {
         wx.uploadFile({
             url: `${API}applet/v1/uploadPic`,
             filePath: tempFilePaths,
-            name: 'uploadpic',
+            name: 'uploadPic',
             fail(error) {
                 console.log(error)
                 wx.showToast({

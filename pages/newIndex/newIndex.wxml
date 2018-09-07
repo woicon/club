@@ -5,17 +5,16 @@
 </block>
 
 <block wx:else>
-    <view class='i-head' bindtap='creatAct' hover-class='touch' id="recreation">
+    <view class='i-head' bindtap='creatAct' hover-class='touch' id="recreation" data-label="群活动">
         <image src='../../images/chatu@3x.png'></image>
         <view class='i-info'>
             <view class='info-title'> 群活动</view>
             <view class='i-sub'>组织自定义活动，快速发布</view>
         </view>
     </view>
-
     <view class='lines'>发布其他活动</view>
     <view class='i-grid'>
-        <view wx:for="{{types}}" hover-class='touch' bindtap='creatAct' class='item' id="{{item.id}}" wx:key='groups'>
+        <view wx:for="{{types}}" hover-class='touch' bindtap='creatAct' class='item' id="{{item.id}}" data-label="{{postType[item.id]}}" wx:key='groups'>
             <!-- <image src="{{item.img}}"></image> -->
             <view class='ico ic-{{item.ico}} b{{index+3}}'></view>
             <view>{{item.name}}</view>

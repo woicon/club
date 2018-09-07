@@ -3,11 +3,9 @@ page {
 }
 
 .m {
-    text-align: center;
-    background: #FF6363;
+    background: #ff6363;
     height: 200rpx;
     color: #fff;
-    line-height: 2;
     display: flex;
     padding: 0 68rpx;
     align-items: center;
@@ -19,14 +17,19 @@ page {
     align-items: center;
 }
 
+.m-phone {
+    font-size: 28rpx;
+    margin-top: 10rpx;
+}
+
 .m-name {
-    font-size:44rpx;
-    font-weight:800;
+    font-size: 44rpx;
+    font-weight: 800;
 }
 
 .m image {
-    width: 100rpx;
-    height: 100rpx;
+    width: 110rpx;
+    height: 110rpx;
     border-radius: 200px;
     margin-right: 28rpx;
 }
@@ -96,7 +99,6 @@ page {
     justify-content: center;
     align-items: center;
 }
-
 
 .member-grid text {
     display: block;

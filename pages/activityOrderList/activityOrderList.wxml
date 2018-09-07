@@ -1,5 +1,5 @@
 <view class='tab'>
-<view wx:for="{{orderStatus}}" bindtap='toggleTab' data-id="{{index}}" class='{{currentTab == index ? "active":""}}'>{{item}}</view>
+    <view wx:for="{{orderStatus}}" wx:key="ordertab" bindtap='toggleTab' data-id="{{index}}" class='{{currentTab == index ? "active":""}}'>{{item}}</view>
 </view>
 <!-- <view class='search {{gridLayout?"":"bline"}}'>
     <view class='ico icon-search'></view>
@@ -7,11 +7,42 @@
     <!-- <view wx:if="{{searchClear}}" class='ico icon-del'></view> 
     <view wx:if="{{SearchDel}}" class="search-del icon-del" bindtap='searchDel' hover-class='search-del-touch'></view>
 </view> -->
+<scroll-view scroll-y class='page-scroll' bindscrolltolower="listMore">
+    <block wx:if="{{pageLoading}}">
+        <view class='f-c-c empty'>
+            <load></load>
+        </view>
+    </block>
+    <block wx:else>
+        <view wx:if="{{list.length !=0}}">
+            <view wx:for="{{list}}" wx:key="orderlist" class='list-item bline' bindtap='toOrderDetail' data-orderId='{{item.id}}' data-activityId='{{item.activityId}}'>
+                <view class='item-left'>
+                    <view class='item-name'>{{item.contactsName}}</view>
+                    <view class='item-tag'>
+                        <view class='item-tick'>{{item.ticketName}}</view>
 
-<scroll-view scroll-y class='page-scroll'>
-        <view class='empty'>
+                    </view>
+                    <view class='item-order'>{{item.orderNo}}</view>
+                </view>
+                <view class='item-right'>
+                    <view wx:if="{{item.ticketPrice == 0}}" class='price'>免费</view>
+                    <view wx:else>¥{{item.ticketPrice}}</view>
+                    <view>×{{item.ticketCount}}</view>
+                </view>
+                <!-- <view>{{orderStatus[item.status]}}</view> -->
+            </view>
+
+        </view>
+        <view wx:if="{{isBottom}}" class='l-bottom'>
+            <view wx:if="{{hasMore}}">
+                <load />
+            </view>
+            <view wx:else>没有更多</view>
+        </view>
+
+        <view class='empty' wx:else>
             <view class='ico f-c-c-co ico-folder-open'></view>
             <text>还没有订单！</text>
         </view>
-   
+    </block>
 </scroll-view>

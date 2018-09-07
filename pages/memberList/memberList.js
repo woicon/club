@@ -8,7 +8,7 @@ Page({
         let parmas = {
             page: 1,
             size: 20,
-            merchantId: app.common("merchantid")
+            merchantId: app.common("merchantId")
         }
         app.api.getMemberList(parmas)
             .then((res) => {

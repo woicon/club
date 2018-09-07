@@ -1,45 +1,52 @@
-<view class='m-head'>
-    <view class='imgs' style='background-image:url({{detail.activityImg}})'></view>
-    <view class='m-titles'>{{detail.activityName}}</view>
-</view>
-<view class='m-title'>
+<block wx:if="{{pageLoading}}">
+    <view class='f-c-c empty'>
+        <load></load>
+    </view>
+</block>
+<block wx:else>
+    <view class='m-head'>
+        <view class='imgs' style='background-image:url({{detail.activityImg}})'></view>
+        <view class='m-titles'>{{detail.activityName}}</view>
+    </view>
+    <view class='m-title'>
 
-    <view class='m-time'>
-        <view class='ico ico-earth'></view>
-        {{detail.activityAddress ? detail.activityAddress : "线上活动"}}
-    </view>
-    <view class='m-time'>
-        <view class='ico ico-clock2'></view>
-        {{detail.startDate}}~ {{detail.endDate}}
-    </view>
-</view>
-<view class='m bline'>
-    <view class='m-status'>
-        <view class='tag {{detail.status == 3 || detail.status == 2 ? "disable":""}}'>{{actStatus[detail.status]}}</view>
-        <view>{{detail.applyCount == null ? '0' :detail.applyCount}}人已报名</view>
-    </view>
-    <view class='m-right'>
-        <view>
-            <view class='ico ico-bookmark'></view>
-            <text>{{detail.visitCount == null ?'0' :detail.visitCount}}</text>
+        <view class='m-time'>
+            <view class='ico ico-earth'></view>
+            {{detail.activityAddress ? detail.activityAddress : "线上活动"}}
         </view>
-        <view>
-            <view class='ico ico-share2'></view>
-            <text>{{detail.shareCount == null ? '0':detail.visitCount}}</text>
+        <view class='m-time'>
+            <view class='ico ico-clock2'></view>
+            {{detail.startDate}}~ {{detail.endDate}}
         </view>
     </view>
-</view>
-<view class='grids'>
-    <view class="rline bline" bindtap='toEdit' hover-class='grid-hover'>
-        <view class='ico ico-pen'></view> 活动编辑</view>
-    <view class="rline bline" bindtap='toShare' data-id="{{detail.id}}" data-mid="{{detail.merchantId}}" hover-class='grid-hover'>
-        <view class='ico ico-share2'></view>活动分享</view>
-    <view class="bline" data-id="{{detail.activityDetailUrl}}" data-mid="{{detail.merchantId}}" bindtap='toDetail' hover-class='grid-hover'>
-        <view class='ico ico-book'></view>查看活动</view>
-    <view class="rline bline" bindtap='orderList' data-id="{{detail.id}}" data-mid="{{detail.merchantId}}" hover-class='grid-hover'>
-        <view class='ico ico-folder-upload'></view>订单管理</view>
-    <view class="rline bline" bindtap='enrollList' data-id="{{detail.id}}" data-mid="{{detail.merchantId}}" hover-class='grid-hover'>
-        <view class='ico  ico-quill'></view> 活动报名</view>
-    <view class="bline" hover-class='grid-hover'>
-        <view class='ico ico-rocket'></view>报名验证</view>
-</view>
+    <view class='m bline'>
+        <view class='m-status'>
+            <view class='tag {{detail.status == 3 || detail.status == 2 ? "disable":""}}'>{{actStatus[detail.status]}}</view>
+            <view>{{detail.applyCount == null ? '0' :detail.applyCount}}人已报名</view>
+        </view>
+        <view class='m-right'>
+            <view>
+                <view class='ico ico-bookmark'></view>
+                <text>{{detail.visitCount == null ?'0' :detail.visitCount}}</text>
+            </view>
+            <view>
+                <view class='ico ico-share2'></view>
+                <text>{{detail.shareCount == null ? '0':detail.shareCount}}</text>
+            </view>
+        </view>
+    </view>
+    <view class='grids'>
+        <view class="rline bline" bindtap='toEdit' hover-class='grid-hover'>
+            <view class='ico ico-pen'></view> 活动编辑</view>
+        <view class="rline bline" bindtap='toShare' data-activityId="{{detail.id}}" merchantId="{{detail.merchantId}}" hover-class='grid-hover'>
+            <view class='ico ico-share2'></view>活动分享</view>
+        <view class="bline" data-activityId="{{detail.id}}" data-merchantId="{{detail.merchantId}}" bindtap='toDetail' hover-class='grid-hover'>
+            <view class='ico ico-book'></view>查看活动</view>
+        <!-- <view class="rline bline" bindtap='orderList' data-activityId="{{detail.id}}" data-merchantId="{{detail.merchantId}}" hover-class='grid-hover'>
+            <view class='ico ico-folder-upload'></view>订单管理</view> -->
+        <view class="rline bline" bindtap='enrollList' data-activityId="{{detail.id}}" data-merchantId="{{detail.merchantId}}" hover-class='grid-hover'>
+            <view class='ico  ico-quill'></view> 活动报名</view>
+        <!-- <view class="bline" hover-class='grid-hover'>
+            <view class='ico ico-rocket'></view>报名验证</view> -->
+    </view>
+</block>

@@ -1,4 +1,6 @@
 var dateTimePicker = require('../../libs/dateTimePicker/dateTimePicker.js')
+var WxParse = require('../../wxParse/wxParse.js')
+var base = require('../../utils/util.js')
 let app = getApp()
 Page({
     data: {
@@ -14,15 +16,17 @@ Page({
         },
         showPost: false,
         dateTimeArray: null,
-        dateTime: null,
+        endTimeArray: null,
+        startDate: null,
+        endDate: null,
         checkOk: true,
-        activityticket: [{
+        activityTicket: [{
             ticketname: '免费票',
             price: 0,
-            totalcount: 1000,
+            totalcount: 10000,
             verifytype: 0,
         }],
-        applyinfo: [{
+        applyInfo: [{
                 name: "姓名",
                 type: 1,
                 status: 0
@@ -33,31 +37,87 @@ Page({
                 status: 0
             }
         ],
-        loacaltionTtype: null
+        loacaltionTtype: null,
     },
     onLoad: function(options) {
-        this.postImg()
-        let member = wx.getStorageSync("login")
+        app.isLogin()
+        app.pageTitle(options.edit ? '编辑活动' : '发布活动')
         this.setData({
-            member: member
+            postImg: options.img || null,
+            label: options.label || null
         })
-        app.pageTitle('发布活动')
+        if (options.edit) {
+            this.editInit()
+        } else(
+            this.initDate()
+        )
+    },
+    initDate(date) {
+        date = date || {}
+        //时间控件初始化
         let nowDate = new Date()
-        var obj = dateTimePicker.dateTimePicker(nowDate.getFullYear(), this.data.endYear)
+        let obj = dateTimePicker.dateTimePicker(nowDate.getFullYear(), nowDate.getFullYear() + 3, date.startDate || null)
+        let endDate = nowDate.setDate(nowDate.getDate() + 7)
+        let endObj = dateTimePicker.dateTimePicker(nowDate.getFullYear(), nowDate.getFullYear() + 3, date.endDate || base.formatTime(new Date(endDate)))
+        console.log(endObj)
         this.setData({
             startDate: obj.dateTime,
-            endDate: obj.dateTime,
-            dateTimeArray: obj.dateTimeArray,
-            dateTime: obj.dateTime,
-            postImg: options.img || null
+            endDate: endObj.dateTime,
+            endTimeArray: endObj.dateTimeArray,
+            dateTimeArray: obj.dateTimeArray
         })
     },
+
+    editInit() {
+        //编辑活动初始化
+        let detail = wx.getStorageSync("editActivity")
+        this.initDate({
+            startDate: detail.startDate,
+            endDate: detail.endDate
+        })
+        let activityDetails = detail.activityDetails
+        console.log(activityDetails)
+        WxParse.wxParse('article', 'html', activityDetails, this)
+        let nodes = this.data.article.nodes
+        let arrs = []
+        let index = {}
+        for (let i in nodes) {
+            let node = nodes[i]
+            console.log(node)
+            if (node.classStr == 'x-img') {
+                index.img = node.nodes[0].attr.src
+            } else if (node.classStr == 'x-txt') {
+                index.txt = node.nodes[0].text
+                if (i > 1) {
+                    index = {}
+                }
+            }
+            arrs.push(index)
+        }
+        console.log(arrs)
+        if (arrs.length > 1) {
+            arrs.pop()
+        }
+        wx.setStorageSync("activityDetails", arrs)
+        var loacaltionTtype = (detail.activityAddress) ? 2 : 1
+        wx.setStorageSync("applyInfo", detail.activityEnrollInfoResponseList)
+        this.setData({
+            detail: detail,
+            isEdit: true,
+            activityDetails: arrs,
+            loacaltionTtype: loacaltionTtype,
+            postImg: detail.activityImg,
+            label: detail.label,
+        })
+    },
+
     checkOk: function(e) {
         console.log(e)
         this.setData({
             checkOk: !this.data.checkOk
         })
     },
+
     setUpPic: function(type) {
         wx.chooseImage({
             sourceType: type,
@@ -72,8 +132,9 @@ Page({
             },
         })
     },
+
     //选择海报
-    chooseImg: function(e) {
+    chooseImg(e) {
         wx.showActionSheet({
             itemList: ["拍照", "手机相册", "海报模板"],
             success: (res) => {
@@ -83,142 +144,172 @@ Page({
                 } else if (res.tapIndex == 1) {
                     this.setUpPic(["album"])
                 } else if (res.tapIndex == 2) {
+                    wx.navigateTo({
+                        url: '/pages/postTemplate/postTemplate',
+                    })
+                    // this.setData({
+                    //     showPost: true
+                    // })
+                }
+            }
+        })
+    },
+    mapChoose() {
+        wx.chooseLocation({
+            success: res => {
+                console.log(res)
+                this.setData({
+                    localtion: res,
+                    loacaltionTtype: 2
+                })
+            },
+            fail: (error) => {
+                console.log(error)
+                if (error.errMsg == 'chooseLocation:fail auth deny') {
                     this.setData({
-                        showPost: true
+                        toAuth: true
                     })
                 }
             }
         })
     },
-    chooseLocaltion: function(e) {
+    chooseLocaltion(e) {
         console.log(e)
         wx.showActionSheet({
-            itemList: ["线上活动", "线下活动"],
+            itemList: ["设置地点（线下活动）", "线上活动"],
             success: res => {
-                if (res.tapIndex == 1) {
-                    wx.chooseLocation({
-                        success: res => {
-                            console.log(res)
-                            this.setData({
-                                localtion: res,
-                                loacaltionTtype: 2
-                            })
-                        }
-                    })
+                if (res.tapIndex == 0) {
+                    this.mapChoose()
                 } else {
                     this.setData({
                         loacaltionTtype: 1
                     })
                 }
-            }
+            },
+
         })
     },
-    postImg: function() {
-        return app.api.posterTemplate({})
-            .then(res => {
-                console.log(res)
-                let post = res.data
-                let postIndex = []
-                for (let i in post) {
-                    postIndex.push(i)
-                }
-                let selIndex = postIndex[0]
-                this.setData({
-                    post: post,
-                    postIndex: postIndex,
-                    selIndex: selIndex
-                })
+    getLogin(e) {
+        //console.log(e)
+        this.setData({
+            btnLoading: true
+        })
+        app.login(e.detail, () => {
+            let member = wx.getStorageSync("login")
+            let submitData = this.data.submitData
+            submitData.userId = member.id
+            this.setData({
+                member: wx.getStorageSync("login"),
+                submitData: submitData
             })
+            this.checkActForm(this.data.submitData)
+        })
     },
-
     creatActivity: function(e) {
         console.log(e)
         let value = e.detail.value
-        let member = wx.getStorageSync("login")
-        if (value.imgs == "") {
-            app.tip("请选择或者上传海报")
-        } else if (value.activityname == "") {
-            app.tip("请输入活动主题")
-        } else if (!this.data.loacaltionTtype) {
-            app.tip("请选择活动地点")
-        } else if (value.startdate == "" || value.enddate == "") {
-            app.tip("请选择活动时间")
-        } else if (value.activitydetails == "") {
-            app.tip("请活动详情不能为空")
-        } else {
-            if (!!!member.phone) {
-                console.log("member")
-                this.setData({
-                    nonePhone: true,
-                    values: value
-                })
+        this.setData({
+            submitData: e.detail.value,
+        })
+        this.checkActForm(this.data.submitData)
+    },
+    checkActForm(value) {
+        if (this.data.member) {
+            //let member = wx.getStorageSync("login")
+            if (value.imgs == "") {
+                app.tip("请选择或者上传海报")
+            } else if (value.activityName == "") {
+                app.tip("请输入活动主题")
+            } else if (!this.data.loacaltionTtype) {
+                app.tip("请选择活动地点")
+            } else if (value.startDate == "" || value.endDate == "") {
+                app.tip("请选择活动时间")
+            } else if (value.activityDetails == "") {
+                app.tip("活动详情不能为空")
             } else {
-                console.log("checks")
-                this.creatAct(e.detail.value)
+                // if (!!!member.phone) {
+                //   console.log("member")
+                //   this.setData({
+                //     nonePhone: true,
+                //     values: value
+                //   })
+                // } else {
+                //   console.log("checks")
+                if (this.data.checkOk) {
+                    this.setData({
+                        btnLoading: true
+                    })
+                    this.creatAct(value)
+                } else {
+                    app.tip("必须同意活动吧服务协议")
+                }
+                // }
             }
         }
     },
     creatAct: function(value) {
-
+        let msg = this.data.isEdit ? "修改中" : "发布中"
         wx.showLoading({
-            title: '发布中',
+            title: msg,
         })
         app.api.publishActivity(value)
             .then(res => {
                 wx.hideLoading()
+                console.log(res)
                 if (res.data) {
-                    wx.removeStorageSync("activitydetails")
-                    wx.removeStorageSync("applyinfo")
-                    wx.removeStorageSync("activityticket")
+                    wx.removeStorageSync("activityDetails")
+                    wx.removeStorageSync("applyInfo")
+                    wx.removeStorageSync("activityTicket")
                     app.tip(res.msg)
-                    wx.navigateTo({
+                    wx.redirectTo({
                         url: `/pages/activityShare/activityShare?public=${res.data}`,
                     })
                 } else {
                     app.tip(res.msg)
                 }
+                if (this.data.isEdit) {
+                    wx.navigateBack()
+                }
             })
-
-    },
-    postChange(e) {
-        console.log(e)
-        this.setData({
-            selIndex: e.detail.currentItemId
-        })
-    },
-    choosePost: function(e) {
-        this.setData({
-            selIndex: e.target.id
-        })
-    },
-    getUrl: function(e) {
-        this.setData({
-            postImg: e.currentTarget.dataset.url,
-            showPost: false
-        })
     },
     changeSatartDate(e) {
         this.setData({
             startDate: e.detail.value,
             endDate: e.detail.value
-        });
+        })
     },
-    changeEndDate(e) {
-        this.setData({
-            endDate: e.detail.value
-        });
+    changeEndDate: function(e) {
+        let dateTimeArray = this.data.dateTimeArray
+        let startDate = this.data.startDate
+        let endTimeArray = this.data.endTimeArray
+        let endDate = this.data.endDate
+        let startDateStr = `${dateTimeArray[0][startDate[0]]}/${dateTimeArray[1][startDate[1]]}/${dateTimeArray[2][startDate[2]]} ${dateTimeArray[3][startDate[3]]}:${dateTimeArray[4][startDate[4]]}`
+        let endDateStr = `${endTimeArray[0][endDate[0]]}/${endTimeArray[1][endDate[1]]}/${endTimeArray[2][endDate[2]]} ${endTimeArray[3][endDate[3]]}:${endTimeArray[4][endDate[4]]}`
+        console.log(startDateStr, ':::', endDateStr)
+        if (this.isErrorTime(startDateStr, endDateStr)) {
+            app.tip("活动开始时间不能大于结束时间")
+        } else {
+            this.setData({
+                endDate: e.detail.value
+            })
+        }
     },
-    changeDateColumn(e) {
-        var arr = this.data.dateTime,
-            dateArr = this.data.dateTimeArray
+    isErrorTime(startDate, endDate) {
+        let start = new Date(startDate).getTime()
+        let end = new Date(endDate).getTime()
+        return start > end
+    },
+    changeDateColumn: function(e) {
+        console.log("ILST::==>", e)
+        let arr = this.data[e.currentTarget.id]
+        //  let targetTime = e.currentTarget.dataset.id
+        let dateArr = this.data[e.currentTarget.dataset.id]
         arr[e.detail.column] = e.detail.value
         dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]])
-        console.log(arr)
         this.setData({
-            dateTimeArray: dateArr,
-            dateTime: arr
-        });
-
+            [e.currentTarget.dataset.id]: dateArr,
+            // [e.currentTarget.id]: arr
+        })
     },
     toFee() {
         wx.navigateTo({
@@ -240,11 +331,11 @@ Page({
     },
     onShow: function() {
         //fee setting
-        let applyinfo
-        if (wx.getStorageSync("applyinfo")) {
-            applyinfo = wx.getStorageSync("applyinfo")
-            for (let i in applyinfo) {
-                let item = applyinfo[i]
+        let applyInfo
+        if (wx.getStorageSync("applyInfo")) {
+            applyInfo = wx.getStorageSync("applyInfo")
+            for (let i in applyInfo) {
+                let item = applyInfo[i]
                 for (let s in item) {
                     if (s == 'selected' || s == 'selfId') {
                         delete item[s]
@@ -252,33 +343,36 @@ Page({
                 }
             }
         }
-        let activitydetails
-        let activitydetailsStr = ''
-        if (wx.getStorageSync("activitydetails")) {
-            activitydetails = wx.getStorageSync("activitydetails")
+        let activityDetails
+        let activityDetailsStr = ''
+        if (wx.getStorageSync("activityDetails")) {
+            activityDetails = wx.getStorageSync("activityDetails")
             let str = ''
-            for (let i in activitydetails) {
-                let items = activitydetails[i]
+            for (let i in activityDetails) {
+                let items = activityDetails[i]
                 if (items.img) {
-                    activitydetailsStr += `<p class='x-img'><img src='${items.img}' /></p>`
+                    activityDetailsStr += `<p class='x-img'><img src='${items.img}' /></p>`
                 }
                 if (items.txt) {
-                    activitydetailsStr += `<p class='x-txt'>${items.txt}</p>`
+                    activityDetailsStr += `<p class='x-txt'>${items.txt}</p>`
                 }
             }
-            console.log(activitydetailsStr)
+            console.log(activityDetailsStr)
         }
-        let activityticketStr = wx.getStorageSync("activityticket") ? JSON.stringify(wx.getStorageSync("activityticket")) : JSON.stringify(this.data.activityticket)
-        // console.log(JSON.stringify(applyinfo))
-        let a = JSON.stringify(wx.getStorageSync("activityticket"))
-        let strs = JSON.stringify(this.data.activityticket)
+        let activityTicketStr = wx.getStorageSync("activityTicket") ? JSON.stringify(wx.getStorageSync("activityTicket")) : JSON.stringify(this.data.activityTicket)
+        // console.log(JSON.stringify(applyInfo))
+        let a = JSON.stringify(wx.getStorageSync("activityTicket"))
+        let strs = JSON.stringify(this.data.activityTicket)
+
         this.setData({
-            activitydetails: wx.getStorageSync("activitydetails") || null,
-            activityticket: wx.getStorageSync("activityticket") || this.data.activityticket,
-            applyinfo: applyinfo || this.data.applyinfo,
-            activitydetailsStr: activitydetailsStr,
-            activityticketStr: activityticketStr,
-            applyinfoStr: JSON.stringify(applyinfo) || JSON.stringify(this.data.applyinfo)
+            activityDetails: wx.getStorageSync("activityDetails") || null,
+            activityDetailsStr: activityDetailsStr,
+
+            activityTicket: wx.getStorageSync("activityTicket") || this.data.activityTicket,
+            activityTicketStr: activityTicketStr,
+
+            applyInfo: applyInfo || this.data.applyInfo,
+            applyInfoStr: JSON.stringify(applyInfo) || JSON.stringify(this.data.applyInfo),
         })
     },
     phoneBlur(e) {
@@ -301,8 +395,8 @@ Page({
     getCodes(e) {
         wx.showLoading()
         app.api.sendVerifyCode({
-                merchantId: app.common("merchantid"),
-                superMerchantId: app.common("superiormerchantid"),
+                merchantId: app.common("merchantId"),
+                superMerchantId: app.common("superiorMerchantId"),
                 mobilePhone: this.data.phoneValue
             })
             .then(res => {
@@ -316,13 +410,13 @@ Page({
                             this.setData({
                                 isPass: false,
                                 phoneDone: true,
-                                endtime: 120 - i
+                                endTime: 120 - i
                             });
-                            if (this.data.endtime == 0) {
+                            if (this.data.endTime == 0) {
                                 this.setData({
                                     isPass: true,
                                     phoneDone: false,
-                                    endtime: 120
+                                    endTime: 120
                                 });
                             }
                         }, i * 1000)
@@ -346,7 +440,7 @@ Page({
             title: '绑定手机中',
         })
         app.api.bindingMobilePhone({
-                merchantId: app.common("merchantid"),
+                merchantId: app.common("merchantId"),
                 applyProgressKey: this.data.applyProgressKey,
                 verificationCode: this.data.phoneCode,
                 mobilePhone: this.data.phoneValue
@@ -365,19 +459,17 @@ Page({
                 }
             })
     },
-    onHide: function() {
-
-    },
-    onUnload: function() {
-
-    },
-    onPullDownRefresh: function() {
-
-    },
-    onReachBottom: function() {
-
-    },
-    onShareAppMessage: function() {
-
+    handleSetting(e) {
+        console.log(e)
+        if (!e.detail.authSetting['scope.userLocation']) {
+            this.setData({
+                toAuth: true
+            })
+        } else {
+            this.mapChoose()
+            this.setData({
+                toAuth: false
+            })
+        }
     }
 })
