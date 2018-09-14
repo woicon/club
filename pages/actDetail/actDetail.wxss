@@ -2,9 +2,9 @@ textarea {
     width: 100%;
     height: auto;
     text-align: justify;
-    padding: 15rpx 0;
     line-height: 1.5;
     font-size:28rpx;
+    min-height:60rpx;
 }
 
 .t-warp {
@@ -46,11 +46,13 @@ textarea {
     border-radius: 8rpx;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position:relative;
 }
 
 .list-img {
     display: flex;
     position: relative;
+    min-height:100rpx;
 }
 
 .list-img image {

@@ -66,7 +66,9 @@ Page({
         ],
         addTtypes: false
     },
-
+    noneEdit(){
+        app.tip("默认项不能编辑")
+    },
     toggleItem() {
         this.setData({
             addTtypes: !this.data.addTtypes
@@ -155,11 +157,14 @@ Page({
             let infoType = this.data.infoType
             for (let i in applyInfo) {
                 let item = applyInfo[i]
+
                 for (let s in infoType) {
                     let items = infoType[s]
                     if (item.name == items.name) {
                         items.selected = true
                         items.selfId = s
+                        item.selected = true
+                        item.selfId = s
                     }
                 }
             }

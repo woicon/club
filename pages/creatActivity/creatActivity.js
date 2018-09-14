@@ -21,10 +21,10 @@ Page({
         endDate: null,
         checkOk: true,
         activityTicket: [{
-            ticketname: '免费票',
+            ticketName: '免费票',
             price: 0,
-            totalcount: 10000,
-            verifytype: 0,
+            totalCount: 10000,
+            verifyType: 0,
         }],
         applyInfo: [{
                 name: "姓名",
@@ -80,24 +80,51 @@ Page({
         WxParse.wxParse('article', 'html', activityDetails, this)
         let nodes = this.data.article.nodes
         let arrs = []
-        let index = {}
-        for (let i in nodes) {
-            let node = nodes[i]
-            console.log(node)
-            if (node.classStr == 'x-img') {
-                index.img = node.nodes[0].attr.src
-            } else if (node.classStr == 'x-txt') {
-                index.txt = node.nodes[0].text
-                if (i > 1) {
-                    index = {}
-                }
-            }
-            arrs.push(index)
+        let txt = []
+        let imgs = this.data.article.imageUrls
+        for (let i in imgs) {
+            arrs.push({
+                img: imgs[i]
+            })
         }
         console.log(arrs)
         if (arrs.length > 1) {
-            arrs.pop()
+            for (let i in nodes) {
+                let node = nodes[i]
+                if (node.classStr == 'x-txt') {
+                    txt.push(node.nodes[0].text)
+                }
+            }
+            if (txt.length > arrs.length) {
+                for (let i in txt) {
+                    if (arrs[i]) {
+                        arrs[i].txt = txt[i]
+                    } else {
+                        arrs.push({
+                            txt: txt[i]
+                        })
+                    }
+                }
+            } else {
+                for (let i in arrs) {
+                    if (txt[i]) {
+                        arrs[i].txt = txt[i]
+                    }
+                }
+            }
+        } else {
+
+            for (let i in nodes) {
+                let node = nodes[i]
+                console.log(node)
+                if (node.classStr == 'x-txt') {
+                    arrs.push({
+                        txt: node.nodes[0].text
+                    })
+                }
+            }
         }
+        console.log(arrs)
         wx.setStorageSync("activityDetails", arrs)
         var loacaltionTtype = (detail.activityAddress) ? 2 : 1
         wx.setStorageSync("applyInfo", detail.activityEnrollInfoResponseList)
@@ -108,6 +135,8 @@ Page({
             loacaltionTtype: loacaltionTtype,
             postImg: detail.activityImg,
             label: detail.label,
+            timeId: detail.activityTimeList[0].id,
+            activityTicket: detail.activityTicketList
         })
     },
 
@@ -194,10 +223,12 @@ Page({
         this.setData({
             btnLoading: true
         })
-        app.login(e.detail, () => {
+        app.login(e.detail, null, () => {
+            console.log("sdd")
             let member = wx.getStorageSync("login")
             let submitData = this.data.submitData
             submitData.userId = member.id
+            console.log("登录成功", submitData)
             this.setData({
                 member: wx.getStorageSync("login"),
                 submitData: submitData
@@ -241,13 +272,13 @@ Page({
                     })
                     this.creatAct(value)
                 } else {
-                    app.tip("必须同意活动吧服务协议")
+                    app.tip("必须同意《活动汇技术支持服务协议》")
                 }
                 // }
             }
         }
     },
-    creatAct: function(value) {
+    creatAct(value) {
         let msg = this.data.isEdit ? "修改中" : "发布中"
         wx.showLoading({
             title: msg,
@@ -261,15 +292,25 @@ Page({
                     wx.removeStorageSync("applyInfo")
                     wx.removeStorageSync("activityTicket")
                     app.tip(res.msg)
-                    wx.redirectTo({
-                        url: `/pages/activityShare/activityShare?public=${res.data}`,
-                    })
+                    if (this.data.isEdit) {
+                        app.tip("修改成功")
+                        wx.navigateBack()
+                    } else {
+                        wx.redirectTo({
+                            url: `/pages/activityShare/activityShare?public=${res.data}`,
+                        })
+                    }
                 } else {
                     app.tip(res.msg)
+                    this.setData({
+                        btnLoading: false
+                    })
                 }
-                if (this.data.isEdit) {
-                    wx.navigateBack()
-                }
+            }).catch(error=>{
+                console.log(error)
+                this.setData({
+                    btnLoading: false
+                })
             })
     },
     changeSatartDate(e) {

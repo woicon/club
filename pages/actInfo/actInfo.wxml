@@ -2,7 +2,7 @@
     <view class='listbox'>
         <view wx:for="{{applyInfo}}" wx:key="infoList" class='bline list-item' data-index="{{index}}">
             <view class='ico ico-blocked' wx:if="{{index != 0 && index != 1}}" bindtap='deleteType' data-index="{{index}}" data-type="{{item}}" data-self="{{item.selfId}}"></view>
-            <view class='list-item-name' data-fieldType="{{item.fieldType}}"  data-index="{{index}}"  bindtap='editCol'>{{item.name}}</view>
+            <view class='list-item-name' data-fieldType="{{item.fieldType}}"  data-index="{{index}}"  bindtap='{{item.type == 1 || item.type == 2 || item.selected ? "noneEdit" : "editCol"}}'>{{item.name}}</view>
             <view wx:if="{{index != 0 && index != 1}}" class='switch'>
                 <label for="{{index}}"> {{item.status == 0 ? "必填" : "非必填"}}</label>
                 <switch id='{{index}}' checked='{{item.status == 0 ?true : false}}' data-index="{{index}}" bindchange='changeSwitch' />

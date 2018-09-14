@@ -5,6 +5,14 @@ Page({
     },
     onLoad: function(options) {
         app.pageTitle("会员管理")
+        
+    },
+
+    onReady: function() {
+
+    },
+
+    onShow() {
         let parmas = {
             page: 1,
             size: 20,
@@ -16,14 +24,6 @@ Page({
                     pageLoading: false,
                 })
             })
-    },
-
-    onReady: function() {
-
-    },
-
-    onShow: function() {
-
     },
 
     onHide: function() {

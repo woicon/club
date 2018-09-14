@@ -1,20 +1,23 @@
 {
-	"description": "项目配置文件。",
+	"description": "项目配置文件",
 	"packOptions": {
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"nodeModules": true
+		"nodeModules": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.4",
+	"libVersion": "2.3.0",
 	"appid": "wx3a2c78ac53d02dec",
-	"projectname": "%E9%93%BE%E5%8F%8B%E6%B1%87",
+	"projectname": "%E6%B4%BB%E5%8A%A8hui",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -34,163 +37,31 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 3,
 			"list": [
 				{
-					"id": -1,
-					"name": "login",
-					"pathName": "pages/login/login",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "sing",
-					"pathName": "pages/sing/sing",
-					"query": "id=2879&title=klwjeqwkejqlkwejqwlkeqwe"
-				},
-				{
-					"id": 2,
-					"name": "apply",
-					"pathName": "pages/apply/apply",
-					"query": "id=2380&title=klwjeqwkejqlkwejqwlkeqwe"
-				},
-				{
-					"id": -1,
-					"name": "checkDetail",
-					"pathName": "pages/checkDetail/checkDetail",
-					"query": "id=2380&title=klwjeqwkejqlkwejqwlkeqwe"
-				},
-				{
-					"id": -1,
-					"name": "member",
-					"pathName": "pages/member/member",
-					"query": "id=2380&title=klwjeqwkejqlkwejqwlkeqwe"
-				},
-				{
-					"id": 5,
-					"name": "creatActivity",
+					"id": 0,
+					"name": "creats",
 					"pathName": "pages/creatActivity/creatActivity",
 					"query": "edit=true"
 				},
 				{
-					"id": 6,
-					"name": "actMap",
-					"pathName": "pages/actMap/actMap",
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "pages/activityDetails/activityDetails",
 					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "activityDetails",
+					"pathName": "pages/activityDetails/activityDetails",
+					"query": "id=609"
 				},
 				{
 					"id": -1,
-					"name": "postTemplate",
-					"pathName": "pages/postTemplate/postTemplate",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "actFee",
-					"pathName": "pages/actFee/actFee",
-					"query": ""
-				},
-				{
-					"id": 9,
-					"name": "actInfo",
-					"pathName": "pages/actInfo/actInfo",
-					"query": "id=3&name=多选问题"
-				},
-				{
-					"id": 10,
-					"name": "addInfo",
-					"pathName": "pages/addInfo/addInfo",
-					"query": "id=1"
-				},
-				{
-					"id": -1,
-					"name": "activityList",
-					"pathName": "pages/activityList/activityList",
-					"query": ""
-				},
-				{
-					"id": 12,
-					"name": "addFee",
-					"pathName": "pages/addFee/addFee",
-					"query": "status=0"
-				},
-				{
-					"id": -1,
-					"name": "activityManagement",
-					"pathName": "pages/activityManagement/activityManagement",
-					"query": ""
-				},
-				{
-					"id": 14,
 					"name": "activityShare",
 					"pathName": "pages/activityShare/activityShare",
-					"query": "public=288"
-				},
-				{
-					"id": -1,
-					"name": "member",
-					"pathName": "pages/member/member",
 					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "dataSet",
-					"pathName": "pages/dataSet/dataSet",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "dataSET",
-					"pathName": "pages/dataSet/dataSet",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "authorizeInfo",
-					"pathName": "pages/authorizeInfo/authorizeInfo",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "messageList",
-					"pathName": "pages/messageList/messageList",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "actDetail",
-					"pathName": "pages/actDetail/actDetail",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "memberList",
-					"pathName": "pages/memberList/memberList",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "checkTicket",
-					"pathName": "pages/checkTicket/checkTicket",
-					"query": ""
-				},
-				{
-					"id": 23,
-					"name": "activityOrderDetail",
-					"pathName": "pages/activityOrderDetail/activityOrderDetail",
-					"query": "orderId=747&activityId=429"
-				},
-				{
-					"id": 24,
-					"name": "activityOrderList",
-					"pathName": "pages/activityOrderList/activityOrderList",
-					"query": "merchantId=10114743&activityId=429"
-				},
-				{
-					"id": 25,
-					"name": "activityOrderEnrollList",
-					"pathName": "pages/activityOrderEnrollList/activityOrderEnrollList",
-					"query": "activityId=429"
 				}
 			]
 		}

@@ -12,16 +12,24 @@ Page({
         app.pageTitle("个人中心")
     },
     getUserInfo(e) {
-        console.log(e)
+        console.log("LOGIN-detail0000::===>", e.detail)
         this.setData({
-            btnLoading:true
+            btnLoading: true
         })
         if (e.detail) {
-            app.login(e.detail, this.initMember)
+            app.login(e.detail, wx.getStorageSync("CODE"), () => {
+                this.setData({
+                    member: wx.getStorageSync("login")
+                })
+                this.initMember()
+            })
         } else {
             app.tip('请您允许授权登录，否则无法使用该App')
         }
+       
     },
+
+
     exitSys: function() {
         wx.showModal({
             title: '提示',

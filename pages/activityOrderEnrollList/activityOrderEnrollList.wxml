@@ -24,7 +24,6 @@
                         {{item.contactsName}}</view>
                     <view class="item-phone">{{item.contactsPhone}}</view>
                     <!-- <view>报名时间：{{item.createDateStr}}</view> -->
-
                 </view>
                 <view class='item-tag'>{{item.signStatusStr}}</view>
             </view>

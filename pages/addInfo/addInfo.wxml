@@ -21,7 +21,7 @@
             <view class='input-list'>
                 <view class='bline' wx:for="{{types}}" wx:key="undlines">
                     <view class='ico ico-blocked' wx:if="{{types.length > 2}}" bindtap='deleteCol' hover-class='touch' data-index="{{index}}"></view>
-                    <input placeholder='{{item.value || "选项"+index+1 }}' data-index="{{index}}" bindinput='bindValue'></input>
+                    <input placeholder='{{item.value || "选项"+ (index+1) }}' data-index="{{index}}" bindinput='bindValue'></input>
                 </view>
             </view>
             <view class='add' bindtap='addCol'>

@@ -1,6 +1,0 @@
-<view class='search {{gridLayout?"":"bline"}}'>
-    <view class='ico icon-search'></view>
-    <input placeholder='搜索活动/会议' bindconfirm='searchList' value="{{searchText}}" bindinput='searchInput' bindfocus='searchFocus' confirm-type="search"></input>
-    <!-- <view wx:if="{{searchClear}}" class='ico icon-del'></view> -->
-    <view wx:if="{{SearchDel}}" class="search-del icon-del" bindtap='searchDel' hover-class='search-del-touch'></view>
-</view>

@@ -6,6 +6,7 @@ Page({
         currentTab: 0,
         isBottm: false,
         hasMore: true,
+        pageLoading: true,
         actStatus: {
             0: "进行中",
             1: "已关闭",
@@ -18,12 +19,9 @@ Page({
         app.pageTitle("活动管理")
     },
     getUserInfo(e) {
-        console.log(e)
-        this.setData({
-            btnLoading: true
-        })
+        console.log("LOGIN-detail0000::===>", e.detail)
         if (e.detail) {
-            app.login(e.detail, () => {
+            app.login(e.detail, wx.getStorageSync("CODE"), () => {
                 this.setData({
                     member: wx.getStorageSync("login")
                 })
@@ -32,6 +30,9 @@ Page({
         } else {
             app.tip('请您允许授权登录，否则无法使用该App')
         }
+        this.setData({
+            btnLoading: true
+        })
     },
     toggleTab(e) {
         let id = e.currentTarget.id
@@ -87,7 +88,7 @@ Page({
                     this.setData({
                         list: res.data,
                         scrollLoading: false,
-                        pageLoading:false,
+                        pageLoading: false,
                         page: 1,
                         hasMore: hasMore
                     })
@@ -111,9 +112,17 @@ Page({
         })
     },
     onShow() {
-        app.isLogin()
         if (wx.getStorageSync("login")) {
+            console.log("IsLogin::===>", wx.getStorageSync("login"))
+            this.setData({
+                member: wx.getStorageSync("login"),
+            })
             this.getList()
+        } else {
+            this.setData({
+                member: null,
+                pageLoading: false
+            })
         }
     }
 })

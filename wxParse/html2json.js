@@ -109,7 +109,7 @@ function html2json(html, bindName) {
                     var name = attr.name;
                     var value = attr.value;
                     if (name == 'class') {
-                        console.dir(attr);
+                        //console.dir(attr);
                         //  value = value.join("")
                         node.classStr = value;
                     }

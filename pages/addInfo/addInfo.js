@@ -68,7 +68,7 @@ Page({
     checkForm(value, cb) {
         let type = this.data.type
         if (value.name == '') {
-            app.tip(`请输入${this.data.title}`)
+            app.tip(`请输入问题`)
         } else {
             if (type == 0 || type == 1) {
                 cb()

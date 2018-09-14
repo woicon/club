@@ -24,8 +24,9 @@
 .msg-btn {
     text-align: center;
     font-size: 26rpx;
-    color: #444;
     padding: 25rpx 0;
+    color:#FF6363;
+
 }
 
 .msg-info {

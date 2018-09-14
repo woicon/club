@@ -11,7 +11,7 @@ Page({
         }
     },
     onLoad: function(options) {
-        console.log(options)
+        console.log("options==>", options)
         app.pageTitle(options.public ? '发布成功' : "分享活动")
         this.setData({
             isPublic: options.public || null
@@ -29,9 +29,12 @@ Page({
                 id: options.public || options.activityId
             }, 'POST')])
             .then(res => {
-                console.log(res)
+                let shareImg = res[0].data
+                let pant = new RegExp("https://www.51club.com", "g")
+                shareImg = shareImg.replace(pant, "https://www.huodonghui.com")
+                console.log("shareImgUrl=====>", shareImg)
                 this.setData({
-                    shareImg: res[0].data,
+                    shareImg: shareImg,
                     detail: res[1].data,
                     pageLoading: false,
                     member: wx.getStorageSync("login")

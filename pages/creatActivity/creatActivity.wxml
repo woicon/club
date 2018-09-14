@@ -15,6 +15,7 @@
     <input style='display:none' name="label" value='{{detail.label || label}}'></input>
     <input style='display:none' name="userId" value='{{member.id}}'></input>
     <input style='display:none' wx:if="{{detail}}" name="activityId" value='{{detail.id}}'></input>
+    <input style='display:none' wx:if="{{detail}}" name="timeId" value='{{timeId}}'></input>
     <view class='act-img'>
         <view class='imgs' wx:if="{{postImg}}">
             <image src='{{postImg}}' mode="aspectFill"></image>
@@ -89,8 +90,8 @@
     </view>
     <view class='act-bar'>
         <view bindtap="checkOk" class='act-ser {{checkOk ? "active":""}}'>
-            <view class='ico ico-checkbox-checked'></view> 我同意
-            <navigator url='/pages/serviceAgreement/serviceAgreement'>《活动吧服务协议》</navigator>
+            <view class='ico ico-checkbox-checked'></view> 阅读并同意
+            <navigator url='/pages/serviceAgreement/serviceAgreement'>《活动汇技术支持服务协议》</navigator>
         </view>
         <button wx:if="{{member}}" class='button' formType="{{btnLoading?'':'submit'}}" hover-class='button-touch'>
             <block wx:if="{{btnLoading}}">

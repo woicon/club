@@ -5,7 +5,15 @@ App({
         this.ext = extConfig
         this.api = api(extConfig.host)
         wx.setStorageSync("ext", extConfig)
+        console.log("ApiList==>16:33", this.api)
+        console.log("EXT.JSON==>Version::" + this.version, extConfig)
+        wx.login({
+            success: (res) => {
+                wx.setStorageSync("CODE", res.code)
+            }
+        })
     },
+    version: "1.0.1",
     globalData: {
         userInfo: null
     },
@@ -46,6 +54,7 @@ App({
     isLogin(cb) {
         let currPage = this.currPage()
         if (wx.getStorageSync("login")) {
+            console.log("IsLogin::===>", wx.getStorageSync("login"))
             currPage.setData({
                 member: wx.getStorageSync("login")
             })
@@ -59,61 +68,58 @@ App({
             })
         }
     },
-    login(detail, cb) {
-        console.log(detail)
-        let currPage = this.currPage()
-        // currPage.setData({
-        //     btnLoading: true
-        // })
-        if (detail.encryptedData) {
-            wx.login({
-                success: (res) => {
-                    console.log(res)
-                    wx.request({
-                        url: `${this.ext.host}/api/wechatAppSession.htm`,
-                        data: {
-                            appId: this.ext.appId,
-                            jsCode: res.code
-                        },
-                        success: (data) => {
-                            console.log(data)
-                            let parmas = {
-                                encryptedData: detail.encryptedData,
-                                iv: detail.iv,
-                                sessionKey: data.data.result.session_key,
-                                superiorMerchantId: this.ext.merchantId,
-                            }
-                            this.api.wechatRegister(parmas)
-                                .then(res => {
-                                    // console.log(res)
-                                    wx.hideLoading()
-                                    if (res.data) {
-                                        wx.setStorageSync("login", res.data)
-                                        // wx.reLaunch({
-                                        //     url: wx.getStorageSync("backUrl"),
-                                        // })
-                                        this.tip("登录成功")
-                                        cb()
-                                    } else {
-                                        //this.tip(res.msg)
-                                    }
-                                })
+    wxLogin: function() {
+        wx.login({
+            success: (res) => {
+                console.log("wxLogin::==>", res)
+                wx.setStorageSync("CODE", res.code)
+            }
+        })
+    },
+    wechatRegister(detail, code, cb) {
+        wx.request({
+            url: `${this.ext.host}api/wechatAppSession.htm`,
+            data: {
+                appId: this.ext.appId,
+                jsCode: code
+            },
+            success: (data) => {
+                console.log(data)
+                let parmas = {
+                    encryptedData: detail.encryptedData,
+                    iv: detail.iv,
+                    sessionKey: data.data.result.session_key,
+                    superiorMerchantId: this.ext.merchantId,
+                }
+                this.api.wechatRegister(parmas)
+                    .then(res => {
+                        wx.hideLoading()
+                        if (res.data) {
+                            wx.setStorageSync("login", res.data)
+                            this.tip("登录成功")
+                            cb()
+                        } else {
+                            let currPage = this.currPage()
+                            this.tip(res.msg)
+                            currPage.setData({
+                                btnLoading: false
+                            })
                         }
                     })
-                },
-                fail: (error) => {
-                    console.log(error)
+            }
+        })
+    },
+    login(detail, code, cb) {
+        var ext = this.ext
+        console.log(ext)
+        if (code == null) {
+            wx.login({
+                success: (res) => {
+                    this.wechatRegister(detail, res.code, cb)
                 }
             })
         } else {
-            currPage.setData({
-                btnLoading: false
-            })
-            wx.showModal({
-                title: '登录失败',
-                content: '小程序需要您的授权才能继续访问',
-                showCancel: false
-            })
+            this.wechatRegister(detail, code || wx.getStorageSync("CODE"), cb)
         }
     }
 })

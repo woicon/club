@@ -23,7 +23,8 @@
         "pages/memberList/memberList",
         "pages/activityDetail/activityDetail",
         "pages/checkTicket/checkTicket",
-        "pages/activityOrderDetail/activityOrderDetail"
+        "pages/activityOrderDetail/activityOrderDetail",
+        "pages/activityDetails/activityDetails"
     ],
     "window": {
         "backgroundTextStyle": "black",
@@ -59,3 +60,4 @@
         "selectedColor":"#FF6363"
     }
 }
+

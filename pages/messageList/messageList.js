@@ -8,7 +8,8 @@ Page({
         currentTab: 1,
         message: null,
         pageLoading: true,
-        hasMore: true
+        hasMore: true,
+        replyTxt: "",
     },
     onLoad: function(options) {
         this.messageList()
@@ -19,17 +20,20 @@ Page({
     toggleTab: function(e) {
         this.setData({
             currentTab: e.target.id,
-            hasMore:true
+            hasMore: true,
+
         })
-        this.messageList()
+        this.messageList({
+            isToggle: true
+        })
     },
     listParams(arg) {
         arg = arg || {}
         let params = {
             page: arg.page || 1,
-            pcount: 8,
+            pcount: 15,
             status: this.data.currentTab,
-            userId: app.common("id"),
+            userId: 149 || app.common("id"),
         }
         return params
     },
@@ -57,21 +61,35 @@ Page({
                 let hasMore = (res.data) ? true : false
                 let page
                 let message
-                if (arg.isMore) {
-                    let _list = this.data.message
-                    message = _list.concat(res.data)
-                    page = this.data.page + 1
+                if (res.status == '200') {
+                    if (arg.isMore) {
+                        let _list = this.data.message
+                        message = _list.concat(res.data)
+                        page = this.data.page + 1
+                    } else {
+                        message = res.data
+                        page = 1
+                    }
+                    this.setData({
+                        pageLoading: false,
+                        message: message,
+                        page: page,
+                        hasMore: hasMore
+                    })
                 } else {
-                    message = res.data
-                    page = 1
+                    if (arg.isMore) {
+                        this.setData({
+                            hasMore: false,
+                            pageLoading: false,
+                        })
+                    } else {
+                        this.setData({
+                            hasMore: false,
+                            pageLoading: false,
+                            message: null,
+                        })
+                    }
                 }
-                this.setData({
-                    pageLoading: false,
-                    message: message,
-                    page: page,
-                    hasMore: hasMore
-                })
-
             })
     },
     inputContent: function(e) {
@@ -79,14 +97,17 @@ Page({
             replyTxt: e.detail.value
         })
     },
-    replyMsg(e) {
+    replyMsg: function(e) {
         console.log(e)
         let params = {
             content: this.data.replyTxt,
             merchantId: app.common('merchantId'),
             messageId: e.target.dataset.id,
         }
-        if (this.data.replyTxt != '') {
+        console.log(this.data.replyTxt === '')
+        if (this.data.replyTxt === '') {
+            app.tip("请输入回复内容！")
+        } else {
             app.api.messageReply(params)
                 .then(res => {
                     console.log(res)

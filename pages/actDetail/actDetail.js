@@ -37,7 +37,9 @@ Page({
         var tempTxt = this.data.tempTxt
         if (list.length > 0) {
             if (tempTxt != '') {
-                list.push({ txt: tempTxt})
+                list.push({
+                    txt: tempTxt
+                })
             }
             currpage.setData({
                 activityDetails: list
@@ -46,7 +48,9 @@ Page({
             wx.navigateBack()
         } else if (list.length == 0 && this.data.tempTxt != '') {
             console.log("sdf")
-            list.push({ txt: tempTxt})
+            list.push({
+                txt: tempTxt
+            })
             currpage.setData({
                 activityDetails: list
             })
