@@ -1,0 +1,68 @@
+input, textarea {
+    border: 1px solid #eee;
+    background: #fff;
+    display: block;
+    padding: 14rpx 8rpx;
+    font-size: 28rpx;
+}
+
+.f-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30rpx;
+}
+
+.f-check{
+    color:#666;
+}
+
+.button-bar{
+    margin:40rpx;
+    padding-bottom:100rpx;
+}
+.f-head .ico{
+    margin-right:15rpx;
+}
+
+.f-check {
+    display: flex;
+    align-items: center;
+}
+
+textarea {
+    height: 200rpx;
+}
+
+.f-title {
+    font-size: 34rpx;
+    font-weight: 800;
+    color: #444;
+}
+
+label {
+    font-weight: 800;
+    margin: 50rpx 0 20rpx;
+    display: block;
+    color: #666;
+    font-size: 29rpx;
+}
+
+.group label {
+    margin: 20rpx 0;
+}
+
+.forms {
+    background: #fff;
+    font-size: 26rpx;
+    padding: 40rpx;
+}
+
+.forms>view {
+    margin-bottom: 20rpx;
+}
+
+.person {
+    margin: 30rpx;
+    background: #fff;
+}

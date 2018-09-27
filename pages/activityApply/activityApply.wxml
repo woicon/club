@@ -1,0 +1,43 @@
+<view class='a-head'>
+    <image src='{{detail.activityImg}}' mode="aspectFill"></image>
+    
+    <view class='dates'>
+        <view class='a-title'>{{detail.activityName}}</view>
+        <view> <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>
+        <view><view class='ico ico-clock2'></view>{{detail.startDate}}</view>
+    </view>
+</view>
+
+<view class='a-block ticket' >
+    <view class='cstitle'>选择票种</view>
+    <view class='csblock'>
+        <view class='items' hover-class='touch' wx:for="{{detail.activityTicketList}}" wx:key="activityTicketList" bindtap='checkTicket' data-index="{{index}}">
+            {{item.ticketName}}
+           <view> {{item.price}}元</view>
+        </view>
+    </view>
+</view>
+
+<view class='a-block date'>
+    <view class='cstitle'>选择时间</view>
+    <view class='csblock'>
+        <view class='items' hover-class='touch'  wx:for="{{detail.activityTimeList}}" wx:key="activityTimeList" bindtap='checkeDate' data-index="{{index}}">
+            {{item.startDate}}
+        </view>
+    </view>
+</view>
+
+<view class='a-block date'>
+    <view class='cstitle'>可选时段</view>
+    <view class='csblock'>
+        <view class='items'  wx:for="{{detail.activityTimeList}}" wx:key="activityTimeList" bindtap='checkeDate' data-index="{{index}}">
+            {{item.startDate}}
+        </view>
+    </view>
+</view>
+
+
+<view class='page-bar {{isPX ? "page-bar-px":""}}'>
+    <view>共计{{price}}元</view>
+    <view class='btn-jion' bindtap='toApplyPerson'>下一步</view>
+</view>

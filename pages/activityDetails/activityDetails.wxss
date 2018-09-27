@@ -1,3 +1,4 @@
+@import "../../wxParse/wxParse.wxss";
 
 .imgs {
     background-repeat: no-repeat;
@@ -7,18 +8,29 @@
 }
 
 .m-titles {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: linear-gradient(-180deg, rgba(45, 45, 45, 0.00) 0%, rgba(2, 2, 2, 0.9) 100%);
-    color: #fff;
-    padding: 90rpx 40rpx 20rpx;
+    color: #ff6363;
+    padding: 20rpx 40rpx;
     font-size: 34rpx;
     line-height: 1.6;
     font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background:#fff;
 }
 
+.tag {
+    font-size: 22rpx;
+    padding: 5rpx 14rpx;
+    background:#3cca80;
+    color:#fff;
+}
+.m-detils{
+    background:#fff;
+    padding:40rpx;
+    margin:0;
+    margin-bottom:230rpx;
+}
 .m-head {
     position: relative;
 }
@@ -37,15 +49,43 @@
 }
 
 .m-time .ico {
-    margin-right: 10rpx;
+    margin-right: 16rpx;
 }
 
 .m-title {
     font-size: 34rpx;
     padding: 20rpx 40rpx;
     background: #fff;
+    margin-bottom:20rpx;
 }
-
+.m-title .value{
+    text-align:left;
+    flex-grow: 2;
+    font-size:28rpx;
+    color:#555;
+}
+.m-title .ico{
+    color:#999;
+    margin-right:8rpx;
+}
+.m-title >view{
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:30rpx 0;
+    position:relative;
+}
+.m-title >view::after{
+    content:'';
+    display:block;
+    width:16rpx;
+    height:16rpx;
+    border:2px solid #ccc;
+    border-left:none;
+    border-bottom:none;
+    transform:rotate(45deg);
+    margin-right:2px;
+}
 .m-right {
     display: flex;
     justify-content: flex-end;
@@ -67,7 +107,6 @@
     font-size: 28rpx;
     margin-right: 12rpx;
 }
-
 
 .m-status {
     display: flex;
@@ -102,3 +141,4 @@
     text-align: center;
     padding: 20rpx 40rpx 40rpx;
 }
+

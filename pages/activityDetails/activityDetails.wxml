@@ -1,31 +1,58 @@
-    <view class='m-head'>
-        <view class='imgs' style='background-image:url({{detail.activityImg}})'></view>
-        <view class='m-titles'>{{detail.activityName}}</view>
+<import src="../../wxParse/wxParse.wxml" />
+<block wx:if="{{pageLoading}}">
+    <view class='f-c-c empty'>
+        <load></load>
     </view>
-    <view class='m-title'>
+</block>
+<block wx:else>
+<view class='m-head'>
+    <view class='imgs' style='background-image:url({{detail.activityImg}})'></view>
 
-        <view class='m-time'>
-            <view class='ico ico-earth'></view>
-            {{detail.activityAddress ? detail.activityAddress : "线上活动"}}
+</view>
+<view class='m-titles'>
+    <view class='m-actname'>{{detail.activityName}}</view>
+    
+</view>
+<view class='m'>
+    <view class='m-status'>
+        <view>{{detail.applyCount == null ? '0' :detail.applyCount}}人已报名</view>
+        <view class='tag {{detail.status == 3 || detail.status == 2 ? "disable":""}}'>{{actStatus[detail.status]}}</view>
+    </view>
+    <view class='m-right'>
+        <view>
+            <view class='ico ico-bookmark'></view>
+            <text>{{detail.visitCount == null ?'0' :detail.visitCount}}</text>
         </view>
-        <view class='m-time'>
-            <view class='ico ico-clock2'></view>
-            {{detail.startDate}}~ {{detail.endDate}}
+        <view>
+            <view class='ico ico-share2'></view>
+            <text>{{detail.shareCount == null ? '0':detail.shareCount}}</text>
         </view>
     </view>
-    <view class='m bline'>
-        <view class='m-status'>
-            <view class='tag {{detail.status == 3 || detail.status == 2 ? "disable":""}}'>{{actStatus[detail.status]}}</view>
-            <view>{{detail.applyCount == null ? '0' :detail.applyCount}}人已报名</view>
-        </view>
-        <view class='m-right'>
-            <view>
-                <view class='ico ico-bookmark'></view>
-                <text>{{detail.visitCount == null ?'0' :detail.visitCount}}</text>
-            </view>
-            <view>
-                <view class='ico ico-share2'></view>
-                <text>{{detail.shareCount == null ? '0':detail.shareCount}}</text>
-            </view>
-        </view>
+</view>
+<view class='m-title'>
+    <view class='blines list-arr' bindtap='toMap' data-lon="{{detail.lon}}" 
+    data-address="{{detail.activityAddress}}" data-lat="{{detail.lat}}">
+        <view class='ico ico-earth'></view>
+        <view class='value'>
+            {{detail.activityAddress ? detail.activityAddress : "线上活动"}}</view>
     </view>
+    <view class='blines'>
+        <view class='ico ico-clock2'></view>
+        <view class='value'> {{detail.startDate}} - {{detail.endDate}}</view>
+    </view>
+    <view class=''>
+        <view class='ico ico-clock2'></view>
+        <view class='value'>0~90元</view>
+    </view>
+</view>
+
+
+<view class='wxParse m-detils'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+</view>
+
+<view class='page-bar {{isPX ? "page-bar-px":""}}'>
+    <view>我也要发活动</view>
+    <view class='btn-jion' bindtap='toApply'>报名参加</view>
+</view>
+</block>

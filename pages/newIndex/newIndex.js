@@ -1,68 +1,15 @@
 let app = getApp()
 Page({
     data: {
-        types: [{
-                img: '../../images/yundong@3x.png',
-                name: "运动健身",
-                id: "exercise",
-                ico: "planet"
-            },
-            {
-                img: '../../images/wutai@3x.png',
-                name: "聚会娱乐",
-                id: "recreation",
-                ico: "gamepad1"
-            },
-            {
-                img: '../../images/shanwu@3x.png',
-                name: "商务会议",
-                id: "meeting",
-                ico: "suitcase"
-            },
-            {
-                img: '../../images/qinzi@3x.png',
-                name: "亲子幼教",
-                id: "offspring",
-                ico: "lollipop"
-            },
-            {
-                img: '../../images/yanchu@3x.png',
-                name: "赛事演出",
-                id: "show",
-                ico: "movie"
-            },
-            {
-                img: '../../images/yishu@3x.png',
-                name: "文化艺术",
-                id: "art",
-                ico: "mine"
-            },
-            {
-                img: '../../images/huwai@3x.png',
-                name: "户外旅游",
-                id: "travel",
-                ico: "pictures"
-            },
-            {
-                img: '../../images/peixun@3x.png',
-                name: "职业培训",
-                id: "train",
-                ico: "badge"
-            },
-        ],
-        postType: {
-            art: "文化艺术",
-            exercise: "运动健身",
-            meeting: "商务会议",
-            offspring: "亲子幼教",
-            recreation: "聚会娱乐",
-            show: "赛事演出",
-            train: "职业培训",
-            travel: "旅游户外",
-        },
+        types:[],
+        postType:{},
         pageLoading: true
     },
     onLoad(options) {
+        this.setData({
+            types: app.types.category,
+            postType: app.types.postType
+        })
         app.api.posterTemplate({})
             .then(res => {
                 console.log(res)

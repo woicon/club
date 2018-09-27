@@ -1,0 +1,14 @@
+<form bindsubmit='registerAccount'>
+    <view class='reg'>
+        <view class='bline'>
+            <input placeholder='输入账户' name=""></input>
+        </view>
+        <view class='bline'>
+            <input placeholder='输入密码' name="password"></input>
+        </view>
+        <view class='bline'>
+            <input placeholder='再次输入密码'  name="password"></input>
+        </view>
+        <button class='button' hover-class='button-touch' form-type='submit'>注册</button>
+    </view>
+</form>

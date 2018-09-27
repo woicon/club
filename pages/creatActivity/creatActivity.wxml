@@ -71,11 +71,11 @@
     </view>
 
     <view class='act'>
-        <!-- <view class='list-arr' bindtap='toFee'>
+        <view class='list-arr' bindtap='toFee'>
             <input name="activityTicket" class='hidden' maxlength="-1" value='{{activityTicketStr}}'></input>
             <label>活动费用</label>
             <view class='value'>默认为免费</view>
-        </view> -->
+        </view>
         <input name="activityTicket" class='hidden' maxlength="-1" value='{{activityTicketStr}}'></input>
         <view class='list-arr' bindtap='toInfo'>
             <input name="applyInfo" class='hidden' maxlength="-1" value='{{applyInfoStr}}'></input>

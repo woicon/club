@@ -1,12 +1,17 @@
 var api = require('newApi/newApi.js')
+var app = getApp()
+var types = require('utils/types.js')
+var base = require('utils/util.js')
 App({
     onLaunch: function(options) {
         let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}
         this.ext = extConfig
         this.api = api(extConfig.host)
+        this.types = types
         wx.setStorageSync("ext", extConfig)
         console.log("ApiList==>16:33", this.api)
         console.log("EXT.JSON==>Version::" + this.version, extConfig)
+        this.isPx()
         wx.login({
             success: (res) => {
                 wx.setStorageSync("CODE", res.code)
@@ -121,5 +126,41 @@ App({
         } else {
             this.wechatRegister(detail, code || wx.getStorageSync("CODE"), cb)
         }
+    },
+    isPx() {
+        //适配iPhone X
+        wx.getSystemInfo({
+            success: (res) => {
+                this.isPX = (res.model.indexOf("iPhone X") != -1) ? true : false
+            }
+        })
+    },
+    updateManager() {
+        const updateManager = wx.getUpdateManager()
+        updateManager.onCheckForUpdate((res) => {
+            // 请求完新版本信息的回调
+            console.log(res.hasUpdate)
+        })
+        updateManager.onUpdateReady(() => {
+            wx.showModal({
+                title: '更新提示',
+                content: '新版本已经准备好，是否重启应用？',
+                success: function(res) {
+                    if (res.confirm) {
+                        updateManager.applyUpdate()
+                    }
+                }
+            })
+        })
+        updateManager.onUpdateFailed(() => {
+            // 新版本下载失败
+            this.tip("更新失败")
+        })
+    },
+    converDate(dateStr) {
+        dateStr = dateStr.split('-')
+        dateStr = dateStr.join('/')
+        let martDate = new Date(dateStr)
+        return martDate.getFullYear() == new Date().getFullYear() ? martDate.Format('MM月dd日 hh:mm') : martDate.Format('yyyy年MM月dd日 hh:mm')
     }
 })

@@ -9,5 +9,4 @@
 </view>
 
 <block wx:elif="{{list.length>1}}">
-
 </block>

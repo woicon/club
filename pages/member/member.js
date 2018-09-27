@@ -1,7 +1,8 @@
 let app = getApp()
 Page({
     data: {
-        pageLoading: true
+        pageLoading: true,
+        role:false
     },
     onLoad: function(options) {
         console.log("onload")
@@ -26,7 +27,7 @@ Page({
         } else {
             app.tip('请您允许授权登录，否则无法使用该App')
         }
-       
+
     },
 
 
@@ -44,6 +45,11 @@ Page({
                     })
                 }
             }
+        })
+    },
+    toggleRole(){
+        this.setData({
+            role:!this.data.role
         })
     },
     scanCode(e) {
@@ -88,7 +94,7 @@ Page({
                     pageLoading: false
                 })
             })
-        }else{
+        } else {
             this.setData({
                 pageLoading: false
             })

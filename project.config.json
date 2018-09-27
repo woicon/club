@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -55,12 +55,54 @@
 					"id": 2,
 					"name": "activityDetails",
 					"pathName": "pages/activityDetails/activityDetails",
-					"query": "id=609"
+					"query": ""
 				},
 				{
 					"id": -1,
 					"name": "activityShare",
 					"pathName": "pages/activityShare/activityShare",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "activityApply",
+					"pathName": "pages/activityApply/activityApply",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "applyPerson",
+					"pathName": "pages/applyPerson/applyPerson",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "applyPerson",
+					"pathName": "pages/accountLogin/accountLogin",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "accountRegister",
+					"pathName": "pages/accountRegister/accountRegister",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "member",
+					"pathName": "pages/member/member",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "applyPerson",
+					"pathName": "pages/applyPerson/applyPerson",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "creatActivity",
+					"pathName": "pages/creatActivity/creatActivity",
 					"query": ""
 				}
 			]
