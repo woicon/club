@@ -1,5 +1,6 @@
 // pages/applyPerson/applyPerson.js
 let app = getApp()
+
 Page({
     data: {
         items: [{
@@ -27,36 +28,23 @@ Page({
                 name: 'TUR',
                 value: '法国'
             },
-        ]
+        ],
+        ResponseList:[]
     },
-
     onLoad: function(options) {
-        app.pageTitle("填写报名人信息")
+        app.pageTitle("填写报名人信息");
+        //console.log(wx.getStorageSync("orderParams"));
+       this.setData({
+          ResponseList: wx.getStorageSync("applyDetail").activityEnrollInfoResponseList
+       }) 
+       console.log(this.data.ResponseList)
+      // app.api.findActivityList({}).then((res)=>{
+           // console.log(res)
+
+        //})
     },
-
-    onReady: function() {
-
-    },
-
-    onShow: function() {
-
-    },
-
-    onHide: function() {
-
-    },
-
-    onUnload: function() {
-
-    },
-    onPullDownRefresh: function() {
-
-    },
-    onReachBottom: function() {
-
-    },
-
-    onShareAppMessage: function() {
-
+    submit(e){
+      //console.log(wx.getStorageSync("orderParams"));
+      //console.log(wx.getStorageSync("applyDetail"));   
     }
 })

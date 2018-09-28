@@ -51,6 +51,7 @@ function api(API) {
         "applet/v1/messageList", //留言列表
         "applet/v1/messageReply", //留言回复
         "applet/v1/selectData", //资料查询
+        "applet/createAppletOrder",//参加活动
         //活动管理接口集合 : Activity Manage Controller
         "applet/activityDetail", //活动详情
         "applet/activityList", //活动列表
