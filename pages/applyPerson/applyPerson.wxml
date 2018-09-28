@@ -1,5 +1,5 @@
-
-   <view class='person'>
+<form bindsubmit='formSubmit'> 
+<view class='person'>
         <view class='forms'>
             <view class='f-head bline'>
                 <view class='f-title'>第一位参与者</view>
@@ -8,10 +8,16 @@
             <view wx:for="{{ResponseList}}">
                 <label>{{item.name}}</label>
                 <input placeholder='输入姓名' name="name"></input>
+                <checkbox-group   wx:if="{{item.type==0}}">
+                   <label>
+                      <checkbox />
+                   </label>
+                </checkbox-group>
             </view>
             
         </view>
     </view>
     <view class='button-bar'>
-        <button class='button' hover-class='button-touch' bindtap="submit">提交报名</button>
+        <button class='button' hover-class='button-touch' form-type="submit">提交报名</button>
     </view>
+</form>

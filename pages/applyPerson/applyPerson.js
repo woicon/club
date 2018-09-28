@@ -1,6 +1,5 @@
 // pages/applyPerson/applyPerson.js
 let app = getApp()
-
 Page({
     data: {
         items: [{
@@ -29,7 +28,11 @@ Page({
                 value: '法国'
             },
         ],
-        ResponseList:[]
+        ResponseList:[],
+        form:{
+           name:''
+        },
+        msg:''
     },
     onLoad: function(options) {
         app.pageTitle("填写报名人信息");
@@ -43,8 +46,11 @@ Page({
 
         //})
     },
-    submit(e){
-      //console.log(wx.getStorageSync("orderParams"));
-      //console.log(wx.getStorageSync("applyDetail"));   
+    formSubmit(e){
+      
+         
+         this.setData({
+              msg:e.detail.value.name
+         })
     }
 })
