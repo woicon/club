@@ -2,6 +2,7 @@ let app = getApp()
 Page({
     data: {
         currentTab: 0,
+        pageLoading:true
     },
     onLoad(options) {
         app.pageTitle(app.ext.appName)
@@ -13,7 +14,7 @@ Page({
             let category = res.data
             category.unshift({
                 categoryName: '全部分类',
-                categoryId: 1,
+                categoryId: 0,
             })
             this.setData({
                 category: res.data
@@ -22,9 +23,7 @@ Page({
     },
     initIndex() {
         this.getCat()
-        this.getList({
-            id: 1
-        })
+        this.getList({})
     },
     toggleCateyory(e) {
         console.log(e)
