@@ -54,9 +54,10 @@
     flex-wrap:wrap;
 }
 .items{
-    width:46%;
+    width:40%;
     font-size:26rpx;
     background:#eee;
+    border:2rpx solid #eee;
     color:#333;
     padding:20rpx;
     text-align:center;

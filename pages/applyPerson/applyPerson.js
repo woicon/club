@@ -36,53 +36,59 @@ Page({
     },
     onLoad: function(options) {
        app.pageTitle("填写报名人信息");
-       let orderParams = wx.getStorageSync("orderParams");
-       let applyDetail = wx.getStorageSync("applyDetail");
-       let responseList = applyDetail.activityEnrollInfoResponseList;
+       let orderParams = wx.getStorageSync("orderParams")
+       let applyDetail = wx.getStorageSync("applyDetail")
+       let responseList = applyDetail.activityEnrollInfoResponseList
        for (var i = 0; i < responseList.length;i++){
          let arr = [];
          if (responseList[i].fieldOption!=null){
-           arr.push(responseList[i].fieldOption.split("$"));
-             responseList[i].fieldOption = arr; 
+           arr.push(responseList[i].fieldOption.split("$"))
+             responseList[i].fieldOption = arr
          }
        }
        console.log(orderParams)
        console.log(applyDetail)
-       form = this.data.form;
+       form = this.data.form
        this.data.responseList = responseList
        form.activityId = applyDetail.id
+       form.orderPrice = orderParams.price
        form.orderType = orderParams.ticketType
        form.ticketCount= orderParams.num
-       form.memberId =app.common("id")
+       form.memberId =app.common("id") //会员id
        form.merchantId = applyDetail.merchantId
-      // form.memberId = 
+       form.channelId = applyDetail.activityChannel.id//渠道id
+       //form.inventoryId =  库存id
+       form.ticketId = orderParams.id //票Id
        this.setData({
          responseList: responseList
        }) 
-       form = this.data.form;
+       form = this.data.form
     },
     radioChange(e){
         form = this.data.form;
-        form.radio = e.detail.value;
+        form.radio = e.detail.value
          this.setData({
             form : form 
          })
     },
     checkChange(e){
         form = this.data.form;
-        form.checkTxt = e.detail.value;
+        form.checkTxt = e.detail.value
         this.setData({
             form : form 
         })
     },
     formSubmit(e){
          let txt = [];
-         form = this.data.form;
-         txt.push(e.detail.value);
-         form.txt = txt;
+         form = this.data.form
+         txt.push(e.detail.value)
+         form.txt = txt
+         //form.contactsName = txt[0]
+        // form.contactsPhone= txt[1]
          this.setData({
               form:form
          })
-         console.log(this.data.form);
+
+         console.log(this.data.form)
     }
 })
