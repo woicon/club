@@ -49,6 +49,7 @@ Page({
        this.data.orderParams.ticketName = e.target.dataset.name
        this.data.orderParams.id = e.currentTarget.dataset.id
        this.data.orderParams.price = e.currentTarget.dataset.price
+       this.data.orderParams.inid=e.currentTarget.dataset.inid
        this.data.form.ticketTitle = "已选："
        orderParams= this.data.orderParams
        let form = this.data.form

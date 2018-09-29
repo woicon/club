@@ -63,7 +63,6 @@ function api(API) {
         "applet/verificationTicketByOrderId", //核销票券
         'applet/findActivityList', //首页活动列表
         "applet/findAllActivityCategory",//活动分类
-
         //商户认证提现接口集合 : Merchant Related Controller
         "applet/certificationAudit", //认证审核
         "applet/findMerchantAccount", //查询账户余额

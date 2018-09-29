@@ -46,8 +46,6 @@ Page({
              responseList[i].fieldOption = arr
          }
        }
-       console.log(orderParams)
-       console.log(applyDetail)
        form = this.data.form
        this.data.responseList = responseList
        form.activityId = applyDetail.id
@@ -57,7 +55,7 @@ Page({
        form.memberId =app.common("id") //会员id
        form.merchantId = applyDetail.merchantId
        form.channelId = applyDetail.activityChannel.id//渠道id
-       //form.inventoryId =  库存id
+       form.inventoryId = orderParams.inid  //库存id
        form.ticketId = orderParams.id //票Id
        this.setData({
          responseList: responseList
@@ -79,16 +77,26 @@ Page({
         })
     },
     formSubmit(e){
-         let txt = [];
+         let txt = [],arr=[];
          form = this.data.form
          txt.push(e.detail.value)
          form.txt = txt
-         //form.contactsName = txt[0]
-        // form.contactsPhone= txt[1]
+         for (let i = 0; i < this.data.responseList.length;i++){
+             let item = this.data.responseList[i]
+             arr.push(`<field>
+                  <name>${item.name}</name>
+                  <value>${txt[0].name0}</value>
+                  <type>${item.type}</type>
+                  <sequence>${item.infoSequence}</sequence>
+                  <fieldtype>${item.fieldType}</fieldtype>
+             </field>`)
+         }
+         //console.log(arr.join(" "))   
          this.setData({
               form:form
          })
-
-         console.log(this.data.form)
+         app.api.createAppletOrder(e.detail.value).then((res)=>{
+              console.log(res)
+         })
     }
 })
