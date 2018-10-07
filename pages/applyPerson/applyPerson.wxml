@@ -9,9 +9,9 @@
                 <label>{{item.name}}</label>
                 <input placeholder='输入姓名' data-name="{{item.name}}" name="name{{index}}" wx:if="{{item.fieldType==0}}"></input>
                 <textarea name="name{{index}}" wx:elif="{{item.fieldType==1}}"></textarea>
-                <radio-group class="radio-group" bindchange="radioChange" wx:elif="{{item.fieldType==2}}">
+                <radio-group class="radio-group" bindchange="radioChange" wx:elif="{{item.fieldType==2}}" >
                     <label class="radio"   wx:for="{{item.fieldOption[0]}}">
-                      <radio  value="{{item}}"  checked="{{checked}}" checked='{{curentIndex == index ? true : false}}'/>{{item}}
+                      <radio  value="{{item}}"   checked="{{checked}}" checked='{{curentIndex == index ? true : false}}'/>{{item}}
                     </label>
                 </radio-group>
                 <checkbox-group  wx:elif="{{item.fieldType==3}}" bindchange="checkChange">
@@ -20,13 +20,11 @@
                     </label>
                 </checkbox-group>
                 <block wx:elif="{{item.fieldType==4}}">
-                      <view class="select section">
-                        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-                          <view class="picker">
-                            {{array[index]}}
-                          </view>
-                        </picker>
-                    </view>
+                       <picker bindchange="bindPickerChange" value="{{form.selNum}}" range="{{item.fieldOption[0]}}">
+                  <view class="num">
+                    {{item.fieldOption[0][form.selNum]}}
+                  </view>张
+                </picker>
                 </block>
             </view>
         </view>
