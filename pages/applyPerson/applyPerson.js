@@ -80,17 +80,13 @@ Page({
     // form = this.data.form
   },
   radioChange(e) {
-    form = this.data.form
-    form.radioTxt = e.detail.value
     this.setData({
-      form: form
+      radioTxt : e.detail.value
     })
   },
   checkChange(e) {
-    form = this.data.form;
-    form.checkTxt = e.detail.value.join("$")
     this.setData({
-      form: form
+      checkTxt : e.detail.value.join("$")
     })
   },
   bindPickerChange(e) {
