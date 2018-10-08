@@ -42,7 +42,6 @@ Page({
     let orderParams = wx.getStorageSync("orderParams"),
       applyDetail = wx.getStorageSync("applyDetail"),
       responseList = applyDetail.activityEnrollInfoResponseList
-    console.log(applyDetail)
     for (var i = 0; i < responseList.length; i++) {
       let arr = [];
       if (responseList[i].fieldOption != null) {
@@ -64,8 +63,8 @@ Page({
     form = {
       activityId: applyDetail.id,
       orderPrice: orderParams.price,
-      price: orderParams.price,
-      // orderType : 0,
+      payPrice: orderParams.price,
+      //orderType : 0,
       ticketCount: orderParams.num,
       memberId: 65837,  //app.common("id"),//会员id
       merchantId: applyDetail.merchantId,
@@ -95,13 +94,12 @@ Page({
     })
   },
   formSubmit(e) {
-    let txt = [], arr = [], _this = this;
+    let arrTxt = [], arr = [], _this = this,arrXml="";
     form = this.data.form
-    txt.push(e.detail.value)
-    form.txt = txt
+    arrTxt.push(e.detail.value)
     this.data.responseList.forEach(function (item, i) {
       if (item.fieldType == 0 || item.fieldType == 1) {
-        item.fieldOption = `${txt[0]["name" + i]}`
+        item.fieldOption = `${arrTxt[0]["name" + i]}`
       } else if (item.fieldType == 2) {
         item.fieldOption = _this.data.radioTxt
       } else if (item.fieldType == 3) {
@@ -109,19 +107,27 @@ Page({
       } else if (item.fieldType == 4) {
         item.fieldOption = parseInt(_this.data.selNum) + 1
       }
+      if(item.fieldOption==""){
+        console.log(`请输入${item.name}`)
+        return false;
+      }
       arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
     })
-    let arr1 = []
-    arr1.push({ enrollXml: `<enrollInfo>${arr.join()}</enrollInfo>` })
-    form.enrollInfos = arr1
-    form.contactsName = txt[0]["name0"]
-    form.contactsPhone = txt[0]["name1"]
+    arrXml=`[{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}]`
+    console.log(arrXml)
+    form.enrollInfos = arrXml
+    form.contactsName = arrTxt[0]["name0"]
+    form.contactsPhone = arrTxt[0]["name1"]
     this.setData({
       form: form
     })
     console.log(this.data.form)
+   // wx.navigateTo({
+      //url: '/pages/applyPerson/applyPerson',
+   // })
     app.api.createAppletOrder(this.data.form).then((res) => {
-      console.log(res)
+       console.log(res)
+      console.log(res.data)
     })
   }
 })

@@ -6,6 +6,7 @@ Page({
         price:0,
         current:0,
         datecurrent:0,
+        intcurrent:0,
         index:0,
         maxlen:5,
         array: [],
@@ -62,7 +63,7 @@ Page({
       }
       let sInterval = detail.startDate.split(" ")[1],
           eInterval = detail.endDate.split(" ")[1]
-      orderParams.time = timeList[0] //设置默认已选时间
+      orderParams.time = timeList[0] //设置默认已选时间段
       orderParams.interval = `${sInterval}~${eInterval}`
       this.setData({
           detail: detail,
@@ -92,21 +93,28 @@ Page({
        })
     },
     checkedDate(e){
-       let timeType = e.currentTarget.dataset.type
-       let time = e.currentTarget.dataset.time
-       let form  = this.data.form
+       let timeType = e.currentTarget.dataset.type,
+           time = e.currentTarget.dataset.time,
+           form  = this.data.form
        orderParams=this.data.orderParams
        if(timeType=="0"){
          this.data.orderParams.time = e.currentTarget.dataset.time
          this.data.form.timeTitle = "已选："
+         this.setData({
+           datecurrent : e.currentTarget.dataset.index
+        })
        }else{
-         this.data.orderParams.interval = e.currentTarget.dataset.time
+         let sTime = e.currentTarget.dataset.stime,
+             eTime = e.currentTarget.dataset.etime
+         this.data.orderParams.interval = `${sTime}~${eTime}`
          this.data.form.intervalTitle = "已选："
+         this.setData({
+           intcurrent : e.currentTarget.dataset.index
+         })
        }
        this.setData({
           form:form,
-          orderParams:orderParams,
-          datecurrent:e.currentTarget.dataset.index
+          orderParams:orderParams
        })
     },
     bindPickerChange(e){

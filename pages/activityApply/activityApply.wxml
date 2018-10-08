@@ -27,7 +27,7 @@
 <view class='a-block date'>
     <view class='cstitle'>{{form.intervalTitle}}<view class="selected">{{orderParams.interval}}</view></view>
     <view class='csblock'>
-        <view class='items {{datecurrent == index ? "active" : ""}}'  wx:for="{{detail.activityTimeList}}" wx:key="activityTimeList" bindtap='checkedDate' data-index="{{index}}" data-time="{{item.startDate}}" data-type="1">
+        <view class='items {{intcurrent == index ? "active" : ""}}'  wx:for="{{detail.activityTimeList}}" wx:key="detail.activityTimeList" bindtap='checkedDate' data-index="{{index}}" data-stime="{{item.startTime}}" data-etime="{{item.endTime}}" data-type="1">
             {{item.startTime}}~{{item.endTime}}
         </view>
     </view>
