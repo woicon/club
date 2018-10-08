@@ -64,10 +64,17 @@
 					"query": ""
 				},
 				{
+<<<<<<< HEAD
 					"id": 4,
 					"name": "activityApply",
 					"pathName": "pages/activityApply/activityApply",
 					"query": "id=658"
+=======
+					"id": -1,
+					"name": "activityApply",
+					"pathName": "pages/activityApply/activityApply",
+					"query": ""
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
 				},
 				{
 					"id": -1,

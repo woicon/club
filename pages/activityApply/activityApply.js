@@ -5,7 +5,10 @@ Page({
         isPX:app.isPX,
         price:0,
         current:0,
+<<<<<<< HEAD
         datecurrent:0,
+=======
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
         index:0,
         maxlen:5,
         array: [],
@@ -24,17 +27,25 @@ Page({
       orderParams.activityId = detail.id
       orderParams.num=1;
       orderParams.activityTicketList = detail.activityTicketList
+<<<<<<< HEAD
       orderParams.id = detail.activityTicketList[this.data.current].id//设置票id默认选项
       orderParams.ticketName = detail.activityTicketList[this.data.current].ticketName//设置票默认选项
       orderParams.price = detail.activityTicketList[this.data.current].price//设置票价格默认选项
       orderParams.payPrice = detail.activityTicketList[this.data.current].price//设置票价格默认选项
       orderParams.ticketType = detail.activityTicketList[this.data.current].ticketType //
       orderParams.inid = detail.activityTicketList[this.data.current].activityTicketInventory[0].id //库存id
+=======
+      this.setData({
+        detail: detail,
+        orderParams: orderParams
+      })
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
       app.pageTitle("选择票价");
       let arr = [], timeList=[];
       for (let i = 0; i < this.data.maxlen;i++){
         arr.push(i+1)
       } 
+<<<<<<< HEAD
       let start = detail.activityTimeList[0].startDate.split(" ")[0], //活动开始日期
           syear= start.split("-")[0],smonth= start.split("-")[1],sday=start.split("-")[2],
           end = detail.activityTimeList[0].endDate.split(" ")[0], //活动结束日期
@@ -74,6 +85,18 @@ Page({
           },
           array:arr,
           activityTimeList:timeList
+=======
+      let start = detail.activityTimeList[0].startDate.split(" ")[0],
+          end = detail.activityTimeList[0].endDate.split(" ")[0]
+      
+      for (let i = start; i < end; i++) {
+          timeList.push(i)
+      }
+      console.log(timeList)
+      this.setData({
+          array:arr,
+          activityTimeList: timeList
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
       })
     },
     checkTicket(e){
@@ -86,9 +109,15 @@ Page({
        orderParams= this.data.orderParams
        let form = this.data.form
        this.setData({
+<<<<<<< HEAD
          orderParams : orderParams,
          form :form,
          current : e.currentTarget.dataset.index
+=======
+         orderParams: orderParams,
+         form:form,
+         current: e.currentTarget.dataset.index
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
        })
     },
     checkedDate(e){
@@ -105,9 +134,15 @@ Page({
        }
        this.setData({
           form:form,
+<<<<<<< HEAD
           orderParams:orderParams,
           datecurrent:e.currentTarget.dataset.index
        })
+=======
+          orderParams:orderParams
+       })
+       console.log(time)
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
     },
     bindPickerChange(e){
       this.data.orderParams.num = parseInt(e.detail.value) + 1
@@ -118,9 +153,39 @@ Page({
       })
     },
     toApplyPerson(e) {
+<<<<<<< HEAD
        wx.setStorageSync("orderParams", this.data.orderParams);
        wx.navigateTo({
          url: '/pages/applyPerson/applyPerson',
        })
+=======
+      wx.setStorageSync("orderParams", this.data.orderParams);
+       wx.navigateTo({
+         url: '/pages/applyPerson/applyPerson',
+       })
+    },
+    onReady: function() {
+
+    },
+    onShow: function() {
+
+    },
+    onHide: function() {
+
+    },
+    onUnload: function() {
+
+    },
+    onPullDownRefresh: function() {
+
+    },
+
+    onReachBottom: function() {
+
+    },
+
+    onShareAppMessage: function() {
+
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
     }
 })

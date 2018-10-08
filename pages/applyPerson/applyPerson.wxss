@@ -71,7 +71,10 @@ label {
   padding:20rpx 0;
   border:1px solid #ccc;
   border-radius:10rpx;
+<<<<<<< HEAD
 }
 .num{
   display: inline-block;
+=======
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
 }

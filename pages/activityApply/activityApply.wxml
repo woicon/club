@@ -19,7 +19,11 @@
 <view class='a-block date'>
     <view class='cstitle'>{{form.timeTitle}}<view class="selected">{{orderParams.time}}</view></view>
     <view class='csblock'>
+<<<<<<< HEAD
         <view class='items {{datecurrent == index ? "active" : ""}}' hover-class='touch'  wx:for="{{activityTimeList}}" wx:key="activityTimeList" bindtap='checkedDate' data-index="{{index}}" data-time="{{item}}" data-type="0">
+=======
+        <view class='items {{current == index ? "active" : ""}}' hover-class='touch'  wx:for="{{activityTimeList}}" wx:key="activityTimeList" bindtap='checkedDate' data-index="{{index}}" data-time="{{item.startDate}}" data-type="0">
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
             {{item}}
         </view>
     </view>
@@ -27,13 +31,21 @@
 <view class='a-block date'>
     <view class='cstitle'>{{form.intervalTitle}}<view class="selected">{{orderParams.interval}}</view></view>
     <view class='csblock'>
+<<<<<<< HEAD
         <view class='items {{datecurrent == index ? "active" : ""}}'  wx:for="{{detail.activityTimeList}}" wx:key="activityTimeList" bindtap='checkedDate' data-index="{{index}}" data-time="{{item.startDate}}" data-type="1">
+=======
+        <view class='items {{current == index ? "active" : ""}}'  wx:for="{{detail.activityTimeList}}" wx:key="activityTimeList" bindtap='checkedDate' data-index="{{index}}" data-time="{{item.startDate}}" data-type="1">
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
             {{item.startTime}}~{{item.endTime}}
         </view>
     </view>
 </view>
 
+<<<<<<< HEAD
 <view class='a-block a-num'>
+=======
+<view class='a-block'>
+>>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
    <view class='cstitle'>已选{{orderParams.num}}张<view class="max">最多限制{{maxlen}}张</view></view>
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <view class="num" hover-class='touch' bindtap="selectNum">
