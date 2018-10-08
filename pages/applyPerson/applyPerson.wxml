@@ -20,15 +20,9 @@
                     </label>
                 </checkbox-group>
                 <block wx:elif="{{item.fieldType==4}}">
-<<<<<<< HEAD
                        <picker bindchange="bindPickerChange" value="{{selNum}}" range="{{item.fieldOption[0]}}">
                   <view class="num">
                     {{item.fieldOption[0][selNum]}}
-=======
-                       <picker bindchange="bindPickerChange" value="{{form.selNum}}" range="{{item.fieldOption[0]}}">
-                  <view class="num">
-                    {{item.fieldOption[0][form.selNum]}}
->>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
                   </view>张
                 </picker>
                 </block>

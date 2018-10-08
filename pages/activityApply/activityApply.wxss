@@ -53,10 +53,7 @@
     justify-content:space-between;
     flex-wrap:wrap;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
 .items{
     width:40%;
     font-size:26rpx;
@@ -66,10 +63,7 @@
     padding:20rpx;
     text-align:center;
     border-radius:8rpx;
-<<<<<<< HEAD
     margin-bottom:20rpx;
-=======
->>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
 }
 .active{
   border:2rpx solid #FF6363;
@@ -107,9 +101,6 @@
     border:1px solid #c1c1c1;
     border-radius:5px;
 }
-<<<<<<< HEAD
 .a-num{
   padding-bottom:120rpx;
 }
-=======
->>>>>>> 2bf415d248874ecf0c7892f9a299d299f0ce0e7e
