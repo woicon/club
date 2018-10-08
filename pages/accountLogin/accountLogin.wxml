@@ -1,0 +1,15 @@
+<form bindsubmit='loginAccount'>
+    <view class='login'>
+        <view>
+            <view class='ico icon-user'></view>
+            <input placeholder='输入账户'></input>
+        </view>
+        <view>
+             <view class='ico icon-lock'></view>
+            <input placeholder='输入密码'></input>
+        </view>
+        <button class='button' hover-class='button-touch' form-type='submit'>登录</button>
+    </view>
+    
+    <view class='reg' bindtap='toRegister'>快速注册</view>
+</form>

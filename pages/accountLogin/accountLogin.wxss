@@ -1,0 +1,27 @@
+.login>view {
+    margin:40rpx 0;
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border-radius:6rpx;
+}
+.login .ico{
+    margin:0 20rpx;
+    color:#999;
+}
+.login input {
+    padding: 30rpx 0;
+    width: 100%;
+    background: #fff;
+    color:#444;
+    font-size:30rpx;
+}
+
+.login {
+    margin: 0 50rpx;
+}
+.reg{
+    text-align:center;
+    margin:40rpx 0;
+    font-size:28rpx;
+}

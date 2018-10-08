@@ -1,0 +1,47 @@
+<view class='a-head'>
+    <image src='{{detail.activityImg}}' mode="aspectFill"></image>
+    
+    <view class='dates'>
+        <view class='a-title'>{{detail.activityName}}</view>
+        <view> <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>
+        <view><view class='ico ico-clock2'></view>{{detail.startDate}}</view>
+    </view>
+</view>
+<view class='a-block ticket' >
+    <view class='cstitle'>{{form.ticketTitle}}<view class="selected">{{orderParams.ticketName}}</view></view>
+    <view class='csblock'>
+        <view class='items {{current == index ? "active" : ""}}' hover-class='touch' wx:for="{{detail.activityTicketList}}" wx:key="activityTicketList" data-id="{{item.id}}"  data-price="{{item.price}}" data   bindtap='checkTicket' data-index="{{index}}" data-name="{{item.ticketName}}" data-inid="{{item.activityTicketInventory[0].id}}">
+            {{item.ticketName}}
+           <view class="price"> {{item.price}}元</view>
+        </view>
+    </view>
+</view>
+<view class='a-block date'>
+    <view class='cstitle'>{{form.timeTitle}}<view class="selected">{{orderParams.time}}</view></view>
+    <view class='csblock'>
+        <view class='items {{datecurrent == index ? "active" : ""}}' hover-class='touch'  wx:for="{{activityTimeList}}" wx:key="activityTimeList" bindtap='checkedDate' data-index="{{index}}" data-time="{{item}}" data-type="0">
+            {{item}}
+        </view>
+    </view>
+</view>
+<view class='a-block date'>
+    <view class='cstitle'>{{form.intervalTitle}}<view class="selected">{{orderParams.interval}}</view></view>
+    <view class='csblock'>
+        <view class='items {{datecurrent == index ? "active" : ""}}'  wx:for="{{detail.activityTimeList}}" wx:key="activityTimeList" bindtap='checkedDate' data-index="{{index}}" data-time="{{item.startDate}}" data-type="1">
+            {{item.startTime}}~{{item.endTime}}
+        </view>
+    </view>
+</view>
+
+<view class='a-block a-num'>
+   <view class='cstitle'>已选{{orderParams.num}}张<view class="max">最多限制{{maxlen}}张</view></view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="num" hover-class='touch' bindtap="selectNum">
+         {{array[index]}}
+      </view>张
+    </picker>
+</view>
+<view class='page-bar {{isPX ? "page-bar-px":""}}'>
+    <view>共计{{price}}元</view>
+    <view class='btn-jion' bindtap='toApplyPerson'>下一步</view>
+</view>

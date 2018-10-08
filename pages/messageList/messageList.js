@@ -33,7 +33,7 @@ Page({
             page: arg.page || 1,
             pcount: 15,
             status: this.data.currentTab,
-            userId: 149 || app.common("id"),
+            userId: app.common("id"),
         }
         return params
     },

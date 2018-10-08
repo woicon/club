@@ -1,6 +1,3 @@
-var api = require('../../newApi/newApi.js')
-let app = getApp()
-console.log(app)
 Page({
     data: {
         isBottom: false,

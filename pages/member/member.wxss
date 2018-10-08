@@ -1,7 +1,47 @@
 page {
     background: #fff;
 }
-
+.orderbar{
+    display:flex;
+    margin:0 40rpx;
+}
+.orderbar .tags{
+    position:absolute;
+    right:-10rpx;
+    top:-10rpx;
+    background:red;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:44rpx;
+    min-width:44rpx;
+    border-radius:200px;
+    font-size:28rpx;
+    font-weight:800;
+    padding:0 3rpx;
+}
+.orderbar>view{
+    text-align:center;
+    width:25%;
+    padding:50rpx 0;
+    font-size:28rpx;
+    position:relative;
+    color:#444;
+}
+.orderbar .ico{
+    margin-bottom:16rpx;
+    font-size:36rpx;
+    width:86rpx;
+    height:86rpx;
+    position:relative;
+    border-radius:90px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    margin:0 auto 22rpx;
+}
 .m {
     background: #ff6363;
     height: 200rpx;
@@ -55,7 +95,7 @@ page {
     align-items: center;
     justify-content: space-between;
     padding: 35rpx 0;
-    margin: 0 0 0 80rpx;
+    margin: 0 40rpx;
     position: relative;
 }
 
@@ -65,9 +105,9 @@ page {
     height: 12rpx;
     display: block;
     border: 2px solid #ccc;
+    opacity:.8;
     border-left: none;
     border-bottom: none;
-    margin-right: 50rpx;
     transform: rotate(45deg);
 }
 
@@ -104,7 +144,9 @@ page {
     display: block;
 }
 
-
+.role{
+    font-size:24rpx;
+}
 /* .member-grid>navigator, .member-grid>view {
     width: 33.333333%;
     padding: 40rpx 0;

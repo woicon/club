@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/index/index",
         "pages/newIndex/newIndex",
         "pages/creatActivity/creatActivity",
         "pages/login/login",
@@ -24,7 +25,14 @@
         "pages/activityDetail/activityDetail",
         "pages/checkTicket/checkTicket",
         "pages/activityOrderDetail/activityOrderDetail",
-        "pages/activityDetails/activityDetails"
+        "pages/activityDetails/activityDetails",
+        "pages/activityApply/activityApply",
+        "pages/applyPerson/applyPerson",
+        "pages/applySuccess/applySuccess",
+        "pages/applyCheckOrder/applyCheckOrder",
+        "pages/applyPaySuccess/applyPaySuccess",
+        "pages/accountRegister/accountRegister",
+        "pages/accountLogin/accountLogin"
     ],
     "window": {
         "backgroundTextStyle": "black",
@@ -35,6 +43,12 @@
     },
     "tabBar": {
         "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "images/homes.png",
+                "selectedIconPath": "images/homes-sel.png"
+            },
             {
                 "pagePath": "pages/newIndex/newIndex",
                 "text": "发布活动",

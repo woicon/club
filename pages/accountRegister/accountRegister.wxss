@@ -1,0 +1,25 @@
+page{
+    background:#fff;
+}
+.reg>view {
+    margin:40rpx 0;
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border-radius:6rpx;
+}
+.reg .ico{
+    margin:0 20rpx;
+    color:#999;
+}
+.reg input {
+    padding: 30rpx 0;
+    width: 100%;
+    background: #fff;
+    color:#444;
+    font-size:30rpx;
+}
+
+.reg {
+    margin: 0 50rpx;
+}
