@@ -35,13 +35,15 @@ Page({
     msg: '',
     radioTxt: '',
     checkTxt: '',
-    selNum: 0
+    selNum: 0,
+    personNum:1  //活动报名人数
   },
   onLoad: function (options) {
     app.pageTitle("填写报名人信息");
     let orderParams = wx.getStorageSync("orderParams"),
-      applyDetail = wx.getStorageSync("applyDetail"),
-      responseList = applyDetail.activityEnrollInfoResponseList
+        applyDetail = wx.getStorageSync("applyDetail"),
+        responseList = applyDetail.activityEnrollInfoResponseList
+    console.log(orderParams.num)
     for (var i = 0; i < responseList.length; i++) {
       let arr = [];
       if (responseList[i].fieldOption != null) {
@@ -74,7 +76,8 @@ Page({
     }
     this.setData({
       responseList: responseList,
-      form: form
+      form: form,
+      personNum:orderParams.num
     })
     // form = this.data.form
   },
@@ -97,6 +100,7 @@ Page({
     let arrTxt = [], arr = [], _this = this,arrXml="";
     form = this.data.form
     arrTxt.push(e.detail.value)
+    let flag = false
     this.data.responseList.forEach(function (item, i) {
       if (item.fieldType == 0 || item.fieldType == 1) {
         item.fieldOption = `${arrTxt[0]["name" + i]}`
@@ -107,27 +111,28 @@ Page({
       } else if (item.fieldType == 4) {
         item.fieldOption = parseInt(_this.data.selNum) + 1
       }
-      if(item.fieldOption==""){
-        console.log(`请输入${item.name}`)
-        return false;
+      if (item.status == 0){
+        app.tip(`请输入${item.name}`) 
+        flag = true 
       }
       arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
     })
-    arrXml=`[{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}]`
-    console.log(arrXml)
-    form.enrollInfos = arrXml
-    form.contactsName = arrTxt[0]["name0"]
-    form.contactsPhone = arrTxt[0]["name1"]
-    this.setData({
-      form: form
-    })
-    console.log(this.data.form)
-   // wx.navigateTo({
-      //url: '/pages/applyPerson/applyPerson',
-   // })
-    app.api.createAppletOrder(this.data.form).then((res) => {
-       console.log(res)
-      console.log(res.data)
-    })
+    if(flag==false){
+      console.log(flag)
+      arrXml=`[{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}]`
+      form.enrollInfos = arrXml
+      form.contactsName = arrTxt[0]["name0"]
+      form.contactsPhone = arrTxt[0]["name1"]
+      this.setData({
+        form: form
+      })
+      console.log(this.data.form)
+      app.api.createAppletOrder(this.data.form).then((res) => {
+         //wx.navigateTo({
+           //url:'/pages/activityDetails/activityDetails?data='+res.data,
+         //})
+        console.log(res.data)
+      })
+    }
   }
 })

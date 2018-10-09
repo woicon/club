@@ -11,11 +11,11 @@
 	"libVersion": "1.9.94",
 	"appid": "wx3a2c78ac53d02dec",
 	"projectname": "%E6%B4%BB%E5%8A%A8hui",
-	"svr": "",
-	"client": "",
-	"qcloudRoot": "",
-	"miniprogramRoot": "",
-	"pluginRoot": "",
+	"svr": "/",
+	"client": "/",
+	"qcloudRoot": "/",
+	"miniprogramRoot": "/",
+	"pluginRoot": "/",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
