@@ -51,6 +51,7 @@ function api(API) {
         "applet/v1/messageList", //留言列表
         "applet/v1/messageReply", //留言回复
         "applet/v1/selectData", //资料查询
+        "applet/createAppletOrder",//参加活动
         //活动管理接口集合 : Activity Manage Controller
         "applet/activityDetail", //活动详情
         "applet/activityList", //活动列表
@@ -62,7 +63,6 @@ function api(API) {
         "applet/verificationTicketByOrderId", //核销票券
         'applet/findActivityList', //首页活动列表
         "applet/findAllActivityCategory",//活动分类
-
         //商户认证提现接口集合 : Merchant Related Controller
         "applet/certificationAudit", //认证审核
         "applet/findMerchantAccount", //查询账户余额

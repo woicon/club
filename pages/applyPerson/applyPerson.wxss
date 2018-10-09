@@ -32,6 +32,7 @@ input, textarea {
 
 textarea {
     height: 200rpx;
+    width:100%;
 }
 
 .f-title {
@@ -65,4 +66,12 @@ label {
 .person {
     margin: 30rpx;
     background: #fff;
+}
+.select{
+  padding:20rpx 0;
+  border:1px solid #ccc;
+  border-radius:10rpx;
+}
+.num{
+  display: inline-block;
 }

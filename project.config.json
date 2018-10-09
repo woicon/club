@@ -1,24 +1,29 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
+	"description": "项目配置文件。",
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true,
-		"nodeModules": false
+		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.0",
+	"libVersion": "1.9.94",
 	"appid": "wx3a2c78ac53d02dec",
+<<<<<<< HEAD
 	"projectname": "%E6%B4%BB%E5%8A%A8%E6%B1%87%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+=======
+	"projectname": "%E6%B4%BB%E5%8A%A8hui",
+	"svr": "",
+	"client": "",
+	"qcloudRoot": "",
+	"miniprogramRoot": "",
+	"pluginRoot": "",
+>>>>>>> e3fea960fd430bab2b5a893be5646209f6481201
 	"condition": {
 		"search": {
 			"current": -1,
@@ -33,11 +38,10 @@
 			"list": []
 		},
 		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -55,7 +59,7 @@
 					"id": 2,
 					"name": "activityDetails",
 					"pathName": "pages/activityDetails/activityDetails",
-					"query": ""
+					"query": "id=657"
 				},
 				{
 					"id": -1,
@@ -64,10 +68,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "activityApply",
 					"pathName": "pages/activityApply/activityApply",
-					"query": ""
+					"query": "id=658"
 				},
 				{
 					"id": -1,

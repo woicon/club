@@ -11,6 +11,7 @@ App({
         wx.setStorageSync("ext", extConfig)
         console.log("ApiList==>16:33", this.api)
         console.log("EXT.JSON==>Version::" + this.version, extConfig)
+        console.log(this)
         this.isPx()
         wx.login({
             success: (res) => {
