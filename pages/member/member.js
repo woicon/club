@@ -2,9 +2,9 @@ let app = getApp()
 Page({
     data: {
         pageLoading: true,
-        role:false
+        role: false
     },
-    onLoad: function(options) {
+    onLoad: function (options) {
         console.log("onload")
         wx.setNavigationBarColor({
             frontColor: '#ffffff',
@@ -30,8 +30,12 @@ Page({
 
     },
 
-
-    exitSys: function() {
+    toActivityList() {
+        wx.navigateTo({
+            url: '/pages/activityList/activityList',
+        })
+    },
+    exitSys: function () {
         wx.showModal({
             title: '提示',
             content: '确定要退出吗？',
@@ -47,9 +51,9 @@ Page({
             }
         })
     },
-    toggleRole(){
+    toggleRole() {
         this.setData({
-            role:!this.data.role
+            role: !this.data.role
         })
     },
     scanCode(e) {
@@ -61,8 +65,8 @@ Page({
                     title: '验证码识别中',
                 })
                 app.api.findSignInfoBySignCode({
-                        signCode: res.result,
-                    })
+                    signCode: res.result,
+                })
                     .then(res => {
                         wx.hideLoading()
                         if (res.status == '200') {

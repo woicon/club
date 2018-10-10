@@ -20,7 +20,6 @@ Page({
     },
     onLoad: function(options) {
       let detail = wx.getStorageSync("applyDetail");
-      console.log(detail)
       orderParams = this.data.orderParams
       orderParams.activityId = detail.id
       orderParams.num=1;

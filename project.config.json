@@ -10,20 +10,16 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.94",
 	"appid": "wx3a2c78ac53d02dec",
-<<<<<<< HEAD
 	"projectname": "%E6%B4%BB%E5%8A%A8%E6%B1%87%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
-=======
-	"projectname": "%E6%B4%BB%E5%8A%A8hui",
-	"svr": "",
-	"client": "",
-	"qcloudRoot": "",
-	"miniprogramRoot": "",
-	"pluginRoot": "",
->>>>>>> e3fea960fd430bab2b5a893be5646209f6481201
+	"svr": "/",
+	"client": "/",
+	"qcloudRoot": "/",
+	"miniprogramRoot": "/",
+	"pluginRoot": "/",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -41,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,

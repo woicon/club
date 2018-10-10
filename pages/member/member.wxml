@@ -21,15 +21,17 @@
                 <view class='m-infos'>
                     <view class="m-name">{{member.name || members.nickName}}</view>
                     <view wx:if="{{member.phone}}" class='m-phone'>{{member.phone}}</view>
+                    <view wx:else class='m-phone'>未绑定手机号</view>
                 </view>
             </view>
             <view class='role' bindtap='toggleRole'>{{role ? "切换为参与者" :"切换为主办方"}}</view>
         </view>
         <view class='member-grid'>
-            <!-- <navigator class='bline rline' url='/pages/activityList/activityList'>
-        <view class='ico ico-folder'></view>
-        <text>活动管理</text>
-    </navigator> -->
+            <view bindtap='toActivityList'  hover-class='touch'>
+                <view class='ico ico-folder b7'></view>
+                <text>活动管理</text>
+            </view>
+
             <view bindtap='scanCode' hover-class='touch'>
                 <view class='ico ico-price-tag b1'></view>
                 <text>票券审核</text>
@@ -45,6 +47,11 @@
             <view bindtap='toPage' data-url='/pages/messageList/messageList' hover-class='touch'>
                 <view class='ico ico-bubbles2 b10'></view>
                 <text>留言管理</text>
+            </view>
+
+                <view bindtap='toPage' data-url='/pages/messageList/messageList' hover-class='touch'>
+                <view class='ico ico-lock b9'></view>
+                <text>修改密码</text>
             </view>
             <!-- <view bindtap='toPage' data-url="/pages/dataSet/dataSet" hover-class='touch'>
         <view class='ico ico-power-cord b4'></view>
@@ -65,6 +72,7 @@
                 <view class='m-infos'>
                     <view class="m-name">{{member.name || members.nickName}}</view>
                     <view wx:if="{{member.phone}}" class='m-phone'>{{member.phone}}</view>
+                    <view wx:else class='m-phone'>未绑定手机号</view>
                 </view>
             </view>
             <view class='role' bindtap='toggleRole'>{{role ? "切换为参与者" :"切换为主办方"}}</view>
@@ -75,15 +83,23 @@
             <view>
                 <view class='ico ico-bullhorn b5'></view>审核中</view>
             <view>
-                <view class='ico ico-newspaper b7'> <view class='tags'>8</view></view>待支付 </view>
+                <view class='ico ico-newspaper b7'>
+                    <view class='tags'>8</view>
+                </view>待支付 </view>
             <view>
                 <view class='ico ico-bubble b10'></view>待参与</view>
         </view>
 
         <view class='member-grid'>
-            <view> <text>我的收藏 </text></view>
-            <view> <text>账户设置 </text></view>
-            <view> <text>告诉好友 </text></view>
+            <view bindtap='toActivityList'>
+                <text>我的收藏 </text>
+            </view>
+            <view>
+                <text>账户设置 </text>
+            </view>
+            <view>
+                <text>告诉好友 </text>
+            </view>
         </view>
     </block>
 </block>
