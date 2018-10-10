@@ -1,7 +1,9 @@
 .bline, .rline {
     position: relative;
 }
-
+.inline{
+  display:inline-block;
+}
 page {
     background: #f4f4f4;
     color: #444;

@@ -38,6 +38,8 @@ Page({
     checkArr:[],
     selNum: 0,
     isActive:0,
+    name:'',
+    txtStatus:0,//必填项*
     personNum:1  //活动报名人数
   },
   onLoad: function (options) {
@@ -46,20 +48,19 @@ Page({
         applyDetail = wx.getStorageSync("applyDetail"),
         _this = this,
         responseList = applyDetail.activityEnrollInfoResponseList
+        console.log(applyDetail)
+        console.log(orderParams)
         responseList.forEach(function (item, x) {
            let arr = new Array()
            if (item.fieldOption != null) {
                arr.push(item.fieldOption.split("$") )
                item.fieldOption = arr
             }
-            if (item.fieldType == 2) {
-              for (let i = 0; i < orderParams.num; i++) {
-                _this.data.radioArr.push(arr[0][0])
-              }
-            }
-            if (item.fieldType == 3) {
-              for(let i=0;i< orderParams.num;i++){
-                  _this.data.checkArr.push(arr[0][0])
+            for (let i = 0; i < orderParams.num; i++) {
+              if (item.fieldType == 2) {
+                   _this.data.radioArr.push(arr[0][0])
+              } else if (item.fieldType == 3){
+                   _this.data.checkArr.push(arr[0][0])
               }
             }
         })
@@ -112,11 +113,13 @@ Page({
     })
   },
   formSubmit(e) {
-    let arrTxt = [], arr = [], _this = this,arrXml=[],statusArr=[];
+    let arrTxt = [], _this = this,arrXml=[],statusArr=[]
     form = this.data.form
     arrTxt.push(e.detail.value)
     let flag = false
+    let i =0
     for(let i=0;i<this.data.personNum;i++){
+        let arr=[]
         this.data.responseList.forEach(function (item, x) {
           if (item.fieldType == 0 || item.fieldType == 1) {
             item.fieldOption = `${arrTxt[0]["name" + i + x]}`
@@ -127,32 +130,28 @@ Page({
           } else if (item.fieldType == 4) {
             item.fieldOption = parseInt(_this.data.selNum) + 1
           }
-          if (item.status == 0 && item.fieldOption==""){
-            statusArr.push({"name":item.name,"status":item.status})
-            //app.tip(`请输入${item.name}`) 
-            //flag = true 
+          if(item.status==0 && item.fieldOption==""){
+             app.tip(`请输入所有*必填项`)
+             flag =  true
           }
           arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
         })
       arrXml.push(`{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}`)
     }
     form.enrollInfos = `[${arrXml.join(",")}]`
-    for(let x = 0;x<statusArr.length;x++){
-        app.tip(`请输入${statusArr[x].name}`) 
-        flag = true
-    }
     if(flag==false){
       form.contactsName = arrTxt[0]["name00"]
       form.contactsPhone = arrTxt[0]["name01"]
       this.setData({
         form: form
       })
-      console.log(this.data.form)
-     // app.api.createAppletOrder(this.data.form).then((res) => {
-         //wx.navigateTo({
-           //url:'/pages/activityDetails/activityDetails?data='+res.data,
-         //})
-       // console.log(res.data)
+      //app.api.createAppletOrder(this.data.form).then((res) => {
+         //if(orderParams.price==0){
+
+        // }
+        // wx.navigateTo({
+          // url:'/pages/applyPaySuccess/applyPaySuccess?data='+res.data,
+        // })
       //})
     }
   }

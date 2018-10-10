@@ -5,7 +5,9 @@ input, textarea {
     padding: 14rpx 8rpx;
     font-size: 28rpx;
 }
-
+.red{
+  color:#f00;
+}
 .f-head {
     display: flex;
     align-items: center;
@@ -43,7 +45,7 @@ textarea {
 
 label {
     font-weight: 800;
-    margin: 50rpx 0 20rpx;
+    margin: 30rpx 0 20rpx;
     display: block;
     color: #666;
     font-size: 29rpx;
