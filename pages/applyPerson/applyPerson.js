@@ -44,6 +44,7 @@ Page({
   },
   onLoad: function (options) {
     app.pageTitle("填写报名人信息");
+    //console.log(app.check.phone("13692503686"))
     let orderParams = wx.getStorageSync("orderParams"),
         applyDetail = wx.getStorageSync("applyDetail"),
         _this = this,
