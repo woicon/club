@@ -29,16 +29,12 @@ const formatNumber = n => {
     n = n.toString()
     return n[1] ? n : '0' + n
 }
-// function checkReg(regExp,value){
-//     return regExp.test(value)
-// }
 let regList = {
     phone: /^[1][3,4,5,7,8][0-9]{9}$/,
     password: /^([a-z0-9\.\@\!\#\$\%\^\&\*\(\)]){6,20}$/i
 }
 let check = {}
 for(let i in regList){
-    console.log(i)
     check[i] = (value) => regList[i].test(value)
 }
 module.exports = {
