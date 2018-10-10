@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 11,
 			"list": [
 				{
 					"id": 0,
@@ -104,6 +104,11 @@
 					"name": "creatActivity",
 					"pathName": "pages/creatActivity/creatActivity",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "accountRegister",
+					"pathName": "pages/accountRegister/accountRegister"
 				}
 			]
 		}

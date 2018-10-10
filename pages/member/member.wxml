@@ -27,7 +27,7 @@
             <view class='role' bindtap='toggleRole'>{{role ? "切换为参与者" :"切换为主办方"}}</view>
         </view>
         <view class='member-grid'>
-            <view bindtap='toActivityList'  hover-class='touch'>
+            <view bindtap='toActivityList' hover-class='touch'>
                 <view class='ico ico-folder b7'></view>
                 <text>活动管理</text>
             </view>
@@ -49,7 +49,7 @@
                 <text>留言管理</text>
             </view>
 
-                <view bindtap='toPage' data-url='/pages/messageList/messageList' hover-class='touch'>
+            <view bindtap='toPage' data-url='/pages/messageList/messageList' hover-class='touch'>
                 <view class='ico ico-lock b9'></view>
                 <text>修改密码</text>
             </view>

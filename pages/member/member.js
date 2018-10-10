@@ -2,9 +2,9 @@ let app = getApp()
 Page({
     data: {
         pageLoading: true,
-        role: false
+        isOrganizer: false 
     },
-    onLoad: function (options) {
+    onLoad: function(options) {
         console.log("onload")
         wx.setNavigationBarColor({
             frontColor: '#ffffff',
@@ -27,15 +27,13 @@ Page({
         } else {
             app.tip('请您允许授权登录，否则无法使用该App')
         }
-
     },
-
     toActivityList() {
         wx.navigateTo({
             url: '/pages/activityList/activityList',
         })
     },
-    exitSys: function () {
+    exitSys: function() {
         wx.showModal({
             title: '提示',
             content: '确定要退出吗？',
@@ -65,8 +63,8 @@ Page({
                     title: '验证码识别中',
                 })
                 app.api.findSignInfoBySignCode({
-                    signCode: res.result,
-                })
+                        signCode: res.result,
+                    })
                     .then(res => {
                         wx.hideLoading()
                         if (res.status == '200') {
@@ -86,6 +84,8 @@ Page({
     },
     initMember() {
         if (wx.getStorageSync("login")) {
+            // members  organizer
+            
             this.setData({
                 members: wx.getStorageSync("login")
             })
