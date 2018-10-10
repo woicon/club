@@ -1,6 +1,5 @@
 // pages/applyPerson/applyPerson.js
-let app = getApp(),
-  form = ""
+let app = getApp(),form = ""
 Page({
   data: {
     items: [{
@@ -35,32 +34,35 @@ Page({
     msg: '',
     radioTxt: '',
     checkTxt: '',
+    radioArr:[],
+    checkArr:[],
     selNum: 0,
+    isActive:0,
     personNum:1  //活动报名人数
   },
   onLoad: function (options) {
     app.pageTitle("填写报名人信息");
     let orderParams = wx.getStorageSync("orderParams"),
         applyDetail = wx.getStorageSync("applyDetail"),
+        _this = this,
         responseList = applyDetail.activityEnrollInfoResponseList
-    console.log(orderParams.num)
-    for (var i = 0; i < responseList.length; i++) {
-      let arr = [];
-      if (responseList[i].fieldOption != null) {
-        arr.push(responseList[i].fieldOption.split("$"))
-        responseList[i].fieldOption = arr
-      }
-      if (responseList[i].fieldType == 2) {
-        this.setData({
-          radioTxt: arr[0][0]
+        responseList.forEach(function (item, x) {
+           let arr = new Array()
+           if (item.fieldOption != null) {
+               arr.push(item.fieldOption.split("$") )
+               item.fieldOption = arr
+            }
+            if (item.fieldType == 2) {
+              for (let i = 0; i < orderParams.num; i++) {
+                _this.data.radioArr.push(arr[0][0])
+              }
+            }
+            if (item.fieldType == 3) {
+              for(let i=0;i< orderParams.num;i++){
+                  _this.data.checkArr.push(arr[0][0])
+              }
+            }
         })
-      }
-      if (responseList[i].fieldType == 3) {
-        this.setData({
-          checkTxt: arr[0][0]
-        })
-      }
-    }
     this.data.responseList = responseList
     form = {
       activityId: applyDetail.id,
@@ -79,17 +81,30 @@ Page({
       form: form,
       personNum:orderParams.num
     })
-    // form = this.data.form
   },
   radioChange(e) {
+    if(this.data.radioArr.length >=2){
+        this.data.radioArr = []
+    }
+    let radio = new Array(this.data.personNum),
+        index = e.target.dataset.index
+        radio[index] = e.detail.value
     this.setData({
-      radioTxt : e.detail.value
+      radioTxt : e.detail.value,
     })
+    this.data.radioArr.push(radio[index])
   },
   checkChange(e) {
+    let index = e.target.dataset.index
+        if (e.detail.value.length>0){
+          this.data.checkArr[index] = e.detail.value.join("$")
+        }
     this.setData({
       checkTxt : e.detail.value.join("$")
     })
+    if(this.data.checkArr.length>2){
+      this.data.checkArr.push(this.data.checkArr[index])
+    }
   },
   bindPickerChange(e) {
     this.setData({
@@ -97,42 +112,48 @@ Page({
     })
   },
   formSubmit(e) {
-    let arrTxt = [], arr = [], _this = this,arrXml="";
+    let arrTxt = [], arr = [], _this = this,arrXml=[],statusArr=[];
     form = this.data.form
     arrTxt.push(e.detail.value)
     let flag = false
-    this.data.responseList.forEach(function (item, i) {
-      if (item.fieldType == 0 || item.fieldType == 1) {
-        item.fieldOption = `${arrTxt[0]["name" + i]}`
-      } else if (item.fieldType == 2) {
-        item.fieldOption = _this.data.radioTxt
-      } else if (item.fieldType == 3) {
-        item.fieldOption = _this.data.checkTxt
-      } else if (item.fieldType == 4) {
-        item.fieldOption = parseInt(_this.data.selNum) + 1
-      }
-      if (item.status == 0){
-        app.tip(`请输入${item.name}`) 
-        flag = true 
-      }
-      arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
-    })
+    for(let i=0;i<this.data.personNum;i++){
+        this.data.responseList.forEach(function (item, x) {
+          if (item.fieldType == 0 || item.fieldType == 1) {
+            item.fieldOption = `${arrTxt[0]["name" + i + x]}`
+          } else if (item.fieldType == 2) {
+            item.fieldOption = _this.data.radioArr[i]
+          } else if (item.fieldType == 3) {
+            item.fieldOption = _this.data.checkArr[i]
+          } else if (item.fieldType == 4) {
+            item.fieldOption = parseInt(_this.data.selNum) + 1
+          }
+          if (item.status == 0 && item.fieldOption==""){
+            statusArr.push({"name":item.name,"status":item.status})
+            //app.tip(`请输入${item.name}`) 
+            //flag = true 
+          }
+          arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
+        })
+      arrXml.push(`{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}`)
+    }
+    form.enrollInfos = `[${arrXml.join(",")}]`
+    for(let x = 0;x<statusArr.length;x++){
+        app.tip(`请输入${statusArr[x].name}`) 
+        flag = true
+    }
     if(flag==false){
-      console.log(flag)
-      arrXml=`[{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}]`
-      form.enrollInfos = arrXml
-      form.contactsName = arrTxt[0]["name0"]
-      form.contactsPhone = arrTxt[0]["name1"]
+      form.contactsName = arrTxt[0]["name00"]
+      form.contactsPhone = arrTxt[0]["name01"]
       this.setData({
         form: form
       })
       console.log(this.data.form)
-      app.api.createAppletOrder(this.data.form).then((res) => {
+     // app.api.createAppletOrder(this.data.form).then((res) => {
          //wx.navigateTo({
            //url:'/pages/activityDetails/activityDetails?data='+res.data,
          //})
-        console.log(res.data)
-      })
+       // console.log(res.data)
+      //})
     }
   }
 })
