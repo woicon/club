@@ -7,7 +7,7 @@ App({
         let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}
         this.ext = extConfig
         this.api = api(extConfig.host)
-        this.base = base
+        this.check = base.check
         this.types = types
         wx.setStorageSync("ext", extConfig)
         console.log("ApiList==>16:33", this.api)
