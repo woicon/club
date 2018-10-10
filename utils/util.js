@@ -8,7 +8,6 @@ const formatTime = date => {
     //second
     return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute].map(formatNumber).join(':')
 }
-console.log("ss")
 Date.prototype.Format = function(fmt) { //author: meizz
     var o = {
         "M+": this.getMonth() + 1, //月份
@@ -24,7 +23,6 @@ Date.prototype.Format = function(fmt) { //author: meizz
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)))
     return fmt
 }
-var s = "ssd"
 const formatNumber = n => {
     n = n.toString()
     return n[1] ? n : '0' + n
