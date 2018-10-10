@@ -10,7 +10,11 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.94",
 	"appid": "wx3a2c78ac53d02dec",
-	"projectname": "%E6%B4%BB%E5%8A%A8hui",
+	"projectname": "%E6%B4%BB%E5%8A%A8%E6%B1%87%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
 	"svr": "/",
 	"client": "/",
 	"qcloudRoot": "/",
@@ -33,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 11,
 			"list": [
 				{
 					"id": 0,
@@ -100,6 +104,11 @@
 					"name": "creatActivity",
 					"pathName": "pages/creatActivity/creatActivity",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "accountRegister",
+					"pathName": "pages/accountRegister/accountRegister"
 				}
 			]
 		}

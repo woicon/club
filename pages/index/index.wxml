@@ -1,6 +1,12 @@
+<block wx:if="{{pageLoading}}">
+    <view class='f-c-c empty'>
+        <load></load>
+    </view>
+</block>
+<block wx:else>
 <scroll-view scroll-x class='scroll-tab'>
     <view class='tab'>
-        <view class='tab-item {{currentTab == index ? "active" : ""}}' data-id="{{item.categoryId}}" data-index="{{index}}" bindtap='toggleCateyory' wx:for="{{category}}" wx:key="indexCategory">{{item.categoryName}}</view>
+        <view class='tab-item {{currentTab == item.categoryId ? "active" : ""}}' data-id="{{item.categoryId}}" data-index="{{index}}" bindtap='toggleCateyory' wx:for="{{category}}" wx:key="indexCategory">{{item.categoryName}}</view>
     </view>
 </scroll-view>
 <scroll-view class='cat-scroll' scroll-y>
@@ -24,3 +30,4 @@
         </view>
     </view>
 </scroll-view>
+</block>

@@ -2,11 +2,19 @@ page{
     background:#fff;
 }
 .reg>view {
-    margin:40rpx 0;
+    margin:30rpx 0;
     display:flex;
     align-items:center;
     background:#fff;
     border-radius:6rpx;
+}
+.p-btn{
+    font-size:26rpx;
+    width:200rpx;
+    color:#ff6363;
+}
+.p-btn.disable{
+    color:#666;
 }
 .reg .ico{
     margin:0 20rpx;
@@ -22,4 +30,9 @@ page{
 
 .reg {
     margin: 0 50rpx;
+}
+
+.info{
+    font-size:23rpx;
+    color:#666;
 }

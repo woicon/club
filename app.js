@@ -7,6 +7,7 @@ App({
         let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}
         this.ext = extConfig
         this.api = api(extConfig.host)
+        this.check = base.check
         this.types = types
         wx.setStorageSync("ext", extConfig)
         console.log("ApiList==>16:33", this.api)
@@ -55,7 +56,8 @@ App({
     },
     common(key) {
         let login = wx.getStorageSync("login")
-        return login[key]
+        let commonData = login.member
+        return commonData[key]
     },
     isLogin(cb) {
         let currPage = this.currPage()
@@ -82,6 +84,7 @@ App({
             }
         })
     },
+
     wechatRegister(detail, code, cb) {
         wx.request({
             url: `${this.ext.host}api/wechatAppSession.htm`,
@@ -97,24 +100,29 @@ App({
                     sessionKey: data.data.result.session_key,
                     superiorMerchantId: this.ext.merchantId,
                 }
-                this.api.wechatRegister(parmas)
-                    .then(res => {
-                        wx.hideLoading()
-                        if (res.data) {
-                            wx.setStorageSync("login", res.data)
-                            this.tip("登录成功")
-                            cb()
-                        } else {
-                            let currPage = this.currPage()
-                            this.tip(res.msg)
-                            currPage.setData({
-                                btnLoading: false
-                            })
-                        }
-                    })
+                wx.setStorageSync('reg',parmas)
+                wx.navigateTo({
+                    url: `/pages/accountRegister/accountRegister`,
+                })
+                // this.api.wechatRegister(parmas)
+                //     .then(res => {
+                //         wx.hideLoading()
+                //         if (res.data) {
+                //             wx.setStorageSync("login", res.data)
+                //             this.tip("登录成功")
+                //             cb()
+                //         } else {
+                //             let currPage = this.currPage()
+                //             this.tip(res.msg)
+                //             currPage.setData({
+                //                 btnLoading: false
+                //             })
+                //         }
+                //     })
             }
         })
     },
+
     login(detail, code, cb) {
         var ext = this.ext
         console.log(ext)
@@ -136,6 +144,7 @@ App({
             }
         })
     },
+
     updateManager() {
         const updateManager = wx.getUpdateManager()
         updateManager.onCheckForUpdate((res) => {
