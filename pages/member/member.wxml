@@ -77,7 +77,7 @@
             </view>
             <view class='role' bindtap='toggleRole'>{{role ? "切换为参与者" :"切换为主办方"}}</view>
         </view>
-        <view class='orderbar'>
+       <!-- <view class='orderbar'>
             <view>
                 <view class='ico ico-folder b6'></view>全部订单</view>
             <view>
@@ -88,10 +88,13 @@
                 </view>待支付 </view>
             <view>
                 <view class='ico ico-bubble b10'></view>待参与</view>
-        </view>
+        </view>-->
 
         <view class='member-grid'>
             <view bindtap='toActivityList'>
+                <text>全部订单 </text>
+            </view>
+            <view>
                 <text>我的收藏 </text>
             </view>
             <view>

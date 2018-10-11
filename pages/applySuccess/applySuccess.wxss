@@ -1,1 +1,51 @@
 /* pages/applySuccess/applySuccess.wxss */
+page{
+  background:#fff;
+  padding-top:50rpx;
+}
+.success{
+  line-height:3;
+  text-align:center;
+  font-size: 14px;
+}
+button{
+    width:30%;
+    font-size:14px;
+    margin-top:20rpx
+}
+icon{
+  display:inline-block;
+  vertical-align:middle;
+}
+.con{
+   font-size:12px;
+}
+text{
+  margin-left:20rpx;
+}
+.ticket{
+   border-top:1px solid #e8e8e8;
+   border-bottom:1px solid #e8e8e8;
+   margin-top:80rpx;
+}
+.ticketDetail {
+  display: flex;
+  padding-left:10%;
+ 
+}
+label{
+  width: 25%;
+  justify-content: left;
+  text-align: left;
+}
+.phone{
+  margin-left:40rpx;
+}
+.btn{
+   position: fixed;
+   left:0;
+   right:0;
+   bottom:0;
+   border-top:1px solid #e8e8e8;
+   border-radius: 10rpx;
+}
