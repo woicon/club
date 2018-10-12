@@ -42,7 +42,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 17,
 			"list": [
 				{
 					"id": 0,
@@ -128,17 +128,23 @@
 					"pathName": "pages/applySuccess/applySuccess",
 					"query": ""
 				},
-        {
-          "id": -1,
+				{
+					"id": -1,
 					"name": "memberOrder",
-          "pathName": "pages/memberOrder/memberOrder",
-          "query": ""
-        },
+					"pathName": "pages/memberOrder/memberOrder",
+					"query": ""
+				},
 				{
 					"id": 14,
 					"name": "memberOrderDetail",
 					"pathName": "pages/memberOrderDetail/memberOrderDetail",
 					"query": "id=1021"
+				},
+				{
+					"id": -1,
+					"name": "applySuccess",
+					"pathName": "pages/applySuccess/applySuccess",
+					"query": ""
 				},
 				{
 					"id": -1,
