@@ -1,4 +1,5 @@
 /* pages/memberOrder/memberOrder.wxss */
+
 .tab>view {
     width: 33.333333333333%;
 }
@@ -8,6 +9,65 @@
     font-size: 26rpx;
 }
 
+.list-item.disable {
+    color: #999;
+}
+
+.tags {
+    position: absolute;
+    top: 10rpx;
+    right:10rpx;
+    width: 130rpx;
+    height: 130rpx;
+    border-radius: 100px;
+    background:#fff;
+    border: 1px solid #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(.8) rotate(-30deg);
+    opacity: 0.6;
+    z-index:6;
+}
+
+.tags::after, .tags>view::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    top: 2px;
+    border: 1px solid #999;
+    border-radius: 90px;
+}
+
+.tags>view::after {
+    border-radius: 2px;
+}
+
+.tags>view {
+    border: 1px solid #999;
+    padding: 10rpx 0rpx;
+    background: #fff;
+    position: absolute;
+    left: -4px;
+    right: -4rpx;
+    text-align: center;
+    font-size:30rpx;
+    color: #999;
+    font-weight: 800;
+    z-index: 9;
+    border-radius: 2px;
+}
+.btag{
+    background:#ff6363;
+    padding:5rpx 20rpx;
+    border-radius:2px;
+    color:#fff;
+    font-weight:800;
+    font-size:28rpx;
+}
 .item-head image {
     width: 44rpx;
     height: 44rpx;

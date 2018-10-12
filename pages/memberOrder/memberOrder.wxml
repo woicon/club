@@ -16,13 +16,12 @@
     </block>
     <block wx:else>
         <view wx:if="{{list.length !=0}}">
-            <view wx:for="{{list}}" wx:key="orderlist" class='list-item bline' bindtap='toOrderDetail' data-orderId='{{item.id}}'  data-activityId='{{item.activityId}}'>
+            <view wx:for="{{list}}" wx:key="orderlist" class='list-item {{status ==3 ? "disable" : ""}} bline' bindtap='toOrderDetail' data-orderId='{{item.id}}'  data-activityId='{{item.activityId}}'>
                 <view class='item-head bline f-c-sb'>
                     <view class='f-c-sb'>
-                        <image src='{{item.wechatHeadImg}}'></image> {{item.merchantName}}</view>
-                    <view>{{activityStatus[item.status]}}</view>
+                        <image src='{{item.portraitImg}}'></image> {{item.merchantName}}</view>
+                    <view class='{{item.status == 1 ? "btag" : "tags"}}'> <view>{{activityStatus[item.status]}}</view></view>
                 </view>
-
                 <view class='item-cont'>
                     <view class='item-conts'>
                         <view class='item-title'>{{item.activityName}}</view>

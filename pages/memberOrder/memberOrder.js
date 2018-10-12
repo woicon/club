@@ -12,10 +12,7 @@ Page({
                 id: 2,
                 name: '已完成'
             },
-            {
-                id: 3,
-                name: '已失效'
-            },
+            {id: 3,name: '已失效'},
         ],
         isBottom: false,
         currentTab: 1,
@@ -38,7 +35,8 @@ Page({
         let dataset = e.currentTarget.dataset
         this.setData({
             currentTab: dataset.index,
-            status: dataset.id || null
+            status: dataset.id || null,
+            hasMore:true,
         })
         this.orderList({
             status: dataset.id || ""
