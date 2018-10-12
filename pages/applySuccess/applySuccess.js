@@ -7,6 +7,8 @@ Page({
     ticketNum: 1,
     userName: '',
     userPhone: '',
+    id:'',
+    activityId:'',
     iconType: [
       'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
     ]
@@ -15,16 +17,25 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (option) {
     let form =wx.getStorageSync("form");
     console.log(form)
+    console.log(option)
     this.setData({
        ticketName: form.ticketName,
        ticketPrice:form.orderPrice,
        ticketNum: form.ticketCount,
        userName:form.contactsName,
-       userPhone:form.contactsPhone
+       userPhone:form.contactsPhone,
+       id:option.id,
+       acticityId:form.acticityId
     })
+    console.log(this.data.id)
+  },
+  detail(){
+     wx.navigateTo({
+       url:`/pages/memberOrderDetail/memberOrderDetail?orderId=${this.data.id}&activityId=${this.data.acticityId}`,
+     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

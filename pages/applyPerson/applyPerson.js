@@ -151,7 +151,7 @@ Page({
           console.log(res)
           if(res.status=="200" && res.msg=="OK"){
             wx.navigateTo({
-              url: '/pages/applySuccess/applySuccess?data=' + res.data,
+              url: '/pages/applySuccess/applySuccess?id=' + res.data,
             })
           }else{
              app.tip("报名信息提交失败,请重新提交！")
