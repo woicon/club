@@ -8,19 +8,13 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"nodeModules": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.94",
+	"libVersion": "2.3.0",
 	"appid": "wx3a2c78ac53d02dec",
-	"projectname": "%E6%B4%BB%E5%8A%A8hui",
-	"svr": "/",
-	"client": "/",
-	"qcloudRoot": "/",
-	"miniprogramRoot": "/",
-	"cloudfunctionRoot": "/",
-	"jsserverRoot": "/",
-	"pluginRoot": "/",
+	"projectname": "%E6%B4%BB%E5%8A%A8%E6%B1%87%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -45,7 +39,7 @@
 			"current": 19,
 			"list": [
 				{
-					"id": 0,
+					"id": -1,
 					"name": "creats",
 					"pathName": "pages/creatActivity/creatActivity",
 					"query": "edit=true"
@@ -57,7 +51,7 @@
 					"query": ""
 				},
 				{
-					"id": 2,
+					"id": -1,
 					"name": "activityDetails",
 					"pathName": "pages/activityDetails/activityDetails",
 					"query": ""
@@ -105,7 +99,7 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "creatActivity",
 					"pathName": "pages/creatActivity/creatActivity",
 					"query": ""
@@ -135,28 +129,10 @@
 					"query": ""
 				},
 				{
-					"id": 14,
+					"id": 15,
 					"name": "memberOrderDetail",
 					"pathName": "pages/memberOrderDetail/memberOrderDetail",
 					"query": "id=1021"
-				},
-				{
-					"id": -1,
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
-					"query": ""
 				},
 				{
 					"id": -1,

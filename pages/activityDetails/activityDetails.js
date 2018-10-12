@@ -11,21 +11,25 @@ Page({
         pageLoading: true
     },
     getDetail(id) {
-        app.api.activityDetail({
-            id: id,
-            memberId:app.common("memberId")
-        }).then(res => {
-            if(res.status == '200'){
-            this.detailParse(res.data.activityDetails)
-            let detail = res.data
-            detail.startDate = app.converDate(detail.startDate)
-            detail.endDate = app.converDate(detail.endDate)
-            app.pageTitle(detail.activityName)
+        let params = {
+            id: id
+        }
+        //主办方不传memberId
+        if (!wx.getStorageSync("isOrganizer")) {
+            params.memberId = app.common("memberId")
+        }
+        app.api.activityDetail(params).then(res => {
+            if (res.status == '200') {
+                this.detailParse(res.data.activityDetails)
+                let detail = res.data
+                detail.startDate = app.converDate(detail.startDate)
+                detail.endDate = app.converDate(detail.endDate)
+                app.pageTitle(detail.activityName)
                 this.setData({
                     detail: detail,
-                    pageLoading:false,
+                    pageLoading: false,
                 })
-            }else{
+            } else {
                 app.tip(res.msg)
                 this.setData({
                     pageLoading: false,
@@ -33,10 +37,10 @@ Page({
             }
         })
     },
-    detailParse(detail){
+    detailParse(detail) {
         WxParse.wxParse('article', 'html', detail, this, 5)
     },
-    toMap(e){
+    toMap(e) {
         console.log(e)
         let params = e.currentTarget.dataset
         wx.openLocation({
@@ -45,15 +49,15 @@ Page({
             address: params.address,
         })
     },
-    toApply(){
+    toApply() {
         wx.setStorageSync("applyDetail", this.data.detail)
         wx.navigateTo({
             url: '/pages/activityApply/activityApply',
         })
     },
-    onLoad(options){
+    onLoad(options) {
         this.setData({
-            isPX:app.isPX,
+            isPX: app.isPX,
             id: options.id
         })
     },
