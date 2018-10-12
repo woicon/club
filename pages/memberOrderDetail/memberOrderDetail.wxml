@@ -20,7 +20,7 @@
     <view class='bline'>
         <view class='ico ico-clock2'></view>{{detail.activityStartTime}}</view>
     <view class='contact'>主办方：{{detail.merchantName}}
-        <view bindtap='callOrganze'><text class='ico-bubble'></text> 联系TA</view>
+        <view wx:if="{{detail.merchantPhone}}" bindtap='callOrganze'><text class='ico-bubble'></text> 联系TA</view>
     </view>
 </view>
 

@@ -13,7 +13,6 @@ App({
         console.log("ApiList==>16:33", this.api)
         console.log("EXT.JSON==>Version::" + this.version, extConfig)
         this.isPx()
-        console.log(this)
         wx.login({
             success: (res) => {
                 wx.setStorageSync("CODE", res.code)
@@ -180,11 +179,17 @@ App({
             this.tip("更新失败")
         })
     },
-    converDate(dateStr,flag) {
+    converDate(dateStr, flag) {
         dateStr = dateStr.split('-')
         dateStr = dateStr.join('/')
         let martDate = new Date(dateStr),
-            num = flag ? '':' hh:mm'
-   return martDate.getFullYear() == new Date().getFullYear() ? martDate.Format(`MM月dd日${num}`) : martDate.Format(`yyyy年MM月dd日${num}`)
+            num = flag ? '' : ' hh:mm'
+        return martDate.getFullYear() == new Date().getFullYear() ? martDate.Format(`MM月dd日${num}`) : martDate.Format(`yyyy年MM月dd日${num}`)
+    },
+    coverDateList(arr,item){
+        for(let i in arr){
+            arr[i][item] = this.converDate(arr[i][item])
+        }
+        return arr
     }
 })
