@@ -70,7 +70,7 @@ Page({
       payPrice: orderParams.price,
       //orderType : 0,
       ticketCount: orderParams.num,
-      memberId: 65837,  //app.common("id"),//会员id
+      memberId: app.common("memberId"),//会员id
       merchantId: applyDetail.merchantId,
       channelId: applyDetail.activityChannel.id,//渠道id
       inventoryId: orderParams.inid,  //库存id
@@ -146,11 +146,11 @@ Page({
         form: form
       })
       wx.setStorageSync("form",this.data.form);
+      console.log(this.data.form)
       app.api.createAppletOrder(this.data.form).then((res) => {
          //if(this.data.form.price==0){}
-          console.log(res)
           if(res.status=="200" && res.msg=="OK"){
-            wx.navigateTo({
+            wx.reLaunch({
               url: '/pages/applySuccess/applySuccess?id=' + res.data,
             })
           }else{

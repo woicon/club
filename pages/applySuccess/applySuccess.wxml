@@ -9,5 +9,6 @@
        </view>
        <view class="ticketDetail">{{userName}}<label class="phone">({{userPhone}})</label></view>
     </view>
-    <button class="button button-touch" bindtap="detail">查看订单</button>
+    <button class="button button-touch" bindtap="lookOrder">查看订单</button>
+    <button class="button button-touch" bindtap="continues">继续报名</button>
 </view>

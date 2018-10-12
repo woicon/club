@@ -1,5 +1,4 @@
 let app= getApp();
-let form,orderParams //存入改变的值
 Page({
     data: {
         isPX:app.isPX,
@@ -17,6 +16,7 @@ Page({
         },
         orderParams:{},
         activityTimeList:[],
+        ipx:'',
         price:"0.00" //共计
     },
     setDate(startDate,endDate){
@@ -50,9 +50,8 @@ Page({
       return timeList;
     },
     onLoad: function(options) {
-      let detail = wx.getStorageSync("applyDetail")
-      console.log(detail)
-      orderParams = this.data.orderParams
+      let detail = wx.getStorageSync("applyDetail"),
+          orderParams = this.data.orderParams
       orderParams.activityId = detail.id
       orderParams.num=1
       orderParams.activityTicketList = detail.activityTicketList
@@ -77,7 +76,8 @@ Page({
             intervalTitle :'已选：'
           },
           activityTimeList: timeList,
-          maxlen: orderParams.activityTicketList[0].maxBuy
+          maxlen: orderParams.activityTicketList[0].maxBuy,
+          ipx : app.isPX ? 'mt50' : ''
       })
     },
     checkTicket(e){
