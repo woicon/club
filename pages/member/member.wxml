@@ -32,22 +32,23 @@
                 <view class='ico ico-folder b7'></view>
                 <text>活动管理</text>
             </view>
+            <view bindtap='toPage' data-url='/pages/dataSet/dataSet' hover-class='touch'>
+                <view class='ico ico-cog b2'></view>
+                <text>资料设置</text>
+            </view>
             <view bindtap='scanCode' hover-class='touch'>
                 <view class='ico ico-price-tag b1'></view>
                 <text>票券审核</text>
             </view>
 
-            <view bindtap='toPage' data-url='/pages/dataSet/dataSet' hover-class='touch'>
-                <view class='ico ico-cog b2'></view>
-                <text>资料设置</text>
-            </view>
+
             <view bindtap='toPage' data-url='/pages/messageList/messageList' hover-class='touch'>
                 <view class='ico ico-bubbles2 b10'></view>
                 <text>留言管理</text>
             </view>
 
-            <view bindtap='toPage' data-url='/pages/messageList/messageList' hover-class='touch'>
-                <view class='ico ico-lock b9'></view>
+            <view bindtap='toPage' data-url='/pages/memberPassword/memberPassword' hover-class='touch'>
+                <view class='ico ico-lock b7'></view>
                 <text>修改密码</text>
             </view>
             <!-- <view  bindtap='toPage'  data-url="/pages/accounting/accounting" hover-class='touch'>
@@ -104,11 +105,10 @@
                 <view class='ico ico-cog b4'></view>
                 <text>账户设置 </text>
             </navigator> -->
-
-            <view bindtap='toPage' data-url='/pages/dataSet/dataSet' hover-class='touch'>
+            <!-- <view bindtap='toPage' data-url='/pages/dataSet/dataSet' hover-class='touch'>
                 <view class='ico ico-cog b2'></view>
                 <text>账户设置</text>
-            </view>
+            </view> -->
 
             <view bindtap='shareApp'>
                 <view class='ico ico-share2 b6'></view>

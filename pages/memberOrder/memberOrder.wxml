@@ -20,7 +20,7 @@
                 <view class='item-head bline f-c-sb'>
                     <view class='f-c-sb'>
                         <image src='{{item.wechatHeadImg}}'></image> {{item.merchantName}}</view>
-                    <view>{{activityStatus[item.activityStatus]}}</view>
+                    <view>{{activityStatus[item.status]}}</view>
                 </view>
 
                 <view class='item-cont'>
@@ -35,14 +35,14 @@
                     </view>
                     <image class='list-img' src='{{item.wechatHeadImg}}'></image>
                 </view>
-                <view class='f-c-sb item-bar bline'>
+                <view class='f-c-sb item-bar'>
                     <view class='ticket-tag'>{{item.ticketName}}</view>
                     <view>{{item.ticketPrice == 0 ? "免费":"¥"+item.ticketPrice}} × {{item.ticketCount}}</view>
                 </view>
-                <view class='item-bars' wx:if="{{item.activityStatus == 0}}">
+                <!-- <view class='item-bars' wx:if="{{item.activityStatus == 0}}">
                     <view class='closeact rline' bindtap='toPay'>取消报名</view>
                     <view class='pay' bindtap='toPay'>立刻支付</view>
-                </view>
+                </view> -->
             </view>
         </view>
         <view class='empty' wx:else>

@@ -37,7 +37,8 @@
         "pages/memberOrder/memberOrder",
         "pages/memberOrderDetail/memberOrderDetail",
         "pages/activityFavorite/activityFavorite",
-        "pages/memberSetting/memberSetting"
+        "pages/memberSetting/memberSetting",
+        "pages/memberPassword/memberPassword"
     ],
     "window": {
         "backgroundTextStyle": "black",

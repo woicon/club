@@ -3,8 +3,8 @@
 <view class='head'>
     <view>
         <view class='ticket-name'>{{detail.ticketName}}</view>
-        <view class='ticket-price'>{{detail.ticketPrice}} × {{detail.ticketCount}}张</view>
         <view>{{detail.contactsName}} ({{detail.contactsPhone}})</view>
+        <view class='ticket-price'>{{detail.ticketPrice != 0 ? "¥"+detail.ticketPrice : "免费" }} × {{detail.ticketCount}}张</view>
     </view>
 </view>
 

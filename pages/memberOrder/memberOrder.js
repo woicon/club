@@ -1,17 +1,27 @@
 let app = getApp()
 Page({
     data: {
-        orderStatus: [
-            {name:'全部'},
-            // { id: 6, name: '待审核' },
-            // { id: 0, name: '待支付' },
-            { id: 1, name: '待参与' },
-            { id: 3, name: '已完成' },
+        orderStatus: [{
+                name: '全部'
+            },
+            {
+                id: 1,
+                name: '待参与'
+            },
+            {
+                id: 2,
+                name: '已完成'
+            },
+            {
+                id: 3,
+                name: '已失效'
+            },
         ],
         isBottom: false,
         currentTab: 1,
         pageLoading: true,
-        hasMore: true
+        hasMore: true,
+        currentTab: 0,
         //订单状态, 0待支付 1待核销 2核销中 3完成 4取消 5过期 6待审核 7审核失败 8删除 9失败(由于库存不足等原因，进行退款)
     },
     onLoad: function(options) {
@@ -25,13 +35,13 @@ Page({
         this.orderList()
     },
     toggleTab(e) {
-        let dataset= e.currentTarget.dataset
+        let dataset = e.currentTarget.dataset
         this.setData({
-            currentTab: dataset.index
+            currentTab: dataset.index,
+            status: dataset.id || null
         })
-        let status = dataset.id == 'n' ? '' : dataset.id
         this.orderList({
-            status:dataset.id || ""
+            status: dataset.id || ""
         })
     },
     toOrderDetail(e) {
@@ -48,7 +58,7 @@ Page({
             size: 20,
             memberId: app.common('memberId')
         }
-        if (arg.status){
+        if (arg.status) {
             params.status = args.status
         }
         return params
@@ -60,7 +70,8 @@ Page({
         if (this.data.hasMore) {
             this.orderList({
                 page: this.data.page + 1,
-                isMore: true
+                isMore: true,
+                status: this.data.status || null
             })
         }
     },
@@ -74,9 +85,9 @@ Page({
             .then(res => {
                 console.log(res)
                 if (res.status == '200') {
-                    let data= res.data
-                    if(data.length > 0){
-                        for(let i in data){
+                    let data = res.data
+                    if (data.length > 0) {
+                        for (let i in data) {
                             data[i].activityStartTime = app.converDate(data[i].activityStartTime)
                         }
                     }

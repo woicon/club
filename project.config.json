@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 17,
 			"list": [
 				{
 					"id": -1,
@@ -138,6 +138,12 @@
 					"id": -1,
 					"name": "applySuccess",
 					"pathName": "pages/applySuccess/applySuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "memberPassword",
+					"pathName": "pages/memberPassword/memberPassword",
 					"query": ""
 				}
 			]
