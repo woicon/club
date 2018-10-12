@@ -77,7 +77,7 @@ Page({
             intervalTitle :'已选：'
           },
           activityTimeList: timeList,
-          maxlen : orderParams.activityTicketList[0].totalCount
+          maxlen: orderParams.activityTicketList[0].maxBuy
       })
     },
     checkTicket(e){

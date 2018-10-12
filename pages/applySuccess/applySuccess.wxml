@@ -2,7 +2,7 @@
     <view><icon type="success" size="20"/><text>提交成功</text></view>
     <view class="con">您的报名信息已提交成功，请关注订单状态变化</view>
     <view class="con">如有问题请联系主办方</view>
-    <button>联系他</button>
+    <button bindtap='callBuiness'>联系他</button>
     <view class="ticket">
        <view class="ticketDetail">
           <label>{{ticketName}}</label><label>￥{{ticketPrice}}</label><label>{{ticketNum}}张</label>

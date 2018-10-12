@@ -13,14 +13,8 @@ Page({
       'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
     ]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (option) {
     let form =wx.getStorageSync("form");
-    console.log(form)
-    console.log(option)
     this.setData({
        ticketName: form.ticketName,
        ticketPrice:form.orderPrice,
@@ -28,61 +22,27 @@ Page({
        userName:form.contactsName,
        userPhone:form.contactsPhone,
        id:option.id,
-       acticityId:form.acticityId
+       activityId: form.activityId
     })
-    console.log(this.data.id)
   },
   detail(){
-     wx.navigateTo({
-       url:`/pages/memberOrderDetail/memberOrderDetail?orderId=${this.data.id}&activityId=${this.data.acticityId}`,
-     })
+    console.log(this.data.id)
+    console.log(this.data.activityId)
+    if(this.data.id!=undefined){
+      wx.navigateTo({
+        url: `/pages/memberOrderDetail/memberOrderDetail?orderId=${this.data.id}&activityId=${this.data.activityId}`,
+      })
+    }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  callBuiness(){
+    if(this.data.id!=undefined){
+      app.api.myOrderDetail({ orderId: this.data.id}).then((res) => {
+          if(res.status==200 && res.msg=="OK"){
+              wx.makePhoneCall({
+                phoneNumber: res.data.contactsPhone
+              })
+          }
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
