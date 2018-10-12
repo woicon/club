@@ -70,7 +70,7 @@ Page({
       payPrice: orderParams.price,
       //orderType : 0,
       ticketCount: orderParams.num,
-      memberId: 65837,  //app.common("id"),//会员id
+      memberId: app.common("memberId"),//会员id
       merchantId: applyDetail.merchantId,
       channelId: applyDetail.activityChannel.id,//渠道id
       inventoryId: orderParams.inid,  //库存id
