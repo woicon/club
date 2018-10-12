@@ -31,6 +31,7 @@
         "pages/applySuccess/applySuccess",
         "pages/applyCheckOrder/applyCheckOrder",
         "pages/applyPaySuccess/applyPaySuccess",
+        "pages/applyDetail/applyDetail",
         "pages/accountRegister/accountRegister",
         "pages/accountLogin/accountLogin",
         "pages/memberOrder/memberOrder",

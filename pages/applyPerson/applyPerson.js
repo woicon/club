@@ -2,31 +2,32 @@
 let app = getApp(),form = ""
 Page({
   data: {
-    items: [{
+    items: [
+      {
       name: 'USA',
       value: '美国'
-    },
-    {
-      name: 'CHN',
-      value: '中国',
-      checked: 'true'
-    },
-    {
-      name: 'BRA',
-      value: '巴西'
-    },
-    {
-      name: 'JPN',
-      value: '日本'
-    },
-    {
-      name: 'ENG',
-      value: '英国'
-    },
-    {
-      name: 'TUR',
-      value: '法国'
-    },
+      },
+      {
+        name: 'CHN',
+        value: '中国',
+        checked: 'true'
+      },
+      {
+        name: 'BRA',
+        value: '巴西'
+      },
+      {
+        name: 'JPN',
+        value: '日本'
+      },
+      {
+        name: 'ENG',
+        value: '英国'
+      },
+      {
+        name: 'TUR',
+        value: '法国'
+      }
     ],
     curentIndex: 0,
     responseList: [],
@@ -44,7 +45,7 @@ Page({
   },
   onLoad: function (options) {
     app.pageTitle("填写报名人信息");
-    //console.log(app.check.phone("13692503686"))
+    console.log(app.check.phone("13692503686"))
     let orderParams = wx.getStorageSync("orderParams"),
         applyDetail = wx.getStorageSync("applyDetail"),
         _this = this,
@@ -76,7 +77,8 @@ Page({
       merchantId: applyDetail.merchantId,
       channelId: applyDetail.activityChannel.id,//渠道id
       inventoryId: orderParams.inid,  //库存id
-      ticketId: orderParams.id //票Id
+      ticketId: orderParams.id,//票Id
+      ticketName:orderParams.ticketName //票名称
     }
     this.setData({
       responseList: responseList,
@@ -131,9 +133,17 @@ Page({
           } else if (item.fieldType == 4) {
             item.fieldOption = parseInt(_this.data.selNum) + 1
           }
-          if(item.status==0 && item.fieldOption==""){
-             app.tip(`请输入所有*必填项`)
-             flag =  true
+          if(item.status==0){
+            if (item.fieldOption == ""){
+                app.tip(`请输入所有*必填项`)
+                flag = true
+            }
+            if(item.fieldOption!="" && item.name=="手机号"){
+              if (app.check.phone(item.fieldOption)==false){
+                     app.tip(`请输入正确手机号`)
+                     flag = true
+              } 
+            }
           }
           arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
         })
@@ -146,14 +156,13 @@ Page({
       this.setData({
         form: form
       })
-      //app.api.createAppletOrder(this.data.form).then((res) => {
-         //if(orderParams.price==0){
-
-        // }
-        // wx.navigateTo({
-          // url:'/pages/applyPaySuccess/applyPaySuccess?data='+res.data,
-        // })
-      //})
+       wx.setStorageSync("form",this.data.form);
+      app.api.createAppletOrder(this.data.form).then((res) => {
+         //if(this.data.form.price==0){}
+          wx.navigateTo({
+            url:'/pages/applySuccess/applySuccess?data='+res.data,
+         })
+      })
     }
   }
 })

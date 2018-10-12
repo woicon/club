@@ -1,20 +1,31 @@
 // pages/applySuccess/applySuccess.js
+let app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    ticketName: '免费票',
+    ticketPrice: 0,
+    ticketNum: 1,
+    userName: '杨丽娜',
+    userPhone: '15011312397',
+    iconType: [
+      'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let form =wx.getStorageSync("form");
+    console.log(form)
+    this.setData({
+       ticketName: form.ticketName,
+       ticketPrice:form.orderPrice,
+       tickekNum:form.ticketCount,
+       userName:form.contactsName,
+       userPhone:form.contactsPhone
+    })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
