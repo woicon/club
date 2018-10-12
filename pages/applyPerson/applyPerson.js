@@ -38,7 +38,6 @@ Page({
     radioArr:[],
     checkArr:[],
     selNum: 0,
-    isActive:0,
     name:'',
     txtStatus:0,//必填项*
     personNum:1  //活动报名人数
