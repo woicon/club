@@ -6,6 +6,10 @@ Page({
     },
     onLoad(options) {
         this.getDetail(options)
+        wx.setNavigationBarColor({
+            frontColor: '#ffffff',
+            backgroundColor: '#FF6363',
+        })
         app.pageTitle("订单详情")
     },
     getDetail(params) {
@@ -15,6 +19,11 @@ Page({
                     detail: res.data
                 })
             }
+        })
+    },
+    callOrganze(){
+        wx.makePhoneCall({
+            phoneNumber: this.data.detail.merchantPhone,
         })
     },
     onShow: function() {

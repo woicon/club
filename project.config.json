@@ -42,7 +42,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -135,10 +135,10 @@
 					"query": ""
 				},
 				{
-					"id": 14,
+					"id": 15,
 					"name": "memberOrderDetail",
 					"pathName": "pages/memberOrderDetail/memberOrderDetail",
-					"query": "id=1021"
+					"query": "orderId=1045&activityId=637"
 				},
 				{
 					"id": -1,

@@ -1,4 +1,5 @@
 <!--pages/memberOderDetail/memberOderDetail.wxml-->
+<view class='detail'>
 <view class='head'>
     <view>
         <view class='ticket-name'>{{detail.ticketName}}</view>
@@ -19,15 +20,17 @@
     <view class='bline'>
         <view class='ico ico-clock2'></view>{{detail.activityStartTime}}</view>
     <view class='contact'>主办方：{{detail.merchantName}}
-        <view><text class='ico-bubble'></text> 联系TA</view>
+        <view bindtap='callOrganze'><text class='ico-bubble'></text> 联系TA</view>
     </view>
 </view>
 
 <view class='actinfo'>
     <view class='bline'>订单编号：
-        <view>{{detail.orderId}}</view>
+        <view>{{detail.orderNo}}</view>
     </view>
     <view>订单时间：
         <view>{{detail.createDate}}</view>
     </view>
+</view>
+
 </view>
