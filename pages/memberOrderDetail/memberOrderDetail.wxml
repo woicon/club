@@ -1,1 +1,14 @@
 <!--pages/memberOderDetail/memberOderDetail.wxml-->
+<view class='a-head'>
+    <image src='{{detail.activityImg}}' mode="aspectFill"></image>
+    <view class='dates'>
+        <view class='a-title'>{{detail.activityName}}</view>
+        <view> <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>
+        <view><view class='ico ico-clock2'></view>{{detail.startDate}}</view>
+    </view>
+</view>
+
+<view>
+<view>{{detail.orderNo}}</view>
+<image src='{{detail.qrCodeAddress}}'></image>
+</view>

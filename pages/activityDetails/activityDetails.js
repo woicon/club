@@ -13,8 +13,8 @@ Page({
     getDetail(id) {
         app.api.activityDetail({
             id: id,
+            memberId:app.common("memberId")
         }).then(res => {
-            console.log(res)
             if(res.status == '200'){
             this.detailParse(res.data.activityDetails)
             let detail = res.data

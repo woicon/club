@@ -2,11 +2,11 @@ let app = getApp()
 Page({
     data: {
         orderStatus: {
-            1: '未使用',
-            3: '已使用',
+            10: '全部',
+            6: '待审核',
             0: '待支付',
-            6: '待参与',
-            7: '已完成'
+            1: '待参与',
+            3: '已完成'
         },
         isBottom: false,
         currentTab: 1,

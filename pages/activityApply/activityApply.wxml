@@ -1,6 +1,5 @@
 <view class='a-head'>
     <image src='{{detail.activityImg}}' mode="aspectFill"></image>
-    
     <view class='dates'>
         <view class='a-title'>{{detail.activityName}}</view>
         <view> <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>

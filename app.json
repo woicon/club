@@ -35,7 +35,9 @@
         "pages/accountRegister/accountRegister",
         "pages/accountLogin/accountLogin",
         "pages/memberOrder/memberOrder",
-        "pages/memberOrderDetail/memberOrderDetail"
+        "pages/memberOrderDetail/memberOrderDetail",
+        "pages/activityFavorite/activityFavorite",
+        "pages/memberSetting/memberSetting"
     ],
     "window": {
         "backgroundTextStyle": "black",

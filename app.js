@@ -156,7 +156,7 @@ App({
             }
         })
     },
-
+    //检测更新
     updateManager() {
         const updateManager = wx.getUpdateManager()
         updateManager.onCheckForUpdate((res) => {
@@ -179,6 +179,7 @@ App({
             this.tip("更新失败")
         })
     },
+    //时间处理
     converDate(dateStr) {
         dateStr = dateStr.split('-')
         dateStr = dateStr.join('/')

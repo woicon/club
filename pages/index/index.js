@@ -77,6 +77,7 @@ Page({
             })
         }
     },
+    
     getList(args) {
         let time = "2018-09-14 10:17:00"
         console.log(new Date(time).Format("yyyy-MM-dd hhmmss"))

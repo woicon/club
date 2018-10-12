@@ -15,7 +15,7 @@
 </view>
 <block wx:else>
     <block wx:if="{{isOrganizer}}">
-        <!-- //主办方 -->
+        <!-- 主办方 -->
         <view class='m' bindtap='toDateSet'>
             <view class='m-info'>
                 <image src='{{member.member.headImg}}'></image>
@@ -36,10 +36,7 @@
                 <view class='ico ico-price-tag b1'></view>
                 <text>票券审核</text>
             </view>
-            <!-- <view  bindtap='toPage'  data-url="/pages/accounting/accounting" hover-class='touch'>
-                <view class='ico ico-briefcase b6'></view>
-                <text>我的收入</text>
-            </view> -->
+
             <view bindtap='toPage' data-url='/pages/dataSet/dataSet' hover-class='touch'>
                 <view class='ico ico-cog b2'></view>
                 <text>资料设置</text>
@@ -53,10 +50,14 @@
                 <view class='ico ico-lock b9'></view>
                 <text>修改密码</text>
             </view>
-            <!-- <view bindtap='toPage' data-url="/pages/dataSet/dataSet" hover-class='touch'>
-            <view class='ico ico-power-cord b4'></view>
-            <text>认证管理</text>
-        </view> -->
+            <!-- <view  bindtap='toPage'  data-url="/pages/accounting/accounting" hover-class='touch'>
+                <view class='ico ico-briefcase b6'></view>
+                <text>我的收入</text>
+            </view> -->
+                <!-- <view bindtap='toPage' data-url="/pages/dataSet/dataSet" hover-class='touch'>
+                <view class='ico ico-power-cord b4'></view>
+                <text>认证管理</text>
+            </view> -->
             <!-- <view bindtap='toPage' data-url='/pages/memberList/memberList' hover-class='touch'>
                 <view class='ico ico-users b5'></view>
                 <text>会员管理</text>
@@ -66,7 +67,7 @@
     </block>
 
     <block wx:else>
-        <!-- //参与者 -->
+        <!-- 参与者 -->
         <view class='m' bindtap='toDateSet'>
             <view class='m-info'>
                 <image src='{{member.wxappletUserInfo.avatarUrl}}'></image>
@@ -78,7 +79,7 @@
             </view>
             <view class='role' bindtap='toggleRole'>{{isOrganizer ? "切换为参与者" :"切换为主办方"}}</view>
         </view>
-       <!-- <view class='orderbar'>
+        <!-- <view class='orderbar'>
             <view>
                 <view class='ico ico-folder b6'></view>全部订单</view>
             <view>
@@ -90,18 +91,21 @@
             <view>
                 <view class='ico ico-bubble b10'></view>待参与</view>
         </view>-->
-
         <view class='member-grid'>
-            <view bindtap='toActivityList'>
+            <navigator url='/pages/memberOrder/memberOrder'>
+                <view class='ico ico-folder b5'></view>
                 <text>全部订单 </text>
-            </view>
-            <view>
+            </navigator>
+            <navigator url='/pages/activityFavorite/activityFavorite'>
+                <view class='ico ico-heart b2'></view>
                 <text>我的收藏 </text>
-            </view>
-            <view>
+            </navigator>
+            <navigator url='/pages/memberSetting/memberSetting'>
+                <view class='ico ico-cog b4'></view>
                 <text>账户设置 </text>
-            </view>
-            <view>
+            </navigator>
+            <view bindtap='shareApp'>
+                <view class='ico ico-share2 b6'></view>
                 <text>告诉好友 </text>
             </view>
         </view>
