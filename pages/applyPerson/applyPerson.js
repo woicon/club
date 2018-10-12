@@ -146,11 +146,11 @@ Page({
         form: form
       })
       wx.setStorageSync("form",this.data.form);
+      console.log(this.data.form)
       app.api.createAppletOrder(this.data.form).then((res) => {
          //if(this.data.form.price==0){}
-          console.log(res)
           if(res.status=="200" && res.msg=="OK"){
-            wx.navigateTo({
+            wx.reLaunch({
               url: '/pages/applySuccess/applySuccess?id=' + res.data,
             })
           }else{

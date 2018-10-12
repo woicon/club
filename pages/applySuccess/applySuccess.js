@@ -25,14 +25,18 @@ Page({
        activityId: form.activityId
     })
   },
-  detail(){
-    console.log(this.data.id)
-    console.log(this.data.activityId)
+  lookOrder(){
     if(this.data.id!=undefined){
       wx.navigateTo({
         url: `/pages/memberOrderDetail/memberOrderDetail?orderId=${this.data.id}&activityId=${this.data.activityId}`,
       })
     }
+  },
+  continues(){
+    console.log("a")
+    wx.switchTab({
+       url:`/pages/index/index`
+    })
   },
   callBuiness(){
     if(this.data.id!=undefined){

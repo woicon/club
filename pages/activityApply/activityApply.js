@@ -1,5 +1,4 @@
 let app= getApp();
-let form,orderParams //存入改变的值
 Page({
     data: {
         isPX:app.isPX,
@@ -51,8 +50,8 @@ Page({
       return timeList;
     },
     onLoad: function(options) {
-      let detail = wx.getStorageSync("applyDetail")
-      orderParams = this.data.orderParams
+      let detail = wx.getStorageSync("applyDetail"),
+          orderParams = this.data.orderParams
       orderParams.activityId = detail.id
       orderParams.num=1
       orderParams.activityTicketList = detail.activityTicketList
