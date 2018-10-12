@@ -63,7 +63,7 @@ page {
 }
 
 .m-name {
-    font-size: 44rpx;
+    font-size:35rpx;
     font-weight: 800;
 }
 
@@ -90,7 +90,7 @@ page {
     background: #fff;
 } */
 
-.member-grid>view {
+.member-grid>view,.member-grid>navigator {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -99,7 +99,7 @@ page {
     position: relative;
 }
 
-.member-grid>view::after {
+.member-grid>view::after,.member-grid>navigator::after {
     content: '';
     width: 12rpx;
     height: 12rpx;
@@ -111,7 +111,7 @@ page {
     transform: rotate(45deg);
 }
 
-.member-grid>view::before {
+.member-grid>view::before,.member-grid>navigator::before {
     content: '';
     display: block;
     position: absolute;

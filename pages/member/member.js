@@ -12,7 +12,6 @@ Page({
         app.pageTitle("个人中心")
     },
     getUserInfo(e) {
-        console.log("LOGIN-detail0000::===>", e.detail)
         this.setData({
             btnLoading: true
         })

@@ -13,6 +13,7 @@ App({
         console.log("ApiList==>16:33", this.api)
         console.log("EXT.JSON==>Version::" + this.version, extConfig)
         this.isPx()
+        console.log(this)
         wx.login({
             success: (res) => {
                 wx.setStorageSync("CODE", res.code)
@@ -156,7 +157,7 @@ App({
             }
         })
     },
-
+    //检测更新
     updateManager() {
         const updateManager = wx.getUpdateManager()
         updateManager.onCheckForUpdate((res) => {

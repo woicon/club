@@ -1,6 +1,6 @@
 <!--pages/memberOrder/memberOrder.wxml-->
 <view class='tab'>
-    <view wx:for="{{orderStatus}}" wx:key="ordertab" bindtap='toggleTab' data-id="{{index}}" class='{{currentTab == index ? "active":""}}'>{{item}}</view>
+    <view wx:for="{{orderStatus}}" wx:key="ordertab" bindtap='toggleTab' data-index="{{index}}" data-id="{{item.id}}" class='{{currentTab == index ? "active":""}}'>{{item.name}}</view>
 </view>
 <!-- <view class='search {{gridLayout?"":"bline"}}'>
     <view class='ico icon-search'></view>
@@ -17,22 +17,32 @@
     <block wx:else>
         <view wx:if="{{list.length !=0}}">
             <view wx:for="{{list}}" wx:key="orderlist" class='list-item bline' bindtap='toOrderDetail' data-id='{{item.id}}'>
-                <view><image class='list-img' src='{{item.wechatHeadImg}}'></image>
-                    <view>
-                    <view>{{item.nickName}}</view>
-                    </view>
+                <view class='item-head bline f-c-sb'>
+                    <view class='f-c-sb'>
+                        <image src='{{item.wechatHeadImg}}'></image> {{item.merchantName}}</view>
+                    <view>{{activityStatus[item.activityStatus]}}</view>
                 </view>
-                <view class='item-left'>
-                    <view class='item-name'>{{item.contactsName}}</view>
-                    <view class='item-tag'>
-                        <view class='item-tick'>{{item.ticketName}}</view>
+
+                <view class='item-cont'>
+                    <view class='item-conts'>
+                        <view class='item-title'>{{item.activityName}}</view>
+                        <view class='item-info'>
+                            <view>
+                                <view class='ico ico-earth'></view>{{item.activityAddress ? item.activityAddress: '线上活动'}}</view>
+                            <view>
+                                <view class='ico ico-clock2'></view>{{item.activityStartTime}}</view>
+                        </view>
                     </view>
-                    <view class='item-order'>{{item.orderNo}}</view>
+
+                    <image class='list-img' src='{{item.wechatHeadImg}}'></image>
                 </view>
-                <view class='item-right'>
-                    <view wx:if="{{item.ticketPrice == 0}}" class='price'>免费</view>
-                    <view wx:else>¥{{item.ticketPrice}}</view>
-                    <view>×{{item.ticketCount}}</view>
+                <view class='f-c-sb item-bar bline'>
+                    <view class='ticket-tag'>{{item.ticketName}}</view>
+                    <view>{{item.ticketPrice == 0 ? "免费":"¥"+item.ticketPrice}} × {{item.ticketCount}}</view>
+                </view>
+                <view class='item-bars' wx:if="{{item.activityStatus == 0}}">
+                    <view class='closeact rline' bindtap='toPay'>取消报名</view>
+                    <view class='pay' bindtap='toPay'>立刻支付</view>
                 </view>
             </view>
         </view>

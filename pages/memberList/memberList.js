@@ -3,6 +3,7 @@ Page({
     data: {
         pageLoading:true,
     },
+    
     onLoad: function(options) {
         app.pageTitle("会员管理")
         

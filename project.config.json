@@ -60,7 +60,7 @@
 					"id": 2,
 					"name": "activityDetails",
 					"pathName": "pages/activityDetails/activityDetails",
-					"query": "id=657"
+					"query": ""
 				},
 				{
 					"id": -1,
@@ -118,8 +118,8 @@
 				},
 				{
 					"id": -1,
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
+					"name": "activityOrderList",
+					"pathName": "pages/activityOrderList/activityOrderList",
 					"query": ""
 				},
 				{
@@ -128,29 +128,17 @@
 					"pathName": "pages/applySuccess/applySuccess",
 					"query": ""
 				},
+        {
+          "id": -1,
+					"name": "memberOrder",
+          "pathName": "pages/memberOrder/memberOrder",
+          "query": ""
+        },
 				{
-					"id": -1,
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
-					"query": ""
+					"id": 14,
+					"name": "memberOrderDetail",
+					"pathName": "pages/memberOrderDetail/memberOrderDetail",
+					"query": "id=1021"
 				},
 				{
 					"id": -1,

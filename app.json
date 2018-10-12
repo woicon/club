@@ -35,7 +35,9 @@
         "pages/accountRegister/accountRegister",
         "pages/accountLogin/accountLogin",
         "pages/memberOrder/memberOrder",
-        "pages/memberOrderDetail/memberOrderDetail"
+        "pages/memberOrderDetail/memberOrderDetail",
+        "pages/activityFavorite/activityFavorite",
+        "pages/memberSetting/memberSetting"
     ],
     "window": {
         "backgroundTextStyle": "black",
@@ -57,12 +59,6 @@
                 "text": "发布活动",
                 "iconPath": "images/home.png",
                 "selectedIconPath": "images/home-sel.png"
-            },
-            {
-                "pagePath": "pages/activityList/activityList",
-                "text": "活动管理",
-                "iconPath": "images/tab01.png",
-                "selectedIconPath": "images/tab01-sel.png"
             },
             {
                 "pagePath": "pages/member/member",

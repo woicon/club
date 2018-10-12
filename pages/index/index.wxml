@@ -11,7 +11,7 @@
     </scroll-view>
     <scroll-view class='cat-scroll' scroll-y bindscrolltolower="listMore">
         <view class='indexlist'>
-            <block wx:if="{{pageLoading}}">
+            <block wx:if="{{pageLoad}}">
                 <view class='f-c-c empty'>
                     <load></load>
                 </view>

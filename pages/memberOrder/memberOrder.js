@@ -1,13 +1,13 @@
 let app = getApp()
 Page({
     data: {
-        orderStatus: {
-            1: '未使用',
-            3: '已使用',
-            0: '待支付',
-            6: '待参与',
-            7: '已完成'
-        },
+        orderStatus: [
+            {name:'全部'},
+            // { id: 6, name: '待审核' },
+            // { id: 0, name: '待支付' },
+            { id: 1, name: '待参与' },
+            { id: 3, name: '已完成' },
+        ],
         isBottom: false,
         currentTab: 1,
         pageLoading: true,
@@ -19,16 +19,19 @@ Page({
         this.setData({
             activityId: options.activityId,
             merchantId: options.merchantId,
+            activityStatus: app.types.activityStatus
         })
-        app.pageTitle("订单管理")
+        app.pageTitle("我的订单")
         this.orderList()
     },
     toggleTab(e) {
+        let dataset= e.currentTarget.dataset
         this.setData({
-            currentTab: e.currentTarget.dataset.id
+            currentTab: dataset.index
         })
+        let status = dataset.id == 'n' ? '' : dataset.id
         this.orderList({
-            status: e.currentTarget.dataset.id
+            status:dataset.id || ""
         })
     },
     toOrderDetail(e) {
@@ -71,9 +74,16 @@ Page({
             .then(res => {
                 console.log(res)
                 if (res.status == '200') {
+                    let data= res.data
+                    if(data.length > 0){
+                        for(let i in data){
+                            data[i].activityStartTime = app.converDate(data[i].activityStartTime)
+                        }
+                    }
+                    console.log(data)
                     if (arg.isMore) {
                         let _list = this.data.list
-                        if (res.data.length > 0) {
+                        if (data.length > 0) {
                             this.setData({
                                 pageLoading: false,
                                 list: _list.concat(res.data),
@@ -89,7 +99,7 @@ Page({
                     } else {
                         this.setData({
                             pageLoading: false,
-                            list: res.data,
+                            list: data,
                             page: params.page
                         })
                     }
