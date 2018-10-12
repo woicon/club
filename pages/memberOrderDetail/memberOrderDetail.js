@@ -5,13 +5,11 @@ Page({
 
     },
     onLoad(options) {
-        this.getDetail(options.id)
+        this.getDetail(options)
         app.pageTitle("订单详情")
     },
-    getDetail(id) {
-        app.api.myOrderDetail({
-            orderId: id
-        }).then(res => {
+    getDetail(params) {
+        app.api.myOrderDetail(params).then(res => {
             if (res.status == '200') {
                 this.setData({
                     detail: res.data

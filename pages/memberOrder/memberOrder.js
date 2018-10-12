@@ -38,7 +38,7 @@ Page({
         console.log(e)
         let dataset = e.currentTarget.dataset
         wx.navigateTo({
-            url: `/pages/memberOrderDetail/memberOrderDetail?id=${dataset.id}`,
+            url: `/pages/memberOrderDetail/memberOrderDetail?orderId=${dataset.orderid}&activityId=${dataset.activityid}`,
         })
     },
     orderParams(args) {

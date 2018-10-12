@@ -1,116 +1,139 @@
 /* pages/memberOrder/memberOrder.wxss */
-.tab>view{
-    width:33.333333333333%;
+.tab>view {
+    width: 33.333333333333%;
 }
-.list-item{
-    background: #fff;
-    font-size:26rpx;
-}
-.item-head image{
-    width:44rpx;
-    height:44rpx;
-    margin-right:20rpx;
-    border-radius:90px;
-}
-.ticket-tag{
-    padding:5rpx 20rpx;
-    font-size:24rpx;
-    color:#444;
-    background:#eee;
-    border-radius:5rpx;
-}
-.item-bar{
-    margin-top:20rpx;
-    padding:0 40rpx;
-    padding-bottom:30rpx;
-}
-.item-cont{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:40rpx;
-}
-.item-title{
-    font-size:30rpx;
-    font-weight:800;
-    margin-bottom:20rpx;
-}
-.item-info{
-    font-size:24rpx;
-    color:#888;
-}
-.item-info>view{
-    display:flex;
-    margin:8rpx 0;
-    align-items:center;
-}
-.item-conts{
-    flex-grow:2;
-}
-.item-info .ico{
-    margin-right:10rpx;
-}
-.item-head {
-    padding:20rpx 40rpx;
-}
-.list-item{
-    background:#fff;
-    margin:26rpx;
-    box-shadow:0 4rpx 20px rgba(0, 0, 0, .1);
-}
-.item-bars{
-    display:flex;
-    flex-wrap:wrap;
-}
-.item-bars>view{
-    width:50%;
-    padding:30rpx 0;
-    font-size:30rpx;
-    text-align:center;
-}
-.pay{
-    color:#FF6363;
-    font-weight:800;
-}
-.list-img{
-    width:190rpx;
-    height:120rpx;
-    margin-left:20rpx;
-}
-.item-order{
-    color:#888;
-    margin-top:8px;
-}
-.item-right{
-    text-align:right;
-    display: flex;
-    align-items:center;
-}
-.item-right view{
-    margin:0 8rpx;
-}
-.item-name{
-    font-weight:800;
-    font-size:32rpx;
-    line-height:2.5;
-}
-.item-tick{
-    color:#444;
-    display:inline-block;
-}
-.item-tag{
-    display: flex;
-    align-items:center
-}
-.item-tag>view{
-    padding:4rpx 8rpx;
-    border-radius:2px;
-    background:#eee;
-    color:#444;
-    margin-right:12rpx;
-}
-.price{
-    color:#FF6363;
-    margin-bottom:6rpx;
 
+.list-item {
+    background: #fff;
+    font-size: 26rpx;
+}
+
+.item-head image {
+    width: 44rpx;
+    height: 44rpx;
+    margin-right: 20rpx;
+    border-radius: 90px;
+}
+
+.ticket-tag {
+    padding: 5rpx 20rpx;
+    font-size: 24rpx;
+    color: #444;
+    background: #eee;
+    border-radius: 5rpx;
+}
+
+.item-bar {
+    margin-top: 20rpx;
+    padding: 0 40rpx;
+    padding-bottom: 30rpx;
+}
+
+.item-cont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40rpx;
+}
+
+.item-title {
+    font-size: 30rpx;
+    font-weight: 800;
+    margin-bottom: 20rpx;
+}
+
+.item-info {
+    font-size: 24rpx;
+    color: #888;
+}
+
+.item-info>view {
+    display: flex;
+    margin: 8rpx 0;
+    align-items: center;
+}
+
+.item-conts {
+    flex-grow: 2;
+}
+
+.item-info .ico {
+    margin-right: 10rpx;
+}
+
+.item-head {
+    padding: 20rpx 40rpx;
+}
+
+.list-item {
+    background: #fff;
+    margin: 26rpx;
+    box-shadow: 0 4rpx 20px rgba(0, 0, 0, 0.1);
+}
+
+.item-bars {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item-bars>view {
+    width: 50%;
+    padding: 30rpx 0;
+    font-size: 30rpx;
+    text-align: center;
+}
+
+.pay {
+    color: #ff6363;
+    font-weight: 800;
+}
+
+.list-img {
+    width: 190rpx;
+    height: 120rpx;
+    margin-left: 20rpx;
+}
+
+.item-order {
+    color: #888;
+    margin-top: 8px;
+}
+
+.item-right {
+    text-align: right;
+    display: flex;
+    align-items: center;
+}
+
+.item-right view {
+    margin: 0 8rpx;
+}
+
+.item-name {
+    font-weight: 800;
+    font-size: 32rpx;
+    line-height: 2.5;
+}
+
+.item-tick {
+    color: #444;
+    display: inline-block;
+}
+
+.item-tag {
+    display: flex;
+    align-items: center;
+}
+
+.item-tag>view {
+    padding: 4rpx 8rpx;
+    border-radius: 2px;
+    background: #eee;
+    color: #444;
+    margin-right: 12rpx;
+}
+
+.price {
+    color: #ff6363;
+    margin-bottom: 6rpx;
 }

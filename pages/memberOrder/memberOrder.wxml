@@ -16,7 +16,7 @@
     </block>
     <block wx:else>
         <view wx:if="{{list.length !=0}}">
-            <view wx:for="{{list}}" wx:key="orderlist" class='list-item bline' bindtap='toOrderDetail' data-id='{{item.id}}'>
+            <view wx:for="{{list}}" wx:key="orderlist" class='list-item bline' bindtap='toOrderDetail' data-orderId='{{item.id}}'  data-activityId='{{item.activityId}}'>
                 <view class='item-head bline f-c-sb'>
                     <view class='f-c-sb'>
                         <image src='{{item.wechatHeadImg}}'></image> {{item.merchantName}}</view>
@@ -33,7 +33,6 @@
                                 <view class='ico ico-clock2'></view>{{item.activityStartTime}}</view>
                         </view>
                     </view>
-
                     <image class='list-img' src='{{item.wechatHeadImg}}'></image>
                 </view>
                 <view class='f-c-sb item-bar bline'>
