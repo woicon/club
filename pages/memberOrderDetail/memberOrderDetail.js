@@ -6,6 +6,7 @@ Page({
     },
     onLoad(options) {
         this.getDetail(options.id)
+        app.pageTitle("订单详情")
     },
     getDetail(id) {
         app.api.myOrderDetail({

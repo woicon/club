@@ -1,13 +1,13 @@
 let app = getApp()
 Page({
     data: {
-        orderStatus: {
-            10: '全部',
-            6: '待审核',
-            0: '待支付',
-            1: '待参与',
-            3: '已完成'
-        },
+        orderStatus: [
+            {name:'全部'},
+            // { id: 6, name: '待审核' },
+            // { id: 0, name: '待支付' },
+            { id: 1, name: '待参与' },
+            { id: 3, name: '已完成' },
+        ],
         isBottom: false,
         currentTab: 1,
         pageLoading: true,
@@ -20,15 +20,17 @@ Page({
             activityId: options.activityId,
             merchantId: options.merchantId,
         })
-        app.pageTitle("订单管理")
+        app.pageTitle("我的订单")
         this.orderList()
     },
     toggleTab(e) {
+        let dataset= e.currentTarget.dataset
         this.setData({
-            currentTab: e.currentTarget.dataset.id
+            currentTab: dataset.index
         })
+        let status = dataset.id == 'n' ? '' : dataset.id
         this.orderList({
-            status: e.currentTarget.dataset.id
+            status:dataset.id || ""
         })
     },
     toOrderDetail(e) {

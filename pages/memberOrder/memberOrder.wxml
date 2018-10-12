@@ -1,6 +1,6 @@
 <!--pages/memberOrder/memberOrder.wxml-->
 <view class='tab'>
-    <view wx:for="{{orderStatus}}" wx:key="ordertab" bindtap='toggleTab' data-id="{{index}}" class='{{currentTab == index ? "active":""}}'>{{item}}</view>
+    <view wx:for="{{orderStatus}}" wx:key="ordertab" bindtap='toggleTab' data-index="{{index}}" data-id="{{item.id}}" class='{{currentTab == index ? "active":""}}'>{{item.name}}</view>
 </view>
 <!-- <view class='search {{gridLayout?"":"bline"}}'>
     <view class='ico icon-search'></view>

@@ -4,13 +4,11 @@ Page({
         currentTab: 0,
         pageLoading: true,
         isBottom:false,
+        pageLoad:true,
         list:[]
     },
     onLoad(options) {
         app.pageTitle(app.ext.appName)
-    },
-    onShow() {
-        this.initIndex()
         app.api.findAllActivityCategory({}).then(res => {
             console.log(res)
             let category = res.data
@@ -21,13 +19,16 @@ Page({
             this.setData({
                 category: res.data
             })
+            this.getList({})
         })
+    },
+    onShow() {
+        //this.initIndex()
     },
     initIndex() {
         this.getCat().then(res => {
             this.getList({})
         })
-
     },
     toggleCateyory(e) {
         console.log(e)
@@ -37,7 +38,7 @@ Page({
         })
         this.setData({
             isBottom: false,
-            pageLoading:true,
+            pageLoad:true,
             currentTab: e.currentTarget.dataset.index
         })
     },
@@ -105,6 +106,7 @@ Page({
                         list: res.data,
                         scrollLoading: false,
                         pageLoading: false,
+                        pageLoad:false,
                         page: 1,
                         hasMore: hasMore
                     })

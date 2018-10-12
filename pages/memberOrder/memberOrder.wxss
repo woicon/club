@@ -1,6 +1,6 @@
 /* pages/memberOrder/memberOrder.wxss */
 .tab>view{
-    width:20%;
+    width:33.333333333333%;
 }
 .list-item{
     background: #fff;

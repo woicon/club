@@ -1,14 +1,33 @@
 <!--pages/memberOderDetail/memberOderDetail.wxml-->
-<view class='a-head'>
-    <image src='{{detail.activityImg}}' mode="aspectFill"></image>
-    <view class='dates'>
-        <view class='a-title'>{{detail.activityName}}</view>
-        <view> <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>
-        <view><view class='ico ico-clock2'></view>{{detail.startDate}}</view>
+<view class='head'>
+    <view>
+        <view class='ticket-name'>{{detail.ticketName}}</view>
+        <view class='ticket-price'>{{detail.ticketPrice}} × {{detail.ticketCount}}张</view>
+        <view>{{detail.contactsName}} ({{detail.contactsPhone}})</view>
     </view>
 </view>
 
-<view>
-<view>{{detail.orderNo}}</view>
-<image src='{{detail.qrCodeAddress}}'></image>
+<view class='qr'>
+    <view class='qr-code'>{{detail.orderNo}}</view>
+    <image class='qrimg' src='{{detail.qrCodeAddress}}'></image>
+</view>
+
+<view class='actinfo'>
+    <view class='bline act-title'>{{detail.activityName}}</view>
+    <view class='bline'>
+        <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>
+    <view class='bline'>
+        <view class='ico ico-clock2'></view>{{detail.activityStartTime}}</view>
+    <view class='contact'>主办方：{{detail.merchantName}}
+        <view><text class='ico-bubble'></text> 联系TA</view>
+    </view>
+</view>
+
+<view class='actinfo'>
+    <view class='bline'>订单编号：
+        <view>{{detail.orderId}}</view>
+    </view>
+    <view>订单时间：
+        <view>{{detail.createDate}}</view>
+    </view>
 </view>
