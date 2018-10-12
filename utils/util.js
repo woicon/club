@@ -8,7 +8,7 @@ const formatTime = date => {
     //second
     return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute].map(formatNumber).join(':')
 }
-Date.prototype.Format = function(fmt) { //author: meizz
+Date.prototype.Format = function(fmt) {
     var o = {
         "M+": this.getMonth() + 1, //月份
         "d+": this.getDate(), //日
@@ -32,7 +32,7 @@ let regList = {
     password: /^([a-z0-9\.\@\!\#\$\%\^\&\*\(\)]){6,20}$/i
 }
 let check = {}
-for(let i in regList){
+for (let i in regList) {
     check[i] = (value) => regList[i].test(value)
 }
 module.exports = {

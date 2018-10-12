@@ -2,7 +2,9 @@ let app = getApp()
 Page({
     data: {
         currentTab: 0,
-        pageLoading:true
+        pageLoading: true,
+        isBottom:false,
+        list:[]
     },
     onLoad(options) {
         app.pageTitle(app.ext.appName)
@@ -22,8 +24,10 @@ Page({
         })
     },
     initIndex() {
-        this.getCat()
-        this.getList({})
+        this.getCat().then(res => {
+            this.getList({})
+        })
+
     },
     toggleCateyory(e) {
         console.log(e)
@@ -32,6 +36,8 @@ Page({
             id: id
         })
         this.setData({
+            isBottom: false,
+            pageLoading:true,
             currentTab: e.currentTarget.dataset.index
         })
     },
@@ -39,8 +45,10 @@ Page({
         let arg = args || {}
         let params = {
             page: 1,
-            size: 8,
-            activityCategory: args.id,
+            size: 8
+        }
+        if (args.id) {
+            params.activityCategory = args.id
         }
         if (arg.isMore) {
             params.page = this.data.page + 1
@@ -57,6 +65,17 @@ Page({
             newList[i].push(list[i])
         }
         return newList
+    },
+    listMore(e) {
+        console.log(e)
+        this.setData({
+            isBottom: true
+        })
+        if (this.data.hasMore) {
+            this.getList({
+                isMore: true
+            })
+        }
     },
     getList(args) {
         let time = "2018-09-14 10:17:00"

@@ -32,7 +32,9 @@
         "pages/applyCheckOrder/applyCheckOrder",
         "pages/applyPaySuccess/applyPaySuccess",
         "pages/accountRegister/accountRegister",
-        "pages/accountLogin/accountLogin"
+        "pages/accountLogin/accountLogin",
+        "pages/memberOrder/memberOrder",
+        "pages/memberOrderDetail/memberOrderDetail"
     ],
     "window": {
         "backgroundTextStyle": "black",

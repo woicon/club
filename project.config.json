@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -108,7 +108,26 @@
 				{
 					"id": -1,
 					"name": "accountRegister",
-					"pathName": "pages/accountRegister/accountRegister"
+					"pathName": "pages/accountRegister/accountRegister",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "activityOrderList",
+					"pathName": "pages/activityOrderList/activityOrderList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "memberOrder",
+					"pathName": "pages/memberOrder/memberOrder",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "memberOrderDetail",
+					"pathName": "pages/memberOrderDetail/memberOrderDetail",
+					"query": "id=1047"
 				}
 			]
 		}

@@ -8,12 +8,10 @@ App({
         this.ext = extConfig
         this.api = api(extConfig.host)
         this.check = base.check
-        
         this.types = types
         wx.setStorageSync("ext", extConfig)
         console.log("ApiList==>16:33", this.api)
         console.log("EXT.JSON==>Version::" + this.version, extConfig)
-        console.log(this)
         this.isPx()
         wx.login({
             success: (res) => {
@@ -55,11 +53,13 @@ App({
             title: name,
         })
     },
+
     common(key) {
         let login = wx.getStorageSync("login")
-        let commonData = login.member
-        return commonData[key]
+        console.log(wx.getStorageSync("isOrganizer"))
+        return wx.getStorageSync("isOrganizer") ? login.wxappletUserInfo[key] : login.member[key]
     },
+
     isLogin(cb) {
         let currPage = this.currPage()
         if (wx.getStorageSync("login")) {
@@ -101,25 +101,36 @@ App({
                     sessionKey: data.data.result.session_key,
                     superiorMerchantId: this.ext.merchantId,
                 }
-                wx.setStorageSync('reg',parmas)
-                wx.navigateTo({
-                    url: `/pages/accountRegister/accountRegister`,
-                })
-                // this.api.wechatRegister(parmas)
-                //     .then(res => {
-                //         wx.hideLoading()
-                //         if (res.data) {
-                //             wx.setStorageSync("login", res.data)
-                //             this.tip("登录成功")
-                //             cb()
-                //         } else {
-                //             let currPage = this.currPage()
-                //             this.tip(res.msg)
-                //             currPage.setData({
-                //                 btnLoading: false
-                //             })
-                //         }
-                //     })
+                wx.setStorageSync('reg', parmas)
+                // wx.navigateTo({
+                //     url: `/pages/accountRegister/accountRegister`,
+                // })
+                this.api.wechatRegister(parmas)
+                    .then(res => {
+                        wx.hideLoading()
+                        console.log(res)
+                        if (res.status == '200') {
+                            wx.setStorageSync("login", res.data)
+                            this.tip("登录成功")
+                            cb()
+                        } else {
+                            wx.setStorageSync('reg', parmas)
+                            wx.navigateTo({
+                                url: `/pages/accountRegister/accountRegister`,
+                            })
+                        }
+                        // if (res.data) {
+                        //     wx.setStorageSync("login", res.data)
+                        //     this.tip("登录成功")
+                        //     cb()
+                        // } else {
+                        //     let currPage = this.currPage()
+                        //     this.tip(res.msg)
+                        //     currPage.setData({
+                        //         btnLoading: false
+                        //     })
+                        // }
+                    })
             }
         })
     },

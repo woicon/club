@@ -46,12 +46,21 @@ function api(API) {
         //"applet/v1/uploadPic", //上传图片
         "applet/v1/wechatRegister", //小程序注册
         "applet/v1/posterTemplate", //海报模板
+
         //资料设置和留言接口集合 : Data Leave Message Controller
         "applet/v1/dataSet", //资料设置
         "applet/v1/messageList", //留言列表
         "applet/v1/messageReply", //留言回复
         "applet/v1/selectData", //资料查询
-        "applet/createAppletOrder",//参加活动
+        "applet/createAppletOrder", //参加活动
+
+        //参与者相关接口集合 : Participant Related Controller Show / Hide List Operations Expand Operations
+        "applet/countOrderByStatus", //订单条数统计
+        "applet/getMemberInfo", //参与者信息
+        "applet/myOrderDetail", //我的订单详情
+        "applet/myOrderList", //我的订单列表
+        "applet/updateMemberInfo", //修改会员绑定手机号
+
         //活动管理接口集合 : Activity Manage Controller
         "applet/activityDetail", //活动详情
         "applet/activityList", //活动列表
@@ -62,7 +71,7 @@ function api(API) {
         "applet/getActivityOrderEnrollList", //活动报名列表
         "applet/verificationTicketByOrderId", //核销票券
         'applet/findActivityList', //首页活动列表
-        "applet/findAllActivityCategory",//活动分类
+        "applet/findAllActivityCategory", //活动分类
         //商户认证提现接口集合 : Merchant Related Controller
         "applet/certificationAudit", //认证审核
         "applet/findMerchantAccount", //查询账户余额

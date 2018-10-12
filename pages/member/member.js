@@ -2,10 +2,9 @@ let app = getApp()
 Page({
     data: {
         pageLoading: true,
-        isOrganizer: false 
+        isOrganizer: false
     },
-    onLoad: function(options) {
-        console.log("onload")
+    onLoad(options) {
         wx.setNavigationBarColor({
             frontColor: '#ffffff',
             backgroundColor: '#FF6363',
@@ -50,8 +49,10 @@ Page({
         })
     },
     toggleRole() {
+        let isOrganizer = !this.data.isOrganizer
+        wx.setStorageSync("isOrganizer", isOrganizer)
         this.setData({
-            role: !this.data.role
+            isOrganizer: isOrganizer
         })
     },
     scanCode(e) {
@@ -82,12 +83,13 @@ Page({
     onShow() {
         this.initMember()
     },
+    //初始化个人中心
     initMember() {
         if (wx.getStorageSync("login")) {
-            // members  organizer
-            
             this.setData({
-                members: wx.getStorageSync("login")
+                members: wx.getStorageSync("login"),
+                isOrganizer: wx.getStorageSync("isOrganizer") || false
+
             })
             app.api.selectData({
                 userId: app.common('id')
