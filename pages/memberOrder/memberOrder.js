@@ -19,6 +19,7 @@ Page({
         this.setData({
             activityId: options.activityId,
             merchantId: options.merchantId,
+            activityStatus: app.types.activityStatus
         })
         app.pageTitle("我的订单")
         this.orderList()
@@ -73,9 +74,16 @@ Page({
             .then(res => {
                 console.log(res)
                 if (res.status == '200') {
+                    let data= res.data
+                    if(data.length > 0){
+                        for(let i in data){
+                            data[i].activityStartTime = app.converDate(data[i].activityStartTime)
+                        }
+                    }
+                    console.log(data)
                     if (arg.isMore) {
                         let _list = this.data.list
-                        if (res.data.length > 0) {
+                        if (data.length > 0) {
                             this.setData({
                                 pageLoading: false,
                                 list: _list.concat(res.data),
@@ -91,7 +99,7 @@ Page({
                     } else {
                         this.setData({
                             pageLoading: false,
-                            list: res.data,
+                            list: data,
                             page: params.page
                         })
                     }

@@ -70,8 +70,10 @@ const activityCategory = {
     10:'公益',
     11:'行业活动',
 }
+const activityStatus = ["待支付", "待核销","核销中","完成","取消","过期","待审核","审核失败","删除","失败"]
 module.exports = {
     category: category,
     postType: postType,
+    activityStatus: activityStatus,
     activityCategory: activityCategory
 }
