@@ -5,8 +5,8 @@ Page({
     ticketName: '免费票',
     ticketPrice: 0,
     ticketNum: 1,
-    userName: '杨丽娜',
-    userPhone: '15011312397',
+    userName: '',
+    userPhone: '',
     iconType: [
       'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
     ]
@@ -21,7 +21,7 @@ Page({
     this.setData({
        ticketName: form.ticketName,
        ticketPrice:form.orderPrice,
-       tickekNum:form.ticketCount,
+       ticketNum: form.ticketCount,
        userName:form.contactsName,
        userPhone:form.contactsPhone
     })

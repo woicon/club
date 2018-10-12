@@ -3,7 +3,7 @@
       <view class='forms' wx:for="{{personNum}}" wx:for-item="i">
                 <view class='f-head bline'>
                     <view class='f-title'>第{{i+1}}位参与者</view>
-                    <view>默认联系人</view>
+                    <view class='f-check' wx:if="{{isActive == i}}">设置为默认联系人</view>
                 </view>
                 <view wx:for="{{responseList}}">
                     <label>

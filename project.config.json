@@ -1,5 +1,8 @@
 {
-	"description": "项目配置文件。",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
@@ -10,16 +13,18 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.94",
 	"appid": "wx3a2c78ac53d02dec",
-	"projectname": "%E6%B4%BB%E5%8A%A8%E6%B1%87%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
+	"projectname": "%E6%B4%BB%E5%8A%A8hui",
 	"svr": "/",
 	"client": "/",
 	"qcloudRoot": "/",
 	"miniprogramRoot": "/",
+	"cloudfunctionRoot": "/",
+	"jsserverRoot": "/",
 	"pluginRoot": "/",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -37,7 +42,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 18,
 			"list": [
 				{
 					"id": 0,
@@ -113,33 +118,6 @@
 				},
 				{
 					"id": -1,
-<<<<<<< HEAD
-					"name": "activityOrderList",
-					"pathName": "pages/activityOrderList/activityOrderList",
-=======
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
->>>>>>> 549dc4b14ea02d120eceec1fefa2d28a955913bd
-					"query": ""
-				},
-				{
-					"id": -1,
-<<<<<<< HEAD
-					"name": "memberOrder",
-					"pathName": "pages/memberOrder/memberOrder",
-=======
-					"name": "applySuccess",
-					"pathName": "pages/applySuccess/applySuccess",
->>>>>>> 549dc4b14ea02d120eceec1fefa2d28a955913bd
-					"query": ""
-				},
-				{
-					"id": -1,
-<<<<<<< HEAD
-					"name": "memberOrderDetail",
-					"pathName": "pages/memberOrderDetail/memberOrderDetail",
-					"query": "id=1047"
-=======
 					"name": "applySuccess",
 					"pathName": "pages/applySuccess/applySuccess",
 					"query": ""
@@ -149,7 +127,36 @@
 					"name": "applySuccess",
 					"pathName": "pages/applySuccess/applySuccess",
 					"query": ""
->>>>>>> 549dc4b14ea02d120eceec1fefa2d28a955913bd
+				},
+				{
+					"id": -1,
+					"name": "applySuccess",
+					"pathName": "pages/applySuccess/applySuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "applySuccess",
+					"pathName": "pages/applySuccess/applySuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "applySuccess",
+					"pathName": "pages/applySuccess/applySuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "applySuccess",
+					"pathName": "pages/applySuccess/applySuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "applySuccess",
+					"pathName": "pages/applySuccess/applySuccess",
+					"query": ""
 				}
 			]
 		}

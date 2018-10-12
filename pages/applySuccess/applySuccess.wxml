@@ -1,5 +1,5 @@
 <view class="success">
-    <view><icon type="success" size="30"/><text>提交成功</text></view>
+    <view><icon type="success" size="20"/><text>提交成功</text></view>
     <view class="con">您的报名信息已提交成功，请关注订单状态变化</view>
     <view class="con">如有问题请联系主办方</view>
     <button>联系他</button>
@@ -9,5 +9,5 @@
        </view>
        <view class="ticketDetail">{{userName}}<label class="phone">({{userPhone}})</label></view>
     </view>
-    <view class="btn" bindtap="detail">查看订单</view>
+    <button class="button button-touch" bindtap="detail">查看订单</button>
 </view>

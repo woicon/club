@@ -38,19 +38,17 @@ Page({
     radioArr:[],
     checkArr:[],
     selNum: 0,
+    isActive:0,
     name:'',
     txtStatus:0,//必填项*
     personNum:1  //活动报名人数
   },
   onLoad: function (options) {
     app.pageTitle("填写报名人信息");
-    console.log(app.check.phone("13692503686"))
     let orderParams = wx.getStorageSync("orderParams"),
         applyDetail = wx.getStorageSync("applyDetail"),
         _this = this,
         responseList = applyDetail.activityEnrollInfoResponseList
-        console.log(applyDetail)
-        console.log(orderParams)
         responseList.forEach(function (item, x) {
            let arr = new Array()
            if (item.fieldOption != null) {
@@ -86,26 +84,18 @@ Page({
     })
   },
   radioChange(e) {
-    if(this.data.radioArr.length >=2){
-        this.data.radioArr = []
-    }
-    let radio = new Array(this.data.personNum),
-        index = e.target.dataset.index
-        radio[index] = e.detail.value
-    this.setData({
-      radioTxt : e.detail.value,
-    })
-    this.data.radioArr.push(radio[index])
+       let index = e.target.dataset.index
+       this.data.radioArr[index] = e.detail.value
+       if (this.data.radioArr.length > this.data.personNum) {    
+            this.data.radioArr.push(this.data.radioArr[index])
+       }
   },
   checkChange(e) {
     let index = e.target.dataset.index
         if (e.detail.value.length>0){
           this.data.checkArr[index] = e.detail.value.join("$")
         }
-    this.setData({
-      checkTxt : e.detail.value.join("$")
-    })
-    if(this.data.checkArr.length>2){
+    if (this.data.checkArr.length > this.data.personNum){
       this.data.checkArr.push(this.data.checkArr[index])
     }
   },
@@ -139,7 +129,7 @@ Page({
             }
             if(item.fieldOption!="" && item.name=="手机号"){
               if (app.check.phone(item.fieldOption)==false){
-                     app.tip(`请输入正确手机号`)
+                     app.tip(`请输入正确11位手机号`)
                      flag = true
               } 
             }
@@ -155,12 +145,17 @@ Page({
       this.setData({
         form: form
       })
-       wx.setStorageSync("form",this.data.form);
+      wx.setStorageSync("form",this.data.form);
       app.api.createAppletOrder(this.data.form).then((res) => {
          //if(this.data.form.price==0){}
-          wx.navigateTo({
-            url:'/pages/applySuccess/applySuccess?data='+res.data,
-         })
+          console.log(res)
+          if(res.status=="200" && res.msg=="OK"){
+            wx.navigateTo({
+              url: '/pages/applySuccess/applySuccess?data=' + res.data,
+            })
+          }else{
+             app.tip("报名信息提交失败,请重新提交！")
+          }
       })
     }
   }

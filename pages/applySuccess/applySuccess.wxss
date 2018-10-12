@@ -42,10 +42,8 @@ label{
   margin-left:40rpx;
 }
 .btn{
-   position: fixed;
-   left:0;
-   right:0;
-   bottom:0;
-   border-top:1px solid #e8e8e8;
+   border:1px solid #e8e8e8;
    border-radius: 10rpx;
+   margin-top:30rpx;
+   width:50%;
 }

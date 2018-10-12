@@ -10,11 +10,19 @@
 <view class='a-block ticket' >
     <view class='cstitle'>{{form.ticketTitle}}<view class="selected">{{orderParams.ticketName}}</view></view>
     <view class='csblock'>
-        <view class='items {{current == index ? "active" : ""}}' hover-class='touch' wx:for="{{detail.activityTicketList}}" wx:key="activityTicketList" data-id="{{item.id}}"  data-price="{{item.price}}" data   bindtap='checkTicket' data-index="{{index}}" data-name="{{item.ticketName}}" data-inid="{{item.activityTicketInventory[0].id}}">
+        <view class='items {{current == index ? "active" : ""}}' hover-class='touch' wx:for="{{detail.activityTicketList}}" wx:key="activityTicketList" data-id="{{item.id}}"  data-price="{{item.price}}" data   bindtap='checkTicket' data-index="{{index}}" data-name="{{item.ticketName}}" data-count="{{item.totalCount}}" data-inid="{{item.activityTicketInventory[0].id}}">
             {{item.ticketName}}
            <view class="price"> {{item.price}}元</view>
         </view>
     </view>
+</view>
+<view class='a-block'>
+   <view class='cstitle'>已选{{orderParams.num}}张<view class="max">最多限制{{maxlen}}张</view></view>
+   <view>
+       <label class="btn btn-minus" bindtap="bindChange" data-type="minus"></label>
+       <text>{{num}}</text>
+       <label class="btn btn-plus"  bindtap="bindChange" data-type="plus"></label>
+   </view>
 </view>
 <view class='a-block date'>
     <view class='cstitle'>{{form.timeTitle}}<view class="selected">{{orderParams.time}}</view></view>
@@ -24,7 +32,7 @@
         </view>
     </view>
 </view>
-<view class='a-block date'>
+<view class="a-block date {{isPx ? 'mt50': ''}}">
     <view class='cstitle'>{{form.intervalTitle}}<view class="selected">{{orderParams.interval}}</view></view>
     <view class='csblock'>
         <view class='items {{intcurrent == index ? "active" : ""}}'  wx:for="{{detail.activityTimeList}}" wx:key="detail.activityTimeList" bindtap='checkedDate' data-index="{{index}}" data-stime="{{item.startTime}}" data-etime="{{item.endTime}}" data-type="1">
@@ -33,14 +41,6 @@
     </view>
 </view>
 
-<view class='a-block a-num'>
-   <view class='cstitle'>已选{{orderParams.num}}张<view class="max">最多限制{{maxlen}}张</view></view>
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-      <view class="num" hover-class='touch' bindtap="selectNum">
-         {{array[index]}}
-      </view>张
-    </picker>
-</view>
 <view class='page-bar {{isPX ? "page-bar-px":""}}'>
     <view>共计{{price}}元</view>
     <view class='btn-jion' bindtap='toApplyPerson'>下一步</view>

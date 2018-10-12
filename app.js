@@ -179,10 +179,11 @@ App({
             this.tip("更新失败")
         })
     },
-    converDate(dateStr) {
+    converDate(dateStr,flag) {
         dateStr = dateStr.split('-')
         dateStr = dateStr.join('/')
-        let martDate = new Date(dateStr)
-        return martDate.getFullYear() == new Date().getFullYear() ? martDate.Format('MM月dd日 hh:mm') : martDate.Format('yyyy年MM月dd日 hh:mm')
+        let martDate = new Date(dateStr),
+            num = flag ? '':' hh:mm'
+   return martDate.getFullYear() == new Date().getFullYear() ? martDate.Format(`MM月dd日${num}`) : martDate.Format(`yyyy年MM月dd日${num}`)
     }
 })
