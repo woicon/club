@@ -239,7 +239,9 @@ page {
 .button::after {
     border: none;
 }
-
+.button.disable{
+    opacity:.6;
+}
 @keyframes sliderInUp {
     0% {
         transform: translateY(100%);

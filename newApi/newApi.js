@@ -37,10 +37,13 @@ function api(API) {
     }
     let apis = {}
     let apiList = [
+        //主办方账户集合
+        "applet/updatePassword", //修改小程序密码
         //票券审核接口集合 : Ticketcheck Controller
         "applet/v1/passCheck", //票券通过审核
         "applet/v1/rejectCheck", //票券拒绝
         "applet/v1/ticketCheckList", //票券审核列表
+        
         //发布活动接口集合 : Publish Activity Controller
         "applet/v1/publishActivity", //发布活动
         //"applet/v1/uploadPic", //上传图片
