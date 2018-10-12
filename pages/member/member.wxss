@@ -63,7 +63,7 @@ page {
 }
 
 .m-name {
-    font-size: 44rpx;
+    font-size:35rpx;
     font-weight: 800;
 }
 

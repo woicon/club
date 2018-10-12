@@ -61,12 +61,6 @@
                 "selectedIconPath": "images/home-sel.png"
             },
             {
-                "pagePath": "pages/activityList/activityList",
-                "text": "活动管理",
-                "iconPath": "images/tab01.png",
-                "selectedIconPath": "images/tab01-sel.png"
-            },
-            {
                 "pagePath": "pages/member/member",
                 "text": "个人中心",
                 "iconPath": "images/tab02.png",

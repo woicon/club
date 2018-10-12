@@ -3,9 +3,9 @@ Page({
     data: {
         currentTab: 0,
         pageLoading: true,
-        isBottom:false,
-        pageLoad:true,
-        list:[]
+        isBottom: false,
+        pageLoad: true,
+        list: []
     },
     onLoad(options) {
         app.pageTitle(app.ext.appName)
@@ -22,14 +22,6 @@ Page({
             this.getList({})
         })
     },
-    onShow() {
-        //this.initIndex()
-    },
-    initIndex() {
-        this.getCat().then(res => {
-            this.getList({})
-        })
-    },
     toggleCateyory(e) {
         console.log(e)
         let id = e.currentTarget.dataset.id
@@ -38,7 +30,7 @@ Page({
         })
         this.setData({
             isBottom: false,
-            pageLoad:true,
+            pageLoad: true,
             currentTab: e.currentTarget.dataset.index
         })
     },
@@ -78,7 +70,7 @@ Page({
             })
         }
     },
-    
+
     getList(args) {
         let time = "2018-09-14 10:17:00"
         console.log(new Date(time).Format("yyyy-MM-dd hhmmss"))
@@ -106,26 +98,11 @@ Page({
                         list: res.data,
                         scrollLoading: false,
                         pageLoading: false,
-                        pageLoad:false,
+                        pageLoad: false,
                         page: 1,
                         hasMore: hasMore
                     })
                 }
-            })
-    },
-    getCat() {
-        return app.api.posterTemplate({})
-            .then(res => {
-                let post = res.data
-                let postIndex = []
-                for (let i in post) {
-                    postIndex.push(i)
-                }
-                let selIndex = postIndex[0]
-                this.setData({
-                    post: post,
-                    pageLoading: false
-                })
             })
     },
     toDetail(e) {
@@ -136,22 +113,7 @@ Page({
     onPullDownRefresh(e) {
         console.log('downRefresh')
     },
-    onReady: function() {
-
-    },
-    onHide: function() {
-
-    },
-    onUnload: function() {
-
-    },
-    onPullDownRefresh: function() {
-
-    },
-    onReachBottom: function() {
-
-    },
-    onShareAppMessage: function() {
+    onShareAppMessage() {
 
     }
 })

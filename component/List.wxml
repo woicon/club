@@ -1,3 +1,0 @@
-    <scroll-view scroll-x class='scroll-tab' bindscrolltolower="listMore">
-    
-    </scroll-view>
