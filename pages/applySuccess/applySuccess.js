@@ -33,8 +33,8 @@ Page({
     }
   },
   continues(){
-    console.log("a")
     wx.switchTab({
+       //url: `/pages/activityDetails/activityDetails?id=${this.data.activityId}`,
        url:`/pages/index/index`
     })
   },
