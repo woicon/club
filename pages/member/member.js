@@ -20,7 +20,6 @@ Page({
                 this.setData({
                     member: wx.getStorageSync("login")
                 })
-                this.initMember()
             })
         } else {
             app.tip('请您允许授权登录，否则无法使用该App')
@@ -31,7 +30,7 @@ Page({
             url: '/pages/activityList/activityList',
         })
     },
-    exitSys: function() {
+    exitSys: function () {
         wx.showModal({
             title: '提示',
             content: '确定要退出吗？',
@@ -50,9 +49,11 @@ Page({
     toggleRole() {
         let isOrganizer = !this.data.isOrganizer
         wx.setStorageSync("isOrganizer", isOrganizer)
+
         this.setData({
             isOrganizer: isOrganizer
         })
+        this.getMemberInfo(!isOrganizer)
     },
     scanCode(e) {
         // wx.showLoading()
@@ -63,8 +64,8 @@ Page({
                     title: '验证码识别中',
                 })
                 app.api.findSignInfoBySignCode({
-                        signCode: res.result,
-                    })
+                    signCode: res.result,
+                })
                     .then(res => {
                         wx.hideLoading()
                         if (res.status == '200') {
@@ -79,17 +80,50 @@ Page({
             }
         })
     },
+    getParticipant() { //参与者
+        app.api.getMemberInfo({
+            memberId: app.common("memberId"),
+            merchantId: app.common("merchantId")
+        }).then(res => {
+            console.log(res.data)
+            this.setData({
+                member: res.data
+            })
+        })
+    },
+    getSponsor() { //主办方
+        app.api.selectData({
+            userId: app.common('id')
+        }).then(res => {
+            console.log(res)
+            this.setData({
+                member: res.data,
+                pageLoading: false
+            })
+        })
+    },
     onShow() {
+
         this.initMember()
+
+    },
+    getMemberInfo(isOrganizer) {
+        if (isOrganizer) {
+            //参与者
+            this.getParticipant()
+        } else {
+            //主办方
+            this.getSponsor()
+        }
     },
     //初始化个人中心
     initMember() {
         if (wx.getStorageSync("login")) {
+            let isOrganizer = wx.getStorageSync("isOrganizer") || false
             this.setData({
-                members: wx.getStorageSync("login"),
-                isOrganizer: wx.getStorageSync("isOrganizer") || false
-
+                isOrganizer: isOrganizer
             })
+            this.getMemberInfo(!isOrganizer)
             app.api.selectData({
                 userId: app.common('id')
             }).then(res => {

@@ -29,7 +29,7 @@ const formatNumber = n => {
 }
 let regList = {
     phone: /^[1][3,4,5,7,8][0-9]{9}$/,
-    password: /^([a-z0-9\.\@\!\#\$\%\^\&\*\(\)]){6,20}$/i
+    password: /^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{6,20}$/
 }
 let check = {}
 for (let i in regList) {

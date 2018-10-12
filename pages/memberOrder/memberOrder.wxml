@@ -19,7 +19,7 @@
             <view wx:for="{{list}}" wx:key="orderlist" class='list-item {{status ==3 ? "disable" : ""}} bline' bindtap='toOrderDetail' data-orderId='{{item.id}}'  data-activityId='{{item.activityId}}'>
                 <view class='item-head bline f-c-sb'>
                     <view class='f-c-sb'>
-                        <image src='{{item.portraitImg}}'></image> {{item.merchantName}}</view>
+                        <image wx:if="{{item.portraitImg}}" src='{{item.portraitImg}}'></image> {{item.merchantName}}</view>
                     <view class='{{item.status == 1 ? "btag" : "tags"}}'> <view>{{activityStatus[item.status]}}</view></view>
                 </view>
                 <view class='item-cont'>

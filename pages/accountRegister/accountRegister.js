@@ -15,7 +15,7 @@ Page({
         } else if (e.password === '') {
             app.tip('请输入密码')
         } else if (!app.check.password(e.password)) {
-            app.tip("请输入6到20位密码")
+            app.tip("请输入6到20位包含字母和数字的密码")
         } else {
             cb()
         }

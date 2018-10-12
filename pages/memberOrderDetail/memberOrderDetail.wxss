@@ -85,6 +85,15 @@ page {
     font-size: 38rpx;
     color: #ff6363;
 }
+.act-title::before{
+    content: '';
+    width:12rpx;
+    height:12rpx;
+    border:2px solid #ccc;
+    border-left:none;
+    border-bottom:none;
+    transform:rotate(45deg);
+}
 
 .qr {
     padding-top: 40rpx;

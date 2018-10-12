@@ -40,8 +40,6 @@
                 <view class='ico ico-price-tag b1'></view>
                 <text>票券审核</text>
             </view>
-
-
             <view bindtap='toPage' data-url='/pages/messageList/messageList' hover-class='touch'>
                 <view class='ico ico-bubbles2 b10'></view>
                 <text>留言管理</text>
@@ -109,7 +107,6 @@
                 <view class='ico ico-cog b2'></view>
                 <text>账户设置</text>
             </view> -->
-
             <view bindtap='shareApp'>
                 <view class='ico ico-share2 b6'></view>
                 <text>告诉好友 </text>
