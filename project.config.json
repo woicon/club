@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 19,
 			"list": [
 				{
 					"id": -1,
@@ -132,7 +132,7 @@
 					"id": 15,
 					"name": "memberOrderDetail",
 					"pathName": "pages/memberOrderDetail/memberOrderDetail",
-					"query": "id=1021"
+					"query": "activityid=691&orderId=1249"
 				},
 				{
 					"id": -1,
@@ -144,6 +144,18 @@
 					"id": -1,
 					"name": "memberPassword",
 					"pathName": "pages/memberPassword/memberPassword",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "memberOrderApplyInfo",
+					"pathName": "pages/memberOrderApplyInfo/memberOrderApplyInfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "activityList",
+					"pathName": "pages/activityList/activityList",
 					"query": ""
 				}
 			]

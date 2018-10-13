@@ -14,7 +14,7 @@ Page({
         let params = {
             id: id
         }
-        //主办方不传memberId
+        //主办方不传 memberId
         if (!wx.getStorageSync("isOrganizer")) {
             params.memberId = app.common("memberId")
         }

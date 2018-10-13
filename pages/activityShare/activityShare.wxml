@@ -7,7 +7,7 @@
             <view class='ico icon-oks'></view>
             <view>您的活动已发布成功</view>
         </view> -->
-        <view class='share-cont' bindtap='toDetail'>
+        <view class='share-cont' bindtap='toDetail' data-id="{{detail.id}}">
             <view class='s-head'>
                 <image src='{{member.avatarUrl}}'></image>
                 <view>

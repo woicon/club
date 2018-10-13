@@ -1,36 +1,42 @@
 <!--pages/memberOderDetail/memberOderDetail.wxml-->
-<view class='detail'>
-<view class='head'>
-    <view>
-        <view class='ticket-name'>{{detail.ticketName}}</view>
-        <view>{{detail.contactsName}} ({{detail.contactsPhone}})</view>
-        <view class='ticket-price'>{{detail.ticketPrice != 0 ? "¥"+detail.ticketPrice : "免费" }} × {{detail.ticketCount}}张</view>
+<block wx:if="{{pageLoading}}">
+    <view class='f-c-c empty'>
+        <load color="#ffffff"></load>
     </view>
-</view>
+</block>
 
-<view class='qr'>
-    <view class='qr-code'>{{detail.orderNo}}</view>
-    <image class='qrimg' src='{{detail.qrCodeAddress}}'></image>
-</view>
-
-<view class='actinfo'>
-    <view class='bline act-title'>{{detail.activityName}}</view>
-    <view class='bline'>
-        <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>
-    <view class='bline'>
-        <view class='ico ico-clock2'></view>{{detail.activityStartTime}}</view>
-    <view class='contact'>主办方：{{detail.merchantName}}
-        <view wx:if="{{detail.merchantPhone}}" bindtap='callOrganze'><text class='ico-bubble'></text> 联系TA</view>
+<view class='detail' wx:else>
+    <view hover-class='touch' bindtap='{{detail.orderEnrollRep.length>0 ? "toInfo":""}}' class='head {{detail.orderEnrollRep.length>0 ? "head-detail":""}}'>
+        <view>
+            <view class='ticket-name'>{{detail.ticketName}}</view>
+            <view>{{detail.contactsName}} ({{detail.contactsPhone}})</view>
+            <view class='ticket-price'>{{detail.ticketPrice != 0 ? "¥"+detail.ticketPrice : "免费" }} × {{detail.ticketCount}}张</view>
+        </view>
     </view>
-</view>
 
-<view class='actinfo'>
-    <view class='bline'>订单编号：
-        <view>{{detail.orderNo}}</view>
+    <view class='qr'>
+        <view class='qr-code'>{{detail.orderNo}}</view>
+        <image class='qrimg' src='{{detail.qrCodeAddress}}'></image>
     </view>
-    <view>订单时间：
-        <view>{{detail.createDate}}</view>
-    </view>
-</view>
 
+    <view class='actinfo'>
+        <view class='blines act-title'>{{detail.activityName}}</view>
+        <view class='bline'>
+            <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>
+        <view class='bline'>
+            <view class='ico ico-clock2'></view>{{detail.activityStartTime}}</view>
+        <view class='contact'>主办方：{{detail.merchantName}}
+            <view wx:if="{{detail.merchantPhone}}" bindtap='callOrganze'>
+                <text class='ico-bubble'></text> 联系TA</view>
+        </view>
+    </view>
+
+    <view class='actinfo'>
+        <view class='bline'>订单编号：
+            <view>{{detail.orderNo}}</view>
+        </view>
+        <view>订单时间：
+            <view>{{detail.createDate}}</view>
+        </view>
+    </view>
 </view>

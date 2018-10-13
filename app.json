@@ -38,10 +38,10 @@
         "pages/memberOrderDetail/memberOrderDetail",
         "pages/activityFavorite/activityFavorite",
         "pages/memberSetting/memberSetting",
-        "pages/memberPassword/memberPassword"
+        "pages/memberPassword/memberPassword",
+        "pages/memberOrderApplyInfo/memberOrderApplyInfo"
     ],
     "window": {
-        "backgroundTextStyle": "black",
         "navigationBarBackgroundColor": "#ffffff",
         "navigationBarTitleText": "活动吧",
         "navigationBarTextStyle": "black",

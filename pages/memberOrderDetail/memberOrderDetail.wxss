@@ -53,7 +53,7 @@ page {
     font-size: 32rpx;
 }
 
-.head::after {
+.head-detail::after {
     content: '';
     display: block;
     width: 18rpx;
@@ -66,8 +66,11 @@ page {
 
 .actinfo {
     margin: 30rpx 0;
+    border-bottom: 1px dashed #ccc;
 }
-
+.actinfo:last-child{
+    border:none;
+}
 .actinfo .ico {
     margin-right: 20rpx;
 }
@@ -84,8 +87,12 @@ page {
     font-weight: 800;
     font-size: 38rpx;
     color: #ff6363;
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
 }
-.act-title::before{
+.act-title::after{
     content: '';
     width:12rpx;
     height:12rpx;
@@ -110,5 +117,5 @@ page {
 
 .contact {
     justify-content: space-between;
-    border-bottom: 1px dashed #ccc;
+    
 }

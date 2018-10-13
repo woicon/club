@@ -3,7 +3,7 @@
     left:0;
     right:0;
     top:0;
-    height:94rpx;
+    height:98rpx;
     overflow:hidden;
     background:#fff;
 }

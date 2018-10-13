@@ -32,7 +32,6 @@ Page({
                 let shareImg = res[0].data
                 let pant = new RegExp("https://www.51club.com", "g")
                 shareImg = shareImg.replace(pant, "https://www.huodonghui.com")
-                console.log("shareImgUrl=====>", shareImg)
                 this.setData({
                     shareImg: shareImg,
                     detail: res[1].data,
@@ -46,10 +45,10 @@ Page({
             mask: true,
         })
     },
-    toDetail() {
+    toDetail(e) {
         wx.setStorageSync("detailPageUrl", this.data.detail.activityDetailUrl)
         wx.navigateTo({
-            url: `/pages/activityDetail/activityDetail`,
+            url: `/pages/activityDetails/activityDetails?id=${e.currentTarget.dataset.id}`,
         })
     },
     shareWe: function() {

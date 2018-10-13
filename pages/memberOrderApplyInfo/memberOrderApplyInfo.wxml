@@ -1,0 +1,8 @@
+<!--pages/memberOrderApplyInfo/memberOrderApplyInfo.wxml-->
+<view wx:for="{{info}}" wx:key="detailInfo" class='conts bline' bindtap='selectInfo' data-index="{{index}}">
+    <!-- <view class='cont-title'>第{{index+1}}位联系人</view> -->
+    <block wx:for="{{item.orderEnrollVoList}}" wx:key="details" wx:for-item="i" wx:for-index="indexs">
+        <view wx:if="{{i.type==1 || i.type == 2}}" class='conts-head {{i.type==1 ? "conts-name":"conts-phone"}}'>{{i.value ? i.value :'--'}}</view>
+        <view class='conts-item bline' wx:elif="{{index == selsctItem}}">{{i.name}}: {{i.value ? i.value :'--'}}</view>
+    </block>
+</view>

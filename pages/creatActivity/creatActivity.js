@@ -39,7 +39,7 @@ Page({
         ],
         loacaltionTtype: null,
     },
-    onLoad: function(options) {
+    onLoad(options) {
         app.isLogin()
         app.pageTitle(options.edit ? '编辑活动' : '发布活动')
         this.setData({
@@ -66,6 +66,7 @@ Page({
             endTimeArray: endObj.dateTimeArray,
             dateTimeArray: obj.dateTimeArray
         })
+        this.setTimeInfo()
     },
 
     editInit() {
@@ -113,7 +114,6 @@ Page({
                 }
             }
         } else {
-
             for (let i in nodes) {
                 let node = nodes[i]
                 console.log(node)
@@ -183,6 +183,7 @@ Page({
             }
         })
     },
+
     mapChoose() {
         wx.chooseLocation({
             success: res => {
@@ -202,6 +203,7 @@ Page({
             }
         })
     },
+
     chooseLocaltion(e) {
         console.log(e)
         wx.showActionSheet({
@@ -218,6 +220,7 @@ Page({
 
         })
     },
+
     getLogin(e) {
         //console.log(e)
         this.setData({
@@ -236,6 +239,7 @@ Page({
             this.checkActForm(this.data.submitData)
         })
     },
+
     creatActivity: function(e) {
         console.log(e)
         let value = e.detail.value
@@ -244,6 +248,7 @@ Page({
         })
         this.checkActForm(this.data.submitData)
     },
+
     checkActForm(value) {
         if (this.data.member) {
             //let member = wx.getStorageSync("login")
@@ -306,7 +311,7 @@ Page({
                         btnLoading: false
                     })
                 }
-            }).catch(error=>{
+            }).catch(error => {
                 console.log(error)
                 this.setData({
                     btnLoading: false
@@ -318,6 +323,25 @@ Page({
             startDate: e.detail.value,
             endDate: e.detail.value
         })
+        this.setTimeInfo()
+    },
+    setTimeInfo() {
+        let dateTimeArray = this.data.dateTimeArray,
+            startDate = this.data.startDate,
+            endDate = this.data.endDate
+        const timeInfo = [{
+            startDate: `${dateTimeArray[0][startDate[0]]}-${dateTimeArray[1][startDate[1]]}-${dateTimeArray[2][startDate[2]]}`,
+            startTime: `${dateTimeArray[3][endDate[3]]}:${dateTimeArray[4][endDate[4]]}`,
+            endDate: `${dateTimeArray[0][endDate[0]]}-${dateTimeArray[1][endDate[1]]}-${dateTimeArray[2][endDate[2]]}`,
+            endTime: `${dateTimeArray[3][endDate[3]]}:${dateTimeArray[4][endDate[4]]}`,
+        }]
+        // <input name="startDate" class='hidden' value = '{{dateTimeArray[0][startDate[0]]}}-{{dateTimeArray[1][startDate[1]]}}-{{dateTimeArray[2][startDate[2]]}}' > </input>
+        // < input name = "startTime" class='hidden' value = '{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}' > </input>
+        // < input name = "endDate" class='hidden' value = '{{dateTimeArray[0][endDate[0]]}}-{{dateTimeArray[1][endDate[1]]}}-{{dateTimeArray[2][endDate[2]]}}' > </input>
+        // < input name = "endTime" class='hidden' value = '{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}' > </input>
+        this.setData({
+            timeInfo:JSON.stringify(timeInfo)
+        })
     },
     changeEndDate: function(e) {
         let dateTimeArray = this.data.dateTimeArray
@@ -327,12 +351,14 @@ Page({
         let startDateStr = `${dateTimeArray[0][startDate[0]]}/${dateTimeArray[1][startDate[1]]}/${dateTimeArray[2][startDate[2]]} ${dateTimeArray[3][startDate[3]]}:${dateTimeArray[4][startDate[4]]}`
         let endDateStr = `${endTimeArray[0][endDate[0]]}/${endTimeArray[1][endDate[1]]}/${endTimeArray[2][endDate[2]]} ${endTimeArray[3][endDate[3]]}:${endTimeArray[4][endDate[4]]}`
         console.log(startDateStr, ':::', endDateStr)
+        // [{ 'startDate': '2018-08-11', 'startTime': '08:00', 'endDate': '2018-11-11', 'endTime': '08:00', 'applicableWeek': '0,1,2' }]
         if (this.isErrorTime(startDateStr, endDateStr)) {
             app.tip("活动开始时间不能大于结束时间")
         } else {
             this.setData({
                 endDate: e.detail.value
             })
+            this.setTimeInfo()
         }
     },
     isErrorTime(startDate, endDate) {

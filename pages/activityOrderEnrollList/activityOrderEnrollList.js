@@ -1,10 +1,11 @@
+let app = getApp()
 Page({
     data: {
         isBottom: false,
         pageLoading: true,
         hasMore: true
     },
-    onLoad: function(options) {
+    onLoad(options) {
         this.setData({
             activityId: options.activityId
         })

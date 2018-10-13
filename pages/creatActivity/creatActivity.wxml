@@ -12,8 +12,8 @@
 </view>
 
 <form bindsubmit="creatActivity">
-    <input style='display:none' name="label" value='{{detail.label || label}}'></input>
-    <input style='display:none' name="userId" value='{{member.id}}'></input>
+    <input style='display:none' name="activityCategory" value='{{detail.label || label}}'></input>
+    <input style='display:none' name="userId" value='{{member.wxappletUserInfo.id}}'></input>
     <input style='display:none' wx:if="{{detail}}" name="activityId" value='{{detail.id}}'></input>
     <input style='display:none' wx:if="{{detail}}" name="timeId" value='{{timeId}}'></input>
     <view class='act-img'>
@@ -54,10 +54,11 @@
                     <view hover-class='touch' class="value">{{endTimeArray[0][endDate[0]]}}-{{endTimeArray[1][endDate[1]]}}-{{endTimeArray[2][endDate[2]]}} {{endTimeArray[3][endDate[3]]}}:{{endTimeArray[4][endDate[4]]}}</view>
                 </picker>
             </view>
-            <input name="startDate" class='hidden' value='{{dateTimeArray[0][startDate[0]]}}-{{dateTimeArray[1][startDate[1]]}}-{{dateTimeArray[2][startDate[2]]}}'></input>
+            <!-- <input name="startDate" class='hidden' value='{{dateTimeArray[0][startDate[0]]}}-{{dateTimeArray[1][startDate[1]]}}-{{dateTimeArray[2][startDate[2]]}}'></input>
             <input name="startTime" class='hidden' value='{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}'></input>
             <input name="endDate" class='hidden' value='{{dateTimeArray[0][endDate[0]]}}-{{dateTimeArray[1][endDate[1]]}}-{{dateTimeArray[2][endDate[2]]}}'></input>
-            <input name="endTime" class='hidden' value='{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}'></input>
+            <input name="endTime" class='hidden' value='{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}'></input> -->
+             <input name="timeInfo" class='hidden' value='{{timeInfo}}'></input>
         </view>
         <view class='list-arr list-detail' bindtap='toDetail'>
             <input name="activityDetails" class='hidden' maxlength="-1" value='{{activityDetailsStr}}'></input>
@@ -71,11 +72,11 @@
     </view>
 
     <view class='act'>
-        <view class='list-arr' bindtap='toFee'>
+        <!-- <view class='list-arr' bindtap='toFee'>
             <input name="activityTicket" class='hidden' maxlength="-1" value='{{activityTicketStr}}'></input>
             <label>活动费用</label>
             <view class='value'>默认为免费</view>
-        </view>
+        </view> -->
         <input name="activityTicket" class='hidden' maxlength="-1" value='{{activityTicketStr}}'></input>
         <view class='list-arr' bindtap='toInfo'>
             <input name="applyInfo" class='hidden' maxlength="-1" value='{{applyInfoStr}}'></input>

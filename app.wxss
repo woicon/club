@@ -416,7 +416,6 @@ page {
     width: 25%;
     border-bottom: 3px solid transparent;
     text-align: center;
- 
     height: 90rpx;
     line-height: 90rpx;
     font-size: 29rpx;

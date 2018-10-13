@@ -2,7 +2,7 @@
 let app = getApp()
 Page({
     data: {
-
+        pageLoading:true,
     },
     onLoad(options) {
         this.getDetail(options)
@@ -16,7 +16,8 @@ Page({
         app.api.myOrderDetail(params).then(res => {
             if (res.status == '200') {
                 this.setData({
-                    detail: res.data
+                    detail: res.data,
+                    pageLoading:false
                 })
             }
         })
@@ -24,6 +25,12 @@ Page({
     callOrganze(){
         wx.makePhoneCall({
             phoneNumber: this.data.detail.merchantPhone,
+        })
+    },
+    toInfo(e){
+        wx.setStorageSync("orderApplyInfo", this.data.detail.orderEnrollRep)
+        wx.navigateTo({
+            url: '/pages/memberOrderApplyInfo/memberOrderApplyInfo',
         })
     },
     onShow: function() {

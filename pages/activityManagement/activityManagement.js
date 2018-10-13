@@ -45,7 +45,10 @@ Page({
         this.toUrl("/pages/activityOrderList/activityOrderList")
     },
     toDetail(e) {
-        this.toUrl("/pages/activityDetail/activityDetail")
+       wx.navigateTo({
+           url: `/pages/activityDetails/activityDetails?id=${e.currentTarget.dataset.activityid}`,
+       })
+       // this.toUrl("/pages/activityDetail/activityDetail")
     },
     toEdit(e) {
         let status = this.data.detail.status

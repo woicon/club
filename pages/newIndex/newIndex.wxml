@@ -14,10 +14,10 @@
     </view>
     <view class='lines'>发布其他活动</view>
     <view class='i-grid'>
-        <view wx:for="{{types}}" hover-class='touch' bindtap='creatAct' class='item' id="{{item.id}}" data-label="{{postType[item.id]}}" wx:key='groups'>
+        <view wx:for="{{post}}" hover-class='touch' bindtap='creatAct' class='item' data-id="{{index}}" data-label="{{item.categoryId}}" wx:key='groups'>
             <!-- <image src="{{item.img}}"></image> -->
             <view class='ico ic-{{item.ico}} b{{index+3}}'></view>
-            <view>{{item.name}}</view>
+            <view>{{item.categoryName}}</view>
         </view>
     </view>
 </block>
