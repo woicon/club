@@ -101,8 +101,8 @@ Page({
     checkedDate(e){
        let timeType = e.currentTarget.dataset.type,
            time = e.currentTarget.dataset.time,
-           form  = this.data.form
-       orderParams=this.data.orderParams
+           form  = this.data.form,
+           orderParams=this.data.orderParams
        if(timeType=="0"){
          this.data.orderParams.time = e.currentTarget.dataset.time
          this.data.form.timeTitle = "已选："

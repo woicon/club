@@ -81,8 +81,8 @@
     border-top:8px solid transparent;
     border-bottom: 8px solid transparent;
     border-left:8px solid #FF6363;
-    right:-2rpx;
-    bottom:-12rpx;
+    right:-1rpx;
+    bottom:-10rpx;
     transform: rotate(45deg)
 }
 .selected{padding-left:10rpx;display:inline-block;}
