@@ -16,7 +16,10 @@ Page({
         },
         orderParams:{},
         activityTimeList:[],
+        intervalArr:[],
         ipx:'',
+        week:["周日","周一","周二","周三","周四","周五","周六"],
+        detail:'',
         isHide:true,
         isShow:true,
         price:"0.00" //共计
@@ -51,9 +54,23 @@ Page({
       }
       return timeList;
     },
+    getInterval(date){
+      let arr = [], list = this.data.detail.activityTimeList
+      if (list>1){
+        list.forEach(function (item, x) {
+          if (item.startDate.split(" ")[0] == date) {
+             arr.push(`${item.startTime}~${item.endTime}`)
+          }
+        })
+      }else{
+          arr.push(`${list[0].startTime}~${list[0].endTime}`)
+      }
+      return arr
+    },
     onLoad: function(options) {
-      let detail = wx.getStorageSync("applyDetail"),
+      let detail = wx.getStorageSync("applyDetail"),_this = this,
           orderParams = this.data.orderParams
+      this.data.detail = detail
       orderParams.activityId = detail.id
       orderParams.num=1
       orderParams.activityTicketList = detail.activityTicketList
@@ -64,25 +81,36 @@ Page({
       orderParams.ticketType = detail.activityTicketList[this.data.current].ticketType //
       orderParams.inid = detail.activityTicketList[this.data.current].activityTicketInventory[0].id //库存id
       app.pageTitle("选择票价")
-      console.log(this.data.isHide)
-      let timeList = this.setDate(detail.activityTimeList[0].startDate, detail.activityTimeList[0].endDate),
-          sInterval = detail.startDate.split(" ")[1],
-          eInterval = detail.endDate.split(" ")[1]
-      orderParams.time = timeList[0] //设置默认已选时间段
-      orderParams.interval = `${sInterval}~${eInterval}` 
+      let timeList = [], intervalArr=[]
+      console.log(detail.activityTimeList)
+      if (detail.activityTimeList.length==1){
+          console.log(detail.activityTimeList[0].applicableWeek)
+          timeList = this.setDate(detail.activityTimeList[0].startDate, detail.activityTimeList[0].endDate)
+          let sInterval = detail.startDate.split(" ")[1],
+              eInterval = detail.endDate.split(" ")[1]
+          orderParams.time = timeList[0] //设置默认已选时间段
+          orderParams.interval = `${sInterval}~${eInterval}` 
+          intervalArr.push(`${sInterval }~${ eInterval }`)
+      }else{
+          detail.activityTimeList.forEach(function (item, x) {
+              timeList.push(item.startDate.split(" ")[0])
+          })
+          console.log(timeList)
+          timeList = Array.from(new Set(timeList)) 
+          intervalArr = _this.getInterval(timeList[0])
+      }
       this.setData({
-          detail: detail,
           orderParams: orderParams,
+          intervalArr: intervalArr,
           form: {
             ticketTitle : '已选：',
-            timeTitle : '已选：',
+            timeTitle : '已选：', 
             intervalTitle :'已选：'
           },
           activityTimeList: timeList,
           maxlen: orderParams.activityTicketList[0].maxBuy,
           ipx : app.isPX ? 'mt50' : ''
       })
-      console.log(this.data.activityTimeList)
     },
     checkTicket(e){
        let orderParams ={
@@ -111,12 +139,14 @@ Page({
          this.data.orderParams.time = e.currentTarget.dataset.time
          this.data.form.timeTitle = "已选："
          this.setData({
-           datecurrent : e.currentTarget.dataset.index
+           datecurrent : e.currentTarget.dataset.index,
+           intervalArr : this.getInterval(time)
         })
        }else{
          let sTime = e.currentTarget.dataset.stime,
-             eTime = e.currentTarget.dataset.etime
-         this.data.orderParams.interval = `${sTime}~${eTime}`
+             eTime = e.currentTarget.dataset.etime,
+             interval = e.currentTarget.dataset.interval
+         this.data.orderParams.interval = `${interval}`
          this.data.form.intervalTitle = "已选："
          this.setData({
            intcurrent : e.currentTarget.dataset.index

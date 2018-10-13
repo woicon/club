@@ -16,10 +16,10 @@ Page({
   },
   onLoad: function (option) {
     let form =wx.getStorageSync("form"),phone
-   
-    if (this.data.id != undefined) {
+    if (option.id != undefined) {
       app.api.myOrderDetail({ orderId: this.data.id }).then((res) => {
         if (res.status == 200 && res.msg == "OK") {
+          console.log(res.data.merchantPhone)
           phone = res.data.merchantPhone
         }
       })
