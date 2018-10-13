@@ -17,6 +17,8 @@ Page({
         orderParams:{},
         activityTimeList:[],
         ipx:'',
+        isHide:true,
+        isShow:true,
         price:"0.00" //共计
     },
     setDate(startDate,endDate){
@@ -62,11 +64,12 @@ Page({
       orderParams.ticketType = detail.activityTicketList[this.data.current].ticketType //
       orderParams.inid = detail.activityTicketList[this.data.current].activityTicketInventory[0].id //库存id
       app.pageTitle("选择票价")
+      console.log(this.data.isHide)
       let timeList = this.setDate(detail.activityTimeList[0].startDate, detail.activityTimeList[0].endDate),
           sInterval = detail.startDate.split(" ")[1],
           eInterval = detail.endDate.split(" ")[1]
       orderParams.time = timeList[0] //设置默认已选时间段
-      orderParams.interval = `${sInterval}~${eInterval}`
+      orderParams.interval = `${sInterval}~${eInterval}` 
       this.setData({
           detail: detail,
           orderParams: orderParams,
@@ -79,6 +82,7 @@ Page({
           maxlen: orderParams.activityTicketList[0].maxBuy,
           ipx : app.isPX ? 'mt50' : ''
       })
+      console.log(this.data.activityTimeList)
     },
     checkTicket(e){
        let orderParams ={
@@ -123,6 +127,20 @@ Page({
           orderParams:orderParams
        })
     },
+     moreDate(e){
+        let flag = e.currentTarget.dataset.show
+        if(flag=="true"){
+          this.setData({
+            isHide: false,
+            isShow: false
+          })
+        }else{
+          this.setData({
+            isHide: true,
+            isShow: true
+          })
+        }
+     },
      bindChange(e){
       let num  = this.data.num 
       if (e.currentTarget.dataset.type =="plus"){

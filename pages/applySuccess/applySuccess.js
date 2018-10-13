@@ -9,20 +9,30 @@ Page({
     userPhone: '',
     id:'',
     activityId:'',
+    phone:'',
     iconType: [
       'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
     ]
   },
   onLoad: function (option) {
-    let form =wx.getStorageSync("form");
+    let form =wx.getStorageSync("form"),phone
+   
+    if (this.data.id != undefined) {
+      app.api.myOrderDetail({ orderId: this.data.id }).then((res) => {
+        if (res.status == 200 && res.msg == "OK") {
+          phone = res.data.merchantPhone
+        }
+      })
+    }
     this.setData({
-       ticketName: form.ticketName,
-       ticketPrice:form.orderPrice,
-       ticketNum: form.ticketCount,
-       userName:form.contactsName,
-       userPhone:form.contactsPhone,
-       id:option.id,
-       activityId: form.activityId
+      ticketName: form.ticketName,
+      ticketPrice: form.orderPrice,
+      ticketNum: form.ticketCount,
+      userName: form.contactsName,
+      userPhone: form.contactsPhone,
+      id: option.id,
+      activityId: form.activityId,
+      phone: phone
     })
   },
   lookOrder(){
@@ -39,14 +49,8 @@ Page({
     })
   },
   callBuiness(){
-    if(this.data.id!=undefined){
-      app.api.myOrderDetail({ orderId: this.data.id}).then((res) => {
-          if(res.status==200 && res.msg=="OK"){
-              wx.makePhoneCall({
-                phoneNumber: res.data.contactsPhone
-              })
-          }
-      })
-    }
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone
+    })
   },
 })
