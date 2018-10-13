@@ -58,7 +58,7 @@
             <input name="startTime" class='hidden' value='{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}'></input>
             <input name="endDate" class='hidden' value='{{dateTimeArray[0][endDate[0]]}}-{{dateTimeArray[1][endDate[1]]}}-{{dateTimeArray[2][endDate[2]]}}'></input>
             <input name="endTime" class='hidden' value='{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}'></input> -->
-             <input name="timeInfo" class='hidden' value='{{timeInfo}}'></input>
+            <input name="timeInfo" class='hidden' value='{{timeInfo}}'></input>
         </view>
         <view class='list-arr list-detail' bindtap='toDetail'>
             <input name="activityDetails" class='hidden' maxlength="-1" value='{{activityDetailsStr}}'></input>
@@ -98,9 +98,7 @@
             <block wx:if="{{btnLoading}}">
                 <load color="#ffffff" />
             </block>
-            <block wx:else>
-                {{isEdit?"修改活动":"发布活动"}}
-            </block>
+            <block wx:else>{{isEdit?"修改活动":"发布活动"}}</block>
         </button>
         <button wx:else class='button' formType="{{btnLoading?'':'submit'}}" open-type="getUserInfo" bindgetuserinfo='getLogin' hover-class='button-touch'>
             <block wx:if="{{btnLoading}}">
@@ -130,9 +128,7 @@
                 </block>
             </view>
         </view>
-
         <view class="button {{phoneCode.length == 6 && phoneDone ? '' : 'disable'}}" bindtap='{{phoneCode.length == 6 && phoneDone ? "bindPhone" : ""}}' hover-class='button-touch'>绑定并发布</view>
-
     </view>
 </view>
 

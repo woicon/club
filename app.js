@@ -102,34 +102,23 @@ App({
                     superiorMerchantId: this.ext.merchantId,
                 }
                 wx.setStorageSync('reg', parmas)
-                // wx.navigateTo({
-                //     url: `/pages/accountRegister/accountRegister`,
-                // })
                 this.api.wechatRegister(parmas)
                     .then(res => {
                         wx.hideLoading()
-                        console.log(res)
                         if (res.status == '200') {
-                            wx.setStorageSync("login", res.data)
-                            this.tip("登录成功")
-                            cb()
+                            if (res.data.isRegister) {
+                                wx.setStorageSync("login", res.data)
+                                this.tip("登录成功")
+                                cb(ispublic)
+                            } else {
+                                wx.setStorageSync('reg', parmas)
+                                wx.navigateTo({
+                                    url: `/pages/accountRegister/accountRegister`,
+                                })
+                            }
                         } else {
-                            wx.setStorageSync('reg', parmas)
-                            wx.navigateTo({
-                                url: `/pages/accountRegister/accountRegister`,
-                            })
+                            this.tip(res.msg)
                         }
-                        // if (res.data) {
-                        //     wx.setStorageSync("login", res.data)
-                        //     this.tip("登录成功")
-                        //     cb()
-                        // } else {
-                        //     let currPage = this.currPage()
-                        //     this.tip(res.msg)
-                        //     currPage.setData({
-                        //         btnLoading: false
-                        //     })
-                        // }
                     })
             }
         })
@@ -186,8 +175,8 @@ App({
             num = flag ? '' : ' hh:mm'
         return martDate.getFullYear() == new Date().getFullYear() ? martDate.Format(`MM月dd日${num}`) : martDate.Format(`yyyy年MM月dd日${num}`)
     },
-    coverDateList(arr,item){
-        for(let i in arr){
+    coverDateList(arr, item) {
+        for (let i in arr) {
             arr[i][item] = this.converDate(arr[i][item])
         }
         return arr

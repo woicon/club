@@ -5,6 +5,11 @@ Page({
     },
     onLoad(options) {
         app.pageTitle(`完善账户信息`)
+        if(options.ispublic){
+            this.setData({
+                isPublic:true
+            })
+        }
     },
     //校验注册
     checkForm(e, cb) {
@@ -49,7 +54,6 @@ Page({
             app.tip("请输入正确的手机号")
         }
     },
-
     //手机号
     phoneValue(e) {
         let isPass = !app.check.phone(e.detail.value) ? false : true

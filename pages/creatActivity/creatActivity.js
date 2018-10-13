@@ -222,16 +222,14 @@ Page({
     },
 
     getLogin(e) {
-        //console.log(e)
+        //未注册发布需要先注册
         this.setData({
             btnLoading: true
         })
         app.login(e.detail, null, () => {
-            console.log("sdd")
             let member = wx.getStorageSync("login")
             let submitData = this.data.submitData
             submitData.userId = member.id
-            console.log("登录成功", submitData)
             this.setData({
                 member: wx.getStorageSync("login"),
                 submitData: submitData
@@ -263,14 +261,6 @@ Page({
             } else if (value.activityDetails == "") {
                 app.tip("活动详情不能为空")
             } else {
-                // if (!!!member.phone) {
-                //   console.log("member")
-                //   this.setData({
-                //     nonePhone: true,
-                //     values: value
-                //   })
-                // } else {
-                //   console.log("checks")
                 if (this.data.checkOk) {
                     this.setData({
                         btnLoading: true
@@ -340,7 +330,7 @@ Page({
         // < input name = "endDate" class='hidden' value = '{{dateTimeArray[0][endDate[0]]}}-{{dateTimeArray[1][endDate[1]]}}-{{dateTimeArray[2][endDate[2]]}}' > </input>
         // < input name = "endTime" class='hidden' value = '{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}' > </input>
         this.setData({
-            timeInfo:JSON.stringify(timeInfo)
+            timeInfo: JSON.stringify(timeInfo)
         })
     },
     changeEndDate: function(e) {
@@ -393,10 +383,7 @@ Page({
             url: '/pages/actDetail/actDetail',
         })
     },
-    onReady: function() {
-
-    },
-    onShow: function() {
+    onShow() {
         //fee setting
         let applyInfo
         if (wx.getStorageSync("applyInfo")) {

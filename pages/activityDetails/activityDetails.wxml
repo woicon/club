@@ -40,10 +40,10 @@
         <view class='ico ico-clock2'></view>
         <view class='value'> {{detail.startDate}} - {{detail.endDate}}</view>
     </view>
-    <view class=''>
-        <view class='ico ico-clock2'></view>
-        <view class='value'>0~90元</view>
-    </view>
+    <!-- <view class=''>
+        <view class='ico ico-heart'></view>
+        <view class='value'>免费</view>
+    </view> -->
 </view>
 
 

@@ -30,7 +30,7 @@ Page({
             url: '/pages/activityList/activityList',
         })
     },
-    exitSys: function () {
+    exitSys() {
         wx.showModal({
             title: '提示',
             content: '确定要退出吗？',
@@ -64,8 +64,8 @@ Page({
                     title: '验证码识别中',
                 })
                 app.api.findSignInfoBySignCode({
-                    signCode: res.result,
-                })
+                        signCode: res.result,
+                    })
                     .then(res => {
                         wx.hideLoading()
                         if (res.status == '200') {
@@ -80,7 +80,8 @@ Page({
             }
         })
     },
-    getParticipant() { //参与者
+    getParticipant() { 
+        //参与者
         app.api.getMemberInfo({
             memberId: app.common("memberId"),
             merchantId: app.common("merchantId")
@@ -91,7 +92,8 @@ Page({
             })
         })
     },
-    getSponsor() { //主办方
+    getSponsor() { 
+        //主办方
         app.api.selectData({
             userId: app.common('id')
         }).then(res => {
@@ -103,9 +105,7 @@ Page({
         })
     },
     onShow() {
-
         this.initMember()
-
     },
     getMemberInfo(isOrganizer) {
         if (isOrganizer) {
@@ -121,18 +121,9 @@ Page({
         if (wx.getStorageSync("login")) {
             let isOrganizer = wx.getStorageSync("isOrganizer") || false
             this.setData({
-                isOrganizer: isOrganizer
+                isOrganizer: isOrganizer,
             })
-            this.getMemberInfo(!isOrganizer)
-            app.api.selectData({
-                userId: app.common('id')
-            }).then(res => {
-                console.log(res)
-                this.setData({
-                    member: res.data,
-                    pageLoading: false
-                })
-            })
+            this.getMemberInfo(isOrganizer)
         } else {
             this.setData({
                 pageLoading: false
