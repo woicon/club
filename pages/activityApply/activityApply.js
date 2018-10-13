@@ -139,7 +139,7 @@ Page({
          }
       }
       this.data.orderParams.num = num
-      orderParams = this.data.orderParams
+      let orderParams = this.data.orderParams
        let price = orderParams.price,
            prix = (price * num).toFixed(2)
        this.setData({
