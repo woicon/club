@@ -61,7 +61,6 @@ Page({
   },
   getInterval(date) {
     let arr = [], list = this.data.detail.activityTimeList
-    console.log(this.data.detail.activityTimeList)
     if (list.length > 1) {
       list.forEach(function (item, x) {
         if (item.startDate.split(" ")[0] == date) {
@@ -88,8 +87,9 @@ Page({
     orderParams.inid = detail.activityTicketList[this.data.current].activityTicketInventory[0].id //库存id
     app.pageTitle("选择票价")
     let timeList = [], intervalArr = []
+    console.log(detail.activityTimeList)
     if (detail.activityTimeList.length == 1) {
-      let week = detail.activityTimeList[0].applicableWeek
+      let week =  detail.activityTimeList[0].applicableWeek
       if(week=="" || week==null){
         timeList = this.setDate(detail.activityTimeList[0].startDate, detail.activityTimeList[0].endDate)
       }else{
@@ -112,8 +112,9 @@ Page({
     } else {
       detail.activityTimeList.forEach(function (item, x) {
         timeList.push(item.startDate.split(" ")[0])
+        console.log(item.startDate.split(" ")[0])
       })
-      timeList = Array.from(new Set(timeList))
+      timeList = Array.from(new Set(timeList)).sort()
       intervalArr = _this.getInterval(timeList[0])
       orderParams.time = timeList[0]  
       orderParams.interval = intervalArr[0]

@@ -56,5 +56,5 @@
 
 <view class='page-bar {{isPX ? "page-bar-px":""}}'>
     <view>共计{{price}}元</view>
-    <view class='btn-jion' bindtap='toApplyPerson'>下一步</view>
+    <view class='btn-apply' bindtap='toApplyPerson'>下一步</view>
 </view>
