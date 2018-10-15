@@ -110,6 +110,7 @@ Page({
     arrTxt.push(e.detail.value)
     let flag = false
     let i =0
+    console.log(app.check)
     for(let i=0;i<this.data.personNum;i++){
         let arr=[]
         this.data.responseList.forEach(function (item, x) {
@@ -139,14 +140,19 @@ Page({
       arrXml.push(`{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}`)
     }
     form.enrollInfos = `[${arrXml.join(",")}]`
+    wx.setStorage({
+      key: "isOrganizer",
+      data: false
+    })
+    console.log(wx.getStorageSync("isOrganizer"))
     if(flag==false){
       form.contactsName = arrTxt[0]["name00"]
       form.contactsPhone = arrTxt[0]["name01"]
       this.setData({
         form: form
       })
-      wx.setStorageSync("form",this.data.form);
-      console.log(this.data.form)
+      wx.setStorageSync("form",this.data.form)
+     
       app.api.createAppletOrder(this.data.form).then((res) => {
          //if(this.data.form.price==0){}
           if(res.status=="200" && res.msg=="OK"){

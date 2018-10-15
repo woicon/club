@@ -19,7 +19,6 @@ Page({
     if (option.id != undefined) {
       app.api.myOrderDetail({ orderId: this.data.id }).then((res) => {
         if (res.status == 200 && res.msg == "OK") {
-          console.log(res.data.merchantPhone)
           phone = res.data.merchantPhone
         }
       })
@@ -49,8 +48,10 @@ Page({
     })
   },
   callBuiness(){
-    wx.makePhoneCall({
-      phoneNumber: this.data.phone
-    })
-  },
+    if (this.data.phone!=""||this.data.phone!=null){
+      wx.makePhoneCall({
+        phoneNumber: this.data.phone
+      })
+    }
+  }
 })

@@ -32,15 +32,17 @@
                 {{item}}
             </view>
           </block>
-          <block wx:elif="{{index==5}}">
-              <view class='items {{isShow==false ? "hide":""}}'  bindtap='moreDate' data-show="true">更多可选日期</view>
-          </block>
+
           <block wx:elif="{{index>=5}}">
               <view class='items {{isHide == true ? "hide" : ""}} {{datecurrent == index ? "active" : ""}}' hover-class='touch'wx:key="activityTimeList"  bindtap='checkedDate' data-index="{{index}}" data-time="{{item}}" data-type="0">
                 {{item}}
               </view>
           </block>
+          
         </block>
+        <block >
+              <view class='items {{isShow==false ? "hide":""}}'  bindtap='moreDate' data-show="true">更多可选日期</view>
+          </block>
     </view>
 </view>
 <view class="a-block date {{ipx}}">
