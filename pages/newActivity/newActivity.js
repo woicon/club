@@ -34,6 +34,26 @@ Page({
                 })
         })
     },
+    onShow(){
+        let member = wx.getStorageSync("login") ? true : false
+        this.setData({
+            member: member
+        })
+    },
+    getUserInfo(e) {
+        this.setData({
+            btnLoading: true
+        })
+        if (e.detail) {
+            app.login(e.detail, wx.getStorageSync("CODE"), () => {
+                this.setData({
+                    member: wx.getStorageSync("login")
+                })
+            })
+        } else {
+            app.tip('请您允许授权登录，否则无法使用该App')
+        }
+    },
     creatAct(e) {
         let postimg = this.data.postimg
         let img = postimg[e.currentTarget.dataset.id][0]

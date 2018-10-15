@@ -127,8 +127,11 @@ Page({
             })
         }
     },
-    shareApp(){
-        
+    onShareAppMessage(e){
+        return {
+            title: '活动吧助手-您的活动好帮手',
+            path: '/page/index/index'
+        }
     },
     toPage(e) {
         wx.navigateTo({

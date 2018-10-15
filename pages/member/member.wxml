@@ -16,7 +16,7 @@
 <block wx:else>
     <block wx:if="{{isOrganizer}}">
         <!-- 主办方 -->
-        <view class='m' bindtap='toDateSet'>
+        <view class='m'>
             <view class='m-info'>
                 <image src='{{member.logoUrl}}'></image>
                 <view class='m-infos'>
@@ -65,7 +65,7 @@
     </block>
     <block wx:else>
         <!-- 参与者 -->
-        <view class='m' bindtap='toDateSet'>
+        <view class='m'>
             <view class='m-info'>
                 <image src='{{member.headImg}}'></image>
                 <view class='m-infos'>
@@ -88,14 +88,14 @@
             <view>
                 <view class='ico ico-bubble b10'></view>待参与</view>
         </view>-->
-        <view class='member-grid'  hover-class='touch'>
+        <view class='member-grid' >
             <navigator url='/pages/memberOrder/memberOrder'>
                 <view class='ico ico-folder b5'></view>
                 <text>全部订单 </text>
             </navigator>
-            <view bindtap='shareApp'  hover-class='touch'>
+            <view hover-class='touch'>
                 <view class='ico ico-share2 b6'></view>
-                <text>告诉好友 </text>
+                <button class='app-share' open-type="share">告诉好友 </button>
             </view>
                <!-- <navigator url='/pages/activityFavorite/activityFavorite'>
                 <view class='ico ico-heart b2'></view>

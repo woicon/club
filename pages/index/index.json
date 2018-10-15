@@ -1,6 +1,6 @@
 {
     "backgroundColor": "#f4f4f4",
-    "enablePullDownRefresh": false,
+    "enablePullDownRefresh": true,
     "usingComponents": {
         "load": "/component/loading/loading"
     }

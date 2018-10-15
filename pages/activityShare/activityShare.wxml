@@ -53,8 +53,7 @@
         <!-- <button class='share-btn button' bindtap='saveShare' hover-class='button-touch' open-type="openSetting"
 bindopensetting='handleSetting' wx:if='{{toAuth}}'>重新授权</button> -->
         <button class='share-btn button' bindtap='saveShare' hover-class='button-touch'>
-            <view class='ico ico-share2'></view>
-            保存图片,分享到朋友圈</button>
+            <view class='ico ico-share2'></view>保存图片,分享到朋友圈</button>
 
         <view class='close' bindtap='closeGroup'></view>
     </view>

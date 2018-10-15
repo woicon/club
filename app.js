@@ -55,14 +55,12 @@ App({
 
     common(key) {
         let login = wx.getStorageSync("login")
-        console.log(wx.getStorageSync("isOrganizer"))
         return wx.getStorageSync("isOrganizer") ? login.wxappletUserInfo[key] : login.member[key]
     },
 
     isLogin(cb) {
         let currPage = this.currPage()
         if (wx.getStorageSync("login")) {
-            console.log("IsLogin::===>", wx.getStorageSync("login"))
             currPage.setData({
                 member: wx.getStorageSync("login")
             })

@@ -6,11 +6,13 @@ Page({
     onLoad: function(options) {
         app.pageTitle("资料设置")
         this.setData({
-            member: wx.getStorageSync("login")
+            member: wx.getStorageSync("login"),
+            userId:app.common("id")
         })
 
     },
     onShow() {
+        console.log(app.common('id'))
         app.api.selectData({
             userId: app.common('id')
         }).then(res => {

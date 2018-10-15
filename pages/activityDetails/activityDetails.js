@@ -15,6 +15,21 @@ Page({
             url: '/pages/newActivity/newActivity',
         })
     },
+    getUserInfo(e) {
+        this.setData({
+            btnLoading: true
+        })
+        if (e.detail) {
+            app.login(e.detail, wx.getStorageSync("CODE"), () => {
+                this.setData({
+                    member: wx.getStorageSync("login")
+                })
+                this.toApply()
+            })
+        } else {
+            app.tip('请您允许授权登录，否则无法使用该App')
+        }
+    },
     getDetail(id) {
         let params = {
             id: id
@@ -67,7 +82,7 @@ Page({
         })
     },
     onShow() {
-        console.log(app)
+        app.isLogin()
         this.getDetail(this.data.id)
     },
     onShareAppMessage: function() {

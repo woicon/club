@@ -125,7 +125,7 @@ page {
     background:#fff;
     opacity:.8;
 }
-.member-grid text {
+.member-grid text ,.app-share{
     font-size: 30rpx;
     color: #444;
     flex-grow: 2;
@@ -149,6 +149,16 @@ page {
 
 .role{
     font-size:24rpx;
+}
+.app-share{
+    flex-grow: 2;
+    border:none;
+    background:#fff;
+    text-align:left;
+    padding:0;
+}
+.app-share::after{
+    border:none;
 }
 /* .member-grid>navigator, .member-grid>view {
     width: 33.333333%;

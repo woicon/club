@@ -40,10 +40,6 @@
         <view class='ico ico-clock2'></view>
         <view class='value'> {{detail.startDate}} - {{detail.endDate}}</view>
     </view>
-    <!-- <view class=''>
-        <view class='ico ico-heart'></view>
-        <view class='value'>免费</view>
-    </view> -->
 </view>
 
 
@@ -53,6 +49,7 @@
 
 <view class='page-bar {{isPX ? "page-bar-px":""}}'>
     <view bindtap='createActivity'>我也要发活动</view>
-    <view class='btn-jion' bindtap='toApply'>报名参加</view>
+    <view wx:if="{{member}}" class='btn-apply' bindtap='toApply'>报名参加</view>
+    <button wx:else class='btn-apply'  bindgetuserinfo='{{btnLoading?"":"getUserInfo"}}' open-type="getUserInfo">报名参加</button>
 </view>
 </block>
