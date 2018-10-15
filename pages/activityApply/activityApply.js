@@ -158,7 +158,7 @@ Page({
       price: prix
     })
   },
-  checkedDate(e) {
+  /*checkedDate(e) {
     let timeType = e.currentTarget.dataset.type,
       time = e.currentTarget.dataset.time,
       form = this.data.form,
@@ -198,7 +198,7 @@ Page({
         isShow: true
       })
     }
-  },
+  },*/
   bindChange(e) {
     let num = this.data.num
     if (e.currentTarget.dataset.type == "plus") {
