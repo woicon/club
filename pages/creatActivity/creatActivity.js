@@ -320,7 +320,7 @@ Page({
             endDate = this.data.endDate
         const timeInfo = [{
             startDate: `${dateTimeArray[0][startDate[0]]}-${dateTimeArray[1][startDate[1]]}-${dateTimeArray[2][startDate[2]]}`,
-            startTime: `${dateTimeArray[3][endDate[3]]}:${dateTimeArray[4][endDate[4]]}`,
+            startTime: `${dateTimeArray[3][startDate[3]]}:${dateTimeArray[4][startDate[4]]}`,
             endDate: `${dateTimeArray[0][endDate[0]]}-${dateTimeArray[1][endDate[1]]}-${dateTimeArray[2][endDate[2]]}`,
             endTime: `${dateTimeArray[3][endDate[3]]}:${dateTimeArray[4][endDate[4]]}`,
         }]

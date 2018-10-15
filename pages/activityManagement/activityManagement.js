@@ -19,6 +19,8 @@ Page({
         app.api.activityDetail({
             id: this.data.detail.id
         }).then((res) => {
+            res.data.startDate = app.converDate(res.data.startDate)
+            res.data.endDate = app.converDate(res.data.endDate)
             this.setData({
                 detail: res.data,
                 pageLoading: false

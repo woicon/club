@@ -16,7 +16,7 @@
         </view>
         <view class='m-time'>
             <view class='ico ico-clock2'></view>
-            {{detail.startDate}}~ {{detail.endDate}}
+            {{detail.startDate}} 至 {{detail.endDate}}
         </view>
     </view>
     <view class='m bline'>

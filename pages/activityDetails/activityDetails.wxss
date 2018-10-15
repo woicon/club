@@ -93,7 +93,7 @@
     margin-right: 2px;
 }
 
-.m-title .act-date::after {
+.m-title .no-arr::after {
     border: none;
 }
 

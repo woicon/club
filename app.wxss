@@ -422,6 +422,7 @@ page {
     color: #666;
     font-weight: 800;
     transition: 0.4s;
+    box-sizing:border-box;
 }
 
 .tab>view.active {
@@ -606,7 +607,7 @@ page {
     border-radius:0;
     padding:0;
     font-size:34rpx;
-    line-height:normal;
+    line-height:110rpx;
 }
 .page-bar .btn-apply::after{
     border:none;

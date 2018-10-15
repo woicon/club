@@ -70,6 +70,9 @@ Page({
         console.log(parmas)
         app.api.activityList(parmas)
             .then(res => {
+                if (res.data.length > 0){
+                    app.coverDateList(res.data,"startDate")
+                }
                 if (arg.isMore) {
                     if (res.data.length > 0) {
                         let list = this.data.list
