@@ -9,50 +9,50 @@
             <view class='tab-item {{currentTab == item.categoryId ? "active" : ""}}' data-id="{{item.categoryId}}" data-index="{{index}}" bindtap='toggleCateyory' wx:for="{{category}}" wx:key="indexCategory">{{item.categoryName}}</view>
         </view>
     </scroll-view>
-    <scroll-view class='cat-scroll' scroll-y bindscrolltolower="listMore" bindscrolltoupper="listRefresh" scroll-top="{{resOk}}" scroll-with-animation="true">
-        <view class='indexlist'>
-            <view wx:if="{{isScrollTop}}" class='top-res'>
-                <load wx:if="{{refresh}}" />
-                <block wx:else>刷新完成</block>
+    <!-- bindscrolltoupper="listRefresh"  -->
+    <!-- <scroll-view class='cat-scroll' scroll-y bindscrolltolower="listMore"> -->
+    <view class='index-scroll' >
+        <view wx:if="{{isScrollTop}}" class='top-res'>
+            <load wx:if="{{refresh}}" />
+            <block wx:else>刷新完成</block>
+        </view>
+        <block wx:if="{{pageLoad}}">
+            <view class='f-c-c empty'>
+                <load></load>
             </view>
-            <block wx:if="{{pageLoad}}">
-                <view class='f-c-c empty'>
-                    <load></load>
-                </view>
-            </block>
-            <block wx:else>
-                <block wx:if="{{list.length>1}}">
-                    <view wx:for="{{list}}" class='list-item' wx:key="homeList" bindtap='toDetail' data-id="{{item.id}}" hover-class='touch'>
-                        <image class='list-img' mode='aspectFill' src='{{item.activityImg}}'></image>
-                        <view class='item-cont'>
-                            <view class='item-title'>{{item.activityName}}</view>
-                            <view class='item-infos'>
-                                <view>
-                                    <view class='list-info'>
-                                        <view class='ico ico-earth'></view>
-                                        {{item.activityAddress ? item.activityAddress : "线上活动"}}</view>
-                                    <view class='list-info'>
-                                        <view class='ico ico-clock2'></view>
-                                        {{item.startDate}}</view>
-                                </view>
-                                <view class='fee'>免费</view>
+        </block>
+        <block wx:else>
+            <view class='indexlist' wx:if="{{list.length > 0}}">
+                <view wx:for="{{list}}" class='list-item' wx:key="homeList" bindtap='toDetail' data-id="{{item.id}}" hover-class='touch'>
+                    <image class='list-img' mode='aspectFill' src='{{item.activityImg}}'></image>
+                    <view class='item-cont'>
+                        <view class='item-title'>{{item.activityName}}</view>
+                        <view class='item-infos'>
+                            <view>
+                                <view class='list-info'>
+                                    <view class='ico ico-earth'></view>
+                                    {{item.activityAddress ? item.activityAddress : "线上活动"}}</view>
+                                <view class='list-info'>
+                                    <view class='ico ico-clock2'></view>
+                                    {{item.startDate}}</view>
                             </view>
+                            <view class='fee'>免费</view>
                         </view>
                     </view>
-                </block>
-                <view class='f-c-c empty' wx:else>
-                    <view class='icos'>
-                        <view class='ico f-c-c-co ico-folder-open'></view>
-                        <text>该分类下没有活动</text>
-                    </view>
                 </view>
-            </block>
-            <view wx:if="{{isBottom}}" class='l-bottom'>
-                <view wx:if="{{hasMore}}">
-                    <load />
-                </view>
-                <view wx:else>没有更多</view>
             </view>
+            <view class='f-c-c empty' wx:else>
+                <view class='icos'>
+                    <view class='ico f-c-c-co ico-folder-open'></view>
+                    <text>该分类下没有活动</text>
+                </view>
+            </view>
+        </block>
+        <view wx:if="{{isBottom}}" class='l-bottom'>
+            <view wx:if="{{hasMore}}">
+                <load />
+            </view>
+            <view wx:else>没有更多</view>
         </view>
-    </scroll-view>
+    </view>
 </block>

@@ -40,7 +40,7 @@ Page({
         loacaltionTtype: null,
     },
     onLoad(options) {
-        app.isLogin()
+        
         app.pageTitle(options.edit ? '编辑活动' : '发布活动')
         this.setData({
             postImg: options.img || null,
@@ -382,6 +382,7 @@ Page({
         })
     },
     onShow() {
+        app.isLogin()
         //fee setting
         let applyInfo
         if (wx.getStorageSync("applyInfo")) {

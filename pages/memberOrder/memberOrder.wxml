@@ -32,7 +32,7 @@
                                 <view class='ico ico-clock2'></view>{{item.activityStartTime}}</view>
                         </view>
                     </view>
-                    <image class='list-img' src='{{item.wechatHeadImg}}'></image>
+                    <image class='list-img' src='{{item.activityImg}}'></image>
                 </view>
                 <view class='f-c-sb item-bar'>
                     <view class='ticket-tag'>{{item.ticketName}}</view>

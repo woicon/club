@@ -12,7 +12,7 @@ Page({
     pasBlur(e) {
         console.log(e)
         if (!app.check.password(e.detail.value)) {
-            app.tip("请输入6-20位密码")
+            app.tip("请输入6-20位数字字母组合的密码")
         }
     },
     checkInput(e) {

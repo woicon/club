@@ -37,10 +37,18 @@ function api(API) {
     }
     let apis = {}
     let apiList = [
+
+        //主办方账户集合 : Merchant Account Controller Show / Hide List Operations Expand Operations
+        "applet/merchantAccountIncome", //我的收入
+        "applet/updatePassword", //修改小程序账户密码
+        "applet/v1/dataSet", //资料设置
+        "applet/v1/selectData", //资料查询
+
         //票券审核接口集合 : Ticketcheck Controller
         "applet/v1/passCheck", //票券通过审核
         "applet/v1/rejectCheck", //票券拒绝
         "applet/v1/ticketCheckList", //票券审核列表
+
         //发布活动接口集合 : Publish Activity Controller
         "applet/v1/publishActivity", //发布活动
         //"applet/v1/uploadPic", //上传图片
@@ -48,10 +56,8 @@ function api(API) {
         "applet/v1/posterTemplate", //海报模板
 
         //资料设置和留言接口集合 : Data Leave Message Controller
-        "applet/v1/dataSet", //资料设置
         "applet/v1/messageList", //留言列表
         "applet/v1/messageReply", //留言回复
-        "applet/v1/selectData", //资料查询
         "applet/createAppletOrder", //参加活动
 
         //参与者相关接口集合 : Participant Related Controller Show / Hide List Operations Expand Operations
@@ -72,7 +78,7 @@ function api(API) {
         "applet/verificationTicketByOrderId", //核销票券
         'applet/findActivityList', //首页活动列表
         "applet/findAllActivityCategory", //活动分类
-        
+
         //商户认证提现接口集合 : Merchant Related Controller
         "applet/certificationAudit", //认证审核
         "applet/findMerchantAccount", //查询账户余额

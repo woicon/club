@@ -7,7 +7,11 @@ Page({
         app.pageTitle(`完善账户信息`)
         if(options.ispublic){
             this.setData({
-                isPublic:true
+                isPublic:true,
+            })
+        }else if (options.isApply) {
+            this.setData({
+                isApply: true,
             })
         }
     },
@@ -20,7 +24,7 @@ Page({
         } else if (e.password === '') {
             app.tip('请输入密码')
         } else if (!app.check.password(e.password)) {
-            app.tip("请输入6到20位包含字母和数字的密码")
+            app.tip("请输入6-20位数字字母组合的密码")
         } else {
             cb()
         }
@@ -39,7 +43,15 @@ Page({
                     if (res.status === '200') {
                         wx.setStorageSync("login", res.data)
                         app.tip("注册成功")
-                        wx.navigateBack()
+                        if (wx.getStorageSync("applyReg")){
+                            //如果是活动报名注册
+                            wx.navigateTo({
+                                url: '/pages/activityApply/activityApply',
+                            })
+                        }else{
+                            wx.navigateBack()
+                        }
+                        
                     } else {
                         app.tip(res.msg)
                     }

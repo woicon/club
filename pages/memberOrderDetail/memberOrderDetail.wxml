@@ -15,7 +15,7 @@
     </view>
 
     <view class='qr'>
-        <view class='qr-code'>{{detail.orderNo}}</view>
+        <view class='qr-code'>{{detail.signCode}}</view>
         <image class='qrimg' src='{{detail.qrCodeAddress}}'></image>
     </view>
 

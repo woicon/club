@@ -64,7 +64,7 @@ Page({
         }
         return newList
     },
-    listMore(e) {
+    onReachBottom(e) {
         console.log(e)
         this.setData({
             isBottom: true
@@ -75,10 +75,11 @@ Page({
             })
         }
     },
-    listRefresh(e){
-        this.setData({
-            isScrollTop:true
-        })
+    onPullDownRefresh(e){
+        console.log(e)
+        // this.setData({
+        //     isScrollTop:true
+        // })
         this.getList({
             isRefresh: true
         })
@@ -123,12 +124,14 @@ Page({
                     })
                 }
                 if(arg.isRefresh){
+                    wx.stopPullDownRefresh()
                     this.setData({
-                        resOk:40
+                        resOk:60
                     })
                 }
             })
     },
+    
     toDetail(e) {
         wx.navigateTo({
             url: `/pages/activityDetails/activityDetails?id=${e.currentTarget.dataset.id}`,

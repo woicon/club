@@ -7,7 +7,6 @@
 page {
     background: #f4f4f4;
     color: #444;
-    padding-bottom:100rpx;
 }
 
 .page-scroll {

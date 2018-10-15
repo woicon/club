@@ -31,12 +31,12 @@
 </view>
 <view class='m-title'>
     <view class='blines list-arr {{detail.activityAddress ? "" : "no-arr"}}' 
-    bindtap='toMap' data-lon="{{detail.lon}}" 
+    bindtap='{{detail.activityAddress ? "toMap" :""}}' 
+    data-lon="{{detail.lon}}" 
     data-address="{{detail.activityAddress}}" 
     data-lat="{{detail.lat}}">
         <view class='ico ico-earth'></view>
-        <view class='value'>
-            {{detail.activityAddress ? detail.activityAddress : "线上活动"}}</view>
+        <view class='value'>{{detail.activityAddress ? detail.activityAddress : "线上活动"}}</view>
     </view>
     <view class='no-arr'>
         <view class='ico ico-clock2'></view>

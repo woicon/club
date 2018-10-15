@@ -19,13 +19,15 @@ Page({
         this.setData({
             btnLoading: true
         })
+        wx.setStorageSync("applyDetail", this.data.detail)
+        wx.setStorageSync("applyReg", true)
         if (e.detail) {
             app.login(e.detail, wx.getStorageSync("CODE"), () => {
                 this.setData({
                     member: wx.getStorageSync("login")
                 })
                 this.toApply()
-            })
+            },true)
         } else {
             app.tip('请您允许授权登录，否则无法使用该App')
         }

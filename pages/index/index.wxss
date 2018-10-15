@@ -75,10 +75,6 @@
     background: #fff;
 }
 
-.indexlist {
-    padding: 0 0 90rpx;
-}
-
 .fee {
     font-size: 32rpx;
     font-weight: 800;
@@ -91,4 +87,12 @@
     right: 0;
     top: 94rpx;
     bottom: 0;
+    background:transparent;
+}
+.empty{
+    top:100rpx;
+}
+.index-scroll{
+    margin:0 0 90rpx;
+    padding-top:100rpx;
 }

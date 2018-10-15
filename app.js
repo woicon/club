@@ -121,8 +121,6 @@ App({
     },
 
     login(detail, code, cb) {
-        var ext = this.ext
-        console.log(ext)
         if (code == null) {
             wx.login({
                 success: (res) => {
