@@ -1,6 +1,9 @@
 .mt50{
   margin-bottom:80rpx;
 }
+.hide{
+  display:none;
+}
 .a-ticket{
     display: flex;
 }
