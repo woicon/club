@@ -50,17 +50,17 @@ Page({
     toggleRole() {
         let isOrganizer = !this.data.isOrganizer
         wx.setStorageSync("isOrganizer", isOrganizer)
+        wx.showLoading({
+            title: `切换为${isOrganizer?"主办方":"参与者"}`,
+        })
         this.setData({
-            isOrganizer: isOrganizer,
-            pageLoading: true
+            isOrganizer: isOrganizer
         })
         this.getMemberInfo(isOrganizer)
     },
     scanCode(e) {
-        // wx.showLoading()
         wx.scanCode({
             success: (res) => {
-                // wx.hideLoading()
                 wx.showLoading({
                     title: '验证码识别中',
                 })
@@ -87,7 +87,7 @@ Page({
             memberId: app.common("memberId"),
             merchantId: app.common("merchantId")
         }).then(res => {
-            console.log(res.data)
+            wx.hideLoading()
             this.setData({
                 member: res.data,
                 pageLoading: false
@@ -99,7 +99,7 @@ Page({
         app.api.selectData({
             userId: app.common('id')
         }).then(res => {
-            console.log(res)
+            wx.hideLoading()
             this.setData({
                 member: res.data,
                 pageLoading: false
