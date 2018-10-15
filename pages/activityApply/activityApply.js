@@ -75,8 +75,6 @@ Page({
   onLoad: function (options) {
     let detail = wx.getStorageSync("applyDetail"), _this = this,
       orderParams = this.data.orderParams
-    //console.log(detail)
-    //this.data.detail = detail
     orderParams.activityId = detail.id
     orderParams.num = 1
     orderParams.activityTicketList = detail.activityTicketList
@@ -117,7 +115,6 @@ Page({
       intervalArr = _this.getInterval(timeList[0])
     }
     let prix = (orderParams.price *  this.data.num ).toFixed(2)
-    console.log(prix)
     this.setData({
       detail:detail,
       orderParams: orderParams,
@@ -221,6 +218,7 @@ Page({
     })
   },
   toApplyPerson(e) {
+    wx.setStorage({key: "isOrganizer",data: false})
     wx.setStorageSync("orderParams", this.data.orderParams);
     wx.navigateTo({
       url: '/pages/applyPerson/applyPerson',

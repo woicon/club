@@ -10,7 +10,14 @@
                         <label class="red inline" wx:if="{{txtStatus==item.status}}">*</label>
                         {{item.name}}
                     </label>
-                    <input placeholder='输入{{item.name}}'  name="name{{i}}{{index}}" wx:if="{{item.fieldType==0}}"></input>
+                    <block  wx:if="{{item.fieldType==0}}"> 
+                        <block wx:if="{{item.name=='手机号'}}">
+                          <input placeholder='输入{{item.name}}' type="number" maxlength="11" name="name{{i}}{{index}}" ></input>
+                        </block>
+                        <block wx:elif="{{item.name}}"> 
+                            <input placeholder='输入{{item.name}}'  name="name{{i}}{{index}}"></input>
+                        </block>
+                    </block>
                     <textarea name="name{{i}}{{index}}" wx:elif="{{item.fieldType==1}}"></textarea>
                     <radio-group class="radio-group" data-index="{{i}}"   bindchange="radioChange" wx:elif="{{item.fieldType==2}}" >
                         <label class="radio"  wx:for="{{item.fieldOption[0]}}">

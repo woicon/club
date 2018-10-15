@@ -3,6 +3,9 @@ page{
   background:#fff;
   padding-top:50rpx;
 }
+.hide{
+  display: none;
+}
 .success{
   line-height:3;
   text-align:center;

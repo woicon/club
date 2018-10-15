@@ -44,6 +44,7 @@ Page({
     personNum:1  //活动报名人数
   },
   onLoad: function (options) {
+    console.log(app.common("memberId"))
     app.pageTitle("填写报名人信息");
     let orderParams = wx.getStorageSync("orderParams"),
         applyDetail = wx.getStorageSync("applyDetail"),
@@ -108,9 +109,7 @@ Page({
     let arrTxt = [], _this = this,arrXml=[],statusArr=[]
     form = this.data.form
     arrTxt.push(e.detail.value)
-    let flag = false
-    let i =0
-    console.log(app.check)
+    let flag = false,i=0
     for(let i=0;i<this.data.personNum;i++){
         let arr=[]
         this.data.responseList.forEach(function (item, x) {
@@ -140,11 +139,7 @@ Page({
       arrXml.push(`{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}`)
     }
     form.enrollInfos = `[${arrXml.join(",")}]`
-    wx.setStorage({
-      key: "isOrganizer",
-      data: false
-    })
-    console.log(wx.getStorageSync("isOrganizer"))
+   
     if(flag==false){
       form.contactsName = arrTxt[0]["name00"]
       form.contactsPhone = arrTxt[0]["name01"]
