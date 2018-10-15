@@ -23,7 +23,7 @@
        <label class="btn btn-plus"  bindtap="bindChange" data-type="plus"></label>
    </view>
 </view>
-<view class='a-block date'>
+<!--<view class='a-block date'>
     <view class='cstitle'>{{form.timeTitle}}<view class="selected">{{orderParams.time}}</view></view>
     <view class='csblock'>
         <block wx:for="{{activityTimeList}}" >
@@ -52,7 +52,7 @@
             {{item}}
         </view>
     </view>
-</view>
+</view>-->
 
 <view class='page-bar {{isPX ? "page-bar-px":""}}'>
     <view>共计{{price}}元</view>
