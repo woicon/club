@@ -88,7 +88,7 @@ Page({
                 img: imgs[i]
             })
         }
-        console.log(arrs)
+        //详情
         if (arrs.length > 1) {
             for (let i in nodes) {
                 let node = nodes[i]
@@ -124,7 +124,6 @@ Page({
                 }
             }
         }
-        console.log(arrs)
         wx.setStorageSync("activityDetails", arrs)
         var loacaltionTtype = (detail.activityAddress) ? 2 : 1
         wx.setStorageSync("applyInfo", detail.activityEnrollInfoResponseList)
@@ -325,10 +324,9 @@ Page({
             endDate: `${dateTimeArray[0][endDate[0]]}-${dateTimeArray[1][endDate[1]]}-${dateTimeArray[2][endDate[2]]}`,
             endTime: `${dateTimeArray[3][endDate[3]]}:${dateTimeArray[4][endDate[4]]}`,
         }]
-        // <input name="startDate" class='hidden' value = '{{dateTimeArray[0][startDate[0]]}}-{{dateTimeArray[1][startDate[1]]}}-{{dateTimeArray[2][startDate[2]]}}' > </input>
-        // < input name = "startTime" class='hidden' value = '{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}' > </input>
-        // < input name = "endDate" class='hidden' value = '{{dateTimeArray[0][endDate[0]]}}-{{dateTimeArray[1][endDate[1]]}}-{{dateTimeArray[2][endDate[2]]}}' > </input>
-        // < input name = "endTime" class='hidden' value = '{{dateTimeArray[3][endDate[3]]}}:{{dateTimeArray[4][endDate[4]]}}' > </input>
+        if (this.data.isEdit) {
+            timeInfo[0].id = this.data.detail.activityTimeList[0].id
+        }
         this.setData({
             timeInfo: JSON.stringify(timeInfo)
         })

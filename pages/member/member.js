@@ -130,7 +130,8 @@ Page({
     onShareAppMessage(e){
         return {
             title: '活动吧助手-您的活动好帮手',
-            path: '/page/index/index'
+            path: '/pages/index/index',
+            imageUrl:"https://tclub.lx123.com/imgPath//club/activity/1539586281868.jpg",
         }
     },
     toPage(e) {

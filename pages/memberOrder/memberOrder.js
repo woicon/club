@@ -75,7 +75,6 @@ Page({
         let params = this.orderParams(args)
         app.api.myOrderList(params)
             .then(res => {
-                console.log(res)
                 if (res.status == '200') {
                     let data = res.data
                     if (data.length > 0) {
