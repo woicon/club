@@ -10,19 +10,21 @@ Page({
     id:'',
     activityId:'',
     phone:'',
+    ishide:true,
     iconType: [
       'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear'
     ]
   },
   onLoad: function (option) {
-    let form =wx.getStorageSync("form"),phone
+    let form =wx.getStorageSync("form"),phone,ishide
     if (option.id != undefined) {
-      app.api.myOrderDetail({ orderId: this.data.id }).then((res) => {
+      app.api.myOrderDetail({ orderId: option.id }).then((res) => {
         if (res.status == 200 && res.msg == "OK") {
-          phone = res.data.merchantPhone
+           phone = res.data.merchantPhone
         }
       })
     }
+    if (phone == null) { ishide = false }
     this.setData({
       ticketName: form.ticketName,
       ticketPrice: form.orderPrice,
@@ -31,7 +33,8 @@ Page({
       userPhone: form.contactsPhone,
       id: option.id,
       activityId: form.activityId,
-      phone: phone
+      phone: phone,
+      ishide:ishide
     })
   },
   lookOrder(){
@@ -48,10 +51,8 @@ Page({
     })
   },
   callBuiness(){
-    if (this.data.phone!=""||this.data.phone!=null){
-      wx.makePhoneCall({
-        phoneNumber: this.data.phone
-      })
-    }
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone
+    })
   }
 })

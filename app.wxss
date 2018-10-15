@@ -578,7 +578,7 @@ page {
     right: 0;
     bottom: 0;
     background: #fff;
-    height: 90rpx;
+    height: 110rpx;
     display: flex;
     justify-content: space-between;
     box-shadow:0 -5px 50px rgba(0, 0, 0, .1);

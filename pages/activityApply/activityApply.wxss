@@ -70,6 +70,7 @@
     text-align:center;
     border-radius:8rpx;
     margin-bottom:20rpx;
+    overflow:hidden;
 }
 .active{
   border:2rpx solid #FF6363;
@@ -84,8 +85,8 @@
     border-top:8px solid transparent;
     border-bottom: 8px solid transparent;
     border-left:8px solid #FF6363;
-    right:-1rpx;
-    bottom:-10rpx;
+    right:-2rpx;
+    bottom:-12rpx;
     transform: rotate(45deg)
 }
 .selected{padding-left:10rpx;display:inline-block;}
