@@ -4,6 +4,7 @@ Page({
         currentTab: 0,
         pageLoading: true,
         isBottom: false,
+        isScrollTop:false,
         pageLoad: true,
         list: []
     },
@@ -70,13 +71,22 @@ Page({
             })
         }
     },
-
+    listRefresh(e){
+        this.setData({
+            isScrollTop:true
+        })
+        this.getList({
+            isRefresh: true
+        })
+    },
     getList(args) {
-        let time = "2018-09-14 10:17:00"
-        console.log(new Date(time).Format("yyyy-MM-dd hhmmss"))
         let arg = args || {}
         let parmas = this.listParams(arg)
-        console.log(parmas)
+        if (arg.isRefresh){
+            this.setData({
+                refresh:true
+            })
+        }
         app.api.findActivityList(parmas)
             .then(res => {
                 let datas = res.data
@@ -103,6 +113,7 @@ Page({
                         scrollLoading: false,
                         pageLoading: false,
                         pageLoad: false,
+                        refresh:false,
                         page: 1,
                         hasMore: hasMore
                     })
@@ -114,10 +125,7 @@ Page({
             url: `/pages/activityDetails/activityDetails?id=${e.currentTarget.dataset.id}`,
         })
     },
-    onPullDownRefresh(e) {
-        console.log('downRefresh')
-    },
-    onShareAppMessage() {
-
+    onShareAppMessage(e) {
+        console.log(e)
     }
 })
