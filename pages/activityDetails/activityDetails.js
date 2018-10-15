@@ -10,12 +10,17 @@ Page({
         },
         pageLoading: true
     },
+    createActivity(){
+        wx.switchTab({
+            url: '/pages/newIndex/newIndex',
+        })
+    },
     getDetail(id) {
         let params = {
             id: id
         }
         //主办方不传 memberId
-        if (!wx.getStorageSync("isOrganizer")) {
+        if (!wx.getStorageSync("isOrganizer") && wx.getStorageSync("login")) {
             params.memberId = app.common("memberId")
         }
         app.api.activityDetail(params).then(res => {

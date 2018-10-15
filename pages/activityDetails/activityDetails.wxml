@@ -52,7 +52,7 @@
 </view>
 
 <view class='page-bar {{isPX ? "page-bar-px":""}}'>
-    <view>我也要发活动</view>
+    <view bindtap='createActivity'>我也要发活动</view>
     <view class='btn-jion' bindtap='toApply'>报名参加</view>
 </view>
 </block>

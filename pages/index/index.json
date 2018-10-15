@@ -1,5 +1,5 @@
 {
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "usingComponents": {
         "load": "/component/loading/loading"
     }

@@ -10,7 +10,6 @@ App({
         this.check = base.check
         this.types = types
         wx.setStorageSync("ext", extConfig)
-        console.log("ApiList==>16:33", this.api)
         console.log("EXT.JSON==>Version::" + this.version, extConfig)
         this.isPx()
         wx.login({
@@ -19,7 +18,7 @@ App({
             }
         })
     },
-    version: "1.0.1",
+    version: "1.1",
     globalData: {
         userInfo: null
     },
@@ -101,16 +100,15 @@ App({
                     sessionKey: data.data.result.session_key,
                     superiorMerchantId: this.ext.merchantId,
                 }
-                wx.setStorageSync('reg', parmas)
                 this.api.wechatRegister(parmas)
                     .then(res => {
                         wx.hideLoading()
                         if (res.status == '200') {
-                            if (res.data.isRegister) {
+                            if (res.data.member) {
                                 wx.setStorageSync("login", res.data)
                                 this.tip("登录成功")
-                                cb(ispublic)
-                            } else {
+                                cb()
+                            } else if (!res.data.isRegister) {
                                 wx.setStorageSync('reg', parmas)
                                 wx.navigateTo({
                                     url: `/pages/accountRegister/accountRegister`,
@@ -137,6 +135,7 @@ App({
             this.wechatRegister(detail, code || wx.getStorageSync("CODE"), cb)
         }
     },
+
     isPx() {
         //适配iPhone X
         wx.getSystemInfo({
@@ -145,6 +144,7 @@ App({
             }
         })
     },
+
     //检测更新
     updateManager() {
         const updateManager = wx.getUpdateManager()
@@ -168,6 +168,7 @@ App({
             this.tip("更新失败")
         })
     },
+
     converDate(dateStr, flag) {
         dateStr = dateStr.split('-')
         dateStr = dateStr.join('/')
@@ -175,6 +176,7 @@ App({
             num = flag ? '' : ' hh:mm'
         return martDate.getFullYear() == new Date().getFullYear() ? martDate.Format(`MM月dd日${num}`) : martDate.Format(`yyyy年MM月dd日${num}`)
     },
+
     coverDateList(arr, item) {
         for (let i in arr) {
             arr[i][item] = this.converDate(arr[i][item])

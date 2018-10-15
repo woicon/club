@@ -47,7 +47,7 @@ page {
     height: 200rpx;
     color: #fff;
     display: flex;
-    padding: 0 68rpx;
+    padding: 0 40rpx;
     align-items: center;
     justify-content: space-between;
 }
@@ -58,7 +58,7 @@ page {
 }
 
 .m-phone {
-    font-size: 28rpx;
+    font-size: 24rpx;
     margin-top: 10rpx;
 }
 
@@ -68,8 +68,8 @@ page {
 }
 
 .m image {
-    width: 110rpx;
-    height: 110rpx;
+    width: 90rpx;
+    height: 90rpx;
     border-radius: 200px;
     margin-right: 28rpx;
 }

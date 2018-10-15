@@ -20,6 +20,7 @@ Page({
                 this.setData({
                     member: wx.getStorageSync("login")
                 })
+                this.getMemberInfo(wx.getStorageSync("isOrganizer"))
             })
         } else {
             app.tip('请您允许授权登录，否则无法使用该App')
@@ -49,11 +50,11 @@ Page({
     toggleRole() {
         let isOrganizer = !this.data.isOrganizer
         wx.setStorageSync("isOrganizer", isOrganizer)
-
         this.setData({
-            isOrganizer: isOrganizer
+            isOrganizer: isOrganizer,
+            pageLoading: true
         })
-        this.getMemberInfo(!isOrganizer)
+        this.getMemberInfo(isOrganizer)
     },
     scanCode(e) {
         // wx.showLoading()
@@ -80,7 +81,7 @@ Page({
             }
         })
     },
-    getParticipant() { 
+    memberInfo() {
         //参与者
         app.api.getMemberInfo({
             memberId: app.common("memberId"),
@@ -88,11 +89,12 @@ Page({
         }).then(res => {
             console.log(res.data)
             this.setData({
-                member: res.data
+                member: res.data,
+                pageLoading: false
             })
         })
     },
-    getSponsor() { 
+    organizerInfo() {
         //主办方
         app.api.selectData({
             userId: app.common('id')
@@ -108,23 +110,18 @@ Page({
         this.initMember()
     },
     getMemberInfo(isOrganizer) {
-        if (isOrganizer) {
-            //参与者
-            this.getParticipant()
-        } else {
-            //主办方
-            this.getSponsor()
-        }
+        isOrganizer ? this.organizerInfo() : this.memberInfo()
     },
     //初始化个人中心
     initMember() {
+        let isOrganizer = wx.getStorageSync("isOrganizer")
         if (wx.getStorageSync("login")) {
-            let isOrganizer = wx.getStorageSync("isOrganizer") || false
             this.setData({
                 isOrganizer: isOrganizer,
             })
             this.getMemberInfo(isOrganizer)
         } else {
+            wx.setStorageSync("isOrganizer", false)
             this.setData({
                 pageLoading: false
             })

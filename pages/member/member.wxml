@@ -18,10 +18,10 @@
         <!-- 主办方 -->
         <view class='m' bindtap='toDateSet'>
             <view class='m-info'>
-                <image src='{{member.member.headImg}}'></image>
+                <image src='{{member.logoUrl}}'></image>
                 <view class='m-infos'>
                     <view class="m-name">{{member.name || members.nickName}}</view>
-                    <view wx:if="{{member.phone}}" class='m-phone'>{{member.phone}}</view>
+                    <view wx:if="{{member.phone}}" class='m-phone'>账号:{{member.phone}}</view>
                     <view wx:else class='m-phone'>未绑定手机号</view>
                 </view>
             </view>
@@ -64,14 +64,13 @@
         </view>
         <!-- <view class='button' bindtap='exitSys' hover-class='button-touch'>退出登录</view> -->
     </block>
-
     <block wx:else>
         <!-- 参与者 -->
         <view class='m' bindtap='toDateSet'>
             <view class='m-info'>
-                <image src='{{member.wxappletUserInfo.avatarUrl}}'></image>
+                <image src='{{member.headImg}}'></image>
                 <view class='m-infos'>
-                    <view class="m-name">{{member.name || members.nickName}}</view>
+                    <view class="m-name">{{member.nickName}}</view>
                     <view wx:if="{{member.phone}}" class='m-phone'>{{member.phone}}</view>
                     <view wx:else class='m-phone'>未绑定手机号</view>
                 </view>
