@@ -1,7 +1,7 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/newIndex/newIndex",
+        "pages/newActivity/newActivity",
         "pages/creatActivity/creatActivity",
         "pages/login/login",
         "pages/member/member",
@@ -56,7 +56,7 @@
                 "selectedIconPath": "images/homes-sel.png"
             },
             {
-                "pagePath": "pages/newIndex/newIndex",
+                "pagePath": "pages/newActivity/newActivity",
                 "text": "发布活动",
                 "iconPath": "images/home.png",
                 "selectedIconPath": "images/home-sel.png"

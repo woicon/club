@@ -12,7 +12,7 @@ Page({
     },
     createActivity(){
         wx.switchTab({
-            url: '/pages/newIndex/newIndex',
+            url: '/pages/newActivity/newActivity',
         })
     },
     getDetail(id) {
