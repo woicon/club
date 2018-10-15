@@ -61,6 +61,7 @@ Page({
   },
   getInterval(date) {
     let arr = [], list = this.data.detail.activityTimeList
+    console.log(this.data.detail.activityTimeList)
     if (list.length > 1) {
       list.forEach(function (item, x) {
         if (item.startDate.split(" ")[0] == date) {
@@ -75,6 +76,7 @@ Page({
   onLoad: function (options) {
     let detail = wx.getStorageSync("applyDetail"), _this = this,
       orderParams = this.data.orderParams
+    this.data.detail = detail
     orderParams.activityId = detail.id
     orderParams.num = 1
     orderParams.activityTicketList = detail.activityTicketList
@@ -113,8 +115,11 @@ Page({
       })
       timeList = Array.from(new Set(timeList))
       intervalArr = _this.getInterval(timeList[0])
+      orderParams.time = timeList[0]  
+      orderParams.interval = intervalArr[0]
     }
-    let prix = (orderParams.price *  this.data.num ).toFixed(2)
+    let prix = (orderParams.price *  this.data.num ).toFixed(2),
+        isshow = timeList.length < 5  ? false:true 
     this.setData({
       detail:detail,
       orderParams: orderParams,
@@ -127,7 +132,8 @@ Page({
       activityTimeList: timeList,
       maxlen: orderParams.activityTicketList[0].maxBuy,
       ipx: app.isPX ? 'mt50' : '',
-      price: prix
+      price: prix,
+      isShow: isshow
     })
   },
   checkTicket(e) {
