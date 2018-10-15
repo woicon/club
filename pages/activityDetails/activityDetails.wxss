@@ -16,21 +16,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background:#fff;
+    background: #fff;
 }
 
 .tag {
     font-size: 22rpx;
     padding: 5rpx 14rpx;
-    background:#3cca80;
-    color:#fff;
+    background: #3cca80;
+    color: #fff;
 }
-.m-detils{
-    background:#fff;
-    padding:40rpx;
-    margin:0;
-    margin-bottom:230rpx;
+
+.m-detils {
+    background: #fff;
+    padding: 40rpx;
+    margin: 0;
+    margin-bottom: 230rpx;
 }
+
 .m-head {
     position: relative;
 }
@@ -56,36 +58,45 @@
     font-size: 34rpx;
     padding: 20rpx 40rpx;
     background: #fff;
-    margin-bottom:20rpx;
+    margin-bottom: 20rpx;
 }
-.m-title .value{
-    text-align:left;
+
+.m-title .value {
+    text-align: left;
     flex-grow: 2;
-    font-size:28rpx;
-    color:#555;
+    font-size: 28rpx;
+    color: #555;
 }
-.m-title .ico{
-    color:#999;
-    margin-right:8rpx;
+
+.m-title .ico {
+    color: #999;
+    margin-right: 8rpx;
 }
-.m-title >view{
+
+.m-title >view {
     display: flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:30rpx 0;
-    position:relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30rpx 0;
+    position: relative;
 }
-.m-title >view::after{
-    content:'';
-    display:block;
-    width:16rpx;
-    height:16rpx;
-    border:2px solid #ccc;
-    border-left:none;
-    border-bottom:none;
-    transform:rotate(45deg);
-    margin-right:2px;
+
+.m-title >view::after {
+    content: '';
+    display: block;
+    width: 16rpx;
+    height: 16rpx;
+    border: 2px solid #ccc;
+    border-left: none;
+    border-bottom: none;
+    transform: rotate(45deg);
+    margin-right: 2px;
 }
+
+.m-title .act-date::after {
+    border: none;
+}
+
 .m-right {
     display: flex;
     justify-content: flex-end;
@@ -141,4 +152,3 @@
     text-align: center;
     padding: 20rpx 40rpx 40rpx;
 }
-

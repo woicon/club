@@ -3,9 +3,8 @@
         <load></load>
     </view>
 </block>
-
 <block wx:else>
-    <view class='i-head' bindtap='creatAct' hover-class='touch' id="recreation" data-label="群活动">
+    <view class='i-head' bindtap='creatAct' data-id="0" hover-class='touch' id="recreation" data-label="群活动">
         <image src='../../images/chatu@3x.png'></image>
         <view class='i-info'>
             <view class='info-title'> 群活动</view>
