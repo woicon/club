@@ -590,8 +590,8 @@ page {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30rpx;
-    color: #444;
+    font-size: 28rpx;
+    color: #666;
 }
 
 .page-bar-px {
@@ -599,7 +599,8 @@ page {
 }
 
 .page-bar .btn-jion {
-    color: #ff6363;
+    background: #ff6363;
+    color:#fff;
     font-weight: 800;
 }
 /* //END PAGE BAR  */

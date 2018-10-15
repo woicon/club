@@ -1,17 +1,10 @@
 let app = getApp()
 Page({
     data: {
-        orderStatus: [{
-                name: '全部'
-            },
-            {
-                id: 1,
-                name: '待参与'
-            },
-            {
-                id: 2,
-                name: '已完成'
-            },
+        orderStatus: [
+            {name: '全部'},
+            {id: 1,name: '待参与'},
+            {id: 2,name: '已完成'},
             {id: 3,name: '已失效'},
         ],
         isBottom: false,
@@ -22,13 +15,14 @@ Page({
         //订单状态, 0待支付 1待核销 2核销中 3完成 4取消 5过期 6待审核 7审核失败 8删除 9失败(由于库存不足等原因，进行退款)
     },
     onLoad: function(options) {
-        console.log(options)
         this.setData({
             activityId: options.activityId,
             merchantId: options.merchantId,
             activityStatus: app.types.activityStatus
         })
         app.pageTitle("我的订单")
+    },
+    onShow(){
         this.orderList()
     },
     toggleTab(e) {

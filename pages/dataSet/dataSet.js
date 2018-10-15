@@ -40,10 +40,8 @@ Page({
         })
     },
     submitData(e) {
-        console.log(e)
         app.api.dataSet(e.detail.value)
             .then(res => {
-                console.log(res)
                 wx.showToast({
                     title: res.data,
                     icon: "none"

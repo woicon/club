@@ -63,6 +63,7 @@ Page({
         })
     },
     onShareAppMessage(res) {
+        console.log(res)
         if (res.from === 'button') {
             this.setData({
                 isPublic: null
@@ -71,8 +72,7 @@ Page({
         }
         return {
             title: this.data.detail.activityName,
-            // path: `${app.ext.host}m/${this.data.detail.merchantId}_1/detail.htm?id=${this.data.detail.id}`
-            path: `/pages/activityDetail/activityDetail?merchantId=${this.data.detail.merchantId}&activityId=${this.data.detail.id}&activityName=${this.data.detail.activityName}`
+            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}`
         }
     },
     saveShare: function(e) {

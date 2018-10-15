@@ -40,15 +40,14 @@
                 <view class='ico ico-price-tag b1'></view>
                 <text>票券审核</text>
             </view>
-            <view bindtap='toPage' data-url='/pages/messageList/messageList' hover-class='touch'>
-                <view class='ico ico-bubbles2 b10'></view>
-                <text>留言管理</text>
-            </view>
-
             <view bindtap='toPage' data-url='/pages/memberPassword/memberPassword' hover-class='touch'>
                 <view class='ico ico-lock b7'></view>
                 <text>修改密码</text>
             </view>
+               <!-- <view bindtap='toPage' data-url='/pages/messageList/messageList' hover-class='touch'>
+                <view class='ico ico-bubbles2 b10'></view>
+                <text>留言管理</text>
+            </view> -->
             <!-- <view  bindtap='toPage'  data-url="/pages/accounting/accounting" hover-class='touch'>
                 <view class='ico ico-briefcase b6'></view>
                 <text>我的收入</text>
@@ -89,12 +88,16 @@
             <view>
                 <view class='ico ico-bubble b10'></view>待参与</view>
         </view>-->
-        <view class='member-grid'>
+        <view class='member-grid'  hover-class='touch'>
             <navigator url='/pages/memberOrder/memberOrder'>
                 <view class='ico ico-folder b5'></view>
                 <text>全部订单 </text>
             </navigator>
-            <!-- <navigator url='/pages/activityFavorite/activityFavorite'>
+            <view bindtap='shareApp'  hover-class='touch'>
+                <view class='ico ico-share2 b6'></view>
+                <text>告诉好友 </text>
+            </view>
+               <!-- <navigator url='/pages/activityFavorite/activityFavorite'>
                 <view class='ico ico-heart b2'></view>
                 <text>我的收藏 </text>
             </navigator> -->
@@ -106,10 +109,6 @@
                 <view class='ico ico-cog b2'></view>
                 <text>账户设置</text>
             </view> -->
-            <view bindtap='shareApp'>
-                <view class='ico ico-share2 b6'></view>
-                <text>告诉好友 </text>
-            </view>
         </view>
     </block>
 </block>

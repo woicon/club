@@ -36,7 +36,7 @@
         <view class='value'>
             {{detail.activityAddress ? detail.activityAddress : "线上活动"}}</view>
     </view>
-    <view class='blines'>
+    <view class=''>
         <view class='ico ico-clock2'></view>
         <view class='value'> {{detail.startDate}} - {{detail.endDate}}</view>
     </view>

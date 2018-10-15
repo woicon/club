@@ -9,9 +9,9 @@
         </view> -->
         <view class='share-cont' bindtap='toDetail' data-id="{{detail.id}}">
             <view class='s-head'>
-                <image src='{{member.avatarUrl}}'></image>
+                <image src='{{member.member.headImg}}'></image>
                 <view>
-                    <view class='head-name'>{{member.nickName}}</view>
+                    <view class='head-name'>{{member.member.nickName}}</view>
                     <view class='head-info'>我分享了一个活动，快来看看吧</view>
                 </view>
             </view>
@@ -40,7 +40,7 @@
             分享活动卡片给好友
         </view>
         <view class='share-bar'>
-            <button open-type="share">
+            <button open-type="share" >
                 <image src='../../images/weixin.png' /> 微信好友</button>
             <button bindtap='shareGroup'>
                 <image src='../../images/pengyouquan.png' /> 到朋友圈</button>

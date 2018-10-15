@@ -6,6 +6,7 @@ Page({
         pageLoading: true
     },
     onLoad(options) {
+        app.pageTitle("发布活动")
         this.setData({
             types: app.types.category,
             postType: app.types.postType
