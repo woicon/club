@@ -32,6 +32,7 @@ Page({
         this.setData({
             isBottom: false,
             pageLoad: true,
+            isScrollTop:false,
             currentTab: e.currentTarget.dataset.index
         })
     },
@@ -44,6 +45,9 @@ Page({
         if (args.id) {
             params.activityCategory = args.id
         }
+        if (args.isRefresh && this.data.currentTab>0){
+            params.activityCategory = this.data.currentTab
+        } 
         if (arg.isMore) {
             params.page = this.data.page + 1
         } else {
@@ -116,6 +120,11 @@ Page({
                         refresh:false,
                         page: 1,
                         hasMore: hasMore
+                    })
+                }
+                if(arg.isRefresh){
+                    this.setData({
+                        resOk:40
                     })
                 }
             })

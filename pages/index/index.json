@@ -1,4 +1,5 @@
 {
+    "backgroundColor": "#f4f4f4",
     "enablePullDownRefresh": false,
     "usingComponents": {
         "load": "/component/loading/loading"

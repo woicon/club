@@ -9,13 +9,12 @@
             <view class='tab-item {{currentTab == item.categoryId ? "active" : ""}}' data-id="{{item.categoryId}}" data-index="{{index}}" bindtap='toggleCateyory' wx:for="{{category}}" wx:key="indexCategory">{{item.categoryName}}</view>
         </view>
     </scroll-view>
-    <scroll-view class='cat-scroll' scroll-y bindscrolltolower="listMore" bindscrolltoupper="listRefresh">
+    <scroll-view class='cat-scroll' scroll-y bindscrolltolower="listMore" bindscrolltoupper="listRefresh" scroll-top="{{resOk}}" scroll-with-animation="true">
         <view class='indexlist'>
-            <block wx:if="{{isScrollTop}}">
-                <view wx:if="{{refresh}}">
-                    <load />
-                </view>
-            </block>
+            <view wx:if="{{isScrollTop}}" class='top-res'>
+                <load wx:if="{{refresh}}" />
+                <block wx:else>刷新完成</block>
+            </view>
             <block wx:if="{{pageLoad}}">
                 <view class='f-c-c empty'>
                     <load></load>

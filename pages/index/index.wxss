@@ -1,72 +1,94 @@
-.scroll-tab{
-    position:fixed;
-    left:0;
-    right:0;
-    top:0;
-    height:98rpx;
-    overflow:hidden;
-    background:#fff;
+.scroll-tab {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 98rpx;
+    overflow: hidden;
+    background: #fff;
 }
-.list-item{
-    background:#fff;
-    margin:30rpx;
-    border-radius:8rpx;
-    overflow:hidden;
+
+.list-item {
+    background: #fff;
+    margin: 30rpx;
+    border-radius: 8rpx;
+    overflow: hidden;
 }
-.list-info{
+
+.top-res {
+    height: 100rpx;
     display: flex;
-    align-items:center;
-    margin-bottom:10rpx;
-}
-.list-info .ico{
-    margin-right:10rpx;
-}
-.item-infos{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    align-items: center;
+    justify-content: center;
     font-size:24rpx;
     color:#999;
+    margin-bottom:-20rpx;
 }
-.item-title{
-    font-size:32rpx;
-    font-weight:800;
-    color:#FF6363;
-    margin-bottom:20rpx;
+
+.list-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rpx;
 }
-.item-cont{
- padding:30rpx;
+
+.list-info .ico {
+    margin-right: 10rpx;
 }
-.list-img{
-    width:100%;
-    height:400rpx;
+
+.item-infos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24rpx;
+    color: #999;
 }
-.tab{
-    position:initial;
-    background:#fff;
-    flex:none;
-    display:block;
-    white-space:nowrap;
-    z-index:100;
+
+.item-title {
+    font-size: 32rpx;
+    font-weight: 800;
+    color: #ff6363;
+    margin-bottom: 20rpx;
 }
-.tab>view{
-    padding:0 50rpx;
-    width:auto;
-    display:inline-block;
-    background:#fff;
+
+.item-cont {
+    padding: 30rpx;
 }
-.indexlist{
-    padding:0 0 90rpx;
+
+.list-img {
+    width: 100%;
+    height: 400rpx;
 }
-.fee{
-    font-size:32rpx;
-    font-weight:800;
-    color:#FF6363;
+
+.tab {
+    position: initial;
+    background: #fff;
+    flex: none;
+    display: block;
+    white-space: nowrap;
+    z-index: 100;
 }
-.cat-scroll{
-    position:absolute;
-    left:0;
-    right:0;
-    top:94rpx;
-    bottom:0;
+
+.tab>view {
+    padding: 0 50rpx;
+    width: auto;
+    display: inline-block;
+    background: #fff;
+}
+
+.indexlist {
+    padding: 0 0 90rpx;
+}
+
+.fee {
+    font-size: 32rpx;
+    font-weight: 800;
+    color: #ff6363;
+}
+
+.cat-scroll {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 94rpx;
+    bottom: 0;
 }
