@@ -40,6 +40,9 @@
         </view>
     </view>
     <view class='button-bar'>
-        <button class='button' hover-class='button-touch' formType="submit">提交报名</button>
+        <button class='button' hover-class='button-touch' formType="{{btnLoading ? '':'submit'}}">
+           <load color="#ffffff" wx:if="{{btnLoading}}" />
+           <block  wx:else>提交报名</block>
+        </button>
     </view>
 </form>
