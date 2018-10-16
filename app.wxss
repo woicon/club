@@ -621,7 +621,7 @@ page {
     border-radius: 0;
     padding: 0;
     font-size: 34rpx;
-    line-height: 110rpx;
+    line-height: 100rpx;
 }
 
 .page-bar .btn-apply::after {
