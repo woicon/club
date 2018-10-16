@@ -73,8 +73,10 @@ Page({
     return arr
   },
   onLoad: function (options) {
-    let detail = wx.getStorageSync("applyDetail"), _this = this,
+    let detail = wx.getStorageSync("applyDetail"), _this = this, timeList = [], intervalArr = [],
       orderParams = this.data.orderParams
+    console.log(detail.id)
+    console.log(orderParams)
     this.data.detail = detail
     orderParams.activityId = detail.id
     orderParams.num = 1
@@ -86,15 +88,15 @@ Page({
     orderParams.ticketType = detail.activityTicketList[this.data.current].ticketType //
     orderParams.inid = detail.activityTicketList[this.data.current].activityTicketInventory[0].id //库存id
     app.pageTitle("选择票价")
-    let timeList = [], intervalArr = []
-    console.log(detail.activityTimeList)
     if (detail.activityTimeList.length == 1) {
-      let week =  detail.activityTimeList[0].applicableWeek
+      let week =  detail.activityTimeList[0].applicableWeek,
+          startDate = detail.activityTimeList[0].startDate,
+          endDate  = detail.activityTimeList[0].endDate
       if(week=="" || week==null){
-        timeList = this.setDate(detail.activityTimeList[0].startDate, detail.activityTimeList[0].endDate)
+        timeList = this.setDate(startDate, endDate)
       }else{
         let setWeek = week.split(","),
-        weekDate = this.setDate(detail.activityTimeList[0].startDate, detail.activityTimeList[0].endDate,true)
+        weekDate = this.setDate(startDate,endDate,true)
         weekDate.forEach(function(item,i){
           let getday = new Date(Date.parse(`${item}`)).getDay()
           for(var i=0;i<setWeek.length;i++){

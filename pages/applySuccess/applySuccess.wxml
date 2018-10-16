@@ -13,7 +13,7 @@
         </view>
 
     </view>
-    <view bindtap='callBuiness' class='callbtn' wx:if="{{detail.contactsPhone}}">
+    <view bindtap='callBuiness' class='callbtn' wx:if="{{detail.merchantPhone}}">
         <view class='icos ico-bubble' hover-class='touch'></view>联系主办方</view>
     <view class="ticket">
         <view class='ticket-link'>
