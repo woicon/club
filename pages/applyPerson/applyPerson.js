@@ -112,7 +112,7 @@ Page({
     let arrTxt = [], _this = this,arrXml=[],statusArr=[]
     form = this.data.form
     arrTxt.push(e.detail.value)
-    let flag = false,i=0,boll=true
+    let flag = false,i=0
     for(let i=0;i<this.data.personNum;i++){
         let arr=[]
         this.data.responseList.forEach(function (item, x) {

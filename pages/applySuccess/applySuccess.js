@@ -33,7 +33,7 @@ Page({
     },
     callBuiness() {
         wx.makePhoneCall({
-            phoneNumber: this.data.detail.contactsPhone
+          phoneNumber: this.data.detail.merchantPhone
         })
     }
 })
