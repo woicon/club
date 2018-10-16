@@ -76,7 +76,8 @@ Page({
         }
         return {
             title: this.data.detail.activityName,
-            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}`
+            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}`,
+            imageUrl: `${this.data.detail.activityImg}`
         }
     },
     saveShare: function(e) {

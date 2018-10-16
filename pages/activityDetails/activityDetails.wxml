@@ -5,53 +5,49 @@
     </view>
 </block>
 <block wx:else>
-<view class='m-head'>
-    <view class='imgs' style='background-image:url({{detail.activityImg}})'></view>
+    <view class='m-head'>
+        <view class='imgs' style='background-image:url({{detail.activityImg}})'></view>
 
-</view>
-<view class='m-titles'>
-    <view class='m-actname'>{{detail.activityName}}</view>
-    
-</view>
-<view class='m'>
-    <view class='m-status'>
-        <view>{{detail.applyCount == null ? '0' :detail.applyCount}}人已报名</view>
-        <view class='tag {{detail.status == 3 || detail.status == 2 ? "disable":""}}'>{{actStatus[detail.status]}}</view>
     </view>
-    <view class='m-right'>
-        <view>
-            <view class='ico ico-bookmark'></view>
-            <text>{{detail.visitCount == null ?'0' :detail.visitCount}}</text>
+    <view class='m-titles'>
+        <view class='m-actname'>{{detail.activityName}}</view>
+
+    </view>
+    <view class='m'>
+        <view class='m-status'>
+            <view>{{detail.applyCount == null ? '0' :detail.applyCount}}人已报名</view>
+            <view class='tag {{detail.status == 3 || detail.status == 2 ? "disable":""}}'>{{actStatus[detail.status]}}</view>
         </view>
-        <view>
-            <view class='ico ico-share2'></view>
-            <text>{{detail.shareCount == null ? '0':detail.shareCount}}</text>
+        <view class='m-right'>
+            <view>
+                <view class='ico ico-bookmark'></view>
+                <text>{{detail.visitCount == null ?'0' :detail.visitCount}}</text>
+            </view>
+            <view>
+                <view class='ico ico-share2'></view>
+                <text>{{detail.shareCount == null ? '0':detail.shareCount}}</text>
+            </view>
         </view>
     </view>
-</view>
-<view class='m-title'>
-    <view class='blines list-arr {{detail.activityAddress ? "" : "no-arr"}}' 
-    bindtap='{{detail.activityAddress ? "toMap" :""}}' 
-    data-lon="{{detail.lon}}" 
-    data-address="{{detail.activityAddress}}" 
-    data-lat="{{detail.lat}}">
-        <view class='ico ico-earth'></view>
-        <view class='value'>{{detail.activityAddress ? detail.activityAddress : "线上活动"}}</view>
+    <view class='m-title'>
+        <view class='blines list-arr {{detail.activityAddress ? "" : "no-arr"}}' bindtap='{{detail.activityAddress ? "toMap" :""}}' data-lon="{{detail.lon}}" data-address="{{detail.activityAddress}}" data-lat="{{detail.lat}}">
+            <view class='ico ico-earth'></view>
+            <view class='value'>{{detail.activityAddress ? detail.activityAddress : "线上活动"}}</view>
+        </view>
+        <view class='no-arr'>
+            <view class='ico ico-clock2'></view>
+            <view class='value'> {{detail.startDate}} - {{detail.endDate}}</view>
+        </view>
     </view>
-    <view class='no-arr'>
-        <view class='ico ico-clock2'></view>
-        <view class='value'> {{detail.startDate}} - {{detail.endDate}}</view>
+
+    <view class='wxdetail'>
+        <view class='wxParse m-detils'>
+            <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+        </view>
     </view>
-</view>
-
-
-<view class='wxParse m-detils'>
-    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-</view>
-
-<view class='page-bar {{isPX ? "page-bar-px":""}}'>
-    <view bindtap='createActivity'>我也要发活动</view>
-    <view wx:if="{{member}}" class='btn-apply' bindtap='toApply'>报名参加</view>
-    <button wx:else class='btn-apply'  bindgetuserinfo='{{btnLoading?"":"getUserInfo"}}' open-type="getUserInfo">报名参加</button>
-</view>
+    <view class='page-bar {{isPX ? "page-bar-px":""}}'>
+        <view bindtap='createActivity'>我也要发活动</view>
+        <view wx:if="{{member}}" class='btn-apply' bindtap='toApply'>报名参加</view>
+        <button wx:else class='btn-apply' bindgetuserinfo='{{btnLoading?"":"getUserInfo"}}' open-type="getUserInfo">报名参加</button>
+    </view>
 </block>

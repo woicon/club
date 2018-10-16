@@ -88,7 +88,11 @@ Page({
         app.isLogin()
         this.getDetail(this.data.id)
     },
-    onShareAppMessage: function() {
-
+    onShareAppMessage() {
+        return {
+            title: this.data.detail.activityName,
+            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}`,
+            imageUrl: `${this.data.detail.activityImg}`
+        }
     }
 })

@@ -24,19 +24,19 @@
         <view class='bline'>
             <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>
         <view class='bline'>
-            <view class='ico ico-clock2'></view>{{detail.activityStartTime}}</view>
+            <view class='ico ico-clock2'></view>{{detail.startDate}}至{{detail.endDate}}</view>
         <view class='contact'>主办方：{{detail.merchantName}}
-            <view wx:if="{{detail.merchantPhone}}" bindtap='callOrganze'>
+            <view wx:if="{{detail.merchantPhone}}" class='call' bindtap='callOrganze'>
                 <text class='ico-bubble'></text> 联系TA</view>
         </view>
     </view>
 
     <view class='actinfo'>
         <view class='bline'>订单编号：
-            <view>{{detail.orderNo}}</view>
+            <view class='value'>{{detail.orderNo}}</view>
         </view>
         <view>订单时间：
-            <view>{{detail.createDate}}</view>
+            <view class='value'>{{detail.createDate}}</view>
         </view>
     </view>
 </view>

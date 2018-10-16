@@ -5,15 +5,6 @@ Page({
     },
     onLoad(options) {
         app.pageTitle(`完善账户信息`)
-        if(options.ispublic){
-            this.setData({
-                isPublic:true,
-            })
-        }else if (options.isApply) {
-            this.setData({
-                isApply: true,
-            })
-        }
     },
     //校验注册
     checkForm(e, cb) {

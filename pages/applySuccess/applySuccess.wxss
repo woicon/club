@@ -54,17 +54,17 @@ icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
-    border: 1px solid #ccc;
-    width: 260rpx;
-    line-height: 76rpx;
-    font-size: 28rpx;
+    width: 250rpx;
+    font-size: 29rpx;
     margin: 40rpx auto;
     border-radius: 90px;
+    background:#eee;
+    color:#444;
+    padding:12rpx 0;
 }
 
 .callbtn .icos {
-    margin-right: 24rpx;
+    margin-right: 16rpx;
 }
 
 .ticket {

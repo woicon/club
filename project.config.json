@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 21,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -102,7 +102,7 @@
 					"id": 10,
 					"name": "creatActivity",
 					"pathName": "pages/creatActivity/creatActivity",
-					"query": ""
+					"query": "edit=true"
 				},
 				{
 					"id": -1,

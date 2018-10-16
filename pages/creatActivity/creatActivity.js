@@ -40,7 +40,6 @@ Page({
         loacaltionTtype: null,
     },
     onLoad(options) {
-        
         app.pageTitle(options.edit ? '编辑活动' : '发布活动')
         this.setData({
             postImg: options.img || null,
@@ -73,11 +72,11 @@ Page({
         //编辑活动初始化
         let detail = wx.getStorageSync("editActivity")
         this.initDate({
-            startDate: detail.startDate,
-            endDate: detail.endDate
+            startDate: detail.activityTimeList[0].startDate,
+            endDate: detail.activityTimeList[0].endDate
         })
         let activityDetails = detail.activityDetails
-        console.log(activityDetails)
+
         WxParse.wxParse('article', 'html', activityDetails, this)
         let nodes = this.data.article.nodes
         let arrs = []
