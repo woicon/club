@@ -74,19 +74,19 @@ Page({
   },
   onLoad: function (options) {
     let detail = wx.getStorageSync("applyDetail"), _this = this, timeList = [], intervalArr = [],
-      orderParams = this.data.orderParams
-    console.log(detail.id)
-    console.log(orderParams)
+      orderParams = this.data.orderParams, currentActive = detail.activityTicketList[this.data.current]
     this.data.detail = detail
-    orderParams.activityId = detail.id
-    orderParams.num = 1
-    orderParams.activityTicketList = detail.activityTicketList
-    orderParams.id = detail.activityTicketList[this.data.current].id//设置票id默认选项
-    orderParams.ticketName = detail.activityTicketList[this.data.current].ticketName//设置票默认选项
-    orderParams.price = detail.activityTicketList[this.data.current].price//设置票价格默认选项
-    orderParams.payPrice = detail.activityTicketList[this.data.current].price//设置票价格默认选项
-    orderParams.ticketType = detail.activityTicketList[this.data.current].ticketType //
-    orderParams.inid = detail.activityTicketList[this.data.current].activityTicketInventory[0].id //库存id
+    orderParams={
+      activityId : detail.id,
+      num : 1,
+      activityTicketList : detail.activityTicketList,
+      id : currentActive.id,//设置票id默认选项
+      ticketName : currentActive.ticketName,//设置票默认选项
+      price : currentActive.price,//设置票价格默认选项
+      payPrice : currentActive.price,//设置票价格默认选项
+      ticketType : currentActive.ticketType, //
+      inid : currentActive.activityTicketInventory[0].id //库存id
+    }
     app.pageTitle("选择票价")
     if (detail.activityTimeList.length == 1) {
       let week =  detail.activityTimeList[0].applicableWeek,
