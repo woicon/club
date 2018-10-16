@@ -178,5 +178,10 @@ App({
             arr[i][item] = this.converDate(arr[i][item])
         }
         return arr
+    },
+    shareApp:{
+        title: '活动吧助手-您的活动好帮手',
+        path: '/pages/index/index',
+        imageUrl: "https://tclub.lx123.com/imgPath//club/activity/1539586281868.jpg"
     }
 })

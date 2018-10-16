@@ -30,7 +30,7 @@
                     </view>
 
                     <view class='s-line'>
-                        <view class='ico ico-clock2'></view>{{detail.startDate}}至{{detail.endDate}}
+                        <view class='ico ico-clock2'></view>{{detail.startDate}} 至 {{detail.endDate}}
                     </view>
                 </view>
             </view>

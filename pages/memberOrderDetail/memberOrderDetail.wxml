@@ -20,7 +20,7 @@
     </view>
 
     <view class='actinfo'>
-        <view class='blines act-title'>{{detail.activityName}}</view>
+        <view class='blines act-title' bindtap='toDetails'>{{detail.activityName}}</view>
         <view class='bline'>
             <view class='ico ico-earth'></view>{{detail.activityAddress ? detail.activityAddress :'线上活动'}}</view>
         <view class='bline'>

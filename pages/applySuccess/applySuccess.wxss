@@ -1,52 +1,113 @@
 /* pages/applySuccess/applySuccess.wxss */
-page{
-  background:#fff;
-  padding-top:50rpx;
+
+page {
+    background: #fff;
 }
-.hide{
-  display: none;
+
+.ico {
+    font-size: 120rpx;
+    margin: 40rpx 0 20rpx;
+    color: #ff6363;
 }
-.success{
-  line-height:3;
-  text-align:center;
-  font-size: 14px;
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-button{
-    width:30%;
-    font-size:14px;
-    margin-top:20rpx
+
+.ico-title {
+    font-size: 36rpx;
+    font-weight: 800;
+    margin-bottom: 50rpx;
+    color: #ff6363;
 }
-icon{
-  display:inline-block;
-  vertical-align:middle;
+
+.con {
+    line-height: 1.6;
+    color: #666;
 }
-.con{
-   font-size:12px;
+
+.conts {
+    font-size: 28rpx;
 }
-text{
-  margin-left:20rpx;
+
+.hide {
+    display: none;
 }
-.ticket{
-   border-top:1px solid #e8e8e8;
-   border-bottom:1px solid #e8e8e8;
-   margin-top:80rpx;
+
+.button-bar {
+    text-align: center;
+    margin: 0 60rpx;
 }
-.ticketDetail {
-  display: flex;
-  padding-left:10%;
- 
+
+.button-bar .button {
+    margin: 20rpx 0 40rpx;
 }
-label{
-  width: 25%;
-  justify-content: left;
-  text-align: left;
+
+icon {
+    display: inline-block;
+    vertical-align: middle;
 }
-.phone{
-  margin-left:40rpx;
+
+.callbtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border: 1px solid #ccc;
+    width: 260rpx;
+    line-height: 76rpx;
+    font-size: 28rpx;
+    margin: 40rpx auto;
+    border-radius: 90px;
 }
-.btn{
-   border:1px solid #e8e8e8;
-   border-radius: 10rpx;
-   margin-top:30rpx;
-   width:50%;
+
+.callbtn .icos {
+    margin-right: 24rpx;
+}
+
+.ticket {
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    padding: 40rpx 0;
+    margin:120rpx 60rpx 50rpx;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25rpx;
+    color: #666;
+}
+
+.btn {
+    border: 1px solid #e8e8e8;
+    border-radius: 10rpx;
+    margin-top: 30rpx;
+    width: 50%;
+}
+
+.cont-name {
+    font-weight: 800;
+    font-size: 32rpx;
+    margin-bottom: 10rpx;
+}
+
+.ticktes {
+    text-align: right;
+}
+
+.ticket-name {
+    margin-right: 20rpx;
+    padding: 6rpx 20rpx;
+    background: #eee;
+    color: #444;
+    border-radius: 3rpx;
+}
+
+.phone {
+    color: #888;
+}
+
+.success-head {
+    text-align: center;
 }

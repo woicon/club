@@ -33,6 +33,11 @@ Page({
             url: '/pages/memberOrderApplyInfo/memberOrderApplyInfo',
         })
     },
+    toDetails(){
+        wx.navigateTo({
+            url: '/pages/activityDetails/activityDetails',
+        })
+    },
     onShow: function() {
 
     },

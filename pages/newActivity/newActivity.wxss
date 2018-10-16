@@ -14,7 +14,7 @@ page {
     justify-content:space-between;
 }
 
-.i-head::after {
+/* .i-head::after {
     content: '';
     width: 12rpx;
     height: 12rpx;
@@ -22,7 +22,7 @@ page {
     border-left: none;
     border-bottom: none;
     transform: rotate(45deg);
-}
+} */
 
 .info-title {
     font-size: 34rpx;

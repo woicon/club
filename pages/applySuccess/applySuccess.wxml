@@ -1,14 +1,32 @@
-<view class="success">
-    <view><icon type="success" size="20"/><text>提交成功</text></view>
-    <view class="con">您的报名信息已提交成功，请关注订单状态变化</view>
-    <view class="con">如有问题请联系主办方</view>
-    <button bindtap='callBuiness' class="{{ishide==false?'hide':''}}">联系他</button>
-    <view class="ticket">
-       <view class="ticketDetail">
-          <label>{{ticketName}}</label><label>￥{{ticketPrice}}</label><label>{{ticketNum}}张</label>
-       </view>
-       <view class="ticketDetail">{{userName}}<label class="phone">({{userPhone}})</label></view>
+<block wx:if="{{pageLoading}}">
+    <view class='f-c-c empty'>
+        <load></load>
     </view>
-    <button class="button button-touch" bindtap="lookOrder">查看订单</button>
-    <button class="button button-touch" bindtap="continues">继续报名</button>
+</block>
+<view wx:else class="success">
+    <view class='success-head'>
+        <view class='ico icon-oks'></view>
+        <view class='ico-title'>提交成功</view>
+        <view class='conts'>
+            <view class="con">您的报名信息已提交成功，请关注订单状态变化</view>
+            <view class="con">如有问题请联系主办方</view>
+        </view>
+
+    </view>
+    <view bindtap='callBuiness' class='callbtn' wx:if="{{detail.contactsPhone}}">
+        <view class='icos ico-bubble' hover-class='touch'></view>联系主办方</view>
+    <view class="ticket">
+        <view class='ticket-link'>
+            <view class='cont-name'>{{detail.contactsName}}</view>
+            <view class="phone">{{detail.contactsPhone}}</view>
+        </view>
+        <view class='ticktes'>
+            <text class='ticket-name'>{{detail.ticketName}}</text>
+            <text>{{detail.ticketPrice == 0 ? "免费" : "¥"+detail.ticketPrice}} × {{detail.ticketCount}}</text>
+        </view>
+    </view>
+    <view class='button-bar'>
+        <button class="button" hover-class='button-touch' bindtap="lookOrder">查看订单</button>
+        <button class="button button-line" hover-class='button-line-touch' bindtap="continues">继续报名</button>
+    </view>
 </view>

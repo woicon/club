@@ -61,17 +61,16 @@
     border-radius: 2px;
 }
 .btag{
-    background:#ff6363;
-    padding:5rpx 20rpx;
+    color:#ff6363;
+    padding:5rpx 0;
     border-radius:2px;
-    color:#fff;
     font-weight:800;
     font-size:28rpx;
 }
 .item-head image {
     width: 44rpx;
     height: 44rpx;
-    margin-right: 20rpx;
+    margin-right:15rpx;
     border-radius: 90px;
 }
 
@@ -149,8 +148,8 @@
 }
 
 .list-img {
-    width: 190rpx;
-    height: 120rpx;
+    width: 200rpx;
+    height: 118rpx;
     margin-left: 20rpx;
 }
 

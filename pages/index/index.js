@@ -4,7 +4,7 @@ Page({
         currentTab: 0,
         pageLoading: true,
         isBottom: false,
-        isScrollTop:false,
+        isScrollTop: false,
         pageLoad: true,
         list: []
     },
@@ -32,7 +32,7 @@ Page({
         this.setData({
             isBottom: false,
             pageLoad: true,
-            isScrollTop:false,
+            isScrollTop: false,
             currentTab: e.currentTarget.dataset.index
         })
     },
@@ -40,14 +40,14 @@ Page({
         let arg = args || {}
         let params = {
             page: 1,
-            size: 8
+            size: 10
         }
         if (args.id) {
             params.activityCategory = args.id
         }
-        if (args.isRefresh && this.data.currentTab>0){
+        if (args.isRefresh && this.data.currentTab > 0) {
             params.activityCategory = this.data.currentTab
-        } 
+        }
         if (arg.isMore) {
             params.page = this.data.page + 1
         } else {
@@ -64,39 +64,20 @@ Page({
         }
         return newList
     },
-    onReachBottom(e) {
-        console.log(e)
-        this.setData({
-            isBottom: true
-        })
-        if (this.data.hasMore) {
-            this.getList({
-                isMore: true
-            })
-        }
-    },
-    onPullDownRefresh(e){
-        console.log(e)
-        // this.setData({
-        //     isScrollTop:true
-        // })
-        this.getList({
-            isRefresh: true
-        })
-    },
+
     getList(args) {
         let arg = args || {}
         let parmas = this.listParams(arg)
-        if (arg.isRefresh){
+        if (arg.isRefresh) {
             this.setData({
-                refresh:true
+                refresh: true
             })
         }
         app.api.findActivityList(parmas)
             .then(res => {
                 let datas = res.data
-                if (res.data.length > 0){
-                    app.coverDateList(datas,"startDate")
+                if (res.data.length > 0) {
+                    app.coverDateList(datas, "startDate")
                 }
                 if (arg.isMore) {
                     if (res.data.length > 0) {
@@ -118,26 +99,40 @@ Page({
                         scrollLoading: false,
                         pageLoading: false,
                         pageLoad: false,
-                        refresh:false,
+                        refresh: false,
                         page: 1,
                         hasMore: hasMore
                     })
                 }
-                if(arg.isRefresh){
+                if (arg.isRefresh) {
                     wx.stopPullDownRefresh()
                     this.setData({
-                        resOk:60
+                        resOk: 60
                     })
                 }
             })
     },
-    
+    onReachBottom(e) {
+        this.setData({
+            isBottom: true
+        })
+        if (this.data.hasMore) {
+            this.getList({
+                isMore: true
+            })
+        }
+    },
+    onPullDownRefresh(e) {
+        this.getList({
+            isRefresh: true
+        })
+    },
     toDetail(e) {
         wx.navigateTo({
             url: `/pages/activityDetails/activityDetails?id=${e.currentTarget.dataset.id}`,
         })
     },
     onShareAppMessage(e) {
-        console.log(e)
+        return app.shareApp
     }
 })

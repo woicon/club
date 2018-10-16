@@ -44,7 +44,7 @@ Page({
         this.setData({
             btnLoading: true
         })
-        if (e.detail) {
+        if (e.detail.userInfo) {
             app.login(e.detail, wx.getStorageSync("CODE"), () => {
                 this.setData({
                     member: wx.getStorageSync("login")
@@ -52,6 +52,9 @@ Page({
             })
         } else {
             app.tip('请您允许授权登录，否则无法使用该App')
+            this.setData({
+                btnLoading: false
+            })
         }
     },
     creatAct(e) {
@@ -64,7 +67,7 @@ Page({
             url: `/pages/creatActivity/creatActivity?img=${img}&label=${e.currentTarget.dataset.label}`,
         })
     },
-    onShareAppMessage: function() {
-
+    onShareAppMessage() {
+        
     },
 })

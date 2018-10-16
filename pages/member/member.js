@@ -12,10 +12,11 @@ Page({
         app.pageTitle("个人中心")
     },
     getUserInfo(e) {
+        console.log(e)
         this.setData({
             btnLoading: true
         })
-        if (e.detail) {
+        if (e.detail.userInfo) {
             app.login(e.detail, wx.getStorageSync("CODE"), () => {
                 this.setData({
                     member: wx.getStorageSync("login")
@@ -24,6 +25,9 @@ Page({
             })
         } else {
             app.tip('请您允许授权登录，否则无法使用该App')
+            this.setData({
+                btnLoading:false
+            })
         }
     },
     toActivityList() {
@@ -128,11 +132,7 @@ Page({
         }
     },
     onShareAppMessage(e){
-        return {
-            title: '活动吧助手-您的活动好帮手',
-            path: '/pages/index/index',
-            imageUrl:"https://tclub.lx123.com/imgPath//club/activity/1539586281868.jpg",
-        }
+        return app.shareApp
     },
     toPage(e) {
         wx.navigateTo({
