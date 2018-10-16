@@ -40,11 +40,11 @@ Page({
     selNum: 0,
     isActive:0,
     name:'',
+    ctime:'undefined',
     txtStatus:0,//必填项*
     personNum:1  //活动报名人数
   },
   onLoad: function (options) {
-    console.log(app.common("memberId"))
     app.pageTitle("填写报名人信息");
     let orderParams = wx.getStorageSync("orderParams"),
         applyDetail = wx.getStorageSync("applyDetail"),
@@ -106,10 +106,13 @@ Page({
     })
   },
   formSubmit(e) {
+    this.setData({
+      btnLoading:true
+    })
     let arrTxt = [], _this = this,arrXml=[],statusArr=[]
     form = this.data.form
     arrTxt.push(e.detail.value)
-    let flag = false,i=0
+    let flag = false,i=0,boll=true
     for(let i=0;i<this.data.personNum;i++){
         let arr=[]
         this.data.responseList.forEach(function (item, x) {
@@ -139,7 +142,6 @@ Page({
       arrXml.push(`{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}`)
     }
     form.enrollInfos = `[${arrXml.join(",")}]`
-   
     if(flag==false){
       form.contactsName = arrTxt[0]["name00"]
       form.contactsPhone = arrTxt[0]["name01"]
@@ -147,15 +149,17 @@ Page({
         form: form
       })
       wx.setStorageSync("form",this.data.form)
-     
       app.api.createAppletOrder(this.data.form).then((res) => {
-         //if(this.data.form.price==0){}
+        //if(this.data.form.price==0){}
           if(res.status=="200" && res.msg=="OK"){
+            this.setData({
+              btnLoading: false
+            })
             wx.reLaunch({
               url: '/pages/applySuccess/applySuccess?id=' + res.data,
             })
           }else{
-             app.tip("报名信息提交失败,请重新提交！")
+            app.tip("报名信息提交失败,请重新提交！")
           }
       })
     }
