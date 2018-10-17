@@ -71,18 +71,16 @@ Page({
     editInit() {
         //编辑活动初始化
         let detail = wx.getStorageSync("editActivity")
+        //编辑活动时间初始化处理
         let activityDate = detail.activityTimeList[0]
         this.initDate({
             startDate: `${activityDate.startDate} ${activityDate.startTime}`,
             endDate: `${activityDate.endDate} ${activityDate.endTime }`
         })
         let activityDetails = detail.activityDetails
-
+        //编辑活动详情初始化处理
         WxParse.wxParse('article', 'html', activityDetails, this)
-        let nodes = this.data.article.nodes
-        let arrs = []
-        let txt = []
-        let imgs = this.data.article.imageUrls
+        let nodes = this.data.article.nodes,arrs = [],txt = [],imgs = this.data.article.imageUrls
         for (let i in imgs) {
             arrs.push({
                 img: imgs[i]
@@ -139,14 +137,13 @@ Page({
         })
     },
 
-    checkOk: function(e) {
-        console.log(e)
+    checkOk(e) {
         this.setData({
             checkOk: !this.data.checkOk
         })
     },
 
-    setUpPic: function(type) {
+    setUpPic(type) {
         wx.chooseImage({
             sourceType: type,
             success: (data) => {
@@ -237,7 +234,7 @@ Page({
         })
     },
 
-    creatActivity: function(e) {
+    creatActivity(e) {
         console.log(e)
         let value = e.detail.value
         this.setData({
@@ -280,7 +277,6 @@ Page({
         app.api.publishActivity(value)
             .then(res => {
                 wx.hideLoading()
-                console.log(res)
                 if (res.data) {
                     wx.removeStorageSync("activityDetails")
                     wx.removeStorageSync("applyInfo")
@@ -331,15 +327,21 @@ Page({
             timeInfo: JSON.stringify(timeInfo)
         })
     },
+    dateStr(d,r){
+        return `${d[0][dateArr[0]]}/${d[1][r[1]]}/${d[2][r[2]]} ${d[3][r[3]]}:${d[4][r[4]]}`
+    },
+    actTitle(e){
+        if(e.detail.value.length==50){
+            app.tip("标题最多只能输入50个字符")
+        }
+    },
     changeEndDate: function(e) {
         let dateTimeArray = this.data.dateTimeArray
         let startDate = this.data.startDate
         let endTimeArray = this.data.endTimeArray
         let endDate = this.data.endDate
-        let startDateStr = `${dateTimeArray[0][startDate[0]]}/${dateTimeArray[1][startDate[1]]}/${dateTimeArray[2][startDate[2]]} ${dateTimeArray[3][startDate[3]]}:${dateTimeArray[4][startDate[4]]}`
-        let endDateStr = `${endTimeArray[0][endDate[0]]}/${endTimeArray[1][endDate[1]]}/${endTimeArray[2][endDate[2]]} ${endTimeArray[3][endDate[3]]}:${endTimeArray[4][endDate[4]]}`
-        console.log(startDateStr, ':::', endDateStr)
-        // [{ 'startDate': '2018-08-11', 'startTime': '08:00', 'endDate': '2018-11-11', 'endTime': '08:00', 'applicableWeek': '0,1,2' }]
+        let startDateStr = this.dateStr(dateTimeArray, startDate)
+        let endDateStr = this.dateStr(dateTimeArray, startDate)
         if (this.isErrorTime(startDateStr, endDateStr)) {
             app.tip("活动开始时间不能大于结束时间")
         } else {
@@ -488,30 +490,7 @@ Page({
             phoneCode: e.detail.value
         })
     },
-    bindPhone(value) {
-        wx.showLoading({
-            title: '绑定手机中',
-        })
-        app.api.bindingMobilePhone({
-                merchantId: app.common("merchantId"),
-                applyProgressKey: this.data.applyProgressKey,
-                verificationCode: this.data.phoneCode,
-                mobilePhone: this.data.phoneValue
-            })
-            .then(res => {
-                console.log(res)
-                wx.hideLoading()
-                let status = res.status
-                if (status == '1004' || status == '1005') {
-                    app.tip(res.msg)
-                } else if (status == '200') {
-                    this.creatAct(this.data.values)
-                    this.setData({
-                        nonePhone: false
-                    })
-                }
-            })
-    },
+
     handleSetting(e) {
         console.log(e)
         if (!e.detail.authSetting['scope.userLocation']) {
