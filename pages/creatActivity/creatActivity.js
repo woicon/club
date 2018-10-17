@@ -71,9 +71,10 @@ Page({
     editInit() {
         //编辑活动初始化
         let detail = wx.getStorageSync("editActivity")
+        let activityDate = detail.activityTimeList[0]
         this.initDate({
-            startDate: detail.activityTimeList[0].startDate,
-            endDate: detail.activityTimeList[0].endDate
+            startDate: `${activityDate.startDate} ${activityDate.startTime}`,
+            endDate: `${activityDate.endDate} ${activityDate.endTime }`
         })
         let activityDetails = detail.activityDetails
 

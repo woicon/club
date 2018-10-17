@@ -29,7 +29,7 @@
     <view class='act'>
         <view>
             <label>活动主题</label>
-            <input placeholder='输入活动主题' name='activityName' value='{{detail.activityName || ""}}'></input>
+            <textarea auto-height placeholder='输入活动主题' name='activityName' value='{{detail.activityName || ""}}'></textarea>
         </view>
         <view class='list-arr' bindtap='chooseLocaltion'>
             <label>活动地点</label>
