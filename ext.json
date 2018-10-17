@@ -1,11 +1,11 @@
 {
     "extEnable": true,
     "directCommit": true,
-    "extAppid": "wx3a2c78ac53d02dec",
+    "extAppid": "wx21a5423e459d519e",
     "ext": {
         "merchantId": "10101384",
         "host": "https://tclub.lx123.com/",
-        "appId": "wx3a2c78ac53d02dec",
+        "appId": "wx21a5423e459d519e",
         "appName":"活动吧"
     }
 }

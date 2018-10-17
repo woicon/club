@@ -1,11 +1,11 @@
 <form bindsubmit='formSubmit'> 
 <view class='person'>
-      <view class='forms' wx:for="{{personNum}}" wx:for-item="i">
+      <view class='forms' wx:for="{{personNum}}" wx:for-item="i" wx:key="personNum">
                 <view class='f-head bline'>
                     <view class='f-title'>第{{i+1}}位参与者</view>
                     <view class='f-check' wx:if="{{isActive == i}}">默认联系人</view>
                 </view>
-                <view wx:for="{{responseList}}">
+                <view wx:for="{{responseList}}" wx:key="responseList">
                     <label>
                         <label class="red inline" wx:if="{{txtStatus==item.status}}">*</label>
                         {{item.name}}
