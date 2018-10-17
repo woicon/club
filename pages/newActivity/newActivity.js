@@ -3,7 +3,8 @@ Page({
     data: {
         types: [],
         postType: {},
-        pageLoading: true
+        pageLoading: true,
+        btnLoading:false,
     },
     onLoad(options) {
         app.pageTitle("发布活动")
@@ -37,7 +38,8 @@ Page({
     onShow(){
         let member = wx.getStorageSync("login") ? true : false
         this.setData({
-            member: member
+            member: member,
+            btnLoading: false
         })
     },
     getUserInfo(e) {

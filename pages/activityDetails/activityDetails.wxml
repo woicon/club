@@ -7,11 +7,9 @@
 <block wx:else>
     <view class='m-head'>
         <view class='imgs' style='background-image:url({{detail.activityImg}})'></view>
-
     </view>
     <view class='m-titles'>
         <view class='m-actname'>{{detail.activityName}}</view>
-
     </view>
     <view class='m'>
         <view class='m-status'>
@@ -48,6 +46,6 @@
     <view class='page-bar {{isPX ? "page-bar-px":""}}'>
         <view bindtap='createActivity'>我也要发活动</view>
         <view wx:if="{{member}}" class='btn-apply' bindtap='toApply'>报名参加</view>
-        <button wx:else class='btn-apply' bindgetuserinfo='{{btnLoading?"":"getUserInfo"}}' open-type="getUserInfo">报名参加</button>
+        <button wx:else class='btn-apply' bindgetuserinfo='getUserInfo' open-type="getUserInfo">报名参加</button>
     </view>
 </block>

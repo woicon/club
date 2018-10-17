@@ -16,9 +16,6 @@ Page({
         })
     },
     getUserInfo(e) {
-        this.setData({
-            btnLoading: true
-        })
         wx.setStorageSync("applyDetail", this.data.detail)
         wx.setStorageSync("applyReg", true)
         if (e.detail.userInfo) {

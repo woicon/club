@@ -85,10 +85,11 @@ App({
 
     wechatRegister(detail, code, cb) {
         wx.request({
-            url: `${this.ext.host}api/wechatAppSession.htm`,
+            url: `${this.ext.host}api/wechatAppSessionApplet.htm`,
             data: {
                 appId: this.ext.appId,
-                jsCode: code
+                jsCode: code,
+                system:'51club'
             },
             success: (data) => {
                 console.log(data)
@@ -179,7 +180,7 @@ App({
         }
         return arr
     },
-    shareApp:{
+    shareApp: {
         title: '活动吧助手-您的活动好帮手',
         path: '/pages/index/index',
         imageUrl: "https://tclub.lx123.com/imgPath//club/activity/1539586281868.jpg"
