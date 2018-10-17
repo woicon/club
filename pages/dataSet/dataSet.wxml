@@ -17,7 +17,7 @@
         </view>
         <view class='f-line bline'>
             <label>联系方式</label>
-            <input name="phone" id='phone' placeholder='输入联系方式' bindinput='newValue' type='number' value='{{data.phone}}' type='phone'></input>
+            <input name="phone" maxlength='11' id='phone' placeholder='输入联系方式' bindinput='newValue' type='number' value='{{data.phone}}' type='phone'></input>
         </view>
         <view class='f-line'>
             <label>主办方简介</label>

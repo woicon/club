@@ -23,7 +23,6 @@ Page({
         })
     },
     newValue(e) {
-        console.log(e)
         let data = this.data.data[e.target.id]
         this.setData({
             target: e.detail.value

@@ -45,7 +45,6 @@ textarea {
     margin: 40rpx;
     border-radius: 8rpx;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position:relative;
 }
 
