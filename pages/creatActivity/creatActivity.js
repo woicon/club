@@ -385,7 +385,6 @@ Page({
     },
     onShow() {
         app.isLogin()
-        //fee setting
         let applyInfo
         if (wx.getStorageSync("applyInfo")) {
             applyInfo = wx.getStorageSync("applyInfo")
@@ -412,7 +411,6 @@ Page({
                     activityDetailsStr += `<p class='x-txt'>${items.txt}</p>`
                 }
             }
-            console.log(activityDetailsStr)
         }
         let activityTicketStr = wx.getStorageSync("activityTicket") ? JSON.stringify(wx.getStorageSync("activityTicket")) : JSON.stringify(this.data.activityTicket)
         // console.log(JSON.stringify(applyInfo))
@@ -430,67 +428,6 @@ Page({
             applyInfoStr: JSON.stringify(applyInfo) || JSON.stringify(this.data.applyInfo),
         })
     },
-    phoneBlur(e) {
-        if (!this.checkPhone(e.detail.value)) {
-            app.tip("请输入正确的手机号")
-        }
-    },
-    checkPhone(num) {
-        let phone = /^[1][3,4,5,7,8][0-9]{9}$/
-        console.log(phone.test(num))
-        return phone.test(num)
-    },
-    phoneValue(e) {
-        let isPass = !this.checkPhone(e.detail.value) ? false : true
-        this.setData({
-            isPass: isPass,
-            phoneValue: e.detail.value
-        })
-    },
-    getCodes(e) {
-        wx.showLoading()
-        app.api.sendVerifyCode({
-                merchantId: app.common("merchantId"),
-                superMerchantId: app.common("superiorMerchantId"),
-                mobilePhone: this.data.phoneValue
-            })
-            .then(res => {
-                console.log(res)
-                wx.hideLoading()
-                if (res.status = '200') {
-                    app.tip(`验证短信${res.data.resultDesc}`)
-                    wx.setStorageSync("login", res.data)
-                    for (let i = 0; i <= 120; i++) {
-                        setTimeout(() => {
-                            this.setData({
-                                isPass: false,
-                                phoneDone: true,
-                                endTime: 120 - i
-                            });
-                            if (this.data.endTime == 0) {
-                                this.setData({
-                                    isPass: true,
-                                    phoneDone: false,
-                                    endTime: 120
-                                });
-                            }
-                        }, i * 1000)
-                    }
-                    this.setData({
-                        waitGetCode: true,
-                        applyProgressKey: res.data.applyProgressKey
-                    })
-                } else {
-                    app.tip(res.msg)
-                }
-            })
-    },
-    codeInput(e) {
-        this.setData({
-            phoneCode: e.detail.value
-        })
-    },
-
     handleSetting(e) {
         console.log(e)
         if (!e.detail.authSetting['scope.userLocation']) {
