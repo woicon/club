@@ -18,13 +18,13 @@ Page({
             isPublic: options.public || null
         })
         let shareParmas = {}
-        
+
         wx.getSystemInfo({
-            success: (res)=> {
+            success: (res) => {
                 console.log(res)
                 this.setData({
-                    width:res.windowWidth,
-                    height:res.windowHeight
+                    width: res.windowWidth,
+                    height: res.windowHeight
                 })
             },
         })
@@ -57,8 +57,12 @@ Page({
                     pageLoading: false,
                     member: wx.getStorageSync("login")
                 })
+                let scene = {
+                    id: this.data.detail.id,
+                    isShare: true
+                }
                 app.api.getWXACode({
-                        scene: `id=${this.data.detail.id}&isShare=true`,
+                        // scene: `id=${this.data.detail.id}&isShare=true`,
                         page: `pages/acitivityDetails/acitivityDetails`,
                         width: 430
                     })
@@ -68,9 +72,9 @@ Page({
 
             })
     },
-    
-    drawPost(arg) {
 
+    drawPost(arg) {
+        wx.showLoading()
         ctx.scale(.5, .5)
         ctx.setFillStyle('#ffffff')
         ctx.fillRect(0, 0, 600, 850)
@@ -79,11 +83,13 @@ Page({
         drawimg(arg.img, (img) => {
             ctx.drawImage(img, 0, 0, 600, 350)
             ctx.draw(true)
+            wx.hideLoading()
         })
         //二维码
-        drawimg("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539859954145&di=9d411ec610d3de63b20e338943cedce6&imgtype=0&src=http%3A%2F%2Fimg.58cdn.com.cn%2Fds%2Fcategory%2Fererima_new.jpg", (img) => {
+        drawimg("https://images.daojia.com/dop2c/userproduct/wxqrcode/cGFnZT1wYWdlcyUyRnNob3BIb21lJTJGc2hvcEhvbWUmYXBwSWQ9d3g0MjcxN2Y1NDQxN2VjY2UxJnNjZW5lPWN1c3RvbUlkJTNENTAwMDAwMDA4NjI4NjUlMjZobXNyJTNEcGM=", (img) => {
             ctx.drawImage(img, 200, 560, 200, 200)
             ctx.draw(true)
+            wx.hideLoading()
         })
         ctx.setTextAlign('center')
         ctx.setFontSize(35)
@@ -96,8 +102,9 @@ Page({
         ctx.setFillStyle('#999999')
         ctx.fillText("长按识别二维码", 300, 800)
         ctx.draw(true)
-
+        wx.hideLoading()
         function drawimg(imgPath, callback) {
+            wx.showLoading()
             wx.downloadFile({
                 url: imgPath,
                 success: (res) => {
@@ -199,8 +206,5 @@ Page({
         this.setData({
             mask: false
         })
-    },
-    onReady: function() {
-
     }
 })
