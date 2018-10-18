@@ -16,9 +16,6 @@ Page({
         })
     },
     getUserInfo(e) {
-        this.setData({
-            btnLoading: true
-        })
         wx.setStorageSync("applyDetail", this.data.detail)
         wx.setStorageSync("applyReg", true)
         if (e.detail.userInfo) {
@@ -88,7 +85,11 @@ Page({
         app.isLogin()
         this.getDetail(this.data.id)
     },
-    onShareAppMessage: function() {
-
+    onShareAppMessage() {
+        return {
+            title: this.data.detail.activityName,
+            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}`,
+            imageUrl: `${this.data.detail.activityImg}`
+        }
     }
 })

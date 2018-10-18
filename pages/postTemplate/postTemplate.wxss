@@ -20,9 +20,9 @@
 
 .postimg .img {
     display: block;
-    width: 30%;
-    margin: 16rpx 0;
-    height: 110rpx;
+    width: 32%;
+    margin: 20rpx 0;
+    height: 120rpx;
 }
 
 .postimg .img image {

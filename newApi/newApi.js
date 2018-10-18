@@ -37,7 +37,6 @@ function api(API) {
     }
     let apis = {}
     let apiList = [
-
         //主办方账户集合 : Merchant Account Controller Show / Hide List Operations Expand Operations
         "applet/merchantAccountIncome", //我的收入
         "applet/updatePassword", //修改小程序账户密码

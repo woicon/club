@@ -84,11 +84,13 @@ page {
     flex-grow: 2;
 }
 
-.act>view input {
+.act>view textarea {
     font-weight: 800;
     text-align: right;
     color: #ff6363;
     font-size:34rpx;
+    padding:44rpx 0;
+    margin-left:40rpx;
 }
 
 .act>view::before {

@@ -15,8 +15,13 @@ Page({
     getDetail(params) {
         app.api.myOrderDetail(params).then(res => {
             if (res.status == '200') {
+                let detail = res.data
+                let dates = detail.activityStartTime.split("~")
+                console.log(dates)
+                detail.startDate = app.converDate(dates[0])
+                detail.endDate = app.converDate(dates[1])
                 this.setData({
-                    detail: res.data,
+                    detail: detail,
                     pageLoading:false
                 })
             }
@@ -35,7 +40,7 @@ Page({
     },
     toDetails(){
         wx.navigateTo({
-            url: '/pages/activityDetails/activityDetails',
+            url: `/pages/activityDetails/activityDetails?id=${this.data.detail.activityId}`,
         })
     },
     onShow: function() {

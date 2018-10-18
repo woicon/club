@@ -4,16 +4,6 @@ var base = require('../../utils/util.js')
 let app = getApp()
 Page({
     data: {
-        postType: {
-            art: "文化艺术",
-            exercise: "运动健身",
-            meeting: "商务会议",
-            offspring: "亲子幼教",
-            recreation: "聚会娱乐",
-            show: "赛事演出",
-            train: "职业培训",
-            travel: "旅游户外",
-        },
         showPost: false,
         dateTimeArray: null,
         endTimeArray: null,
@@ -40,7 +30,6 @@ Page({
         loacaltionTtype: null,
     },
     onLoad(options) {
-        
         app.pageTitle(options.edit ? '编辑活动' : '发布活动')
         this.setData({
             postImg: options.img || null,
@@ -72,17 +61,16 @@ Page({
     editInit() {
         //编辑活动初始化
         let detail = wx.getStorageSync("editActivity")
+        //编辑活动时间初始化处理
+        let activityDate = detail.activityTimeList[0]
         this.initDate({
-            startDate: detail.startDate,
-            endDate: detail.endDate
+            startDate: `${activityDate.startDate} ${activityDate.startTime}`,
+            endDate: `${activityDate.endDate} ${activityDate.endTime }`
         })
         let activityDetails = detail.activityDetails
-        console.log(activityDetails)
+        //编辑活动详情初始化处理
         WxParse.wxParse('article', 'html', activityDetails, this)
-        let nodes = this.data.article.nodes
-        let arrs = []
-        let txt = []
-        let imgs = this.data.article.imageUrls
+        let nodes = this.data.article.nodes,arrs = [],txt = [],imgs = this.data.article.imageUrls
         for (let i in imgs) {
             arrs.push({
                 img: imgs[i]
@@ -139,14 +127,13 @@ Page({
         })
     },
 
-    checkOk: function(e) {
-        console.log(e)
+    checkOk(e) {
         this.setData({
             checkOk: !this.data.checkOk
         })
     },
 
-    setUpPic: function(type) {
+    setUpPic(type) {
         wx.chooseImage({
             sourceType: type,
             success: (data) => {
@@ -237,7 +224,7 @@ Page({
         })
     },
 
-    creatActivity: function(e) {
+    creatActivity(e) {
         console.log(e)
         let value = e.detail.value
         this.setData({
@@ -280,7 +267,6 @@ Page({
         app.api.publishActivity(value)
             .then(res => {
                 wx.hideLoading()
-                console.log(res)
                 if (res.data) {
                     wx.removeStorageSync("activityDetails")
                     wx.removeStorageSync("applyInfo")
@@ -331,15 +317,21 @@ Page({
             timeInfo: JSON.stringify(timeInfo)
         })
     },
+    dateStr(d,r){
+        return `${d[0][dateArr[0]]}/${d[1][r[1]]}/${d[2][r[2]]} ${d[3][r[3]]}:${d[4][r[4]]}`
+    },
+    actTitle(e){
+        if(e.detail.value.length==50){
+            app.tip("标题最多只能输入50个字符")
+        }
+    },
     changeEndDate: function(e) {
         let dateTimeArray = this.data.dateTimeArray
         let startDate = this.data.startDate
         let endTimeArray = this.data.endTimeArray
         let endDate = this.data.endDate
-        let startDateStr = `${dateTimeArray[0][startDate[0]]}/${dateTimeArray[1][startDate[1]]}/${dateTimeArray[2][startDate[2]]} ${dateTimeArray[3][startDate[3]]}:${dateTimeArray[4][startDate[4]]}`
-        let endDateStr = `${endTimeArray[0][endDate[0]]}/${endTimeArray[1][endDate[1]]}/${endTimeArray[2][endDate[2]]} ${endTimeArray[3][endDate[3]]}:${endTimeArray[4][endDate[4]]}`
-        console.log(startDateStr, ':::', endDateStr)
-        // [{ 'startDate': '2018-08-11', 'startTime': '08:00', 'endDate': '2018-11-11', 'endTime': '08:00', 'applicableWeek': '0,1,2' }]
+        let startDateStr = this.dateStr(dateTimeArray, startDate)
+        let endDateStr = this.dateStr(dateTimeArray, startDate)
         if (this.isErrorTime(startDateStr, endDateStr)) {
             app.tip("活动开始时间不能大于结束时间")
         } else {
@@ -383,7 +375,6 @@ Page({
     },
     onShow() {
         app.isLogin()
-        //fee setting
         let applyInfo
         if (wx.getStorageSync("applyInfo")) {
             applyInfo = wx.getStorageSync("applyInfo")
@@ -410,7 +401,6 @@ Page({
                     activityDetailsStr += `<p class='x-txt'>${items.txt}</p>`
                 }
             }
-            console.log(activityDetailsStr)
         }
         let activityTicketStr = wx.getStorageSync("activityTicket") ? JSON.stringify(wx.getStorageSync("activityTicket")) : JSON.stringify(this.data.activityTicket)
         // console.log(JSON.stringify(applyInfo))
@@ -427,90 +417,6 @@ Page({
             applyInfo: applyInfo || this.data.applyInfo,
             applyInfoStr: JSON.stringify(applyInfo) || JSON.stringify(this.data.applyInfo),
         })
-    },
-    phoneBlur(e) {
-        if (!this.checkPhone(e.detail.value)) {
-            app.tip("请输入正确的手机号")
-        }
-    },
-    checkPhone(num) {
-        let phone = /^[1][3,4,5,7,8][0-9]{9}$/
-        console.log(phone.test(num))
-        return phone.test(num)
-    },
-    phoneValue(e) {
-        let isPass = !this.checkPhone(e.detail.value) ? false : true
-        this.setData({
-            isPass: isPass,
-            phoneValue: e.detail.value
-        })
-    },
-    getCodes(e) {
-        wx.showLoading()
-        app.api.sendVerifyCode({
-                merchantId: app.common("merchantId"),
-                superMerchantId: app.common("superiorMerchantId"),
-                mobilePhone: this.data.phoneValue
-            })
-            .then(res => {
-                console.log(res)
-                wx.hideLoading()
-                if (res.status = '200') {
-                    app.tip(`验证短信${res.data.resultDesc}`)
-                    wx.setStorageSync("login", res.data)
-                    for (let i = 0; i <= 120; i++) {
-                        setTimeout(() => {
-                            this.setData({
-                                isPass: false,
-                                phoneDone: true,
-                                endTime: 120 - i
-                            });
-                            if (this.data.endTime == 0) {
-                                this.setData({
-                                    isPass: true,
-                                    phoneDone: false,
-                                    endTime: 120
-                                });
-                            }
-                        }, i * 1000)
-                    }
-                    this.setData({
-                        waitGetCode: true,
-                        applyProgressKey: res.data.applyProgressKey
-                    })
-                } else {
-                    app.tip(res.msg)
-                }
-            })
-    },
-    codeInput(e) {
-        this.setData({
-            phoneCode: e.detail.value
-        })
-    },
-    bindPhone(value) {
-        wx.showLoading({
-            title: '绑定手机中',
-        })
-        app.api.bindingMobilePhone({
-                merchantId: app.common("merchantId"),
-                applyProgressKey: this.data.applyProgressKey,
-                verificationCode: this.data.phoneCode,
-                mobilePhone: this.data.phoneValue
-            })
-            .then(res => {
-                console.log(res)
-                wx.hideLoading()
-                let status = res.status
-                if (status == '1004' || status == '1005') {
-                    app.tip(res.msg)
-                } else if (status == '200') {
-                    this.creatAct(this.data.values)
-                    this.setData({
-                        nonePhone: false
-                    })
-                }
-            })
     },
     handleSetting(e) {
         console.log(e)

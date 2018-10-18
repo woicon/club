@@ -2,7 +2,8 @@ let app = getApp()
 Page({
     data: {
         pageLoading: true,
-        isOrganizer: false
+        isOrganizer: false,
+        btnLoading: false,
     },
     onLoad(options) {
         wx.setNavigationBarColor({
@@ -118,6 +119,9 @@ Page({
     },
     //初始化个人中心
     initMember() {
+        this.setData({
+            btnLoading: false
+        })
         let isOrganizer = wx.getStorageSync("isOrganizer")
         if (wx.getStorageSync("login")) {
             this.setData({
@@ -127,7 +131,7 @@ Page({
         } else {
             wx.setStorageSync("isOrganizer", false)
             this.setData({
-                pageLoading: false
+                pageLoading: false,
             })
         }
     },

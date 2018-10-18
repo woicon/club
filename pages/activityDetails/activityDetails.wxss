@@ -28,11 +28,14 @@
 
 .m-detils {
     background: #fff;
-    padding: 40rpx;
+    padding: 40rpx 0;
     margin: 0;
-    margin-bottom: 230rpx;
+    margin-bottom: 260rpx;
 }
-
+.wxdetail{
+    background:#fff;
+    padding:0 40rpx;
+}
 .m-head {
     position: relative;
 }

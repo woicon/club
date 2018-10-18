@@ -1,5 +1,5 @@
 <view wx:for="{{post}}" id='{{index}}' wx:key="postsss">
-    <view class='post-titles'>{{postType[index]}}</view>
+    <!-- <view class='post-titles'>{{postType[index]}}</view> -->
     <view class='postimg'>
         <view class='img' wx:for="{{item}}" wx:for-item="sitem" wx:key="postimg" wx:for-index="sindex" data-url="{{sitem}}" bindtap='getUrl' hover-class='touch'>
             <image src='{{sitem}}' mode='aspectFit'></image>
