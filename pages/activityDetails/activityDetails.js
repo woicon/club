@@ -76,9 +76,11 @@ Page({
         })
     },
     onLoad(options) {
+        console.log("options", options)
         this.setData({
             isPX: app.isPX,
-            id: options.id
+            id: options.id,
+            isShare: !!options.isShare
         })
     },
     onShow() {
@@ -88,8 +90,13 @@ Page({
     onShareAppMessage() {
         return {
             title: this.data.detail.activityName,
-            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}`,
+            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}?isShare=true`,
             imageUrl: `${this.data.detail.activityImg}`
         }
+    },
+    goHome(){
+        wx.switchTab({
+            url: '/pages/index/index',
+        })
     }
 })

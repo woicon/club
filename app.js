@@ -3,15 +3,16 @@ var app = getApp()
 var types = require('utils/types.js')
 var base = require('utils/util.js')
 App({
-    onLaunch: function(options) {
+    onLaunch(options) {
         let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}
+        this.updateManager()
         this.ext = extConfig
         this.api = api(extConfig.host)
         this.check = base.check
         this.types = types
+        this.isPx()
         wx.setStorageSync("ext", extConfig)
         console.log("EXT.JSON==>Version::" + this.version, extConfig)
-        this.isPx()
         wx.login({
             success: (res) => {
                 wx.setStorageSync("CODE", res.code)
@@ -120,7 +121,9 @@ App({
             }
         })
     },
+    getUserInfo(e){
 
+    },
     login(detail, code, cb) {
         if (code == null) {
             wx.login({
@@ -162,7 +165,10 @@ App({
         })
         updateManager.onUpdateFailed(() => {
             // 新版本下载失败
-            this.tip("更新失败")
+            wx.showToast({
+                title: '新版本下载失败',
+                icon:"none"
+            })
         })
     },
 
@@ -180,6 +186,7 @@ App({
         }
         return arr
     },
+
     shareApp: {
         title: '活动吧助手-您的活动好帮手',
         path: '/pages/index/index',

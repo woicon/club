@@ -40,21 +40,21 @@
             分享活动卡片给好友
         </view>
         <view class='share-bar'>
-            <button open-type="share" >
+            <button open-type="share">
                 <image src='../../images/weixin.png' /> 微信好友</button>
             <button bindtap='shareGroup'>
                 <image src='../../images/pengyouquan.png' /> 到朋友圈</button>
         </view>
     </block>
     <view wx:if="{{mask}}" class='share-group'>
-        <view class='img'>
-            <image src='{{shareImg}}' mode='aspectFit'></image>
+        <view class='img' bindtap='saveShare'>
+            <!-- <image src='{{shareImg}}' mode='aspectFit'></image> -->
+            <canvas canvas-id='shareImg' class='canvasimg'></canvas>
         </view>
         <!-- <button class='share-btn button' bindtap='saveShare' hover-class='button-touch' open-type="openSetting"
 bindopensetting='handleSetting' wx:if='{{toAuth}}'>重新授权</button> -->
-        <button class='share-btn button' bindtap='saveShare' hover-class='button-touch'>
+        <button class='share-btn button' bindtap='saveShare' hover-class='touch'>
             <view class='ico ico-share2'></view>保存图片,分享到朋友圈</button>
-
         <view class='close' bindtap='closeGroup'></view>
     </view>
 </block>
