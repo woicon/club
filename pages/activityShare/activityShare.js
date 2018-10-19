@@ -17,59 +17,28 @@ Page({
         this.setData({
             isPublic: options.public || null
         })
-        let shareParmas = {}
-
-        wx.getSystemInfo({
-            success: (res) => {
-                console.log(res)
-                this.setData({
-                    width: res.windowWidth,
-                    height: res.windowHeight
-                })
-            },
-        })
-
-        if (options.public) {
-            shareParmas = {
-                activityId: options.public,
-                merchantId: app.common("merchantId")
-            }
-        } else {
-            shareParmas = options
+        let detailParams = {
+            id: options.public || options.activityId
         }
-        Promise.all([app.api.activityShare(shareParmas, 'POST'), app.api.activityDetail({
-                id: options.public || options.activityId
-            }, 'POST')])
+        app.api.activityDetail(detailParams, 'POST')
             .then(res => {
-                let shareImg = res[0].data
-                let detail = res[1].data
-                if (shareImg.indexOf('51club.com') != -1) {
-                    let pant = new RegExp("https://www.51club.com", "g")
-                    shareImg = shareImg.replace(pant, "https://www.huodonghui.com")
+                let detail = res.data
+                detail.startDate = app.converDate(detail.startDate)
+                detail.endDate = app.converDate(detail.endDate)
+                let qrParams = {
+                    path: `pages/acitivityDetails/acitivityDetails?id=${detail.id}&isShare=true`,
+                    activityId: detail.id,
+                    width: 430
                 }
-                res[1].data.startDate = app.converDate(res[1].data.startDate)
-                res[1].data.endDate = app.converDate(res[1].data.endDate)
-                let img = res[1].data.activityImg
-
-                this.setData({
-                    shareImg: shareImg,
-                    detail: res[1].data,
-                    pageLoading: false,
-                    member: wx.getStorageSync("login")
-                })
-                let scene = {
-                    id: this.data.detail.id,
-                    isShare: true
-                }
-                app.api.getWXACode({
-                        // scene: `id=${this.data.detail.id}&isShare=true`,
-                        page: `pages/acitivityDetails/acitivityDetails`,
-                        width: 430
+                app.api.getWXACode(qrParams)
+                    .then(qrImg => {
+                        this.setData({
+                            qrImg: qrImg,
+                            detail: detail,
+                            pageLoading: false,
+                            member:wx.getStorageSync("login")
+                        })
                     })
-                    .then(res => {
-                        console.log(res)
-                    })
-
             })
     },
 
@@ -86,7 +55,7 @@ Page({
             wx.hideLoading()
         })
         //二维码
-        drawimg("https://images.daojia.com/dop2c/userproduct/wxqrcode/cGFnZT1wYWdlcyUyRnNob3BIb21lJTJGc2hvcEhvbWUmYXBwSWQ9d3g0MjcxN2Y1NDQxN2VjY2UxJnNjZW5lPWN1c3RvbUlkJTNENTAwMDAwMDA4NjI4NjUlMjZobXNyJTNEcGM=", (img) => {
+        drawimg(this.data.qrImg, (img) => {
             ctx.drawImage(img, 200, 560, 200, 200)
             ctx.draw(true)
             wx.hideLoading()
@@ -103,6 +72,7 @@ Page({
         ctx.fillText("长按识别二维码", 300, 800)
         ctx.draw(true)
         wx.hideLoading()
+
         function drawimg(imgPath, callback) {
             wx.showLoading()
             wx.downloadFile({
