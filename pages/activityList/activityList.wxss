@@ -65,6 +65,10 @@ page{
     text-align:justify;
     max-height:90rpx;
     overflow:hidden;
+    text-overflow:ellipsis;
+display:-webkit-box; 
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2;
 }
 
 .l-tag {
