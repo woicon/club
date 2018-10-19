@@ -66,7 +66,6 @@ Page({
             startDate: `${activityDate.startDate} ${activityDate.startTime}`,
             endDate: `${activityDate.endDate} ${activityDate.endTime }`
         })
-        
         let activityDetails = detail.activityDetails
         //编辑活动详情初始化处理
         WxParse.wxParse('article', 'html', activityDetails, this)
@@ -412,14 +411,13 @@ Page({
         this.setData({
             activityDetails: wx.getStorageSync("activityDetails") || null,
             activityDetailsStr: activityDetailsStr,
-
             activityTicket: wx.getStorageSync("activityTicket") || this.data.activityTicket,
             activityTicketStr: activityTicketStr,
-
             applyInfo: applyInfo || this.data.applyInfo,
             applyInfoStr: JSON.stringify(applyInfo) || JSON.stringify(this.data.applyInfo),
         })
     },
+    //拒绝授权处理
     handleSetting(e) {
         console.log(e)
         if (!e.detail.authSetting['scope.userLocation']) {
