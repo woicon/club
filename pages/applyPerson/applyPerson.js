@@ -79,41 +79,54 @@ Page({
     })
   },
   formSubmit(e) {
-    
     let arrTxt = [], _this = this,arrXml=[],statusArr=[]
     form = this.data.form
     arrTxt.push(e.detail.value)
     let flag = false,i=0
     for(let i=0;i<this.data.personNum;i++){
         let arr=[]
-        this.data.responseList.forEach(function (item, x) {
-          if (item.fieldType == 0 || item.fieldType == 1) {
-            item.fieldOption = `${arrTxt[0]["name" + i + x]}`
-          } else if (item.fieldType == 2) {
-            item.fieldOption = _this.data.radioArr[i]
-          } else if (item.fieldType == 3) {
-            item.fieldOption = _this.data.checkArr[i]
-          } else if (item.fieldType == 4) {
-            item.fieldOption = parseInt(_this.data.selNum) + 1
-          }
-          if(item.status==0){
-            if (item.fieldOption == ""){
-                app.tip(`请输入所有*必填项`)
-                flag = true
+        if(this.data.responseList.length>0){
+          this.data.responseList.forEach(function (item, x) {
+            if (item.fieldType == 0 || item.fieldType == 1) {
+              item.fieldOption = `${arrTxt[0]["name" + i + x]}`
+            } else if (item.fieldType == 2) {
+              item.fieldOption = _this.data.radioArr[i]
+            } else if (item.fieldType == 3) {
+              item.fieldOption = _this.data.checkArr[i]
+            } else if (item.fieldType == 4) {
+              item.fieldOption = parseInt(_this.data.selNum) + 1
             }
-            if(item.fieldOption!="" && item.name=="手机号"){
-              if (app.check.phone(item.fieldOption)==false){
-                     app.tip(`请输入正确11位手机号`)
-                     flag = true
+            if(item.status==0){
+              if (item.fieldOption == ""){
+                  app.tip(`请输入所有*必填项`)
+                  flag = true
+              }
+              if(item.fieldOption!="" && item.name=="手机号"){
+                if (app.check.phone(item.fieldOption)==false){
+                      app.tip(`请输入正确11位手机号`)
+                      flag = true
+                } 
+              }
+            }
+            arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
+          })
+        }else{
+            if (arrTxt[0]["name" + i + 0] =="" || arrTxt[0]["name"+i+1]=="" ) {
+              app.tip(`请输入所有*必填项`)
+              flag = true
+            }
+            if (arrTxt[0]["name" + i + 1] != ""){
+              if (app.check.phone(arrTxt[0]["name" + i + 1]) == false) {
+                app.tip(`请输入正确11位手机号`)
+                flag = true
               } 
             }
-          }
-          arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
-        })
+          arr.push(`<field><name>姓名</name><value>${arrTxt[0]["name" + i + 0]}</value><type>0</type><sequence>0</sequence><fieldtype>0</fieldtype></field><field><name>手机号</name><value>${arrTxt[0]["name" + i + 1]}</value><type>0</type><sequence>0</sequence><fieldtype>0</fieldtype></field>`)
+        }
       arrXml.push(`{"enrollXml":'<enrollInfo>${arr.join("")}</enrollInfo>'}`)
     }
     form.enrollInfos = `[${arrXml.join(",")}]`
-    if(flag==false){
+   if(flag==false){
       this.setData({
         btnLoading: true
       })

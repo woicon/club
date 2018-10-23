@@ -1,42 +1,59 @@
 <form bindsubmit='formSubmit'> 
 <view class='person'>
+      
       <view class='forms' wx:for="{{personNum}}" wx:for-item="i" wx:key="personNum">
                 <view class='f-head bline'>
                     <view class='f-title'>第{{i+1}}位参与者</view>
                     <view class='f-check' wx:if="{{isActive == i}}">默认联系人</view>
                 </view>
-                <view wx:for="{{responseList}}" wx:key="responseList">
-                    <label>
-                        <label class="red inline" wx:if="{{txtStatus==item.status}}">*</label>
-                        {{item.name}}
-                    </label>
-                    <block  wx:if="{{item.fieldType==0}}"> 
-                        <block wx:if="{{item.name=='手机号'}}">
-                          <input placeholder='输入{{item.name}}' type="number" maxlength="11" name="name{{i}}{{index}}" ></input>
+                 <blocks wx:if="{{responseList.length==0}}">
+                         <block>
+                            <label>
+                                <label class="red inline">*</label>姓名
+                             </label>
+                             <input placeholder='输入姓名'  name="name{{i}}0"></input>
+                            </block>
+                         <block> 
+                            <label>
+                                <label class="red inline" >*</label>手机号
+                            </label>
+                            <input placeholder='输入手机号'  type="number" maxlength="11" name="name{{i}}1" ></input>
                         </block>
-                        <block wx:elif="{{item.name}}"> 
-                            <input placeholder='输入{{item.name}}'  name="name{{i}}{{index}}"></input>
-                        </block>
-                    </block>
-                    <textarea name="name{{i}}{{index}}" wx:elif="{{item.fieldType==1}}"></textarea>
-                    <radio-group class="radio-group" data-index="{{i}}"   bindchange="radioChange" wx:elif="{{item.fieldType==2}}" >
-                        <label class="radio"  wx:for="{{item.fieldOption[0]}}">
-                          <radio  value="{{item}}" checked='{{curentIndex == index ? true : false}}'/>{{item}}
-                        </label>
-                    </radio-group>
-                    <checkbox-group  wx:elif="{{item.fieldType==3}}"  data-index="{{i}}"  bindchange="checkChange">
-                        <label  wx:for="{{item.fieldOption[0]}}">
-                            <checkbox  value="{{item}}" checked='{{curentIndex == index ? true : false}}'/>{{item}}
-                        </label>
-                    </checkbox-group>
-                    <block wx:elif="{{item.fieldType==4}}">
-                          <picker bindchange="bindPickerChange" value="{{selNum}}" range="{{item.fieldOption[0]}}">
-                      <view class="num">
-                        {{item.fieldOption[0][selNum]}}
-                      </view>张
-                    </picker>
-                    </block>
-                </view>
+                </blocks>
+                <blocks wx:elif="{{responseList.length>0}}">
+                  <view wx:for="{{responseList}}" wx:key="responseList">
+                      <label>
+                          <label class="red inline" wx:if="{{txtStatus==item.status}}">*</label>
+                          {{item.name}}
+                      </label>
+                      <block  wx:if="{{item.fieldType==0}}"> 
+                          <block wx:if="{{item.name=='手机号'}}">
+                            <input placeholder='输入{{item.name}}' type="number" maxlength="11" name="name{{i}}{{index}}" ></input>
+                          </block>
+                          <block wx:elif="{{item.name}}"> 
+                              <input placeholder='输入{{item.name}}'  name="name{{i}}{{index}}"></input>
+                          </block>
+                      </block>
+                      <textarea name="name{{i}}{{index}}" wx:elif="{{item.fieldType==1}}"></textarea>
+                      <radio-group class="radio-group" data-index="{{i}}"   bindchange="radioChange" wx:elif="{{item.fieldType==2}}" >
+                          <label class="radio"  wx:for="{{item.fieldOption[0]}}">
+                            <radio  value="{{item}}" checked='{{curentIndex == index ? true : false}}'/>{{item}}
+                          </label>
+                      </radio-group>
+                      <checkbox-group  wx:elif="{{item.fieldType==3}}"  data-index="{{i}}"  bindchange="checkChange">
+                          <label  wx:for="{{item.fieldOption[0]}}">
+                              <checkbox  value="{{item}}" checked='{{curentIndex == index ? true : false}}'/>{{item}}
+                          </label>
+                      </checkbox-group>
+                      <block wx:elif="{{item.fieldType==4}}">
+                            <picker bindchange="bindPickerChange" value="{{selNum}}" range="{{item.fieldOption[0]}}">
+                        <view class="num">
+                          {{item.fieldOption[0][selNum]}}
+                        </view>张
+                      </picker>
+                      </block>
+                  </view>
+               </blocks>
         </view>
     </view>
     <view class='button-bar'>
