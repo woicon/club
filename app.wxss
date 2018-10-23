@@ -177,7 +177,6 @@ page {
 .empty .ico {
     font-size: 70rpx;
     position: relative;
-    animation: sliderInUp 0.5s ease both;
 }
 
 .empty text {
@@ -186,7 +185,6 @@ page {
     display: block;
     position: relative;
     text-align: center;
-    animation: sliderInUp 0.5s 0.2s ease both;
 }
 
 .button {
