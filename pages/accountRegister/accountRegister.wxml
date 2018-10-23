@@ -16,10 +16,10 @@
             <input type='password' name="password" maxlength='20' placeholder='设置登录密码'></input>
         </view>
        
-        <button class="button {{phoneCode.length == 6 && phoneDone ? '' : 'disable'}}" hover-class='button-touch' form-type='submit'>
+        <button class="button {{phoneCode.length === 4  && phoneDone ? '' : 'disable'}}" hover-class='button-touch' form-type='submit'>
             <load wx:if="{{btnLoading}}" color="#ffffff" />
             <block wx:else>注册账户</block>
         </button>
          <view class='info'>手机号可用于登录PC端管理中心，地址为www.huodonghui.com</view>
-    </view>
+    </view> 
 </form>

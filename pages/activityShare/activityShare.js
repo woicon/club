@@ -72,7 +72,7 @@ Page({
         ctx.fillText("长按识别二维码", 300, 800)
         ctx.draw(true)
         wx.hideLoading()
-
+        
         function drawimg(imgPath, callback) {
             wx.showLoading()
             wx.downloadFile({

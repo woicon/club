@@ -9,6 +9,7 @@ Page({
         list: []
     },
     onLoad(options) {
+        app.updateManager()
         app.pageTitle(app.ext.appName)
         app.api.findAllActivityCategory({}).then(res => {
             console.log(res)

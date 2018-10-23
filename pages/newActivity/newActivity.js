@@ -7,6 +7,7 @@ Page({
         btnLoading:false,
     },
     onLoad(options) {
+        app.updateManager()
         app.pageTitle("发布活动")
         this.setData({
             types: app.types.category,

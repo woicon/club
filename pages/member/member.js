@@ -6,6 +6,7 @@ Page({
         btnLoading: false,
     },
     onLoad(options) {
+        app.updateManager()
         wx.setNavigationBarColor({
             frontColor: '#ffffff',
             backgroundColor: '#FF6363',

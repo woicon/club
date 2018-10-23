@@ -36,7 +36,7 @@ Page({
                         app.tip("注册成功")
                         if (wx.getStorageSync("applyReg")){
                             //如果是活动报名注册
-                            wx.navigateTo({
+                            wx.redirectTo({
                                 url: '/pages/activityApply/activityApply',
                             })
                         }else{

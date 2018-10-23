@@ -90,7 +90,7 @@ App({
             data: {
                 appId: this.ext.appId,
                 jsCode: code,
-                system:'51club'
+                system: '51club'
             },
             success: (data) => {
                 console.log(data)
@@ -121,7 +121,7 @@ App({
             }
         })
     },
-    getUserInfo(e){
+    getUserInfo(e) {
 
     },
     login(detail, code, cb) {
@@ -167,7 +167,7 @@ App({
             // 新版本下载失败
             wx.showToast({
                 title: '新版本下载失败',
-                icon:"none"
+                icon: "none"
             })
         })
     },
