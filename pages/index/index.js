@@ -41,7 +41,8 @@ Page({
         let arg = args || {}
         let params = {
             page: 1,
-            size: 10
+            size: 10,
+            superMerchantId: app.ext.merchantId
         }
         if (args.id) {
             params.activityCategory = args.id
