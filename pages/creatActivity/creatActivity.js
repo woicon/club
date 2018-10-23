@@ -43,12 +43,11 @@ Page({
     },
     initDate(date) {
         date = date || {}
-        //时间控件初始化
+        //时间选择初始化
         let nowDate = new Date()
         let obj = dateTimePicker.dateTimePicker(nowDate.getFullYear(), nowDate.getFullYear() + 3, date.startDate || null)
         let endDate = nowDate.setDate(nowDate.getDate() + 7)
         let endObj = dateTimePicker.dateTimePicker(nowDate.getFullYear(), nowDate.getFullYear() + 3, date.endDate || base.formatTime(new Date(endDate)))
-        console.log(endObj)
         this.setData({
             startDate: obj.dateTime,
             endDate: endObj.dateTime,
@@ -122,9 +121,10 @@ Page({
             loacaltionTtype: loacaltionTtype,
             postImg: detail.activityImg,
             label: detail.label,
-            timeId: detail.activityTimeList[0].id,
+            //timeId: detail.activityTimeList[0].id,
             activityTicket: detail.activityTicketList
         })
+        this.setTimeInfo()
     },
 
     checkOk(e) {
@@ -304,13 +304,14 @@ Page({
         let dateTimeArray = this.data.dateTimeArray,
             startDate = this.data.startDate,
             endDate = this.data.endDate
-        const timeInfo = [{
+        let timeInfo = [{
             startDate: `${dateTimeArray[0][startDate[0]]}-${dateTimeArray[1][startDate[1]]}-${dateTimeArray[2][startDate[2]]}`,
             startTime: `${dateTimeArray[3][startDate[3]]}:${dateTimeArray[4][startDate[4]]}`,
             endDate: `${dateTimeArray[0][endDate[0]]}-${dateTimeArray[1][endDate[1]]}-${dateTimeArray[2][endDate[2]]}`,
             endTime: `${dateTimeArray[3][endDate[3]]}:${dateTimeArray[4][endDate[4]]}`,
         }]
         if (this.data.isEdit) {
+            console.log("isEdit")
             timeInfo[0].id = this.data.detail.activityTimeList[0].id
         }
         this.setData({
@@ -318,7 +319,7 @@ Page({
         })
     },
     dateStr(d,r){
-        return `${d[0][dateArr[0]]}/${d[1][r[1]]}/${d[2][r[2]]} ${d[3][r[3]]}:${d[4][r[4]]}`
+        return `${d[0][d[0]]}/${d[1][r[1]]}/${d[2][r[2]]} ${d[3][r[3]]}:${d[4][r[4]]}`
     },
     actTitle(e){
         if(e.detail.value.length==50){
@@ -410,14 +411,13 @@ Page({
         this.setData({
             activityDetails: wx.getStorageSync("activityDetails") || null,
             activityDetailsStr: activityDetailsStr,
-
             activityTicket: wx.getStorageSync("activityTicket") || this.data.activityTicket,
             activityTicketStr: activityTicketStr,
-
             applyInfo: applyInfo || this.data.applyInfo,
             applyInfoStr: JSON.stringify(applyInfo) || JSON.stringify(this.data.applyInfo),
         })
     },
+    //拒绝授权处理
     handleSetting(e) {
         console.log(e)
         if (!e.detail.authSetting['scope.userLocation']) {

@@ -42,6 +42,7 @@ function api(API) {
         "applet/updatePassword", //修改小程序账户密码
         "applet/v1/dataSet", //资料设置
         "applet/v1/selectData", //资料查询
+        "applet/getWXACode",
 
         //票券审核接口集合 : Ticketcheck Controller
         "applet/v1/passCheck", //票券通过审核

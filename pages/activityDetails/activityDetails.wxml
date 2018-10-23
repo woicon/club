@@ -49,3 +49,4 @@
         <button wx:else class='btn-apply' bindgetuserinfo='getUserInfo' open-type="getUserInfo">报名参加</button>
     </view>
 </block>
+<view wx:if="{{isShare}}" bindtap='goHome' class='ico-home gohome {{isPX ? "px" : ""}}' hover-class='touch'></view>

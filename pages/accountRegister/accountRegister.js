@@ -31,7 +31,7 @@ Page({
                 .then(res => {
                     console.log(res)
                     wx.hideLoading()
-                    if (res.status === '200') {
+                    if (res.status === '200' && res.data.member) {
                         wx.setStorageSync("login", res.data)
                         app.tip("注册成功")
                         if (wx.getStorageSync("applyReg")){
@@ -43,6 +43,8 @@ Page({
                             wx.navigateBack()
                         }
                         
+                    } else if (res.data.member == null) {
+                        app.tip("注册失败")
                     } else {
                         app.tip(res.msg)
                     }
