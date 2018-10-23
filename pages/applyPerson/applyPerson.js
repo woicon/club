@@ -109,6 +109,9 @@ Page({
                      flag = true
               } 
             }
+            _this.setData({
+              btnLoading: false
+            })
           }
           arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
         })
@@ -131,7 +134,10 @@ Page({
             wx.reLaunch({
               url: '/pages/applySuccess/applySuccess?id=' + res.data,
             })
-          }else{
+          } else if (res.status == "1018"){
+            app.tip("该时间段票已过期，请选择其他时间段！")
+          }
+          else{
             app.tip("报名信息提交失败,请重新提交！")
           }
       })
