@@ -79,9 +79,7 @@ Page({
     })
   },
   formSubmit(e) {
-    this.setData({
-      btnLoading:true
-    })
+    
     let arrTxt = [], _this = this,arrXml=[],statusArr=[]
     form = this.data.form
     arrTxt.push(e.detail.value)
@@ -109,9 +107,6 @@ Page({
                      flag = true
               } 
             }
-            _this.setData({
-              btnLoading: false
-            })
           }
           arr.push(`<field><name>${item.name}</name><value>${item.fieldOption}</value><type>${item.type}</type><sequence>${item.infoSequence}</sequence><fieldtype>${item.fieldType}</fieldtype></field>`)
         })
@@ -119,6 +114,9 @@ Page({
     }
     form.enrollInfos = `[${arrXml.join(",")}]`
     if(flag==false){
+      this.setData({
+        btnLoading: true
+      })
       form.contactsName = arrTxt[0]["name00"]
       form.contactsPhone = arrTxt[0]["name01"]
       this.setData({
