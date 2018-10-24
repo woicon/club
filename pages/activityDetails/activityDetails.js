@@ -77,14 +77,10 @@ Page({
     },
     onLoad(options) {
         console.log("活动详情参数===>", options)
-        if (options.scene){
-            let options = decodeURIComponent(options.scene)
-        }
-        console.log(decodeURIComponent("ss=3423&123=213123123123"))
         this.setData({
             isPX: app.isPX,
             id: options.id,
-            isShare: !!options.isShare
+            isShare: !!options.isshare
         })
     },
     onShow() {
@@ -94,7 +90,7 @@ Page({
     onShareAppMessage() {
         return {
             title: this.data.detail.activityName,
-            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}?isShare=true`,
+            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}&isshare=true`,
             imageUrl: `${this.data.detail.activityImg}`
         }
     },

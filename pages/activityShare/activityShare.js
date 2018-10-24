@@ -224,7 +224,7 @@ Page({
         }
         return {
             title: this.data.detail.activityName,
-            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}&isShare=true`,
+            path: `/pages/activityDetails/activityDetails?id=${this.data.detail.id}&isshare=true`,
             imageUrl: `${this.data.detail.activityImg}`
         }
     },
