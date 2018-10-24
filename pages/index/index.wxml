@@ -28,10 +28,12 @@
                     <view class='item-cont'>
                         <view class='item-title'>{{item.activityName}}</view>
                         <view class='item-infos'>
-                            <view>
-                                <view class='list-info'>
+                            <view class='item-local'>
+                                <view class='list-info item-localtion'>
                                     <view class='ico ico-earth'></view>
-                                    {{item.activityAddress ? item.activityAddress : "线上活动"}}</view>
+                                    <text>{{item.activityAddress ? item.activityAddress : "线上活动"}}</text>
+                                    
+                                    </view>
                                 <view class='list-info'>
                                     <view class='ico ico-clock2'></view>
                                     {{item.startDate}}</view>

@@ -3,7 +3,7 @@ page {
 }
 
 .share-btn {
-    margin: 38rpx 0 0;
+    margin: 38rpx auto;
     font-size: 30rpx;
     border-radius: 6rpx;
     background: #323dad;
@@ -11,20 +11,19 @@ page {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 600rpx;
 }
 
 .close {
     width: 90rpx;
     height: 90rpx;
     position: absolute;
-    bottom: 80rpx;
-    border: 2rpx solid #fff;
+    bottom: 10rpx;
+    border: 6rpx solid #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 100px;
-    transform: rotate(45deg);
+    transform: rotate(45deg) scale(.6);
 }
 
 .close::after, .close::before {
@@ -35,18 +34,18 @@ page {
 }
 
 .close::after {
-    width: 4rpx;
+    width: 6rpx;
     height: 60rpx;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -2rpx;
+    margin-left: -3rpx;
     margin-top: -30rpx;
 }
 
 .close::before {
     width: 60rpx;
-    height: 4rpx;
+    height: 6rpx;
 }
 
 .img image {
@@ -72,7 +71,7 @@ page {
     position: relative;
     font-size: 24rpx;
     opacity: 0.9;
-    margin: 50rpx 40rpx;
+    margin: 50rpx 30rpx;
 }
 
 .share-title::after, .share-title::before {
@@ -223,16 +222,13 @@ page {
 
 .img {
     display: flex;
-    width: 300px;
-    height: 425px;
     overflow: hidden;
     margin-top: 50rpx;
-    padding-bottom: 20rpx;
     position:relative;
 }
 
 .canvasimg {
-    width: 300px;
+    /* width: 300px; */
     height: 425px;
     position:absolute;
     left:0;

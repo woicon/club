@@ -47,13 +47,13 @@
         </view>
     </block>
     <view wx:if="{{mask}}" class='share-group'>
-        <view class='img' bindtap='saveShare'>
+        <view class='img' style='width:{{imgWidth/2}}px;height:{{(imgh)/2}}px'>
             <!-- <image src='{{shareImg}}' mode='aspectFit'></image> -->
-            <canvas canvas-id='shareImg' class='canvasimg'></canvas>
+            <canvas canvas-id='shareImg' class='canvasimg' style='width:{{imgWidth/2}}px;height:{{(imgh)/2}}px'></canvas>
         </view>
         <!-- <button class='share-btn button' bindtap='saveShare' hover-class='button-touch' open-type="openSetting"
 bindopensetting='handleSetting' wx:if='{{toAuth}}'>重新授权</button> -->
-        <button class='share-btn button' bindtap='saveShare' hover-class='touch'>
+        <button class='share-btn button' bindtap='saveShare' hover-class='touch' style='width:{{imgWidth/2}}px'>
             <view class='ico ico-share2'></view>保存图片,分享到朋友圈</button>
         <view class='close' bindtap='closeGroup'></view>
     </view>

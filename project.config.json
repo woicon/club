@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -60,7 +60,7 @@
 					"id": 3,
 					"name": "activityShare",
 					"pathName": "pages/activityShare/activityShare",
-					"query": "public=814"
+					"query": "public=849"
 				},
 				{
 					"id": 4,

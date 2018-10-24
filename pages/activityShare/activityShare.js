@@ -11,7 +11,7 @@ Page({
             3: "已结束",
         }
     },
-    onLoad: function(options) {
+    onLoad(options) {
         console.log("options==>", options)
         app.pageTitle(options.public ? '发布成功' : "分享活动")
         this.setData({
@@ -26,7 +26,7 @@ Page({
                 detail.startDate = app.converDate(detail.startDate)
                 detail.endDate = app.converDate(detail.endDate)
                 let qrParams = {
-                    path: `pages/acitivityDetails/acitivityDetails?id=${detail.id}&isShare=true`,
+                    path: `/pages/activityDetails/activityDetails?id=${detail.id}&isShare=true`,
                     activityId: detail.id,
                     width: 430
                 }
@@ -36,43 +36,106 @@ Page({
                             qrImg: qrImg,
                             detail: detail,
                             pageLoading: false,
-                            member:wx.getStorageSync("login")
+                            member: wx.getStorageSync("login")
                         })
                     })
             })
     },
 
     drawPost(arg) {
+        let w, h, ih
+        wx.getSystemInfo({
+            success: (res) => {
+                w = Math.ceil(res.windowWidth * .84 * 2)
+                console.log(w)
+                w = w % 2 == 0 ? w : w + 1
+                h = Math.ceil(res.windowHeight * .84 * 2)
+                ih = w * (w/h)
+            },
+        })
+        this.setData({
+            imgWidth: w,
+            imgHeight: h,
+            imgh: ih + 150 + 180 + 40 +110
+        })
         wx.showLoading()
+        //缩放
         ctx.scale(.5, .5)
-        ctx.setFillStyle('#ffffff')
-        ctx.fillRect(0, 0, 600, 850)
-        ctx.draw(true)
         //海报
         drawimg(arg.img, (img) => {
-            ctx.drawImage(img, 0, 0, 600, 350)
-            ctx.draw(true)
-            wx.hideLoading()
-        })
-        //二维码
-        drawimg(this.data.qrImg, (img) => {
-            ctx.drawImage(img, 200, 560, 200, 200)
+            ctx.drawImage(img, 0, 0, w, ih)
             ctx.draw(true)
             wx.hideLoading()
         })
         ctx.setTextAlign('center')
-        ctx.setFontSize(35)
+
+        ctx.setFillStyle('#ffffff')
+        ctx.fillRect(0, 0, w, ih + 150 + 180 + 140 + 110)
+        ctx.draw(true)
+
+        //活动标题
+        ctx.setFontSize(34)
         ctx.setFillStyle('#333333')
-        ctx.fillText(arg.title, 300, 450)
+
+        var temp = ""
+        var row = []
+
+        let chr = arg.title.split("")
+        for (var a = 0; a < chr.length; a++) {
+            if (ctx.measureText(temp).width < w - 100) {
+                temp += chr[a]
+            } else {
+                a--
+                row.push(temp)
+                temp = ""
+            }
+        }
+        row.push(temp)
+        if (row.length > 2) {
+            var rowCut = row.slice(0, 2)
+            var rowPart = rowCut[1]
+            var test = ""
+            var empty = []
+            for (var a = 0; a < rowPart.length; a++) {
+                if (ctx.measureText(test).width < w - 100) {
+                    test += rowPart[a]
+                } else {
+                    break
+                }
+            }
+            empty.push(test)
+            var group = empty[0] + "..."
+            rowCut.splice(1, 1, group)
+            row = rowCut
+        }
+        let hb
+        for (var b = 0; b < row.length; b++) {
+            hb = b * 44
+            ctx.fillText(row[b], w / 2, ih + 70 + hb, w-70)
+            ctx.draw(true)
+        }
+
+        //活动时间
         ctx.setFontSize(22)
         ctx.setFillStyle('#888888')
-        ctx.fillText(arg.time, 300, 500)
+        ctx.fillText(arg.time, w / 2, ih + 110 + hb)
+        ctx.draw(true)
+        //二维码
+        drawimg(this.data.qrImg, (img) => {
+            ctx.drawImage(img, ((w - 180) / 2), ih + 200 + hb, 180, 180)
+            ctx.draw(true)
+            wx.hideLoading()
+        })
+        //长按识别二维码
         ctx.setFontSize(20)
         ctx.setFillStyle('#999999')
-        ctx.fillText("长按识别二维码", 300, 800)
+        ctx.fillText("长按识别二维码", w / 2, ih + 200 + 180 + 30+ hb)
         ctx.draw(true)
+
+
+
         wx.hideLoading()
-        
+
         function drawimg(imgPath, callback) {
             wx.showLoading()
             wx.downloadFile({
@@ -81,14 +144,16 @@ Page({
                     wx.getImageInfo({
                         src: res.tempFilePath,
                         success: (img) => {
+                            console.log(img)
                             callback(res.tempFilePath)
                         }
                     })
                 }
             })
         }
+
     },
-    saveShare() {
+    saveShare(init) {
         wx.canvasToTempFilePath({
             canvasId: 'shareImg',
             success: (res) => {
@@ -103,6 +168,12 @@ Page({
                         })
                     }
                 })
+                console.log(res)
+                if (init) {
+                    this.setData({
+                        shareImg: res.tempFilePath,
+                    })
+                }
             },
             fail: (error) => {
                 console.log(error)
@@ -125,7 +196,6 @@ Page({
             title: detail.activityName,
             time: `${detail.startDate} 至 ${detail.endDate}`
         }, 1000)
-
     },
     toDetail(e) {
         wx.setStorageSync("detailPageUrl", this.data.detail.activityDetailUrl)
