@@ -75,12 +75,27 @@ App({
             })
         }
     },
-    wxLogin: function() {
-        wx.login({
-            success: (res) => {
-                console.log("wxLogin::==>", res)
-                wx.setStorageSync("CODE", res.code)
-            }
+
+    getSessionKey() {
+        return new Promise((res, e) => {
+            wx.login({
+                success: (login) => {
+                    wx.request({
+                        url: `${this.ext.host}api/wechatAppSessionApplet.htm`,
+                        data: {
+                            appId: this.ext.appId,
+                            jsCode: login.code,
+                            system: '51club'
+                        },
+                        success: (session) => {
+                            res(session.data.result)
+                        },
+                        fail: (error) => {
+                            rej(error)
+                        }
+                    })
+                }
+            })
         })
     },
 
@@ -121,8 +136,41 @@ App({
             }
         })
     },
-    getUserInfo(e) {
-
+    getPhoneNumber(e) {
+        //手机号注册
+        if (e.detail.errMsg == 'getPhoneNumber:ok') {
+            let detail = e.detail
+            app.getSessionKey().then(session => {
+                console.log(session)
+                app.api.wechatPhone({
+                    encryptedData: detail.encryptedData,
+                    iv: detail.iv,
+                    sessionKey: session.session_key
+                }).then(phone => {
+                    if (phone.status == '200') {
+                        this.setData({
+                            userInfo: true,
+                            phone: phone.data,
+                            sessionKey: session.session_key
+                        })
+                    }
+                })
+            })
+        }
+    },
+    getUserInfos(e) {
+        let detail = e.detail
+        app.api.wechatRegister({
+            encryptedData: detail.encryptedData,
+            iv: detail.iv,
+            superiorMerchantId: app.ext.merchantId,
+            phone: this.data.phone,
+            sessionKey: this.data.sessionKey
+        }).then(res => {
+            if (res.sataus == '200') {
+                wx.setStorageSync("login", res.data)
+            }
+        })
     },
     login(detail, code, cb) {
         if (code == null) {

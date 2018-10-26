@@ -37,7 +37,6 @@
             <view class='value'> {{detail.startDate}} - {{detail.endDate}}</view>
         </view>
     </view>
-
     <view class='wxdetail'>
         <view class='wxParse m-detils'>
             <template is="wxParse" data="{{wxParseData:article.nodes}}" />
@@ -46,7 +45,11 @@
     <view class='page-bar {{isPX ? "page-bar-px":""}}'>
         <view bindtap='createActivity'>我也要发活动</view>
         <view wx:if="{{member}}" class='btn-apply' bindtap='toApply'>报名参加</view>
-        <button wx:else class='btn-apply' bindgetuserinfo='getUserInfo' open-type="getUserInfo">报名参加</button>
+        <button wx:else class='btn-apply' bindgetuserinfo='getUserInfo' open-type="getUserInfo">
+            <load wx:if="{{btnLoading}}" color="#fff" />
+            <block wx:else> 报名参加</block>
+        </button>
     </view>
 </block>
 <view wx:if="{{isShare}}" bindtap='goHome' class='ico-home gohome {{isPX ? "px" : ""}}' hover-class='touch'></view>
+<register wx:if="{{userInfo}}" userInfo="{{userInfo}}" bindregister="register" />

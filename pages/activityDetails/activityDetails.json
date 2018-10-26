@@ -1,6 +1,7 @@
 {
     "backgroundColor": "#f4f4f4",
     "usingComponents": {
-        "load": "/component/loading/loading"
+        "load": "/component/loading/loading",
+        "register": "/component/Register/Register"
     }
 }

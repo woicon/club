@@ -1,5 +1,6 @@
 {
     "usingComponents": {
-        "load": "/component/loading/loading"
+        "load": "/component/loading/loading",
+        "register": "/component/Register/Register"
     }
 }

@@ -54,6 +54,7 @@ function api(API) {
         //"applet/v1/uploadPic", //上传图片
         "applet/v1/wechatRegister", //小程序注册
         "applet/v1/posterTemplate", //海报模板
+        "applet/v1/wechatPhone",//手机号注册
 
         //资料设置和留言接口集合 : Data Leave Message Controller
         "applet/v1/messageList", //留言列表

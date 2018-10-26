@@ -4,6 +4,7 @@ Page({
         pageLoading: true,
         isOrganizer: false,
         btnLoading: false,
+        member:null,
     },
     onLoad(options) {
         app.updateManager()
@@ -13,24 +14,16 @@ Page({
         })
         app.pageTitle("个人中心")
     },
-    getUserInfo(e) {
+    register(e){
         console.log(e)
-        this.setData({
-            btnLoading: true
+        wx.setStorage({
+            key: 'login',
+            data: e.detail,
         })
-        if (e.detail.userInfo) {
-            app.login(e.detail, wx.getStorageSync("CODE"), () => {
-                this.setData({
-                    member: wx.getStorageSync("login")
-                })
-                this.getMemberInfo(wx.getStorageSync("isOrganizer"))
-            })
-        } else {
-            app.tip('请您允许授权登录，否则无法使用该App')
-            this.setData({
-                btnLoading:false
-            })
-        }
+        this.setData({
+            member:e.detail
+        })
+        this.getMemberInfo(wx.getStorageSync("isOrganizer"))
     },
     toActivityList() {
         wx.navigateTo({
@@ -136,7 +129,7 @@ Page({
             })
         }
     },
-    onShareAppMessage(e){
+    onShareAppMessage(e) {
         return app.shareApp
     },
     toPage(e) {

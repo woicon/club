@@ -1,0 +1,32 @@
+/* component/Register.wxss */
+.panel{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    top:0;
+    background:rgba(0, 0, 0, .4);
+}
+.panel button{
+    margin:20rpx;
+}
+.panel-container{
+    background:#fff;
+    border-radius:6rpx;
+    padding-bottom:1rpx;
+    margin:35% 15%;
+}
+.panel-conts{
+    padding:50rpx 60rpx 40rpx;
+}
+.panel-title{
+    font-weight:800;
+    text-align:center;
+    margin-bottom:40rpx;
+}
+.panel-txt{
+    font-size:26rpx;
+    color:#555;
+    text-align:center;
+    line-height:1.8;
+}

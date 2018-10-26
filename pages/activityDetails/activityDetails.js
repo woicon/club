@@ -8,26 +8,31 @@ Page({
             2: "已删除",
             3: "已结束",
         },
-        pageLoading: true
+        pageLoading: true,
+        userInfo: null
     },
-    createActivity(){
+    createActivity() {
         wx.switchTab({
             url: '/pages/newActivity/newActivity',
         })
     },
     getUserInfo(e) {
+        this.setData({
+            btnLoading: true
+        })
         wx.setStorageSync("applyDetail", this.data.detail)
         wx.setStorageSync("applyReg", true)
-        if (e.detail.userInfo) {
-            app.login(e.detail, wx.getStorageSync("CODE"), () => {
-                this.setData({
-                    member: wx.getStorageSync("login")
-                })
-                this.toApply()
-            },true)
-        } else  {
+        let detail = e.detail
+        console.log(detail)
+        if (detail.userInfo) {
+            this.setData({
+                userInfo: detail
+            })
+        } else {
+            this.setData({
+                btnLoading: false
+            })
             app.tip('请您允许授权登录，否则无法使用该App')
-            
         }
     },
     getDetail(id) {
@@ -69,6 +74,21 @@ Page({
             address: params.address,
         })
     },
+    register(e) {
+        let detail = e.detail
+        if (detail) {
+            this.setData({
+                btnLoading: false,
+                member: e.detail
+            })
+            wx.setStorageSync("login", e.detail)
+            this.toApply()
+        } else {
+            this.setData({
+                btnLoading: false
+            })
+        }
+    },
     toApply() {
         wx.setStorageSync("applyDetail", this.data.detail)
         wx.navigateTo({
@@ -84,6 +104,9 @@ Page({
         })
     },
     onShow() {
+        this.setData({
+            userInfo: null
+        })
         app.isLogin()
         this.getDetail(this.data.id)
     },
@@ -94,7 +117,7 @@ Page({
             imageUrl: `${this.data.detail.activityImg}`
         }
     },
-    goHome(){
+    goHome() {
         wx.switchTab({
             url: '/pages/index/index',
         })

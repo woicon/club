@@ -4,7 +4,7 @@ Page({
         types: [],
         postType: {},
         pageLoading: true,
-        btnLoading:false,
+        btnLoading: false,
     },
     onLoad(options) {
         app.updateManager()
@@ -36,27 +36,23 @@ Page({
                 })
         })
     },
-    onShow(){
+    onShow() {
         let member = wx.getStorageSync("login") ? true : false
         this.setData({
             member: member,
             btnLoading: false
         })
     },
-    getUserInfo(e) {
-        this.setData({
-            btnLoading: true
-        })
-        if (e.detail.userInfo) {
-            app.login(e.detail, wx.getStorageSync("CODE"), () => {
-                this.setData({
-                    member: wx.getStorageSync("login")
-                })
+    register(e) {
+        console.log(e)
+        let detail = e.detail
+        if (detail) {
+            wx.setStorage({
+                key: 'login',
+                data: e.detail,
             })
-        } else {
-            app.tip('请您允许授权登录，否则无法使用该App')
             this.setData({
-                btnLoading: false
+                member: detail
             })
         }
     },
@@ -71,6 +67,6 @@ Page({
         })
     },
     onShareAppMessage() {
-        
+        app.shareApp()
     },
 })

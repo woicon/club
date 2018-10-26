@@ -3,17 +3,7 @@
         <load></load>
     </view>
 </block>
-
-<view wx:elif="{{!member}}">
-    <view class='login'>
-        <view class='login-text'>微信授权登录，需要您授权登录此app获取昵称，头像等信息！</view>
-        <!-- <button class='button' hover-class='button-touch' wx:if="{{logins}}" bindtap='toBack'>返回</button> -->
-        <button class='button' hover-class='button-touch' lang="zh_CN" bindgetuserinfo='{{btnLoading?"":"getUserInfo"}}' open-type="getUserInfo">
-            <load wx:if="{{btnLoading}}" color="#ffffff" />
-            <block wx:else>授权登录</block>
-        </button>
-    </view>
-</view>
+<register wx:elif="{{!member}}" bindregister="register" />
 <block wx:else>
     <view class='i-head' data-id="0" hover-class='touch' id="recreation" data-label="群活动">
         <image src='../../images/chatu@3x.png'></image>
