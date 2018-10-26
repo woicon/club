@@ -10,7 +10,7 @@
     <view class='panel-container'>
         <view class='panel-conts'>
             <view class='panel-title'>授权手机号</view>
-            <view class='panel-txt'>我们需要您授的授权获得您在微信中绑定手机号</view>
+            <view class='panel-txt'>我们需要您的授权获得您微信中绑定的手机号</view>
         </view>
         <button class='button' hover-class='button-touch' open-type='getPhoneNumber' bindgetphonenumber='{{btnLoading?"":"getPhoneNumber"}}'>
             <load wx:if="{{btnLoading}}" color="#ffffff" />
