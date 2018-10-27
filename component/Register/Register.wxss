@@ -12,7 +12,7 @@
 }
 .panel-container{
     background:#fff;
-    border-radius:6rpx;
+    border-radius:5px;
     padding-bottom:1rpx;
     margin:35% 15%;
 }

@@ -1,6 +1,6 @@
 <view class='login' wx:if="{{!userInfo}}">
     <view class='login-text'>微信授权登录，需要您授权登录此app获取昵称，头像等信息！</view>
-    <button class='button' hover-class='button-touch' lang="zh_CN" bindgetuserinfo='{{btnLoading?"":"getUserInfo"}}' open-type="getUserInfo">
+    <button class='button' hover-class='button-touch' lang="zh_CN" bindgetuserinfo='{{btnLoading?"":"getUserInfo"}}' open-type='{{btnLoading?"":"getUserInfo"}}'>
         <load wx:if="{{btnLoading}}" color="#ffffff" />
         <block wx:else>授权登录</block>
     </button>
@@ -12,7 +12,7 @@
             <view class='panel-title'>授权手机号</view>
             <view class='panel-txt'>我们需要您的授权获得您微信中绑定的手机号</view>
         </view>
-        <button class='button' hover-class='button-touch' open-type='getPhoneNumber' bindgetphonenumber='{{btnLoading?"":"getPhoneNumber"}}'>
+        <button type='primary' open-type='{{btnLoading?"":"getPhoneNumber"}}' bindgetphonenumber='{{btnLoading?"":"getPhoneNumber"}}'>
             <load wx:if="{{btnLoading}}" color="#ffffff" />
             <block wx:else>获取手机号</block>
         </button>

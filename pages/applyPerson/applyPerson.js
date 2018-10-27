@@ -146,15 +146,13 @@ Page({
                 this.setData({
                     btnLoading: false
                 })
-                if (res.status == "200" && res.msg == "OK") {
-
+                console.log(res)
+                if (res.status == "200") {
                     wx.reLaunch({
                         url: '/pages/applySuccess/applySuccess?id=' + res.data,
                     })
-                } else if (res.status == "1018") {
-                    app.tip("该时间段票已过期，请选择其他时间段！")
                 } else {
-                    app.tip("报名信息提交失败,请重新提交！")
+                    app.tip(res.msg)
                 }
             })
         }

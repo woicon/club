@@ -44,11 +44,14 @@
     </view>
     <view class='page-bar {{isPX ? "page-bar-px":""}}'>
         <view bindtap='createActivity'>我也要发活动</view>
-        <view wx:if="{{member}}" class='btn-apply' bindtap='toApply'>报名参加</view>
-        <button wx:else class='btn-apply' bindgetuserinfo='getUserInfo' open-type="getUserInfo">
-            <load wx:if="{{btnLoading}}" color="#fff" />
-            <block wx:else> 报名参加</block>
-        </button>
+        <view wx:if="{{detail.enroll}}" class='btn-apply'>您已报名参加活动</view>
+        <block wx:else>
+            <view wx:if="{{member}}" class='btn-apply' bindtap='toApply'>报名参加</view>
+            <button wx:else class='btn-apply' bindgetuserinfo='getUserInfo' open-type="getUserInfo">
+                <load wx:if="{{btnLoading}}" color="#fff" />
+                <block wx:else> 报名参加</block>
+            </button>
+        </block>
     </view>
 </block>
 <view wx:if="{{isShare}}" bindtap='goHome' class='ico-home gohome {{isPX ? "px" : ""}}' hover-class='touch'></view>
